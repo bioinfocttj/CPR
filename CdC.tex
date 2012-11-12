@@ -40,101 +40,16 @@
 
 \thispagestyle{empty}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{Introduction}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{./Intro.tex}
 
-\noindent Le métabolisme correspond à l'ensemble des processus complexes et incessants de transformation de matière et d'énergie par la cellule ou l'organisme, au cours des phénomènes d'édification et de dégradation organiques (anabolisme et catabolisme). 
-Ces molécules, appelées aussi métabolites, et les réactions dans lesquelles ils interviennent forment des réseaux métaboliques. \\
+\input{./contexte.tex}
 
-\noindent Analyser les réseaux métaboliques peut parfois s'avérer complexe étant donnée l'importance de la taille de certains. L'outil bioinformatique devient donc vite indispensable dans le traitement de telles données.\\ 
-Le but de notre projet sera donc de mettre en place une interface graphique pour le logiciel regEfmtool, qui est un \textcolor{blue}{outil} de calcul des modes élémentaires de flux.
-Un mode élémentaire est un chemin métabolique au sein d'un réseau, c'est à dire un jeu de réactions uniques pour lequel, à l'état stationnaire, le flux global à travers le processus est nul.\\
-La création de cette interface aura pour but de rendre l'utilisation de regEfmtool plus conviviale et de faire en sorte que les résultats générés soient visuellement interprétables. 
+\input{./etat.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Contexte}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{./besoins.tex}
 
-\noindent Quelques logiciels disponibles internationalement proposent des outils tels que le calcul des modes élémentaires de flux ou la recherche de minimal \textit{cut sets}. Cependant, ils sont soit dépendants de logiciels non libre comme MATLAB, soit ne possèdent pas d'interface utilisateur conviviale.\\
+\input{./choix.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{État de l'existant}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Efmtool}
-
-\noindent Efmtool calcule les modes élémentaires de flux de réseaux métaboliques. Il est implémenté en Java et a été intégré à MATLAB.\\
-Il a été développé par Marco Terzer. La version courante est la 4.7.1 (Décembre 2009).
-
-\section{RegEfmtool}
-
-\noindent RegEfmtool est un outil informatique qui combine le calcul des modes élémentaires de flux et la régulation transcriptionnelle du réseau métabolique. Il a été développé, entre autres, par Christian Jungreuthmayer. Il a été créé afin d'accélérer le calcul de jeux complets de modes élémentaires de flux d'un réseau métabolique.\\
-RegEfmtool est une extension d'Efmtool qui prend en compte la régulation transcriptionnelle des réseaux pour le calcul des modes élémentaires de flux.\\
-La prise en compte de la régulation des gènes réduit de façon importante le nombre de solutions et permet d'éliminer constamment les modes qui ne peuvent exister biologiquement pendant et après le processus de calcul. Elle permet aussi de réduire considérablement le coût du calcul.\\
-L'installation et l'utilisation de regEfmtool a été exclusivement testée sous Linux. Elle pourrait cependant fonctionner sous d'autres systèmes d'exploitation puisqu'il s'agit d'un programme Java. Il n'existe pas d'interface graphique de cette application, elle s'exécute donc en lignes de commandes via le terminal.
-La version courante de RegEfmtool est la 2.0 (Août 2012).
-
-\section{METATOOL} 
-
-\noindent METATOOL est un programme écrit en C développé de 1998 à 2000 par Thomas Pfeiffer (Berlin) en coopération avec Juan Carlos Nuno (Madrid), Stefan Schuster (Berlin) et Ferdinand Moldenhauer (Berlin).\\
-Il sert à étudier la structure des réseaux métaboliques à partir d'équations de réactions stœchiométriques et permet notamment de calculer les modes élémentaires.\\
-Les premières versions de METATOOL (jusqu'à la 4.9) ont été développées en C. Aujourd'hui, nous trouvons aussi une version de METATOOL en C++ mais cette version n'est pas au point. La dernière version, 4.9, est assez performante sur les petits réseaux métaboliques, mais possède de gros problèmes de gestion de mémoire et de rapidité lors de calculs sur de grands réseaux.
-Dans la version actuelle (5.1) l'exécutable est désormais un module de MATLAB 7 et GNU 3.0 Octave, il se présente sous la forme d'un ensemble de fichiers scripts de MATLAB.\\
-
-\noindent Les paramètres donnés en entrée pour le bon fonctionnement du logiciel METATOOL sont les suivants:
-\begin{enumerate}
-\item la liste des réactions réversibles, ainsi que celle des réactions irréversibles, avec le nom des réactions,
-\item la liste des métabolites internes et externes impliqués dans les réactions,
-\item les équations réactionnelles se trouvant dans la section.
-\end{enumerate}
-Le tout est rassemblé dans un fichier avec l'extension \textit{.dat}\\
-
-\noindent A la fin de son exécution, METATOOL a généré un fichier avec l'extension \textit{.out} dans lequel se trouvent les résultats. Dans les versions de METATOOL écrites en C, le fichier de sortie contient l'ensemble des résultats sous forme de matrices, ainsi que des bilans qui permettent de décrire le réseau d'étude.\\
-Les versions de METATOOL écrites en MATLAB produisent des résultats similaires en terme de calcul des matrices des modes élémentaires mais les résultats sont disposés différemment dans le fichier de sortie.
-
-\section{CellNetAnalyzer}
-
-\noindent CellNetAnalyzer est un package de MATLAB (écrit en \textsc{C}) qui fourni un environnement compréhensible et convivial pour l'utilisateur et qui permet une analyse fonctionnelle et structurelle de réseaux biochimiques. Il a été développé à l'institut Max Planck de Magdeburg par Steffen Klamt (depuis 2000) et Axel von Kamp (depuis 2007) notamment.\\
-CellNetAnalyzer fourni une importante collection d'outils et d'algorithmes pour l'analyse structurelle de réseaux.\\
-C'est un programme gratuit pour une utilisation académique. Pour l'exécuter, il faut avoir installé MATLAB 7.0 ou une version ultérieure qui demande une licence. Il peut être utilisé sur Linux, Windows XP ou Mac.\\
-Pour l'étude des modes élémentaires, CellNetAnalyzer fait appel à METATOOL via le logiciel MEX qui sert d'interface. MEX permet à MATLAB d'appeler tout logiciel \textsc{C} externe pour compléter les outils qu'il possède.
-
-\section{Langages}
-
-\noindent Notre projet nécessite l'utilisation d'une interface web, dans ce cadre il existe:
-\begin{itemize}
-\item \textsc{mod perl} combiné avec \textsc{apache} et \textsc{CGI} mais la technologie utilisée est à l'heure actuelle dépassée
-\item \textsc{mod python} combiné avec \textsc{apache} et \textsc{CGI} mais même remarque que précédemment
-\item \textsc{CL-WHO} avec \textsc{Hunchentoot} et \textsc{ParenScript} offre un bon environnement pour le développement web
-\item \textsc{Java} et ses \textsc{applets java} apparaissent également comme un bon choix pour le développent web
-\item \textsc{PHP} couplé avec du \textsc{Javascript} peut être un choix judicieux pour une application web\\
-\end{itemize}
-
-\noindent Parmi les différents choix précédemment cités, deux sortent du lot: \textsc{Java} et \textsc{PHP} avec leurs bibliothèques.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Besoins fonctionnels et non fonctionnels}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Besoins fonctionnels}
-
-\noindent L'interface web que nous allons créer devra permettre de charger la description d'un réseau déjà créé ou d'en créer un nouveau, mais également de modifier les descriptions de ce réseau.\\
-Elle donnera également le moyen à l'utilisateur de saisir les paramètres qui l'intéressent puis de lancer les calculs des modes élémentaires de flux du réseau d'intérêt.\\
-\textcolor{green}{Selon les caractéristiques du fichier utilisateur rentré une listes des choix possibles pourra être proposé. Les résultats d'expériences similaire doivent pouvoir être comparés}
-Enfin, la visualisation des résultats devra apparaître de façon claire à l'utilisateur.
-
-
-\section{Besoins non fonctionnels}
-
-\noindent L'interface web créée devra être fournie avec une documentation.\\
-Si elle s'appuie sur des logiciels existants, ceux-ci devront être libre d'utilisation pour le secteur académique.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Choix et justifications}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\noindent \textcolor{green}{Le choix d'une interface web permet à tout utilisateur quel que soit son système d'exploitation de pouvoir utiliser le logiciel . 
-En effet \emph{regEfmtool} étant installé et exécuté sur une machine \emph{UNIX} qui est relié à d'autres machines sur un réseaux local (ou sur internet) n'importe quelle autre machine peut avoir accès au logiciel via sont navigateur internet}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter*{Bibliographie}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
