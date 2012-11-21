@@ -5,7 +5,7 @@
 \section{Besoins fonctionnels}
 
 \subsection{Interface Homme Machine (IHM)}
-L'interface web que nous allons réaliser devra permettre de charger la description d'un réseau pré-existant ou d'en créer un nouveau, mais également de modifier les descriptions de ce dernier.\\
+L'interface Web que nous allons réaliser devra permettre de charger la description d'un réseau pré-existant ou d'en créer un nouveau, mais également de modifier les descriptions de ce dernier.\\
 Elle donnera également le moyen à l'utilisateur de saisir les fonctions et options qui l'intéressent puis de lancer les calculs des modes élémentaires de flux du réseau d'intérêt. De plus, un script récurent de commandes pourra être enregistré et chargé par la suite.
 
 \subsection{Chargement des données}
@@ -16,13 +16,68 @@ Selon le type du fichier donné en paramètre d'entrée, une liste de choix poss
 Il sera possible pour un utilisateur confirmé ou habitué à l'interface d'avoir accès à un mode de réglage avancé des paramètres, s'il le désire. Ces derniers seront fixés à des valeurs par défaut pour les débutants. 
 
 \subsection{Résultats}
-Enfin, la visualisation des résultats devra apparaître de façon claire et conviviale à l'utilisateur au travers de l'interface web. De plus, les résultats pourront être exportés dans un fichier pour une analyse ultérieure. Par ailleurs, nous allons essayer de mettre en place un dispositif d'annotations des fichiers.
+Enfin, la visualisation des résultats devra apparaître de façon claire et conviviale à l'utilisateur au travers de l'interface Web. De plus, les résultats pourront être exportés dans un fichier pour une analyse ultérieure. Par ailleurs, nous allons essayer de mettre en place un dispositif d'annotations des fichiers.
 
 \subsection{Aide en ligne}
 Un message d'aide apparaîtra au survol du curseur de la souris sur la fonction ou l'option choisie. Ainsi l'utilisateur pourra avoir plus d'informations sur la commande concernée.
 
 \subsection{Maquette de l'interface}
-à voir !
+Nous avons réalisé une série de maquettes pour avoir une idée du genre de l'interface Web qui nous voudrions. Elles ont été réalisée avec le logiciel XXXX et permettent de mieux illustrer le rendu final de notre projet.
+
+% LES MAQUETTES SONT DES EBAUCHES, IL FAUT ENCORE LES ARRANGER ^^
+
+\subsubsection{Page d'accueil}
+
+\begin{figure}[!ht]
+	\begin{center}
+  		\includegraphics[width=0.90\textwidth]{main.png}
+  		\caption{pageAccueil}  
+  		\label{main}
+	\end{center}
+\end{figure}
+
+Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser cette même langue pour notre interface. De plus, cela permettra son utilisation par un plus grand nombre d'utilisateurs. \\
+			Lors de l'affichage de la page d'accueil (Figure \ref{main}), l'utilisateur aura le choix entre créer un réseau métabolique manuellement, ou bien le créer à partir de fichiers préexistant. 
+	
+\pagebreak	
+			
+\subsubsection{Création d'un nouveau réseau}
+
+\begin{figure}[!ht]
+	\begin{center}
+  		\includegraphics[width=0.90\textwidth]{create_net.png} 
+  		\caption{Entrée des composants du réseau} 
+  		\label{reseau}
+	\end{center}
+\end{figure}
+
+Si l'utilisateur clique sur le bouton de création d'un nouveau réseau (Figure \ref{reseau}) métabolique, une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que le celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzymes. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
+
+\pagebreak
+
+\begin{figure}[!ht]
+	\begin{center}
+  		\includegraphics[width=0.90\textwidth]{create_reaction.png}  
+  		\caption{Création des réactions}
+  		\label{reactions}
+	\end{center}
+\end{figure}
+
+Une fois les noms des composants du réseau métabolique entrés, l'utilisateur va devoir créer les réactions une a une (Figure \ref{reactions}). Tous d'abord, il devra s'occuper des réactifs de la réaction: un menu déroulant lui donnera le choix de tous les métabolites qu'il a saisi précédemment et il n'y aura plus qu'à entrer le coefficient stœchiométrique associé. Il en sera de même pour les enzymes (sans le coefficient de stœchiométrie dans notre cas), les produits et les co-facteurs. Pour ce qui est de la réversibilité des réactions, il suffira de cocher la bonne case. L'utilisateur pourra ensuite ajouter une réaction ou valider son réseau. 
+
+\pagebreak
+
+\subsubsection{Chargement d'un réseau préexistant}
+
+\begin{figure}[!ht]
+	\begin{center}
+  		\includegraphics[width=0.90\textwidth]{load_firefox.png}  
+  		\caption{Chargement du réseau}
+  		\label{chargement}
+	\end{center}
+\end{figure}
+
+Si l'utilisateur clique sur le bouton de chargement d'un réseau depuis la page d'accueil, il devra charger une série de fichiers (depuis le disque dur de son ordinateur) nécessaires au bon fonctionnement de \textit{regEfmtool}. Les fichiers doivent être dans le format adéquat et un message d'erreur informera si ce n'est pas le cas. Au cas où, une fonction d'aide sera disponible pour avoir un modèle de fichiers à charger. 
 
 \section{Besoins non fonctionnels}
 
@@ -37,7 +92,7 @@ Il faudra effectuer une vérification du nombre de métabolites et de réactions
 
 \subsection{Documentations}
 L'écriture du code sera constituée de commentaires qui permettront la maintenance du code ainsi qu'une éventuelle amélioration de ce dernier par un tiers.
-L'interface web créée, quand à elle, devra être fournie avec une documentation sur son installation, son utilisation, sa maintenance et une charte graphique déclarant les différents attributs du site (couleurs utilisées, police, logo, image,...).
+L'interface Web créée, quand à elle, devra être fournie avec une documentation sur son installation, son utilisation, sa maintenance et une charte graphique déclarant les différents attributs du site (couleurs utilisées, police, logo, image,...).
 
 \subsection{Dates}
 Début du projet mi-octobre 2012. \\
