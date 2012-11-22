@@ -22,7 +22,7 @@ Enfin, la visualisation des résultats devra apparaître de façon claire et con
 Un message d'aide apparaîtra au survol du curseur de la souris sur la fonction ou l'option choisie. Ainsi l'utilisateur pourra avoir plus d'informations sur la commande concernée.
 
 \subsection{Maquette de l'interface}
-Nous avons réalisé une série de maquettes pour avoir une idée du genre de l'interface Web qui nous voudrions. Elles ont été réalisée avec le logiciel XXXX et permettent de mieux illustrer le rendu final de notre projet.
+Nous avons réalisé une série de maquettes pour avoir une idée du genre d'interface Web que nous voudrions. Elles ont été réalisée avec le logiciel XXXX et permettent de mieux illustrer le rendu final de notre projet.
 
 % LES MAQUETTES SONT DES EBAUCHES, IL FAUT ENCORE LES ARRANGER ^^
 
@@ -31,13 +31,13 @@ Nous avons réalisé une série de maquettes pour avoir une idée du genre de l'
 \begin{figure}[!ht]
 	\begin{center}
   		\includegraphics[width=0.90\textwidth]{main.png}
-  		\caption{pageAccueil}  
+  		\caption{Page Accueil}  
   		\label{main}
 	\end{center}
 \end{figure}
 
 Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser cette même langue pour notre interface. De plus, cela permettra son utilisation par un plus grand nombre d'utilisateurs. \\
-			Lors de l'affichage de la page d'accueil (Figure \ref{main}), l'utilisateur aura le choix entre créer un réseau métabolique manuellement, ou bien le créer à partir de fichiers préexistant. 
+			Lors de l'affichage de la page d'accueil (Figure \ref{main}), l'utilisateur aura le choix entre créer un réseau métabolique manuellement, ou bien le charger à partir de fichiers préexistant. 
 	
 \pagebreak	
 			
@@ -51,7 +51,7 @@ Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser 
 	\end{center}
 \end{figure}
 
-Si l'utilisateur clique sur le bouton de création d'un nouveau réseau (Figure \ref{reseau}) métabolique, une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que le celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzymes. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
+Si l'utilisateur clique sur le bouton de création d'un nouveau réseau métabolique(Figure \ref{reseau}), une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que le celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzymes. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
 
 \pagebreak
 
@@ -63,7 +63,7 @@ Si l'utilisateur clique sur le bouton de création d'un nouveau réseau (Figure 
 	\end{center}
 \end{figure}
 
-Une fois les noms des composants du réseau métabolique entrés, l'utilisateur va devoir créer les réactions une a une (Figure \ref{reactions}). Tous d'abord, il devra s'occuper des réactifs de la réaction: un menu déroulant lui donnera le choix de tous les métabolites qu'il a saisi précédemment et il n'y aura plus qu'à entrer le coefficient stœchiométrique associé. Il en sera de même pour les enzymes (sans le coefficient de stœchiométrie dans notre cas), les produits et les co-facteurs. Pour ce qui est de la réversibilité des réactions, il suffira de cocher la bonne case. L'utilisateur pourra ensuite ajouter une réaction ou valider son réseau. 
+Une fois les noms des composants du réseau métabolique entrés, l'utilisateur va devoir créer les réactions une à une (Figure \ref{reactions}). Tous d'abord, il devra s'occuper des réactifs de la réaction: un menu déroulant lui donnera le choix entre tous les métabolites qu'il a saisi précédemment et il n'aura plus qu'à entrer le coefficient stœchiométrique associé. Il en sera de même pour les enzymes (sans le coefficient de stœchiométrie dans ce cas), les produits et les co-facteurs. Pour ce qui est de la réversibilité des réactions, il suffira de cocher la bonne case. L'utilisateur pourra ensuite ajouter une réaction ou valider son réseau. 
 
 \pagebreak
 
@@ -77,7 +77,7 @@ Une fois les noms des composants du réseau métabolique entrés, l'utilisateur 
 	\end{center}
 \end{figure}
 
-Si l'utilisateur clique sur le bouton de chargement d'un réseau depuis la page d'accueil, il devra charger une série de fichiers (depuis le disque dur de son ordinateur) nécessaires au bon fonctionnement de \textit{regEfmtool}. Les fichiers doivent être dans le format adéquat et un message d'erreur informera si ce n'est pas le cas. Au cas où, une fonction d'aide sera disponible pour avoir un modèle de fichiers à charger. 
+Si l'utilisateur clique sur le bouton de chargement d'un réseau depuis la page d'accueil, il devra charger une série de fichiers (depuis le disque dur de son ordinateur) nécessaires au bon fonctionnement de \textit{regEfmtool}. Les fichiers doivent être dans le format adéquat et un message d'erreur appara\^itra si ce n'est pas le cas. Au cas où, une fonction d'aide sera disponible pour avoir un modèle de fichiers à charger. 
 
 \section{Besoins non fonctionnels}
 
