@@ -22,18 +22,19 @@ Enfin, la visualisation des résultats devra apparaître de façon claire et con
 Un message d'aide apparaîtra au survol du curseur de la souris sur la fonction ou l'option choisie. Ainsi l'utilisateur pourra avoir plus d'informations sur la commande concernée.
 
 \subsection{Maquette de l'interface}
-Nous avons réalisé une série de maquettes pour avoir une idée du genre d'interface Web que nous voudrions. Elles ont été réalisée avec le logiciel XXXX et permettent de mieux illustrer le rendu final de notre projet.
-
-% LES MAQUETTES SONT DES EBAUCHES, IL FAUT ENCORE LES ARRANGER ^^
+Nous avons réalisé une série de maquettes pour avoir une idée du genre d'interface Web que nous voudrions. Elles ont été réalisée avec le logiciel Pencil~\cite{pencil:url} et permettent de mieux illustrer le rendu final de notre projet.
 
 \subsubsection{Page d'accueil}
 
 \begin{figure}[!ht]
 	\begin{center}
-  		\includegraphics[width=0.90\textwidth]{main.png}
-  		\caption{Page Accueil}  
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{Accueil.png}  
+		 \end{minipage}}
+		\caption{Page d'accueil}
   		\label{main}
-	\end{center}
+  	\end{center}	
 \end{figure}
 
 Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser cette même langue pour notre interface. De plus, cela permettra son utilisation par un plus grand nombre d'utilisateurs. \\
@@ -45,22 +46,28 @@ Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser 
 
 \begin{figure}[!ht]
 	\begin{center}
-  		\includegraphics[width=0.90\textwidth]{create_net.png} 
-  		\caption{Entrée des composants du réseau} 
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{CreateNetwork.png}  
+		 \end{minipage}}
+		\caption{Entrée des composants du réseau}
   		\label{reseau}
-	\end{center}
+  	\end{center}	
 \end{figure}
 
-Si l'utilisateur clique sur le bouton de création d'un nouveau réseau métabolique(Figure \ref{reseau}), une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que le celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzymes. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
+Si l'utilisateur clique sur le bouton de création d'un nouveau réseau métabolique (Figure \ref{reseau}), une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que le celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzymes. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
 
 \pagebreak
 
 \begin{figure}[!ht]
 	\begin{center}
-  		\includegraphics[width=0.90\textwidth]{create_reaction.png}  
-  		\caption{Création des réactions}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{CreateReac.png}  
+		 \end{minipage}}
+		\caption{Création des réactions}
   		\label{reactions}
-	\end{center}
+  	\end{center}	
 \end{figure}
 
 Une fois les noms des composants du réseau métabolique entrés, l'utilisateur va devoir créer les réactions une à une (Figure \ref{reactions}). Tous d'abord, il devra s'occuper des réactifs de la réaction: un menu déroulant lui donnera le choix entre tous les métabolites qu'il a saisi précédemment et il n'aura plus qu'à entrer le coefficient stœchiométrique associé. Il en sera de même pour les enzymes (sans le coefficient de stœchiométrie dans ce cas), les produits et les co-facteurs. Pour ce qui est de la réversibilité des réactions, il suffira de cocher la bonne case. L'utilisateur pourra ensuite ajouter une réaction ou valider son réseau. 
@@ -71,13 +78,33 @@ Une fois les noms des composants du réseau métabolique entrés, l'utilisateur 
 
 \begin{figure}[!ht]
 	\begin{center}
-  		\includegraphics[width=0.90\textwidth]{load_firefox.png}  
-  		\caption{Chargement du réseau}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{Load.png}  
+		 \end{minipage}}
+		\caption{Chargement du réseau}
   		\label{chargement}
-	\end{center}
+  	\end{center}	
 \end{figure}
 
 Si l'utilisateur clique sur le bouton de chargement d'un réseau depuis la page d'accueil, il devra charger une série de fichiers (depuis le disque dur de son ordinateur) nécessaires au bon fonctionnement de \textit{regEfmtool}. Les fichiers doivent être dans le format adéquat et un message d'erreur appara\^itra si ce n'est pas le cas. Au cas où, une fonction d'aide sera disponible pour avoir un modèle de fichiers à charger. 
+
+\subsubsection{Lancement du programme}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{Run.png}  
+		 \end{minipage}}
+		\caption{Lancement de RegEmftool}
+  		\label{lancement}
+  	\end{center}	
+\end{figure}
+
+Lorsque l'utilisateur aura créé son réseau manuellement ou l'aura chargé, il devra ensuite choisir les paramètres de calcul de \textit{regEfmtool}. Nous avons fait le choix d'utiliser des cases à cocher en fonction de ce qu'il choisira. Pour les utilisateurs non expérimentés, les choix de base seront pré-sélectionnées. Il suffira ensuite de cliquer sur le bouton "Run" pour avoir les résultats générés par le logiciel. Nous n'avons pas représenté toutes les options du lancement de \textit{regEfmtool} sur cette maquette, pour des besoins d'affichage.
+
+\pagebreak
 
 \section{Besoins non fonctionnels}
 
