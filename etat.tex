@@ -16,15 +16,15 @@ La version courante de \emph{RegEfmtool} est la 2.0 (Août 2012).
 \section{METATOOL} 
 METATOOL~\cite{metatool:url} est un programme écrit en C développé de 1998 à 2000 par Thomas Pfeiffer (Berlin) en coopération avec Juan Carlos Nuno (Madrid), Stefan Schuster (Berlin) et Ferdinand Moldenhauer (Berlin).\\
 Il sert à étudier la structure des réseaux métaboliques à partir d'équations de réactions stœchiométriques et permet notamment de calculer les modes élémentaires.\\
-Les premières versions de METATOOL (jusqu'à la 4.9) ont été développées en C. Aujourd'hui, nous trouvons aussi une version de METATOOL en C++ mais cette version n'est pas au point. La dernière version, 4.9, est assez performante sur les petits réseaux métaboliques, mais possède de gros problèmes de gestion de mémoire et de rapidité lors de calculs sur de grands réseaux.
+Les premières versions de METATOOL (jusqu'à la 4.9) ont été développées en C. Aujourd'hui, nous trouvons aussi une version de METATOOL en C++ mais cette version n'est pas au point. %La dernière version, 4.9, est assez performante sur les petits réseaux métaboliques, mais possède de gros problèmes de gestion de mémoire et de rapidité lors de calculs sur de grands réseaux.
 Dans la version actuelle (5.1) l'exécutable est désormais un module de MATLAB 7 et GNU 3.0 Octave, il se présente sous la forme d'un ensemble de fichiers scripts de MATLAB.\\
 
 Les paramètres donnés en entrée pour le bon fonctionnement du logiciel METATOOL sont les suivants:
-\begin{enumerate}
-\item la liste des réactions réversibles, ainsi que celle des réactions irréversibles, avec le nom des réactions,
-\item la liste des métabolites internes et externes impliqués dans les réactions,
-\item les équations réactionnelles se trouvant dans la section.
-\end{enumerate}
+\begin{itemize}
+\item La liste des réactions réversibles, ainsi que celle des réactions irréversibles, avec le nom des réactions,
+\item La liste des métabolites internes et externes impliqués dans les réactions,
+\item Les équations réactionnelles.
+\end{itemize}
 Le tout est rassemblé dans un fichier avec l'extension \textit{.dat}\\
 
 A la fin de son exécution, METATOOL a généré un fichier avec l'extension \textit{.out} dans lequel se trouvent les résultats. Dans les versions de METATOOL écrites en C, le fichier de sortie contient l'ensemble des résultats sous forme de matrices, ainsi que des bilans qui permettent de décrire le réseau d'étude.\\
@@ -42,7 +42,7 @@ des voies métaboliques. Il contient le logiciel METATOOL dans sa structure inte
 YANA~\cite{yanasq:url} sert de façade et de sortie à METATOOL 6 tout en implémentant d'autres fonctions d'analyses du métabolisme (ex: quantification de l'activité enzymatique des réactions).\\ YANA s'occupe de l'entrée des données vers METATOOL puis il effectue une analyse syntaxique du fichier \textit{.out} pour afficher les résultats sur une interface graphique et effectuer des analyses complémentaires sur ceux-ci.
 
 \section{Acom}
-ACoM~\cite{acom:url} fonctionne à partir des fichiers de sortie de METATOOL. Il permet une classification automatiques des modes élémentaires en fonction d'une taille minimale et d'un seuil de similarité. Il est surtout utilisé pour l'analyse des réseaux de grandes tailles où la manipulation des données à la main est laborieuse. ACoM est un programme
+ACoM~\cite{acom:url} fonctionne à partir des fichiers de sortie de METATOOL. Il permet une classification automatique des modes élémentaires en fonction d'une taille minimale et d'un seuil de similarité. Il est surtout utilisé pour l'analyse des réseaux de grandes tailles où la manipulation des données à la main est laborieuse. ACoM est un programme
 C utilisable uniquement en mode console.
 
 \section{JACoMode}
@@ -54,7 +54,7 @@ Notre projet nécessite l'utilisation d'une interface Web, dans ce cadre il exis
 \item Mod Perl combiné avec Apache\footnote{Apache HTTP Server} et CGI\footnote{CGI: Common Gateway Interface.} mais la technologie utilisée est à l'heure actuelle dépassée
 \item Mod Python combiné avec Apache et CGI mais même remarque que précédemment
 \item CL-WHO avec Hunchentoot\footnote{Hunchentoot HTTP Server} et ParenScript offre un bon environnement pour le développement Web
-\item Java et ses applets\footnote{Applet Java: logiciel s'exécutant dans la fenêtre d'une navigateur Web (grâce à une machine virtuelle Java (JVM)), fournie aux utilisateurs sous la forme de bytecode Java.} apparaissent également comme un bon choix pour le développent Web
+\item Java et ses applets\footnote{Applet Java: logiciel s'exécutant dans la fenêtre d'une navigateur Web (grâce à une machine virtuelle Java (JVM)), fournie aux utilisateurs sous la forme de bytecode Java.} apparaissent également comme un bon choix pour le développement Web
 \item PHP couplé avec du JavaScript peut être un choix judicieux pour une application Web
 \end{itemize}
 
