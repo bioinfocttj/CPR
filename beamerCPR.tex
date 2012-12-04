@@ -27,10 +27,24 @@
 
 \begin{frame}
 	\frametitle{\secname}
-	\begin{itemize}
-	\item Réseaux Métaboliques.
-	\item Mode Élémentaire.
-	\end{itemize}
+	\begin{minipage}{5cm}
+		\begin{block}{}
+			\begin{itemize}
+				\item Réseaux Métaboliques
+				\item Modes Élémentaires
+			\end{itemize}
+		\end{block}
+	\end{minipage}
+	\begin{minipage}{5cm}
+		\begin{figure}[h]
+			\begin{center}
+			%\fbox{
+   				\begin{minipage}[c]{0.9\textwidth}
+  					\includegraphics[scale=0.25]{reseaux_metaboliques.png}
+				 \end{minipage}%}
+  			\end{center}	
+		 \end{figure}
+	\end{minipage}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,14 +55,14 @@
 	\frametitle{\secname}
 	\begin{block}{Sujet}
 		\begin{itemize}
-		\item Calcul de flux.
-		\item \textit{regEfmtool}.
+		\item Calcul de flux
+		\item \textit{regEfmtool}
 		\end{itemize}
 	\end{block}
 	\begin{block}{Objectifs}
 		\begin{itemize}
-		\item Interface Graphique.
-		\item Technologies Web : HTML, CSS, JavaScript, PHP.
+		\item Interface Graphique
+		\item Technologies Web
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -59,13 +73,32 @@
 
 \begin{frame}
 	\frametitle{\secname}
-	\begin{block}{Logiciels existants}
-		\begin{itemize}
-		\item RegEfmtool
-		\item CellNetAnalyser
-		\item MetaTool
-		\end{itemize}
+	\begin{block}{RegEfmtool}
+	\begin{itemize}
+	\item Extension d'\textit{Efmtool}
+	\item Calcul des modes élementaires de flux
+	\item Régulation transcritpionnelle du réseau métabolique
+	\item Fichiers textes formatés en entrée
+	\end{itemize}
 	\end{block}
+	\begin{block}{CellNetAnalyser}
+	\begin{itemize}
+	\item Package de MATLAB
+	\item Analyse fonctionnelle et structurelle de résaux biochimiques
+	\item Calcul des modes élémentaires grâce à METATOOL
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{\secname}
+	\begin{block}{MetaTool}
+	\begin{itemize}
+	\item Étude structure réseaux métaboliques
+	\item Calcul des modes élémentaires
+	
+	\end{itemize}
+	\end{block}	
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,6 +181,30 @@
 	 \end{figure}
 \end{frame}
 
+\begin{frame}
+	\frametitle{\subsecname}
+	\begin{figure}[h]
+		\begin{center}
+		\fbox{
+   			\begin{minipage}[c]{0.9\textwidth}
+  				\includegraphics[scale=0.25]{result_view.png}
+			 \end{minipage}}
+  		\end{center}	
+	 \end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\subsecname}
+	\begin{figure}[h]
+		\begin{center}
+		\fbox{
+   			\begin{minipage}[c]{0.9\textwidth}
+  				\includegraphics[scale=0.25]{result_compare.png}
+			 \end{minipage}}
+  		\end{center}	
+	 \end{figure}
+\end{frame}
+
 \subsection{Besoins non fonctionnels}
 
 \begin{frame}
@@ -168,14 +225,22 @@
 
 \begin{frame}
 	\frametitle{\secname}
-	\begin{block}{}
+	\begin{block}{Langages}
 		\begin{itemize}
-		\item Langages
-		\item Accessibilité
+		\item Structure (squelette du site) = HTML
+\item Design = CSS
+\item Animation, interactivité = Javascript
+\item Communication avec Base de données = PHP
+
 		%\item Base de données 
 		\end{itemize}
 	\end{block}
 \end{frame}
 
+\begin{frame}
+	\frametitle{\secname}
+	\begin{block}{Accessibilité}
+	\end{block}
+\end{frame}
 
 \end{document}
