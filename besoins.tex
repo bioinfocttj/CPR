@@ -39,10 +39,12 @@ Nous avons réalisé une série de maquettes pour avoir une idée du genre d'int
 
 Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser cette même langue pour notre interface. De plus, cela permettra son utilisation par un plus grand nombre d'utilisateurs. \\
 			Lors de l'affichage de la page d'accueil (Figure \ref{main}), l'utilisateur aura le choix entre créer un réseau métabolique manuellement, ou bien le charger à partir de fichiers préexistant. 
-	
-\pagebreak	
 			
 \subsubsection{Création d'un nouveau réseau}
+
+Si l'utilisateur clique sur le bouton de création d'un nouveau réseau métabolique (Figure \ref{reseau}), une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzyme. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
+
+\pagebreak
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -54,10 +56,6 @@ Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser 
   		\label{reseau}
   	\end{center}	
 \end{figure}
-
-Si l'utilisateur clique sur le bouton de création d'un nouveau réseau métabolique (Figure \ref{reseau}), une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzyme. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
-
-\pagebreak
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -106,6 +104,36 @@ Lorsque l'utilisateur aura créé son réseau manuellement ou l'aura chargé, il
 
 \pagebreak
 
+\subsubsection{Affichage des résultats}
+
+Nous proposons dans la Figure \ref{affichage} un exemple de ce que verra l'utilisateur après avoir lancé le logiciel. Il y aura une série de "boîtes" dans lesquelles seront affichés les différents éléments générés par \textit{regEfmtool}. Il sera également possible de lancer une comparaison des résultats entre deux réseaux en appuyant sur le bouton "Compare". 
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{result_view.png}  
+		 \end{minipage}}
+		\caption{Exemple d'affichage des résultats pour \textit{E. Coli}}
+  		\label{affichage}
+  	\end{center}	
+\end{figure}
+
+\subsubsection{Comparaison des résultats}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{result_compare.png}  
+		 \end{minipage}}
+		\caption{Exemple de comparaison des résultats pour \textit{E. Coli}}
+  		\label{comparaison}
+  	\end{center}	
+\end{figure}
+
+Pour la comparaison des réseaux, la Figure \ref{comparaison} propose un exemple d'affichage en vis-à-vis des résultats. 
+
 \section{Besoins non fonctionnels}
 
 \subsection{Portabilité}
@@ -117,13 +145,13 @@ Il faudra gérer l'espace occupé par les fichier chargés sur le serveur. Le si
 \subsection{Temps de calcul}
 Il faudra effectuer une vérification du nombre de métabolites et de réactions afin d'estimer le temps de calcul. Si ce dernier s'avère trop long, l'utilisateur sera prévenu et devra confirmer le lancement du processus. 
 
-\subsection{Documentations}
+\subsection{Documentation}
 L'écriture du code sera constituée de commentaires qui permettront la maintenance du code ainsi qu'une éventuelle amélioration de ce dernier par un tiers.
 L'interface Web créée, quand à elle, devra être fournie avec une documentation sur son installation, son utilisation, sa maintenance et une charte graphique déclarant les différents attributs du site (couleurs utilisées, police, logo, image,...).
 
-\subsection{Dates}
-Début du projet mi-octobre 2012. \\
-Remise du cahier des chargeés et présentation du sujet le 5 Décembre 2012.  \\
-Mi-décembre 2012: point sur l'avancement du projet.\\
-Rendez-vous pour l'avancement du code en janvier 2013.\\
-Remise du projet mi-février 2013.
+%\subsection{Dates}
+%Début du projet mi-octobre 2012. \\
+%Remise du cahier des charges et présentation du sujet le 5 Décembre 2012.  \\
+%Mi-décembre 2012: point sur l'avancement du projet.\\
+%Rendez-vous pour l'avancement du code en janvier 2013.\\
+%Remise du projet mi-février 2013.
