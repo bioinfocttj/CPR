@@ -10,7 +10,7 @@
 \date{5 Décembre 2012}
 \author{Arnaud \textsc{Frèche} \\ Charlotte \textsc{Héricé} \\ Sarai \textsc{Mola}\\ Typhaine  \textsc{Paysan-Lafosse} \\ Joris \textsc{Sansen}}
 \institute[Université Bordeaux 1] {Master 2 BioInformatique}
- 
+\setbeamertemplate{navigation symbols}{}
 \begin{document}
 
 \frame{\titlepage}
@@ -27,21 +27,27 @@
 
 \begin{frame}
 	\frametitle{\secname}
-	\begin{minipage}{5cm}
 		\begin{block}{}
 			\begin{itemize}
 				\item Réseaux Métaboliques
 				\item Modes Élémentaires
 			\end{itemize}
 		\end{block}
+	\begin{minipage}{6cm}
+	\begin{figure}[h]
+		\begin{center}
+   			\begin{minipage}[c]{0.9\textwidth}
+  				\includegraphics[scale=0.2]{glycolyse.png}
+			 \end{minipage}
+  		\end{center}	
+	\end{figure}
 	\end{minipage}
-	\begin{minipage}{5cm}
+	\begin{minipage}{4cm}
 		\begin{figure}[h]
 			\begin{center}
-			%\fbox{
    				\begin{minipage}[c]{0.9\textwidth}
-  					\includegraphics[scale=0.25]{reseaux_metaboliques.png}
-				 \end{minipage}%}
+  					\includegraphics[scale=2.5]{modelem.png}
+				 \end{minipage}
   			\end{center}	
 		 \end{figure}
 	\end{minipage}
@@ -53,6 +59,7 @@
 
 \begin{frame}
 	\frametitle{\secname}
+	\begin{minipage}{5cm}
 	\begin{block}{Sujet}
 		\begin{itemize}
 		\item Calcul de flux
@@ -65,6 +72,17 @@
 		\item Technologies Web
 		\end{itemize}
 	\end{block}
+	\end{minipage}
+	\begin{minipage}{5cm}
+	\begin{figure}[h]
+			\begin{center}
+			%\fbox{
+   				\begin{minipage}[c]{0.9\textwidth}
+  					\includegraphics[scale=0.3]{pyruvate.png}
+				 \end{minipage}%}
+  			\end{center}	
+		 \end{figure}
+	\end{minipage}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,14 +91,7 @@
 
 \begin{frame}
 	\frametitle{\secname}
-	\begin{block}{RegEfmtool}
-	\begin{itemize}
-	\item Extension d'\textit{Efmtool}
-	\item Calcul des modes élementaires de flux
-	\item Régulation transcritpionnelle du réseau métabolique
-	\item Fichiers textes formatés en entrée
-	\end{itemize}
-	\end{block}
+	\begin{minipage}{5cm}
 	\begin{block}{CellNetAnalyser}
 	\begin{itemize}
 	\item Package de MATLAB
@@ -88,6 +99,16 @@
 	\item Calcul des modes élémentaires grâce à METATOOL
 	\end{itemize}
 	\end{block}
+	\end{minipage}
+	\begin{minipage}{5cm}
+	\begin{center}
+	\begin{figure}[h]
+	\includegraphics[scale=0.3]{cellnet.png}
+		
+	\end{figure}
+	\end{center}
+	\end{minipage}
+		
 \end{frame}
 
 \begin{frame}
@@ -96,9 +117,20 @@
 	\begin{itemize}
 	\item Étude structure réseaux métaboliques
 	\item Calcul des modes élémentaires
+	\item Module de MATLAB 
+	\item Format entrée: fichier \textit{.dat}, format sortie: fichier \textit{.out}
 	
 	\end{itemize}
 	\end{block}	
+	
+	\begin{block}{RegEfmtool}
+	\begin{itemize}
+	\item Extension d'\textit{Efmtool}
+	\item Calcul des modes élementaires de flux
+	\item Régulation transcriptionnelle du réseau métabolique
+	\item Fichiers textes formatés en entrée
+	\end{itemize}
+	\end{block}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
