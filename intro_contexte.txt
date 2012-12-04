@@ -1,0 +1,33 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{\secname}
+	\begin{itemize}
+	\item Réseaux Métaboliques.
+	\item Mode Elementaire.
+	
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Contexte}			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{\secname}
+	\begin{block}{Sujet}
+		\begin{itemize}
+		\item Calcul de flux.
+		\item regEfmtool.
+		\end{itemize}
+	\end{block}
+	\begin{block}{Objectif}
+		\begin{itemize}
+		\item Interface Graphique.
+		\item Technologies Web :HTML, CSS, JavaScript, PHP.
+		\end{itemize}
+	\end{block}
+\end{frame}
