@@ -34,12 +34,11 @@ define('TXT_CREATION_WARNING', "No space in the names, please use underscore '_'
 			Name_of_reaction : 2 reactant1 + 5 reactant2 => 3 product1 + 7 product2 (irreversible) <br />
 			Name_of_reaction : 2 reactant1 + 5 reactant2 = 3 product1 + 7 product2 (reversible) <br />
 			Please be sure to let a space between the stoechiometry coefficient and the associate metabolite.");
-define('TXT_CREATION_IS_REVERSIBLE', "Reversibility :");
+define('TXT_CREATION_IS_REVERSIBLE', "Reversible :");
 define('TXT_CREATION_YES', "Yes");
 define('TXT_CREATION_NO', "No");
 define('TXT_CREATION_ALREADY_OK', "Reactions already saved");
 define('TXT_CREATION_FINISH', "Creation of the DAT file format network");
-define('TXT_CREATION_HELP_REV', "(0 = irreversible et 1 = reversible)");
 define('TXT_CREATION_CLIC', "You have to click one the button");
 
 //---------------------------------------------------------
@@ -77,6 +76,12 @@ define('TXT_LOAD_SITE_TITLE', "Load a network");
 define('TXT_LOAD_TITLE', "Load a network");
 define('TXT_LOAD_INSTRUCTION_1', "Please choose the files needed to build the metabolic network");
 define('TXT_LOAD_INSTRUCTION_2', "metabolites files ( your_file.mfile):");
+define('TXT_LOAD_FILE_NAME' "Choose the files to load :");
+define('TXT_LOAD_SFILE' ".sfile file");
+define('TXT_LOAD_MFILE' ".mfile file");
+define('TXT_LOAD_RVFILE' ".rvfile file");
+define('TXT_LOAD_GRFILE' ".grfile file");
+define('TXT_LOAD_RFILE' ".rfile file");
 //---------------------------------------------------------
 // modify.php
 //---------------------------------------------------------
@@ -90,6 +95,8 @@ define('TXT_MODIFY_INSTRUCTION_1', "Not yet implemented");
 define('TXT_OPTIONS_SITE_TITLE', "Choice of the options for the network analysis");
 define('TXT_OPTIONS_TITLE', "Choice of the options for WRET running ");
 define('TXT_OPTIONS_INSTRUCTION_1', "Please check the necessary options :");
+define('TXT_OPTIONS_INSTRUCTION_1', "Please check the necessary options : <br/>
+		(Mandatoru options are checked as default)");
 define('TXT_OPTIONS_SAVING_1', "Loading  ");
 define('TXT_OPTIONS_SAVING_2', "Results diplay  ");
 define('TXT_OPTIONS_SAVING_3', "Online on WRET ");

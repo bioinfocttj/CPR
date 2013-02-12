@@ -1,10 +1,20 @@
 <?php
 
+	//init temp dat 
+	echo exec('rm dat.txt');
 	echo exec('touch dat.txt');
 	echo exec('chmod 777 dat.txt');
+	
+	//init stoechiometry file
+	echo exec('rm stoech.txt');
 	echo exec('touch stoech.txt');
 	echo exec('chmod 777 stoech.txt');
-
+	
+	//init gene rules file
+	echo exec('rm grfile.txt');
+	echo exec('touch grfile.txt');
+	echo exec('chmod 777 grfile.txt');
+	
 	// init of reaction file
 	echo exec('touch reactionTemp.txt');
 	echo exec('chmod 777 reactionTemp.txt');
@@ -25,6 +35,7 @@
 	$data3 = fopen('revTemp.txt','w');
 	fputs($data3, "-REV \n");
 	fclose($data3);
+	
 	
 	header("Location: create.php");
 	

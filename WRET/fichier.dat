@@ -1,10 +1,9 @@
 -IRREV 
-reaction 
+reaction2 
 
 -REV 
-reaction reaction 
+
 
 -CAT 
-reaction : reag1 + reag2 => 2 prod1 + 4 prod2 . 
-reaction : reag1 + reag2 => 2 prod1 + 4 prod4 
-reaction : reag1 + reag2 => 2 prod1  . 
+reaction1 : reag1 + reag2 => 2 prod1 + 4 prod2 . 
+reaction2 : reag1 + reag2 => 2 prod1 + 4 prod2 . 

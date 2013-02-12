@@ -12,9 +12,9 @@ define('TXT_HOMEPAGE_COPYRIGHT', "Voir le <a href=\"copyright.php\">Copyright</a
 // menu.php
 //---------------------------------------------------------
 define('TXT_MENU_HOME', 'Accueil');
-define('TXT_MENU_CREATE', 'Cr&eacute;ation');
-define('TXT_MENU_REVERSIBILITY', 'R&eacute;versibilit&eacute;');
-define('TXT_MENU_RULES', 'R&egrave;gles');
+define('TXT_MENU_CREATE', 'Création');
+define('TXT_MENU_REVERSIBILITY', 'Réversibilité');
+define('TXT_MENU_RULES', 'Règles');
 define('TXT_MENU_LOAD', 'Chargement');
 define('TXT_MENU_MODIFY', 'Modification');
 define('TXT_MENU_LAUNCH', 'Lancement');
@@ -22,24 +22,23 @@ define('TXT_MENU_HELP', 'Aide');
 //---------------------------------------------------------
 // create.php
 //---------------------------------------------------------
-define('TXT_CREATION_SITE_TITLE', "Cr&eacute;ation d'une nouvelle r&eacute;action");
+define('TXT_CREATION_SITE_TITLE', "Création d'une nouvelle réaction");
 define('TXT_INIT_FILES', "Initialisez vos fichiers avant de créer un nouveau réseau");
 define('TXT_CREATION_INIT', "\"Initialiser fichiers\"");
-define('TXT_CREATION_TITLE', "Cr&eacute;ation d'un nouveau r&eacute;seau");
+define('TXT_CREATION_TITLE', "Création d'un nouveau réseau");
 define('TXT_CREATION_INSTRUCTION_1', "Ecrivez une nouvelle réaction");
-define('TXT_CREATION_INSTRUCTION_2', "Verifier si la r&eacute;action &agrave; d&eacute;j&agrave; &eacute;t&eacute; enregistr&eacute;e :");
+define('TXT_CREATION_INSTRUCTION_2', "Verifier si la réaction à déjà été enregistrée :");
 define('TXT_CREATION_WARNING_TITLE', "Attention !");
 define('TXT_CREATION_WARNING', "Pas d'espaces dans les noms, utiliser un underscore '_' à la place.<br />
 			La synthaxe des réactions est la suivante :<br />
 			Nom_reaction : 2 reactif1 + 5 reactif2 => 3 produit1 + 7 produit2 (irréversible) <br />
 			Nom_reaction : 2 reactif1 + 5 reactif2 = 3 produit1 + 7 produit2 (réversible) <br />
 			Attention a laisser un espace entre le coefficient stoechiométrique et le métabolite associé.");
-define('TXT_CREATION_IS_REVERSIBLE', "R&eacute;versibili&eacute; :");
+define('TXT_CREATION_IS_REVERSIBLE', "Réversible :");
 define('TXT_CREATION_YES', "Oui");
 define('TXT_CREATION_NO', "Non");
-define('TXT_CREATION_ALREADY_OK', "R&eacute;actions déjà entrées :");
+define('TXT_CREATION_ALREADY_OK', "Réactions déjà entrées :");
 define('TXT_CREATION_FINISH', "Création du fichier au format \"DAT\"");
-define('TXT_CREATION_HELP_REV', "(0 = irréversible et 1 = réversible)");
 define('TXT_CREATION_CLIC', "Vous devez cliquer sur le bouton");
 
 //---------------------------------------------------------
@@ -52,61 +51,69 @@ define('TXT_GO_BUTTON', "Lancement");
 //---------------------------------------------------------
 // generules.php
 //---------------------------------------------------------
-define('TXT_GENERULES_SITE_TITLE', "Cr&eacute;ation des r&egrave;gles des g&egrave;nes");
-define('TXT_GENERULES_TITLE', "R&egrave;gle des g&egrave;enes");
-define('TXT_GENERULES_INSTRUCTION_1', "Ecrivez une nouvelle r&egrave;gle :");
-define('TXT_GENERULES_INSTRUCTION_2', "Choisissez le nombre de r&eacute;action :");
-define('TXT_GENERULES_INSTRUCTION_3', " Nombre de r&eacute;action dans la forme IF AND THEN");
+define('TXT_GENERULES_SITE_TITLE', "Création des règles des gènes");
+define('TXT_GENERULES_TITLE', "Règle des gèenes");
+define('TXT_GENERULES_INSTRUCTION_1', "Ecrivez une nouvelle règle :");
+define('TXT_GENERULES_INSTRUCTION_2', "Choisissez le nombre de réaction :");
+define('TXT_GENERULES_INSTRUCTION_3', " Nombre de réaction dans la forme IF AND THEN");
 define('TXT_GENERULES_NUMBER', "Entrez un nombre supérieur à 1 ");
 define('TXT_GENERULES_OPERATOR', "Choisir un opérateur");
-define('TXT_GENERULES_OP', "Op&eacute;rateur:");
-define('TXT_GENERULES_REAC', "R&eacute;action:");
-define('TXT_GENERULES_REAC_1', "Choisir une r&eacute;action");
+define('TXT_GENERULES_OP', "Opérateur:");
+define('TXT_GENERULES_REAC', "Réaction:");
+define('TXT_GENERULES_REAC_1', "Choisir une réaction");
 define('TXT_GENERULES_VALUE', "Valeur: ");
 define('TXT_GENERULES_VALUE_2', "Choisir une valeur");
 define('TXT_GENERULES_BUTTON_ADD', "Ajouter");
-define('TXT_GENERULES_ALERT_1', "Vous devez choisir une réacion et une valeur pour la réaction");
+define('TXT_GENERULES_ALERT_1', "Vous devez choisir une réaction et une valeur pour la réaction");
 define('TXT_GENERULES_ALERT_2', "Vous devez choisir une opérateur, une réacion et une valeur pour la réaction");
-define('TXT_GENERULES_RULES', "R&egrave;gles d&eacute;j&agrave; cr&eacute;&eacute;es :");
+define('TXT_GENERULES_RULES', "Règles déjà créées :");
 define('TXT_GENERULES_HELP_RULES', "Aide");
 
 //---------------------------------------------------------
 // load.php
 //---------------------------------------------------------
-define('TXT_LOAD_SITE_TITLE', "Chargement d'un r&eacute;seau");
-define('TXT_LOAD_TITLE', "Chargement d'un r&eacute;seau");
-define('TXT_LOAD_INSTRUCTION_1', "Veuillez charger les fichiers n&eacute;cessaires &agrave; la construction du r&eacute;seau m&eacute;tabolique");
-define('TXT_LOAD_INSTRUCTION_2', "Fichier des m&eacute;tabolites :");
+define('TXT_LOAD_SITE_TITLE', "Chargement d'un réseau");
+define('TXT_LOAD_TITLE', "Chargement d'un réseau");
+define('TXT_LOAD_INSTRUCTION_1', "Veuillez charger les fichiers nécessaires à la construction du réseau métabolique");
+define('TXT_LOAD_INSTRUCTION_2', "Fichier des métabolites :");
+define('TXT_LOAD_FILE_NAME' "Choisissez les fichiers à charger :");
+define('TXT_LOAD_SFILE' "Fichier .sfile");
+define('TXT_LOAD_MFILE' "Fichier .mfile");
+define('TXT_LOAD_RVFILE' "Fichier .rvfile");
+define('TXT_LOAD_GRFILE' "Fichier .grfile");
+define('TXT_LOAD_RFILE' "Fichier .rfile");
+
 //---------------------------------------------------------
 // modify.php
 //---------------------------------------------------------
-define('TXT_MODIFY_SITE_TITLE', "Modification d'un r&eacute;seau");
-define('TXT_MODIFY_TITLE', "Modification d'un r&eacute;seau");
+define('TXT_MODIFY_SITE_TITLE', "Modification d'un réseau");
+define('TXT_MODIFY_TITLE', "Modification d'un réseau");
 define('TXT_MODIFY_INSTRUCTION_1', "Non disponible pour le moment...");
 
 //---------------------------------------------------------
 // options.php
 //---------------------------------------------------------
-define('TXT_OPTIONS_SITE_TITLE', "Choix des options pour l'analyse du r&eacute;seau");
+define('TXT_OPTIONS_SITE_TITLE', "Choix des options pour l'analyse du réseau");
 define('TXT_OPTIONS_TITLE', "Choix des options de lancement de WRET ");
-define('TXT_OPTIONS_INSTRUCTION_1', "Veuillez cocher les options n&eacute;c&eacute;ssaires : ");
+define('TXT_OPTIONS_INSTRUCTION_1', "Veuillez cocher les options nécéssaires : <br/>
+		(Les options obligatoires sont cochées par défaut) ");
 define('TXT_OPTIONS_SAVING_1', "Enregistrement  ");
-define('TXT_OPTIONS_SAVING_2', "Affichage des r&eacute;sultats  ");
+define('TXT_OPTIONS_SAVING_2', "Affichage des résultats  ");
 define('TXT_OPTIONS_SAVING_3', "En ligne sur WRET ");
 define('TXT_OPTIONS_SAVING_4', "Dans un fichier : ");
 define('TXT_OPTIONS_SAVING_5', "Nom du fichier :");
-define('TXT_OPTIONS_ERROR_1', "Type de messages d'erreurs / Niveau d'informations sur le d&eacute;roulement des calculs ");
+define('TXT_OPTIONS_ERROR_1', "Type de messages d'erreurs / Niveau d'informations sur le déroulement des calculs ");
 define('TXT_OPTIONS_ERROR_2', "Warning ");
 define('TXT_OPTIONS_ERROR_3', "Config ");
 define('TXT_OPTIONS_ERROR_4', "Info ");
 define('TXT_OPTIONS_ERROR_5', "Fine ");
 define('TXT_OPTIONS_ERROR_6', "Finer ");
 define('TXT_OPTIONS_ERROR_7', "Finest ");
-define('TXT_OPTIONS_SAVING_6', "Format/m&eacute;thode de l'enregistrement  ");
-define('TXT_OPTIONS_SAVING_7', "Par d&eacute;faut ");
+define('TXT_OPTIONS_SAVING_6', "Format/méthode de l'enregistrement  ");
+define('TXT_OPTIONS_SAVING_7', "Par défaut ");
 define('TXT_OPTIONS_SAVING_8', "Complet ");
-define('TXT_OPTIONS_INPUT_1', "Param&egrave;tres d'entr&eacute;e ");
-define('TXT_OPTIONS_INPUT_STOECH', "Type des fichiers soechiom&eacute;triques ");
+define('TXT_OPTIONS_INPUT_1', "Paramètres d'entrée ");
+define('TXT_OPTIONS_INPUT_STOECH', "Type des fichiers soechiométriques ");
 define('TXT_OPTIONS_INPUT_STOECH_1', "Flux-analyzer-dir ");
 define('TXT_OPTIONS_INPUT_STOECH_2', "Flux-analyzer-files ");
 define('TXT_OPTIONS_INPUT_STOECH_3', "Reaction-list ");
@@ -130,7 +137,7 @@ define('TXT_OPTIONS_COMPRESS_3', "Unique");
 define('TXT_OPTIONS_COMPRESS_4', "Nullspace ");
 define('TXT_OPTIONS_COMPRESS_5', "Unique-no-recursion ");
 define('TXT_OPTIONS_COMPRESS_6', "Nullspace-no-recursion ");
-define('TXT_OPTIONS_OUTPUT', "Param&egrave;tres de sortie ");
+define('TXT_OPTIONS_OUTPUT', "Paramètres de sortie ");
 define('TXT_OPTIONS_OUTPUT_1', "Null");
 define('TXT_OPTIONS_OUTPUT_2', "Count ");
 define('TXT_OPTIONS_OUTPUT_3', "Text-boolean : ");
@@ -143,27 +150,27 @@ define('TXT_OPTIONS_OUTPUT_9', "Binary-doubles : ");
 define('TXT_OPTIONS_OUTPUT_10', "Nom du fichier : ");
 define('TXT_OPTIONS_OUTPUT_11', "Matlab : ");
 define('TXT_OPTIONS_OUTPUT_12', "Nom du fichier (sans extension) ");
-define('TXT_OPTIONS_EFMTOOL', "Param&egrave;tres d'EfmTool ");
+define('TXT_OPTIONS_EFMTOOL', "Paramètres d'EfmTool ");
 define('TXT_OPTIONS_EFM_LINE', "Ligne de commandes ");
-define('TXT_OPTIONS_EFM_ADJA', "M&eacute;thode d'adjacence  ");
+define('TXT_OPTIONS_EFM_ADJA', "Méthode d'adjacence  ");
 define('TXT_OPTIONS_EFM_ADJA_1', "Pattern-tree-minzero ");
 define('TXT_OPTIONS_EFM_ADJA_2', "Pattern-tree-rank ");
 define('TXT_OPTIONS_EFM_THREADS', "Nombre maximal de 'threads'  ");
 define('TXT_OPTIONS_EFM_THREADS_1', "MaxThreads  ");
 define('TXT_OPTIONS_EFM_THREADS_2', "Nombre de threads : ");
-define('TXT_OPTIONS_EFM_ARITHM', "Arithm&eacute;tique des nombres  ");
+define('TXT_OPTIONS_EFM_ARITHM', "Arithmétique des nombres  ");
 define('TXT_OPTIONS_EFM_ARITHM_1', "Doubles ");
 define('TXT_OPTIONS_EFM_ARITHM_2', "Fractionnaire ");
 define('TXT_OPTIONS_EFM_NORMAL', "Type de normalisation pour la sortie  ");
 define('TXT_OPTIONS_EFM_NORMAL_1', "Maximum ");
 define('TXT_OPTIONS_EFM_NORMAL_2', "Minimum ");
 define('TXT_OPTIONS_EFM_NORMAL_3', "norm2 ");
-define('TXT_OPTIONS_EFM_NORMAL_4', "Carr&eacute; ");
+define('TXT_OPTIONS_EFM_NORMAL_4', "Carré ");
 define('TXT_OPTIONS_EFM_NORMAL_5', "Aucune ");
-define('TXT_OPTIONS_EFM_P_FRAC', "Pr&eacute;cision fractionnaire  ");
-define('TXT_OPTIONS_EFM_P_FRAC_1', "Pr&eacute;cision  ");
+define('TXT_OPTIONS_EFM_P_FRAC', "Précision fractionnaire  ");
+define('TXT_OPTIONS_EFM_P_FRAC_1', "Précision  ");
 define('TXT_OPTIONS_EFM_VALUE', "Valeur (bit count, e.g. 128, 256, -1 (infinite)) : ");
-define('TXT_OPTIONS_EFM_AUTO_T', "Auto-test apr&egrave;s chaque it&eacute;ration  ");
+define('TXT_OPTIONS_EFM_AUTO_T', "Auto-test après chaque itération  ");
 define('TXT_OPTIONS_EFM_AUTO_T_1', "Oui ");
 define('TXT_OPTIONS_EFM_AUTO_T_2', "Non ");
 

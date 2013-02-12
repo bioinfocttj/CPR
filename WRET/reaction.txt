@@ -1,5 +1,0 @@
-reaction : reag1 + reag2 => 2 prod1 + 4 prod2 
-reaction1 : reag11 + reag21 => 2 prod11 + 4 prod21 
-reaction2 : reag12 + reag22 => 2 prod12 + 4 prod22 
-reaction : reag1 + reag2 => 2 prod1 + 4 prod2 
-reaction : reag1 + reag2 => 2 prod1 + 4 prod2 

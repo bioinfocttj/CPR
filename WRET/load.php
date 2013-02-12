@@ -45,13 +45,13 @@
 				<form action="<?php move_uploaded_file($_FILES['sfile']['tmp_name'],$_FILES['sfile']['name']);?>" enctype="multipart/form-data" method="post">
 				<tr><td>
 				<label ="NomDeFichier">
-				Nom du fichier à charger :<br />
+				<?php echo TXT_LOAD_FILE_NAME; ?><br />
 				</label>
-				<input type="file" name="sfile" id="sfile" /> 
-				<input type="file" name="mfile" id="mfile" /> 
-				<input type="file" name="rvfile" id="rvfile" /> 
-				<input type="file" name="grfile" id="grfile" /> 
-				<input type="file" name="rfile" id="rfile" /> 
+				<input type="file" name="sfile" id="sfile" /> 	<?php echo TXT_LOAD_SFILE; ?> 
+				<input type="file" name="mfile" id="mfile" /> 	<?php echo TXT_LOAD_MFILE; ?> 
+				<input type="file" name="rvfile" id="rvfile" /> <?php echo TXT_LOAD_RVFILE; ?> 
+				<input type="file" name="grfile" id="grfile" /> <?php echo TXT_LOAD_GRFILE; ?> 
+				<input type="file" name="rfile" id="rfile" /> 	<?php echo TXT_LOAD_RFILE; ?> 
 				</td></tr><tr><td>
 				<input type="submit" name="submit" value="Recuperer" />
 				</form>

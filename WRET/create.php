@@ -12,7 +12,8 @@
 				 //    commande = commande + valeur1;
 				 //  }
 	  		// }
-
+			function validateForm(){
+				
 	  </script>
 
 	</head>
@@ -60,7 +61,6 @@
 			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60"/> 
 			</br> </br>
 			<label> <?php echo TXT_CREATION_IS_REVERSIBLE; ?></label>
-			 <label><?php echo TXT_CREATION_HELP_REV; ?></label>
 <!--
 			<input type="text" name="rev" value="0" size="5">
 -->
@@ -69,7 +69,7 @@
 			 <input type="radio" name="choix1" value="1"> <?php echo TXT_CREATION_YES; ?>
 			<input type="radio" name="choix1" value="0"> <?php echo TXT_CREATION_NO; ?> </br> </br>
 
-			<input type="submit" name="button" value="<?php echo TXT_ADD_BUTTON; ?>" /></br></br> </br>
+			<input type="submit" name="button" value="<?php echo TXT_ADD_BUTTON; ?>" onSubmit="return validateForm()"/></br></br> </br>
 			<label> <?php echo TXT_CREATION_ALREADY_OK; ?></label>
 			</br> </br>
 			<iframe src="reactionTemp.txt" width="500" height="200"> </iframe>
