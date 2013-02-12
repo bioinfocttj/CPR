@@ -1,2 +1,0 @@
-reaction2= (!((!0reaction) & 1reaction1))
-reaction1= (0reaction | 0reaction)

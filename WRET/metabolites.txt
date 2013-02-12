@@ -1,1 +1,0 @@
-"reag1" "reag2" "prod1" "prod2" "reag11" "reag21" "prod11" "prod21" "reag12" "reag22" "prod12" "prod22" 
