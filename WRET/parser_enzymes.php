@@ -1,10 +1,10 @@
 <?php
 	# Opening the file containing all the metabolic metwork 
-	$file = file('reaction.txt');
+	$file = file('reactionTemp2.txt');
 	
 	$enzymes = array();
 	$space=" ";
-	$syntaxe=array("+","=>","=",":","\n");
+	$syntaxe=array("+","=>","=",":",".","\n");
 
 	foreach($file as $cpt => $ligne) {
 
@@ -25,7 +25,7 @@
 		}
 	}
 	# Opening the file containing all enzymes names 
-	$data = fopen('enzymes.txt','w');
+	$data = fopen('reactions.rfile','w');
 
 	# Save if the enzymes list in the file enzymes.txt
 	foreach($enzymes as $enz){

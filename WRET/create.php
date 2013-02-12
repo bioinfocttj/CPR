@@ -12,7 +12,6 @@
 				 //    commande = commande + valeur1;
 				 //  }
 	  		// }
-<<<<<<< HEAD
 			function validateForm(){
 				console.log('coucou');
 				if (document.getElementById("choix1").checked==false && document.getElementById("choix1").checked==false){
@@ -24,10 +23,7 @@
 				}				
 			}
 			
-=======
 			//function validateForm(){
-				
->>>>>>> fe6831173189e3838a9781e784a547b185e9f1fa
 	  </script>
 
 	</head>

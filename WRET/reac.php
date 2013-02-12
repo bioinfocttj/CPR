@@ -3,13 +3,16 @@
 	// reaction saving in a file
 	$name=(isset($_POST["reac"])) ? $_POST["reac"] : "";
 	$reac = fopen('reactionTemp.txt','a');
+	$reac2 = fopen('reactionTemp2.txt','a');
 	fputs($reac, "$name \n");
+	fputs($reac2, "$name \n");
 	fclose($reac);
+	fclose($reac2);
 	
 	
 	// stoechiometry saving in a file
 	$stoech=(isset($_POST["choix1"])) ? $_POST["choix1"] : "";
-	$sto = fopen('stoech.txt','a');
+	$sto = fopen('reversibility.rvfile','a');
 	fputs($sto, "$stoech ");
 	fclose($sto);
 	

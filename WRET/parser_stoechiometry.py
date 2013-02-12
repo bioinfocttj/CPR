@@ -3,10 +3,10 @@
 
 
 # Opening of the reaction file 
-reactions = open('reaction.txt','r')
+reactions = open('reactionTemp2.txt','r')
 
 # Opening of the metabolites file
-metabolite_brut = open('metabolites.txt','r')
+metabolite_brut = open('metabolites.mfile','r')
 
 # Reagents list
 liste_reac = []
@@ -68,7 +68,7 @@ for m in matrix:
 	m2.replace(",","\t")
 	matrice.write(m2)
 	matrice.write("\n")
-matrice.close
+matrice.close()
 
 
 # Wrintig of the final matrix 
@@ -76,10 +76,10 @@ matrice.close
 # Opening of the file containing the raw matrix 
 matrice = open("matrice.txt","r")
 lignes  = matrice.readlines()
-matrice.close
+matrice.close()
 
 # Creation of the final file, containing the final matrix
-m3 = open("matrice2.txt","w")
+m3 = open("stoechiometry.sfile","w")
 
 
 # For each line, deleting of [, ] and spaces 
@@ -90,8 +90,8 @@ for ligne in lignes:
 	l3=l2.replace("\s","")
 	l4=l3.replace(",","\t")
 	m3.write(l4)
-	m3.write("\n")
+	# m3.write("\n")
 
-m3.close
+m3.close()
 
 

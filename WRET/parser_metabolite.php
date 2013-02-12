@@ -1,13 +1,13 @@
 <?php
 
 	# Opening of the file
-		$file = file('reaction.txt');
+		$file = file('reactionTemp2.txt');
 		
 	# Table containing all the metabolites
 		$METABOLITE=array();
 
 		$space=" ";
-		$syntaxe=array("+","=>","=",":","\n");
+		$syntaxe=array("+","=>","=",":",".","\n");
 		$enzymes = array();
 		
 	foreach($file as $cpt => $ligne) {
@@ -50,7 +50,7 @@
 	$metab=array_unique($METABOLITE);
 
 	# Opening the file containing the metabolites and writing of the list
-	$data = fopen('metabolites.txt','w');
+	$data = fopen('metabolites.mfile','w');
 	foreach($metab as $met){
 		fputs($data, "\"$met\" ");
 	}
