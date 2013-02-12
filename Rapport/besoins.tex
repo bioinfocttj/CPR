@@ -5,43 +5,44 @@
 \subsection{Besoins fonctionnels}
 
 \subsubsection{Interface Homme Machine (IHM)}
-L'interface Web que nous allons réaliser devra permettre de charger la description d'un réseau pré-existant ou d'en créer un nouveau, mais également de modifier les descriptions de ce dernier.\\
-Elle donnera également le moyen à l'utilisateur de saisir les fonctions et options qui l'intéressent puis de lancer les calculs des modes élémentaires de flux du réseau d'intérêt. De plus, un script récurent de commandes pourra être enregistré et chargé par la suite.
+L'interface Web que nous allons réaliser devra permettre de charger la description d'un réseau pré-existant ou d'en créer un nouveau.\\
+Elle donnera également le moyen à l'utilisateur de saisir les fonctions et options qui l'intéressent puis de lancer les calculs des modes élémentaires de flux du réseau d'intérêt. 
 
 \subsubsection{Chargement des données}
-Une zone de chargement de fichiers (de différents formats) à partir du disque dur de l'utilisateur sera présente sur l'interface. \\
-Selon le type du fichier donné en paramètre d'entrée, une liste de choix possibles pourra être proposée. Ainsi les résultats d'expériences similaires (suppression, modification des réactifs, produits ou enzymes du réseau) devront pouvoir être comparés avec un affichage en vis-à-vis, ce qui implique une sauvegarde temporaire des résultats sur le serveur. 
+Une zone de chargement de fichiers à partir du disque dur de l'utilisateur sera présente sur l'interface. \\
+%Selon le type du fichier donné en paramètre d'entrée, une liste de choix possibles pourra être proposée. Ainsi les résultats d'expériences similaires (suppression, modification des réactifs, produits ou enzymes du réseau) devront pouvoir être comparés avec un affichage en vis-à-vis, ce qui implique une sauvegarde temporaire des résultats sur le serveur. 
 
 \subsubsection{Réglage des paramètres}
 Il sera possible pour un utilisateur confirmé ou habitué à l'interface d'avoir accès à un mode de réglage avancé des paramètres, s'il le désire. Ces derniers seront fixés à des valeurs par défaut pour les débutants. 
 
 \subsubsection{Résultats}
-Enfin, la visualisation des résultats devra apparaître de façon claire et conviviale à l'utilisateur au travers de l'interface Web. De plus, les résultats pourront être exportés dans un fichier pour une analyse ultérieure. Par ailleurs, nous allons essayer de mettre en place un dispositif d'annotations des fichiers.
+Enfin, la visualisation des résultats devra apparaître de façon claire et conviviale à l'utilisateur au travers de l'interface Web. De plus, les résultats pourront être exportés dans un fichier pour une analyse ultérieure. %Par ailleurs, nous allons essayer de mettre en place un dispositif d'annotations des fichiers.
 
 \subsubsection{Aide en ligne}
 Un message d'aide apparaîtra au survol du curseur de la souris sur la fonction ou l'option choisie. Ainsi l'utilisateur pourra avoir plus d'informations sur la commande concernée.\\
 
-Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser cette même langue pour notre interface. De plus, cela permettra son utilisation par un plus grand nombre d'utilisateurs. \\
+%Le logiciel \textit{regEfmtool} étant en anglais, nous avons choisi d'utiliser cette même langue pour notre interface. De plus, cela permettra son utilisation par un plus grand nombre d'utilisateurs. \\
 Lors de l'affichage de la page d'accueil, l'utilisateur aura le choix entre créer un réseau métabolique manuellement, ou bien le charger à partir de fichiers préexistant. 
 			
 \subsubsection{Création d'un nouveau réseau}
 
-Si l'utilisateur clique sur le bouton de création d'un nouveau réseau métabolique, une première page Web s'affichera. Il devra rentrer les noms de tous les métabolites et enzymes participant aux réactions, ainsi que celui du réseau. Il aura la possibilité de valider ou supprimer chaque métabolite et enzyme. Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
+Si l'utilisateur clique sur le bouton de création d'un nouveau réseau métabolique, une première page Web s'affichera. Il devra rentrer le nom des réactions ainsi que tous les métabolites et enzymes qui la composent. Il aura la possibilité de modifier une réaction (nom, enzymes, métabolites, coefficients stœchiométriques...). Dans le cas d'une validation, les données seront récupérées afin de générer automatiquement les fichiers nécessaires au fonctionnement du logiciel.
 
-Une fois les noms des composants du réseau métabolique entrés, l'utilisateur va devoir créer les réactions une à une. Tout d'abord, il devra s'occuper des réactifs de la réaction: un menu déroulant lui donnera le choix entre tous les métabolites qu'il a saisi précédemment et il n'aura plus qu'à entrer le coefficient stœchiométrique associé. Il en sera de même pour les enzymes (sans le coefficient de stœchiométrie dans ce cas), les produits et les co-facteurs. Pour ce qui est de la réversibilité des réactions, il suffira de cocher la bonne case. L'utilisateur pourra ensuite ajouter une réaction ou valider son réseau. 
+%Une fois les noms des composants du réseau métabolique entrés, l'utilisateur va devoir créer les réactions une à une. Tout d'abord, il devra s'occuper des réactifs de la réaction: un menu déroulant lui donnera le choix entre tous les métabolites qu'il a saisi précédemment et il n'aura plus qu'à entrer le coefficient stœchiométrique associé. Il en sera de même pour les enzymes (sans le coefficient de stœchiométrie dans ce cas), les produits et les co-facteurs. Pour ce qui est de la réversibilité des réactions, il suffira de cocher la bonne case. L'utilisateur pourra ensuite ajouter une réaction ou valider son réseau. 
 
 \subsubsection{Chargement d'un réseau préexistant}
 
-Si l'utilisateur clique sur le bouton de chargement d'un réseau depuis la page d'accueil, il devra charger une série de fichiers (depuis le disque dur de son ordinateur) nécessaires au bon fonctionnement de \textit{regEfmtool}. Les fichiers doivent être dans le format adéquat et un message d'erreur appara\^itra si ce n'est pas le cas. Au cas où, une fonction d'aide sera disponible pour avoir un modèle de fichiers à charger. 
+Si l'utilisateur clique sur le bouton de chargement d'un réseau depuis la page d'accueil, il devra charger une série de fichiers (depuis le disque dur de son ordinateur) nécessaires au bon fonctionnement de \textit{regEfmtool}. %Les fichiers doivent être dans le format adéquat et un message d'erreur appara\^itra si ce n'est pas le cas. Au cas où, une fonction d'aide sera disponible pour avoir un modèle de fichiers à charger. 
 
 \subsubsection{Lancement du programme}
-Lorsque l'utilisateur aura créé son réseau manuellement ou l'aura chargé, il devra ensuite choisir les paramètres de calcul de \textit{regEfmtool}. Nous avons fait le choix d'utiliser des cases à cocher en fonction de ce qu'il choisira. Pour les utilisateurs non expérimentés, les choix de base seront pré-sélectionnés. Il suffira ensuite de cliquer sur le bouton "Run" pour avoir les résultats générés par le logiciel. Nous n'avons pas représenté toutes les options du lancement de \textit{regEfmtool} sur cette maquette, pour des raisons d'affichage.
+Lorsque l'utilisateur aura créé son réseau manuellement ou l'aura chargé, il devra ensuite choisir les paramètres de calcul de \textit{regEfmtool}. Nous avons fait le choix d'utiliser des cases à cocher en fonction de ce qu'il choisira. Pour les utilisateurs non expérimentés, les choix de base seront pré-sélectionnés. Il suffira ensuite de cliquer sur le bouton "Lancement" pour avoir les résultats générés par le logiciel.
 
 \subsubsection{Affichage des résultats}
-Il sera composé d'une série de "boîtes" dans lesquelles seront affichés les différents éléments générés par \textit{regEfmtool}. Il sera également possible de lancer une comparaison des résultats entre deux réseaux en appuyant sur le bouton "Compare". 
+A revoir!!!
+%Il sera composé d'une série de "boîtes" dans lesquelles seront affichés les différents éléments générés par \textit{regEfmtool}. Il sera également possible de lancer une comparaison des résultats entre deux réseaux en appuyant sur le bouton "Compare". 
 
-\subsubsection{Comparaison des résultats}
-Pour la comparaison des réseaux, il y aura un affichage en vis-à-vis des résultats. 
+%\subsubsection{Comparaison des résultats}
+%Pour la comparaison des réseaux, il y aura un affichage en vis-à-vis des résultats. 
 
 \subsection{Besoins non fonctionnels}
 
@@ -49,10 +50,10 @@ Pour la comparaison des réseaux, il y aura un affichage en vis-à-vis des résu
 L'utilisation de \textit{regEfmtool} s'appuie sur d'autres logiciels, nécessitant par exemple la version 1.7 de Java. De ce fait, ils devront être libre d'utilisation pour le secteur académique. L'interface devra être livrée avec tous les fichiers de configuration (pré-existants ou nouvellement créés) et indépendante du système d'exploitation. 
 
 \subsubsection{Sécurité et robustesse}
-Il faudra gérer l'espace occupé par les fichier chargés sur le serveur. Le site devra être stable et gérer au mieux les erreurs qui pourraient être générées lors du chargement des fichiers, de la modification des paramètres ou des calculs. L'utilisateur sera donc informé en cas d'erreur lors du chargement d'un fichier non compatible avec \textit{regEfmtool}, contenant des erreurs d'écritures ou lorsque les paramètres entrés ne sont pas en accords avec la fonction ou l'option sélectionnée. 
+Il faudra gérer l'espace occupé par les fichier chargés sur le serveur. Le site devra être stable et gérer au mieux les erreurs qui pourraient être générées lors du chargement des fichiers, de la modification des paramètres ou des calculs. %L'utilisateur sera donc informé en cas d'erreur lors du chargement d'un fichier non compatible avec \textit{regEfmtool}, contenant des erreurs d'écritures ou lorsque les paramètres entrés ne sont pas en accords avec la fonction ou l'option sélectionnée. 
 
-\subsubsection{Temps de calcul}
-Il faudra effectuer une vérification du nombre de métabolites et de réactions afin d'estimer le temps de calcul. Si ce dernier s'avère trop long, l'utilisateur sera prévenu et devra confirmer le lancement du processus. 
+%\subsubsection{Temps de calcul}
+%Il faudra effectuer une vérification du nombre de métabolites et de réactions afin d'estimer le temps de calcul. Si ce dernier s'avère trop long, l'utilisateur sera prévenu et devra confirmer le lancement du processus. 
 
 \subsubsection{Documentation}
 L'écriture du code sera constituée de commentaires qui permettront la maintenance du code ainsi qu'une éventuelle amélioration de ce dernier par un tiers.
