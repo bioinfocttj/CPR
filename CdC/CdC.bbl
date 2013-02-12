@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{regefmtool1:url}
+\url{http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html}.
+
+\bibitem{mcs:url}
+\url{http://bioinformatics.oxfordjournals.org/content/20/2/226}.
+
+\bibitem{efmtool:url}
+\url{http://www.csb.ethz.ch/tools/efmtool}.
+
+\bibitem{regefmtool2:url}
+David E.~Ruckerbauer Christian~Jungreuthmayer and Jürgen Zanghellini.
+\newblock Utilizing gene regulatory information to speed up the calculation of
+  elementary flux modes.
+
+\bibitem{metatool:url}
+Axel von Kamp and Stefan Schuster.
+\newblock Metatool 5.0: fast and flexible elementary modes analysis.
+
+\bibitem{cna:url}
+\url{http://www.mpi-magdeburg.mpg.de/projects/cna/cna.html}.
+
+\bibitem{yana:url}
+Axel von Kamp Bernd Engels Heiner Schirmer Stefan~Schuster Roland~Schwarz,
+  Patrick~Musch and Thomas Dandekar.
+\newblock Yana – a software tool for analyzing flux modes, gene-expression
+  and enzyme activities.
+
+\bibitem{yanasq:url}
+\url{http://yana.bioapps.biozentrum.uni-wuerzburg.de/}.
+
+\bibitem{acom:url}
+M.~Beurton-Aimar S.~Pérès, F.~Vallée and J.P. Mazat.
+\newblock Acom: A classification method for elementaryfluxmodes based on motif
+  finding.
+
+\end{thebibliography}

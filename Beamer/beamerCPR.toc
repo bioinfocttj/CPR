@@ -1,0 +1,10 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Contexte}{3}{0}{2}
+\beamer@sectionintoc {3}{\IeC {\'E}tat de l'existant}{4}{0}{3}
+\beamer@sectionintoc {4}{Besoins }{6}{0}{4}
+\beamer@subsectionintoc {4}{1}{Besoins fonctionnels}{6}{0}{4}
+\beamer@subsectionintoc {4}{2}{Maquette}{7}{0}{4}
+\beamer@subsectionintoc {4}{3}{Besoins non fonctionnels}{14}{0}{4}
+\beamer@sectionintoc {5}{Choix et justifications }{15}{0}{5}

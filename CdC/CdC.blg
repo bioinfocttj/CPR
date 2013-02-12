@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: CdC.aux
+The style file: unsrt.bst
+Database file #1: CdC.bib
+Too many commas in name 1 of "Roland Schwarz, Patrick Musch, Axel von Kamp, Bernd Engels, Heiner Schirmer, Stefan Schuster and Thomas Dandekar" for entry yana:url
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Roland Schwarz, Patrick Musch, Axel von Kamp, Bernd Engels, Heiner Schirmer, Stefan Schuster and Thomas Dandekar" for entry yana:url
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Roland Schwarz, Patrick Musch, Axel von Kamp, Bernd Engels, Heiner Schirmer, Stefan Schuster and Thomas Dandekar" for entry yana:url
+while executing---line 944 of file unsrt.bst
+You've used 9 entries,
+            1791 wiz_defined-function locations,
+            466 strings with 4464 characters,
+and the built_in function-call counts, 998 in all, are:
+= -- 62
+> -- 37
+< -- 0
++ -- 17
+- -- 8
+* -- 10
+:= -- 115
+add.period$ -- 13
+call.type$ -- 9
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 45
+empty$ -- 163
+format.name$ -- 8
+if$ -- 250
+int.to.chr$ -- 0
+int.to.str$ -- 9
+missing$ -- 0
+newline$ -- 34
+num.names$ -- 4
+pop$ -- 50
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 72
+stack$ -- 0
+substring$ -- 0
+swap$ -- 9
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 4
+width$ -- 10
+write$ -- 55
+(There were 3 error messages)
