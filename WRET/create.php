@@ -60,7 +60,6 @@
 			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60"/> 
 			</br> </br>
 			<label> <?php echo TXT_CREATION_IS_REVERSIBLE; ?></label>
-			 <label><?php echo TXT_CREATION_HELP_REV; ?></label>
 <!--
 			<input type="text" name="rev" value="0" size="5">
 -->

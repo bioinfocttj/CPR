@@ -34,12 +34,11 @@ define('TXT_CREATION_WARNING', "Keine Leerzeichen in den Namen, verwenden Sie ei
 			Reaktion_Name : 2 Reaktive1 + 5 Reaktive2 => 3 Produkt1 + 7 Produkt2 (irreversible) <br />
 			Reaktion_Name : 2 Reaktive1 + 5 Reaktive2 = 3 Produkt1 + 7 Produkt2 (reversible) <br />
 			Bitte lassen Sie ein Leerzeichen zwischen den stöchiometrischen Koeffizienten und die damit verbundenen Metaboliten.");
-define('TXT_CREATION_IS_REVERSIBLE', "Übertragbarkeit :");
+define('TXT_CREATION_IS_REVERSIBLE', "Reversible :");
 define('TXT_CREATION_YES', "Ja");
 define('TXT_CREATION_NO', "Nein");
 define('TXT_CREATION_ALREADY_OK', "Reaktionen zuvor gespeicherte :");
 define('TXT_CREATION_FINISH', "Creation der DAT Datei Format");
-define('TXT_CREATION_HELP_REV', "(0 = irreversible et 1 = reversible)");
 define('TXT_CREATION_CLIC', "Sie müssen auf die Schaltfläche klicken");
 
 //---------------------------------------------------------
@@ -89,7 +88,8 @@ define('TXT_MODIFY_INSTRUCTION_1', "Nicht verfügbar im Moment ...");
 //---------------------------------------------------------
 define('TXT_OPTIONS_SITE_TITLE', "Walh der Analyse-Optionen");
 define('TXT_OPTIONS_TITLE', "Wahl der Analyse Optionen, um die Software zu starten ");
-define('TXT_OPTIONS_INSTRUCTION_1', "Wählen Sie die gewünschten Optionen : ");
+define('TXT_OPTIONS_INSTRUCTION_1', "Wählen Sie die gewünschten Optionen :  <br/> 
+			(Obligatorischen Optionen sind bereits geprüft)  ");
 define('TXT_OPTIONS_SAVING_1', "Laden  ");
 define('TXT_OPTIONS_SAVING_2', "Ergebnisse anzeigen  ");
 define('TXT_OPTIONS_SAVING_3', "Online unter WRET ");
