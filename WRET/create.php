@@ -12,7 +12,7 @@
 				 //    commande = commande + valeur1;
 				 //  }
 	  		// }
-			function validateForm(){
+			//function validateForm(){
 				
 	  </script>
 
@@ -58,7 +58,7 @@
 		<h4><?php echo TXT_CREATION_INSTRUCTION_1; ?></h4>
 
 		<form  name="formulaireR" method="POST" action="createFiles.php">
-			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60"/> 
+			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60" onfocus="this.value = this.value=='reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .'?'':this.value;" onblur="this.value = this.value==''?'reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .':this.value;"/> 
 			</br> </br>
 			<label> <?php echo TXT_CREATION_IS_REVERSIBLE; ?></label>
 <!--
