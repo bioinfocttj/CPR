@@ -40,7 +40,6 @@
 			<h4><?php echo TXT_LOAD_INSTRUCTION_1; ?></h4>
 
 			<table border="3" width=30%>
-				<caption>sfile</caption>
 				<form action="<?php move_uploaded_file($_FILES['sfile']['tmp_name'],$_FILES['sfile']['name']);?>" enctype="multipart/form-data" method="post">
 				<tr><td>
 				<label ="NomDeFichier">

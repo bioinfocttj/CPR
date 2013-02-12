@@ -60,7 +60,7 @@
 					<div id="buttons">
 						<div id="buttons3-1">
 							<input type="radio" name="choix1" 	value="log console" checked="checked">	<?php echo TXT_OPTIONS_SAVING_3; ?> </br>
-							<input type="radio" name="choix1" 	value="log file"> 		<?php echo TXT_OPTIONS_SAVING_4; ?> </br>
+							<input type="radio" name="choix1" 	value="log file"> 						<?php echo TXT_OPTIONS_SAVING_4; ?> </br>
 							<?php echo TXT_OPTIONS_SAVING_5; ?> 	<input type="text"	   name="log_nomFichier" 	size="10" id="texte1">
 						</div>
 						<div id="buttons3-2">
@@ -72,7 +72,7 @@
 					 		<input type="radio" name="choix2" value="level FINEST" checked="checked"> 	<?php echo TXT_OPTIONS_ERROR_7; ?> 	
 						</div>
 						<div id="buttons3-3">
-							<input type="radio" name="choix3" 	value="format default"> <?php echo TXT_OPTIONS_SAVING_7; ?>	</br>
+							<input type="radio" name="choix3" 	value="format default"> 					<?php echo TXT_OPTIONS_SAVING_7; ?>	</br>
 							<input type="radio" name="choix3" 	value="format plain" checked="checked"> 	<?php echo TXT_OPTIONS_SAVING_8; ?>	
 						</div>
 					</div>
@@ -202,11 +202,11 @@
 							<input type="radio" name="choix11" value="arithmetic fractional"> 	<?php echo TXT_OPTIONS_EFM_ARITHM_2; ?> 	</br>	
 						</div>
 						<div id="buttons4-2">
-							<input type="radio" name="choix12" value="normalize max"> 		<?php echo TXT_OPTIONS_EFM_NORMAL_1; ?> 		</br>	
-							<input type="radio" name="choix12" value="normalize min"> 		<?php echo TXT_OPTIONS_EFM_NORMAL_2; ?> 		</br>	
-							<input type="radio" name="choix12" value="normalize norm2"> 	<?php echo TXT_OPTIONS_EFM_NORMAL_3; ?> 		</br>	
-							<input type="radio" name="choix12" value="normalize squared"> 	<?php echo TXT_OPTIONS_EFM_NORMAL_4; ?> 		</br>	
-							<input type="radio" name="choix12" value="normalize none" checked="checked"> 		<?php echo TXT_OPTIONS_EFM_NORMAL_5; ?> 		</br>	
+							<input type="radio" name="choix12" value="normalize max"> 						<?php echo TXT_OPTIONS_EFM_NORMAL_1; ?> 		</br>	
+							<input type="radio" name="choix12" value="normalize min"> 						<?php echo TXT_OPTIONS_EFM_NORMAL_2; ?> 		</br>	
+							<input type="radio" name="choix12" value="normalize norm2"> 					<?php echo TXT_OPTIONS_EFM_NORMAL_3; ?> 		</br>	
+							<input type="radio" name="choix12" value="normalize squared"> 					<?php echo TXT_OPTIONS_EFM_NORMAL_4; ?> 		</br>	
+							<input type="radio" name="choix12" value="normalize none" checked="checked"> 	<?php echo TXT_OPTIONS_EFM_NORMAL_5; ?> 		</br>	
 						</div>
 						<div id="buttons4-3">
 							<input type="radio" name="choix13" value="precision "> <?php echo TXT_OPTIONS_EFM_P_FRAC_1; ?>

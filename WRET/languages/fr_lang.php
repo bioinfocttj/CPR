@@ -76,12 +76,12 @@ define('TXT_LOAD_SITE_TITLE', "Chargement d'un réseau");
 define('TXT_LOAD_TITLE', "Chargement d'un réseau");
 define('TXT_LOAD_INSTRUCTION_1', "Veuillez charger les fichiers nécessaires à la construction du réseau métabolique");
 define('TXT_LOAD_INSTRUCTION_2', "Fichier des métabolites :");
-define('TXT_LOAD_FILE_NAME' "Choisissez les fichiers à charger :");
-define('TXT_LOAD_SFILE' "Fichier .sfile");
-define('TXT_LOAD_MFILE' "Fichier .mfile");
-define('TXT_LOAD_RVFILE' "Fichier .rvfile");
-define('TXT_LOAD_GRFILE' "Fichier .grfile");
-define('TXT_LOAD_RFILE' "Fichier .rfile");
+define('TXT_LOAD_FILE_NAME', "Choisissez les fichiers à charger :");
+define('TXT_LOAD_SFILE', "Fichier .sfile");
+define('TXT_LOAD_MFILE', "Fichier .mfile");
+define('TXT_LOAD_RVFILE', "Fichier .rvfile");
+define('TXT_LOAD_GRFILE', "Fichier .grfile");
+define('TXT_LOAD_RFILE', "Fichier .rfile");
 
 //---------------------------------------------------------
 // modify.php

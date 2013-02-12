@@ -76,12 +76,12 @@ define('TXT_LOAD_SITE_TITLE', "Beladen eines Netzwerks");
 define('TXT_LOAD_TITLE', "Beladen eines Netzwerks");
 define('TXT_LOAD_INSTRUCTION_1', "Bitte laden Sie die benötigten Dateien, um das metabolische Netzwerk aufzubauen");
 define('TXT_LOAD_INSTRUCTION_2', "Datei Metaboliten :");
-define('TXT_LOAD_FILE_NAME' "Wählen Sie die Dateien zum Upload online :");
-define('TXT_LOAD_SFILE' ".sfile Datei");
-define('TXT_LOAD_MFILE' ".mfile Datei");
-define('TXT_LOAD_RVFILE' ".rvfile Datei");
-define('TXT_LOAD_GRFILE' ".grfile Datei");
-define('TXT_LOAD_RFILE' ".rfile Datei");
+define('TXT_LOAD_FILE_NAME', "Wählen Sie die Dateien zum Upload online :");
+define('TXT_LOAD_SFILE', ".sfile Datei");
+define('TXT_LOAD_MFILE', ".mfile Datei");
+define('TXT_LOAD_RVFILE', ".rvfile Datei");
+define('TXT_LOAD_GRFILE', ".grfile Datei");
+define('TXT_LOAD_RFILE', ".rfile Datei");
 //---------------------------------------------------------
 // modify.php
 //---------------------------------------------------------
