@@ -99,15 +99,16 @@
 						 	<input type="radio" name="choix4" value="kind sbml"> 					<?php echo TXT_OPTIONS_INPUT_STOECH_6; ?>				
 						</div>
 						<div id="buttons2-2">
-							<input type="radio" 	name="choix5" value="in reactions macromolecules macromolecule_synthesis"><?php echo TXT_OPTIONS_INPUT_F_ANALY_1; ?></br>
-							<input type="radio" 	name="choix5" value="in directory"> 	<?php echo TXT_OPTIONS_INPUT_F_ANALY_2; ?>
-							<?php echo TXT_OPTIONS_INPUT_F_ANALY_3; ?>  <input 	type="text" 	name="in_nomDossier" 		size="10" id="texte5">	 	</br>
-							<input type="radio" 	name="choix5" value="in file"> 			<?php echo TXT_OPTIONS_INPUT_F_ANALY_4; ?>
-							<?php echo TXT_OPTIONS_INPUT_F_ANALY_5; ?> <input 	type="text" 	name="in_nomFichier" 		size="10" id="texte51"> 	</br>	
-							<input type="radio" 	name="choix5" value="stoich sfile"> 	<?php echo TXT_OPTIONS_INPUT_F_ANALY_6; ?>
-							<?php echo TXT_OPTIONS_INPUT_F_ANALY_7; ?> <input 	type="text" 	name="in_nomFichierSfile" 	size="10" id="texte52"> 	 </br>
-							<input type="radio" 	name="choix5" value="rev rvfile">		<?php echo TXT_OPTIONS_INPUT_F_ANALY_8; ?>
-							<?php echo TXT_OPTIONS_INPUT_F_ANALY_9; ?> <input 	type="text" 	name="in_nomFichierRVfile" size="10" id="texte53"> 	
+							<input type="radio" 	name="choix51" value="meta" checked="checked"><?php echo TXT_OPTIONS_INPUT_F_ANALY_1; ?>
+							<?php echo TXT_OPTIONS_INPUT_F_ANALY_1b; ?>  <input 	type="text" 	name="in_nomFichierMfile" 		size="15" id="texte50" value="metabolites.mfile">	 	</br>
+							<input type="radio" 	name="choix52" value="reac" checked="checked"> 	<?php echo TXT_OPTIONS_INPUT_F_ANALY_2; ?>
+							<?php echo TXT_OPTIONS_INPUT_F_ANALY_3; ?>  <input 	type="text" 	name="in_nomFichierRfile" 		size="15" id="texte5" value="reagents.rfile">	 	</br>
+							<input type="radio" 	name="choix53" value="generule" checked="checked"> 			<?php echo TXT_OPTIONS_INPUT_F_ANALY_4; ?>
+							<?php echo TXT_OPTIONS_INPUT_F_ANALY_5; ?> <input 	type="text" 	name="in_nomFichierGRfile" 		size="15" id="texte51" value="generules.grfile"> 	</br>	
+							<input type="radio" 	name="choix54" value="stoich" checked="checked"> 	<?php echo TXT_OPTIONS_INPUT_F_ANALY_6; ?>
+							<?php echo TXT_OPTIONS_INPUT_F_ANALY_7; ?> <input 	type="text" 	name="in_nomFichierSfile" 	size="15" id="texte52" value="stoechiometry.sfile"> 	 </br>
+							<input type="radio" 	name="choix55" value="rev" checked="checked">		<?php echo TXT_OPTIONS_INPUT_F_ANALY_8; ?>
+							<?php echo TXT_OPTIONS_INPUT_F_ANALY_9; ?> <input 	type="text" 	name="in_nomFichierRVfile" size="15" id="texte53" value="reversibility.rvfile"> 	
 						</div>
 					</div>
 

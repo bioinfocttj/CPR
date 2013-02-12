@@ -101,28 +101,29 @@ function choixParam(formulaire) {
     commande = commande + valeur4;
   }
   // Analysor
-  else if (formulaire.choix5[0].checked) { 
-    valeur5 = " -" + formulaire.choix5[0].value; 
+  if (formulaire.choix51.checked) { 
+    var nom5 = document.getElementById('texte50').value;
+    valeur5 = " -" + formulaire.choix51.value + " " + nom5; 
     commande = commande + valeur5;
   }
-  else if (formulaire.choix5[1].checked) { 
+  if (formulaire.choix52.checked) { 
     var nom5 = document.getElementById('texte5').value;
-    valeur5 = " -" + formulaire.choix5[1].value + " " + nom5; 
+    valeur5 = " -" + formulaire.choix52.value + " " + nom5; 
     commande = commande + valeur5;
   }
-  else if (formulaire.choix5[2].checked) { 
+  if (formulaire.choix53.checked) { 
     var nom5 = document.getElementById('texte51').value;
-    valeur5 = " -" + formulaire.choix5[2].value + " " + nom5; 
+    valeur5 = " -" + formulaire.choix53.value + " " + nom5; 
     commande = commande + valeur5;
   }
-  else if (formulaire.choix5[3].checked) { 
+  if (formulaire.choix54.checked) { 
     var nom5 = document.getElementById('texte52').value;
-    valeur5 = " -" + formulaire.choix5[3].value + " " + nom5; 
+    valeur5 = " -" + formulaire.choix54.value + " " + nom5; 
     commande = commande + valeur5;
   }
-  else if (formulaire.choix5[4].checked) { 
+  if (formulaire.choix55.checked) { 
     var nom5 = document.getElementById('texte53').value;
-    valeur5 = " -" + formulaire.choix5[4].value + " " + nom5; 
+    valeur5 = " -" + formulaire.choix55.value + " " + nom5; 
     commande = commande + valeur5;
   }
   
