@@ -159,10 +159,10 @@
 								<?php echo TXT_LOAD_FILE_NAME; ?><br />
 								</label>
 								<input type="file" name="sfile" 	id="stoich" value="<?php move_uploaded_file($_FILES['sfile']['tmp_name'],$_FILES['sfile']['name']);?>"/> 	<?php echo TXT_LOAD_SFILE; ?> 
-								<input type="file" name="mfile" 	id="meta" /> 	<?php echo TXT_LOAD_MFILE; ?> 
-								<input type="file" name="rvfile" 	id="rev" /> 	<?php echo TXT_LOAD_RVFILE; ?> 
+								<input type="file" name="mfile" 	id="meta" /> 		<?php echo TXT_LOAD_MFILE; ?> 
+								<input type="file" name="rvfile" 	id="rev" /> 		<?php echo TXT_LOAD_RVFILE; ?> 
 								<input type="file" name="grfile" 	id="generule" /> 	<?php echo TXT_LOAD_GRFILE; ?> 
-								<input type="file" name="rfile" 	id="reac" /> 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo TXT_LOAD_RFILE; ?> 
+								<input type="file" name="rfile" 	id="reac" /> 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo TXT_LOAD_RFILE; ?> 
 								</td></tr><tr><td>
 								</td></tr>
 							</table>

@@ -70,14 +70,10 @@
 		</form>	
 		
 		<h4><?php echo TXT_CREATION_INSTRUCTION_1; ?></h4>
-
-<<<<<<< HEAD
-		<form  name="formulaireR" method="POST" action="createFiles.php" onSubmit="return validateForm()">
-			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60"/> 
-=======
+		
 		<form  name="formulaireR" method="POST" action="createFiles.php">
 			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60" onfocus="this.value = this.value=='reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .'?'':this.value;" onblur="this.value = this.value==''?'reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .':this.value;"/> 
->>>>>>> fe6831173189e3838a9781e784a547b185e9f1fa
+
 			</br> </br>
 			<label> <?php echo TXT_CREATION_IS_REVERSIBLE; ?></label>
 <!--
