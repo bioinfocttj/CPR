@@ -102,7 +102,7 @@
 							<input type="radio" 	name="choix51" value="meta" checked="checked"><?php echo TXT_OPTIONS_INPUT_F_ANALY_1; ?>
 							<?php echo TXT_OPTIONS_INPUT_F_ANALY_1b; ?>  <input 	type="text" 	name="in_nomFichierMfile" 		size="15" id="texte50" value="metabolites.mfile">	 	</br>
 							<input type="radio" 	name="choix52" value="reac" checked="checked"> 	<?php echo TXT_OPTIONS_INPUT_F_ANALY_2; ?>
-							<?php echo TXT_OPTIONS_INPUT_F_ANALY_3; ?>  <input 	type="text" 	name="in_nomFichierRfile" 		size="15" id="texte5" value="reagents.rfile">	 	</br>
+							<?php echo TXT_OPTIONS_INPUT_F_ANALY_3; ?>  <input 	type="text" 	name="in_nomFichierRfile" 		size="15" id="texte5" value="reactions.rfile">	 	</br>
 							<input type="radio" 	name="choix53" value="generule" checked="checked"> 			<?php echo TXT_OPTIONS_INPUT_F_ANALY_4; ?>
 							<?php echo TXT_OPTIONS_INPUT_F_ANALY_5; ?> <input 	type="text" 	name="in_nomFichierGRfile" 		size="15" id="texte51" value="generules.grfile"> 	</br>	
 							<input type="radio" 	name="choix54" value="stoich" checked="checked"> 	<?php echo TXT_OPTIONS_INPUT_F_ANALY_6; ?>
