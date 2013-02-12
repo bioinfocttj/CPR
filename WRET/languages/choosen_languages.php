@@ -1,14 +1,15 @@
 <?php 
-	if (isset ($_COOKIE['lang']) && !isset($_GET['lang'])){
-		$lang=$_COOKIE['lang'];
+	session_start();
+	if (isset ($_SESSION['lang']) && !isset($_GET['lang'])){
+		$lang=$_SESSION['lang'];
 	}
 	else if (isset($_GET['lang'])){
 		$lang=$_GET['lang'];
-		set_cookie($lang);
+		$_SESSION['lang']=$lang;
 	}
 	else{
 		$lang='fr';
-		set_cookie($lang);
+		$_SESSION['lang']=$lang;
 	}
 	function set_cookie($langue){
 		$expire=24*3600;
