@@ -64,7 +64,7 @@ define('TXT_GENERULES_REAC_1', "Choisir une réaction");
 define('TXT_GENERULES_VALUE', "Valeur: ");
 define('TXT_GENERULES_VALUE_2', "Choisir une valeur");
 define('TXT_GENERULES_BUTTON_ADD', "Ajouter");
-define('TXT_GENERULES_ALERT_1', "Vous devez choisir une réacion et une valeur pour la réaction");
+define('TXT_GENERULES_ALERT_1', "Vous devez choisir une réaction et une valeur pour la réaction");
 define('TXT_GENERULES_ALERT_2', "Vous devez choisir une opérateur, une réacion et une valeur pour la réaction");
 define('TXT_GENERULES_RULES', "Règles déjà créées :");
 define('TXT_GENERULES_HELP_RULES', "Aide");

@@ -51,8 +51,8 @@ define('TXT_GO_BUTTON', "Anfang");
 //---------------------------------------------------------
 // generules.php
 //---------------------------------------------------------
-define('TXT_GENERULES_SITE_TITLE', "Erstellung von Regeln Genen");
-define('TXT_GENERULES_TITLE', "Regeln Genen");
+define('TXT_GENERULES_SITE_TITLE', "Erstellung von Genen Regeln");
+define('TXT_GENERULES_TITLE', "Genen Regeln");
 define('TXT_GENERULES_INSTRUCTION_1', "Schreiben Sie eine neue Regel :");
 define('TXT_GENERULES_INSTRUCTION_2', "Wählen Sie die Anzahl von chemischen Reaktionen :");
 define('TXT_GENERULES_INSTRUCTION_3', " Die Anzahl von Reaktionen in Form von IF AND THEN");
@@ -64,8 +64,8 @@ define('TXT_GENERULES_REAC_1', "Wählen Sie eine Reaktion");
 define('TXT_GENERULES_VALUE', "Wert : ");
 define('TXT_GENERULES_VALUE_2', "Wählen Sie einen Wert");
 define('TXT_GENERULES_BUTTON_ADD', "Hinzufügen");
-define('TXT_GENERULES_ALERT_1', "You have to choose a reaction and a value for the reaction");
-define('TXT_GENERULES_ALERT_2', "You have to choose an operator, a reaction and a value for the reaction");
+define('TXT_GENERULES_ALERT_1', "Sie müssen eine Reaktion und einen Wert für die Reaktion");
+define('TXT_GENERULES_ALERT_2', "Sie müssen einen Operator, eine Reaktion und einen Wert für réacion Reaktion");
 define('TXT_GENERULES_RULES', "Regeln bereits erstellt :");
 define('TXT_GENERULES_HELP_RULES', "OnlineHilfe");
 
