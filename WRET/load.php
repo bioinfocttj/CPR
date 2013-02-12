@@ -58,9 +58,10 @@
 			</table>
 		</div>
 		<?php
+		session_start();
 		$commande = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -stoich '.$_FILES['sfile']['name'].' -rev '.$_FILES['rvfile']['name'].' -meta '.$_FILES['mfile']['name'].' -reac '.$_FILES['rfile']['name'].' -out text-doubles modes_inc_generules.text -normalize none -maxthreads 2 -generule '.$_FILES['grfile']['name'];
 		$expire=2*3600;
-		setcookie("commande",$commande,time()+$expire);
+		$_SESSION['commande']=$commande;
 		echo $commande;
 		?>
 		<a href='results.php'>go</a>

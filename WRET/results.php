@@ -37,7 +37,8 @@
 	<body>
 			plouf
 				<?php 
-			echo '<p>' . $_COOKIE['commande'] . '</p>';?>
+				session_start();
+			echo '<p>' . $_SESSION['commande'] . '</p>';?>
 		<div id="results" name="results" title="waiting_results" >
 		<?php 
 			//~ echo '<p>ploup</p>';
