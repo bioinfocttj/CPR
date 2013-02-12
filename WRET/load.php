@@ -21,6 +21,7 @@
 		$de=$currentUrl."lang=de";
 	?>
 	<div id="menu">
+		
 		<ul>
 			<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 			<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
