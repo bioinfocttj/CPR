@@ -1,0 +1,61 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{État de l'existant}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Efmtool}
+Efmtool~\cite{efmtool:url} calcule les modes élémentaires de flux de réseaux métaboliques. Il est implémenté en Java et a été intégré à MATLAB.\\
+Il a été développé par Marco Terzer. La version courante est la 4.7.1 (Décembre 2009).
+
+\subsection{\emph{RegEfmtool}}
+\emph{RegEfmtool}~\cite{regefmtool2} est un outil informatique qui combine le calcul des modes élémentaires de flux et la régulation transcriptionnelle du réseau métabolique. Il a été développé, entre autres, par Christian Jungreuthmayer. Il a été créé afin d'accélérer le calcul de jeux complets de modes élémentaires de flux d'un réseau métabolique.\\
+\emph{RegEfmtool} est une extension d'Efmtool qui prend en compte la régulation transcriptionnelle des réseaux pour le calcul des modes élémentaires de flux.\\
+La prise en compte de la régulation des gènes réduit de façon importante le nombre de solutions et permet d'éliminer constamment les modes qui ne peuvent exister biologiquement pendant et après le processus de calcul. Elle permet aussi de réduire considérablement le coût du calcul.\\
+L'installation et l'utilisation de \emph{regEfmtool} a été exclusivement testée sous Linux. Elle pourrait cependant fonctionner sous d'autres systèmes d'exploitation puisqu'il s'agit d'un programme Java. Il n'existe pas d'interface graphique de cette application, elle s'exécute donc en lignes de commandes via le terminal.
+La version courante de \emph{RegEfmtool} est la 2.0 (Août 2012).
+
+\subsection{METATOOL} 
+METATOOL~\cite{metatool} est un programme écrit en C développé de 1998 à 2000 par Thomas Pfeiffer (Berlin) en coopération avec Juan Carlos Nuno (Madrid), Stefan Schuster (Berlin) et Ferdinand Moldenhauer (Berlin).\\
+Il sert à étudier la structure des réseaux métaboliques à partir d'équations de réactions stœchiométriques et permet notamment de calculer les modes élémentaires.\\
+Les premières versions de METATOOL (jusqu'à la 4.9) ont été développées en C. Aujourd'hui, nous trouvons aussi une version de METATOOL en C++ mais cette version n'est pas au point. %La dernière version, 4.9, est assez performante sur les petits réseaux métaboliques, mais possède de gros problèmes de gestion de mémoire et de rapidité lors de calculs sur de grands réseaux.
+Dans la version actuelle (5.1) l'exécutable est désormais un module de MATLAB 7 et GNU 3.0 Octave, il se présente sous la forme d'un ensemble de fichiers scripts de MATLAB.\\
+
+Les paramètres donnés en entrée pour le bon fonctionnement du logiciel METATOOL sont les suivants:
+\begin{itemize}
+\item La liste des réactions réversibles, ainsi que celle des réactions irréversibles, avec le nom des réactions,
+\item La liste des métabolites internes et externes impliqués dans les réactions,
+\item Les équations réactionnelles.
+\end{itemize}
+Le tout est rassemblé dans un fichier avec l'extension \textit{.dat}\\
+
+A la fin de son exécution, METATOOL a généré un fichier avec l'extension \textit{.out} dans lequel se trouvent les résultats. Dans les versions de METATOOL écrites en C, le fichier de sortie contient l'ensemble des résultats sous forme de matrices, ainsi que des bilans qui permettent de décrire le réseau d'étude.\\
+Les versions de METATOOL écrites en MATLAB produisent des résultats similaires en terme de calcul des matrices des modes élémentaires mais les résultats sont disposés différemment dans le fichier de sortie.
+
+\subsection{CellNetAnalyzer}
+CellNetAnalyzer~\cite{cna:url} est un package de MATLAB (écrit en \textsc{C}) qui fourni un environnement compréhensible et convivial pour l'utilisateur et qui permet une analyse fonctionnelle et structurelle de réseaux biochimiques. Il a été développé à l'institut Max Planck de Magdeburg par Steffen Klamt (depuis 2000) et Axel von Kamp (depuis 2007) notamment.\\
+CellNetAnalyzer fourni une importante collection d'outils et d'algorithmes pour l'analyse structurelle de réseaux.\\
+C'est un programme gratuit pour une utilisation académique. Pour l'exécuter, il faut avoir installé MATLAB 7.0 ou une version ultérieure qui demande une licence. Il peut être utilisé sur Linux, Windows XP ou Mac.\\
+Pour l'étude des modes élémentaires, CellNetAnalyzer fait appel à METATOOL via le logiciel MEX qui sert d'interface. MEX permet à MATLAB d'appeler tout logiciel \textsc{C} externe pour compléter les outils qu'il possède.
+
+\subsection{Yana}
+YANA~\cite{yana} est un logiciel libre, écrit en JAVA, utilisant METATOOL pour l'étude
+des voies métaboliques. Il contient le logiciel METATOOL dans sa structure interne. \\
+YANA~\cite{yanasq:url} sert de façade et de sortie à METATOOL 6 tout en implémentant d'autres fonctions d'analyses du métabolisme (ex: quantification de l'activité enzymatique des réactions).\\ YANA s'occupe de l'entrée des données vers METATOOL puis il effectue une analyse syntaxique du fichier \textit{.out} pour afficher les résultats sur une interface graphique et effectuer des analyses complémentaires sur ceux-ci.
+
+\subsection{Acom}
+ACoM~\cite{acom} fonctionne à partir des fichiers de sortie de METATOOL. Il permet une classification automatique des modes élémentaires en fonction d'une taille minimale et d'un seuil de similarité. Il est surtout utilisé pour l'analyse des réseaux de grandes tailles où la manipulation des données à la main est laborieuse. ACoM est un programme
+C utilisable uniquement en mode console.
+
+\subsection{JACoMode}
+JACoMode est une interface Web permettant lancement d'ACoM via le Web. En plus d'obtenir les résultats d'ACoM, JACoMode traite ces résultats pour obtenir d'autres résultats statistiques sur les modes élémentaires.
+
+\subsection{Langages}
+Notre projet nécessite l'utilisation d'une interface Web, dans ce cadre il existe:
+\begin{itemize}
+\item Mod Perl combiné avec Apache\footnote{Apache HTTP Server} et CGI\footnote{CGI: Common Gateway Interface.} mais la technologie utilisée est à l'heure actuelle dépassée
+\item Mod Python combiné avec Apache et CGI mais même remarque que précédemment
+\item CL-WHO avec Hunchentoot\footnote{Hunchentoot HTTP Server} et ParenScript offre un bon environnement pour le développement Web
+\item Java et ses applets\footnote{Applet Java: logiciel s'exécutant dans la fenêtre d'une navigateur Web (grâce à une machine virtuelle Java (JVM)), fournie aux utilisateurs sous la forme de bytecode Java.} apparaissent également comme un bon choix pour le développement Web
+\item PHP\footnote{PHP: Hypertext Preprocessor} couplé avec du JavaScript peut être un choix judicieux pour une application Web
+\end{itemize}
+
+Parmi les différents choix précédemment cités, deux sortent du lot: Java et PHP avec leurs bibliothèques.

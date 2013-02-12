@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: rapport.aux
+The style file: unsrt.bst
+Database file #1: rapport.bib
+Warning--empty journal in regefmtool2
+You've used 8 entries,
+            1791 wiz_defined-function locations,
+            470 strings with 4451 characters,
+and the built_in function-call counts, 1077 in all, are:
+= -- 71
+> -- 60
+< -- 0
++ -- 24
+- -- 16
+* -- 47
+:= -- 164
+add.period$ -- 16
+call.type$ -- 8
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 52
+empty$ -- 129
+format.name$ -- 16
+if$ -- 244
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 4
+newline$ -- 35
+num.names$ -- 4
+pop$ -- 38
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 45
+stack$ -- 0
+substring$ -- 0
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 4
+width$ -- 9
+write$ -- 61
+(There was 1 warning)

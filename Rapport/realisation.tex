@@ -1,0 +1,34 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Réalisation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Règles générales}
+La page permettant la saisie des règles générales est obtenue à l'aide du fichier \emph{generules.php}.\\
+L'affichage à l'ouverture de la page n'est composé que d'une zone de texte et d'un bouton "ok" qui est de type submit. Au clic, il fait appel à la fonction \emph{add\_reaction()} qui créée deux menus déroulant par réaction jusqu'à atteindre le nombre de réactions entrées par l'utilisateur. Elle vérifie également que le nombre de réactions entrées par l'utilisateur est au moins égal à 2, sinon elle affiche un message sous la forme d'une alert à l'utilisateur.\\
+Les réactions sont récupérées à partir de ???.\\
+
+Lorsque l'utilisateur a choisi toutes ses réactions et leur valeur, il clique sur le bouton "Ajouter". Celui-ci fait appel à la fonction \emph{validateForm()} qui vérifie que tous les champs ont bien été sélectionnés. Si la fonction retourne VRAI, il fait appel au fichier \emph{createGrfile.php} qui écrit la règle dans le fichier grfile.\\
+Le fichier \emph{createGrfile.php} écrit dans le fichier \emph{grfile} selon certaines règles. En effet, l'écriture de la règle dépend des valeurs associées aux réactions.\\
+
+Si la valeur de la réaction qui suit le "THEN" est 0, alors il y aura le symbole "!" au début de la règle (juste après le "="), sauf si la règle ne contient que deux réactions.\\
+Si les réactions après "IF" ou "AND" ont pour valeur:
+\begin{itemize}
+\item 0, alors on écrira (!0reac)
+\item 1, alors on écrira (!1reac)
+\end{itemize}
+En revanche, si la valeur de la réaction après "THEN" est 1, les réactions après "IF" et AND" s'écriront:
+\begin{itemize}
+\item 0reac si sa valeur est 0
+\item 1reac si sa valeur est 1
+\end{itemize}
+De plus, le "AND" affiché sur la page web sera écrit \&. Quand la règle est composée d'au moins trois réactions, des parenthèses sont ajoutées après chaque réaction sauf la première et la dernière. Des parenthèses entourent l'ensemble des réactions situées après le "=".\\
+
+Pour mieux comprendre l'écriture du fichier \emph{grfile}, voici un exemple:\\
+Choix de l'utilisateur sur la page web:\\
+\textbf{IF R1 valeur: 1\\
+AND R2 valeur: 0\\
+AND R3 valeur: 0\\
+THEN R4 valeur: 0}\\
+
+Règle écrite dans le fichier: \\
+\textbf{R4 = (!((1R1 \& (!0R2)) \& (!0R3))}
