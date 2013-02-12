@@ -1,0 +1,5782 @@
+%!PS-Adobe-3.0
+%%Title: createFiles.php, createGrfile.php, create.php, generules.php, help.php, index.php, load.php, modify.php, options.php, parser_enzymes.php
+%%For: Charlotte Herice
+%%Creator: a2ps version 4.14
+%%CreationDate: Tue Feb  5 09:03:12 2013
+%%BoundingBox: 24 24 571 818
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 12
+%%PageOrder: Ascend
+%%DocumentMedia: A4 595 842 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black Blue Green Red 
+%%DocumentSuppliedResources: procset a2ps-color-prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontType get 0 eq {
+    currentfont /FontMatrix get 3 get
+  }{
+    currentfont /FontMatrix get 3 get 1000 mul
+  } ifelse
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% composite fonts for ASCII-EUC mixed strings
+% Version 1.2 1/31/1990
+% Original Ken'ichi HANDA (handa@etl.go.jp)
+% Modified Norio Katayama (katayama@rd.nacsis.ac.jp),1998
+% Extend & Fix Koji Nakamaru (maru@on.cs.keio.ac.jp), 1999
+% Anyone can freely copy, modify, distribute this program.
+
+/copyfont {	% font-dic extra-entry-count  copyfont  font-dic
+	1 index maxlength add dict begin
+	{	1 index /FID ne 2 index /UniqueID ne and
+		{def} {pop pop} ifelse
+	} forall
+	currentdict
+	end
+} bind def
+
+/compositefont { % ASCIIFontName EUCFontName RomanScale RomanOffset Rot(T/F) compositefont font
+    /RomanRotation exch def
+    /RomanOffset exch def
+    /RomanScale exch def
+    userdict /fixeucfont_dict known not {
+	userdict begin
+	    /fixeucfont_dict 2 dict begin
+		/UpperByteEncoding [
+		    16#00 1 16#20 { pop 0 } for
+		    16#21 1 16#28 { 16#20 sub } for
+		    16#29 1 16#2F { pop 0 } for
+		    16#30 1 16#74 { 16#27 sub } for
+		    16#75 1 16#FF { pop 0 } for
+		] def
+	        /LowerByteEncoding [
+		    16#00 1 16#A0 { pop /.notdef } for
+		    16#A1 1 16#FE { 16#80 sub 16 2 string cvrs
+				    (cXX) dup 1 4 -1 roll
+				    putinterval cvn } for
+		    /.notdef
+		] def
+		currentdict
+	    end def
+	end
+    } if
+    findfont dup /FontType get 0 eq {
+	14 dict begin
+	    %
+	    % 7+8 bit EUC font
+	    %
+	    12 dict begin
+		/EUCFont exch def
+		/FontInfo (7+8 bit EUC font) readonly def
+		/PaintType 0 def
+		/FontType 0 def
+		/FontMatrix matrix def
+		% /FontName
+		/Encoding fixeucfont_dict /UpperByteEncoding get def
+		/FMapType 2 def
+		EUCFont /WMode known
+		{ EUCFont /WMode get /WMode exch def }
+		{ /WMode 0 def } ifelse
+		/FDepVector [
+		    EUCFont /FDepVector get 0 get
+		    [ 16#21 1 16#28 {} for 16#30 1 16#74 {} for ]
+		    {
+			13 dict begin
+			    /EUCFont EUCFont def
+			    /UpperByte exch 16#80 add def	
+			    % /FontName
+			    /FontInfo (EUC lower byte font) readonly def
+			    /PaintType 0 def
+			    /FontType 3 def
+			    /FontMatrix matrix def
+			    /FontBBox {0 0 0 0} def
+			    /Encoding
+				fixeucfont_dict /LowerByteEncoding get def
+			    % /UniqueID
+			    % /WMode
+			    /BuildChar {
+				gsave
+				exch dup /EUCFont get setfont
+				/UpperByte get
+				2 string
+				dup 0 4 -1 roll put
+				dup 1 4 -1 roll put
+				dup stringwidth setcharwidth
+				0 0 moveto show
+				grestore
+			    } bind def
+			    currentdict
+			end
+			/lowerbytefont exch definefont
+		    } forall
+		] def
+		currentdict
+	    end
+	    /eucfont exch definefont
+	    exch
+	    findfont 1 copyfont dup begin
+		RomanRotation {
+			/FontMatrix FontMatrix
+			[ 0 RomanScale neg RomanScale 0 RomanOffset neg 0 ]
+			matrix concatmatrix def
+		}{
+			/FontMatrix FontMatrix
+			[ RomanScale 0 0 RomanScale 0 RomanOffset ] matrix concatmatrix
+			def
+			/CDevProc
+			    {pop pop pop pop 0 exch -1000 exch 2 div 880} def
+		} ifelse
+	    end
+	    /asciifont exch definefont
+	    exch
+	    /FDepVector [ 4 2 roll ] def
+	    /FontType 0 def
+	    /WMode 0 def
+	    /FMapType 4 def
+	    /FontMatrix matrix def
+	    /Encoding [0 1] def
+	    /FontBBox {0 0 0 0} def
+%	    /FontHeight 1.0 def % XXXX
+	    /FontHeight RomanScale 1.0 ge { RomanScale }{ 1.0 } ifelse def
+	    /Descent -0.3 def   % XXXX
+	    currentdict
+	end
+	/tmpfont exch definefont
+	pop
+	/tmpfont findfont
+    }{
+	pop findfont 0 copyfont
+    } ifelse
+} def	
+
+/slantfont {	% FontName slant-degree  slantfont  font'
+    exch findfont 1 copyfont begin
+    [ 1 0 4 -1 roll 1 0 0 ] FontMatrix exch matrix concatmatrix
+    /FontMatrix exch def
+    currentdict
+    end
+} def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  0 setgray
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.5 0.5 1 setrgbcolor
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    1 setgray
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+%%BeginResource: procset a2ps-color-prolog 2.0 1
+
+%% Definition of the color faces.
+/p {
+  0 0 0 FG
+  false BG
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  0 0 0 FG
+  false BG
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false BG
+  false UL
+  false BX
+  0 0 0.9 FG
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false BG
+  false UL
+  false BX
+  0 0 0.8 FG
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false BG
+  false UL
+  false BX
+  0.8 0 0 FG
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false BG
+  false UL
+  false BX
+  0.8 0 0 FG
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/l {
+  0 0 0 FG
+  0.8 0.8 0 true BG
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  0 0 0 FG
+  1 1 0 true BG
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/str {
+  false BG
+  false UL
+  false BX
+  0 0.5 0 FG
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  1 0 0 true BG
+  false UL
+  true BX
+  1 1 1 FG
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul 2 div neg 0 rmoveto
+    f# setfont
+    0.8 0.1 0.1 FG
+    c-show
+  grestore
+} bind def
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 595 def
+/sw 842 def
+/llx 24 def
+/urx 818 def
+/ury 571 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 7.542439 def
+/cw 4.525463 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 6 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 86.400000 mul
+def
+/ph
+   503.080648 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 5 def
+/tab 4 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1,1) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () S
+() p 4 T () S
+(include) k
+( ') p
+(reac.php) str
+(';) p n
+(3) # () S 4 T () S
+(include) k
+( ') p
+(parser_enzymes.php) str
+(';) p 36 T () N
+(4) # () S 4 T () S
+(include) k
+( ') p
+(parser_reversibility.php) str
+(';) p n
+(5) # () S 4 T () S
+(include) k
+( ') p
+(parser_metabolite.php) str
+(';) p n
+(6) # () S 4 T () S
+(include) k
+( ') p
+(parser_stoechiometry.php) str
+(';) p n
+(7) # () S
+(?>) K
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 10:53) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () S
+() p 4 T () S
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p n
+(3) # () N
+(4) # () S 4 T () S
+(if) K
+(\(isset\() p
+($_POST) L
+([') p
+(button) str
+(']\)\) { ) p n
+(5) # () S 4 T () S 8 T () S
+($num) L
+(=) p
+($_POST) L
+([") p
+(num) str
+("];) p n
+(6) # () S 4 T () S 8 T () N
+(7) # () S 4 T () S 8 T () S
+($myarray) L
+(=[];) p n
+(8) # () S 4 T () S 8 T () S
+(for) K
+( \() p
+($i) L
+(=1; ) p
+($i) L
+(<=) p
+($num) L
+(; ) p
+($i) L
+(++\){ ) p
+(//recuperation of the reaction and their val) c n
+0 T (ues) N
+(9) # () S
+() p 4 T () S 8 T () S 12 T () S
+($val) L
+(=") p
+(box$i) str
+(";) p n
+(10) # () S 4 T () S 8 T () S 12 T () S
+($val2) L
+(=") p
+(value$i) str
+(";) p n
+(11) # () S 4 T () S 8 T () S 12 T () N
+(12) # () S 4 T () S 8 T () S 12 T () S
+($reac) L
+(=) p
+($_POST) L
+([) p
+($val) L
+(];) p n
+(13) # () S 4 T () S 8 T () S 12 T () S
+($value) L
+(=) p
+($_POST) L
+([) p
+($val2) L
+(];) p n
+(14) # () S 4 T () S 8 T () S 12 T () S
+($myarray) L
+([) p
+($i) L
+(]=[) p
+($reac) L
+(,) p
+($value) L
+(];) p n
+(15) # () S 4 T () S 8 T (}) N
+(16) # () S 4 T () S 8 T () N
+(17) # () S 4 T () S 8 T () S
+($data) L
+( = fopen\(') p
+(grfile.txt) str
+(',') p
+(a) str
+('\); ) p
+(// writting the grfile) c n
+(18) # () S
+() p 4 T () S 8 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($num) L
+(][0]\);) p n
+(19) # () S 4 T () S 8 T () N
+(20) # () S 4 T () S 8 T () S
+($reac0) L
+(=) p
+($myarray) L
+([) p
+($num) L
+( ][1];) p n
+(21) # () S 4 T () S 8 T () S
+(if) K
+(\() p
+($reac0) L
+(==0 and ) p
+($num) L
+(>2\){) p n
+(22) # () S 4 T () S 8 T () S 12 T (fputs\() S
+($data) L
+(, ') p
+(= \(!\() str
+('\);) p n
+(23) # () S 4 T () S 8 T (}) N
+(24) # () S 4 T () S 8 T () S
+(else) K
+({) p n
+(25) # () S 4 T () S 8 T () S 12 T (fputs\() S
+($data) L
+(, ') p
+(= \() str
+('\);) p n
+(26) # () S 4 T () S 8 T (}) N
+(27) # () S 4 T () S 8 T () N
+(28) # () S 4 T () S 8 T () S
+(if) K
+(\() p
+($num) L
+(>3\){) p n
+(29) # () S 4 T () S 8 T () S 12 T () S
+(for) K
+( \() p
+($k) L
+(=1; ) p
+($k) L
+(<) p
+($num) L
+(-2;) p
+($k) L
+(++\){) p n
+(30) # () S 4 T () S 8 T () S 12 T () S 16 T (fputs\() S
+($data) L
+(, ') p
+(\() str
+('\);) p n
+(31) # () S 4 T () S 8 T () S 12 T (}) N
+(32) # () S 4 T () S 8 T (}) N
+(33) # () S 4 T () S 8 T () N
+(34) # () S 4 T () S 8 T () S
+(for) K
+( \() p
+($j) L
+(=1;) p
+($j) L
+(<) p
+($num) L
+(;) p
+($j) L
+(++\){) p n
+(35) # () S 4 T () S 8 T () S 12 T () S
+(if) K
+( \() p
+($reac0) L
+(==1 and ) p
+($myarray) L
+([) p
+($j) L
+(][1]==0\){ ) p
+(//if R1=0 then R2=1 ) c n
+(36) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+(\() p
+($num) L
+(==2\){) p n
+(37) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(!0) str
+('\);) p n
+(38) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($j) L
+(][0]\);) p n
+(39) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(40) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(else) K
+({) p n
+(41) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(\(!0) str
+('\);) p n
+(42) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($j) L
+(][0]\);) p n
+(43) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(\)) str
+('\);) p n
+(44) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(45) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+( \() p
+($j) L
+(!=) p
+($num) L
+(-1\){) p n
+(46) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S
+(if) K
+( \() p
+($j) L
+(>2 and ) p
+($num) L
+(>3\){) p n
+(47) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (fputs\() S
+($data) L
+(, ') p
+(\)) str
+('\);) p n
+(48) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (}) N
+(49) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+( & ) str
+('\);) p n
+(50) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(51) # () S 4 T () S 8 T () S 12 T (}) N
+(52) # () S 4 T () S 8 T () S 12 T () S
+(else) K
+( ) p
+(if) K
+( \() p
+($reac0) L
+(==1 and ) p
+($myarray) L
+([) p
+($j) L
+(][1]==1\){ ) p
+(//if R1=1 then R2=1 ) c n
+(53) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T (fputs\() S
+($data) L
+(, ') p
+(1) str
+('\);) p n
+(54) # () S 4 T () S 8 T () S 12 T () S 16 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($j) L
+(][0]\);) p n
+(55) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+( \() p
+($j) L
+(!=) p
+($num) L
+(-1\){) p n
+(56) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S
+(if) K
+( \() p
+($j) L
+(>2 and ) p
+($num) L
+(>3\){) p n
+(57) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (fputs\() S
+($data) L
+(, ') p
+(\)) str
+('\);) p n
+(58) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (}) N
+(59) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+( & ) str
+('\);) p n
+(60) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(61) # () S 4 T () S 8 T () S 12 T (}) N
+(62) # () S 4 T () S 8 T () S 12 T () S
+(else) K
+( ) p
+(if) K
+( \() p
+($reac0) L
+(==0 and ) p
+($myarray) L
+([) p
+($j) L
+(][1]==1\){ ) p
+(//if R1=1 then R2=0 ) c n
+(63) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+( \() p
+($num) L
+(==2\){) p n
+(64) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(!1) str
+('\);) p n
+(65) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(CPR_Web) (Page 1/2) (f\303\251vr. 04, 13 14:00) title
+border
+grestore
+(M2 BioInfo) rhead
+(createFiles.php, createGrfile.php) (1/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (2,1) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(66) # () p 4 T () S 8 T () S 12 T () S 16 T () S
+(else) K
+({) p n
+(67) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(1) str
+('\);) p n
+(68) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(69) # () S 4 T () S 8 T () S 12 T () S 16 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($j) L
+(][0]\);) p n
+(70) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+( \() p
+($j) L
+(!=) p
+($num) L
+(-1\){) p n
+(71) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S
+(if) K
+( \() p
+($j) L
+(>2 and ) p
+($num) L
+(>3\){) p n
+(72) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (fputs\() S
+($data) L
+(, ') p
+(\)) str
+('\);) p n
+(73) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (}) N
+(74) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+( & ) str
+('\);) p n
+(75) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(76) # () S 4 T () S 8 T () S 12 T (}) N
+(77) # () S 4 T () S 8 T () S 12 T () S
+(else) K
+( ) p
+(if) K
+( \() p
+($reac0) L
+(==0 and ) p
+($myarray) L
+([) p
+($j) L
+(][1]==0\){ ) p
+(//if R1=0 then R2=0) c n
+(78) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+(\() p
+($num) L
+(==2\){) p n
+(79) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(0) str
+('\);) p n
+(80) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($j) L
+(][0]\);) p n
+(81) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+( | ) str
+('\);) p n
+(82) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(0) str
+('\);) p n
+(83) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($j) L
+(][0]\);) p n
+(84) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(85) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(else) K
+({) p n
+(86) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(\(!0) str
+('\);) p n
+(87) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ) p
+($myarray) L
+([) p
+($j) L
+(][0]\);) p n
+(88) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+(\)) str
+('\);) p n
+(89) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(90) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+( \() p
+($j) L
+(!=) p
+($num) L
+(-1\){) p n
+(91) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S
+(if) K
+( \() p
+($j) L
+(>1 and ) p
+($num) L
+(>3\){) p n
+(92) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (fputs\() S
+($data) L
+(, ') p
+(\)) str
+('\);) p n
+(93) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (}) N
+(94) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (fputs\() S
+($data) L
+(, ') p
+( & ) str
+('\);) p n
+(95) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(96) # () S 4 T () S 8 T () S 12 T () S 16 T () N
+(97) # () S 4 T () S 8 T () S 12 T (}) N
+(98) # () S 4 T () S 8 T () S 12 T () N
+(99) # () S 4 T () S 8 T (}) N
+(100) # () S 4 T () S 8 T () S
+(if) K
+(\() p
+($reac0) L
+(==0 and ) p
+($num) L
+(>2\){) p n
+(101) # () S 4 T () S 8 T () S 12 T (fputs\() S
+($data) L
+(, ") p
+(\)\)\\n) str
+("\);) p n
+(102) # () S 4 T () S 8 T (}) N
+(103) # () S 4 T () S 8 T () S
+(else) K
+({) p n
+(104) # () S 4 T () S 8 T () S 12 T (fputs\() S
+($data) L
+(, ") p
+(\)\\n) str
+("\);) p n
+(105) # () S 4 T () S 8 T (}) N
+(106) # () N
+(107) # () S 4 T () S 8 T (fclose\() S
+($data) L
+(\);) p n
+(108) # () S 4 T () S 8 T (header\(') S
+(Location: generules.php) str
+('\);) p n
+(109) # () S 4 T (}) N
+(110) # () S 4 T () S
+(else) K
+({) p n
+(111) # () S 4 T () S 8 T () S
+(echo) K
+( TXT_CREATION_CLIC;) p n
+(112) # () S 4 T (}) N
+(113) # () S
+(?>) K n
+(114) # () N
+(115) # () N
+(CPR_Web) (Page 2/2) (f\303\251vr. 04, 13 14:00) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html PUBLIC ") p
+(-//W3C//DTD HTML 4.01//EN) str
+(">) p n
+(2) # () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html>) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T (  <title>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_CREATION_SITE_TITLE; ) p
+(?>) K
+(</title>) p n
+(6) # () S 4 T (  <link rel=") S
+(stylesheet) str
+(" media=") p
+(screen) str
+(" type=") p
+(text/css) str
+(" href=") p
+(style.css) str
+("/>) p n
+(7) # () S 4 T (  <meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html;charset=UTF-8) str
+(">) p n
+(8) # () S 4 T (  <script type=") S
+(text/javascript) str
+(" >) p n
+(9) # () S 4 T (  ) S 8 T () S 12 T () S
+(// function isReversible\(formulaireR\) {) c n
+(10) # () S
+() p 4 T (  ) S 8 T () S 12 T () S
+(// ) c 16 T (if \(formulaireR.choix1[0].checked\) { ) N
+(11) # () S
+(    ) p 8 T () S
+(// ) c 12 T () S 16 T () S 20 T (var valeur1 = " -" + formulaire.choix1[0].value; ) N
+(12) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T ( ) S
+(//    commande = commande + valeur1;) c n
+(13) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T ( ) S
+(//  }) c n
+(14) # () S
+() p 4 T (  ) S 8 T () S 12 T () S
+(// }) c n
+(15) # () N
+(16) # () S
+() p 4 T (  </script>) N
+(17) # () N
+(18) # () S 4 T (</head>) N
+(19) # () S 4 T () S
+(<?php) K
+( ) p n
+(20) # () S 4 T () S 8 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) === ) p n
+0 T (FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(21) # () S 4 T () S 8 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(22) # () S 4 T () S 8 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(23) # () S 4 T () S 8 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(24) # () S 4 T () S 8 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(25) # () S 4 T () S 8 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(26) # () S 4 T () S 8 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(27) # () S 4 T () S
+(?>) K n
+(28) # () S
+() p 4 T (<div id=") S
+(menu) str
+(">) p n
+(29) # () S 4 T () S 8 T (<ul>) N
+(30) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(index.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(31) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(create.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 72 T (</a></li) N
+0 T (>) N
+(32) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(load.php) str
+(">) p 36 T () S 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(33) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(modify.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(34) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(help.php) str
+(">) p 36 T () S 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(35) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-icon) str
+(") p n
+0 T ( alt=") S
+(english_flag) str
+("></a></li>) p n
+(36) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" alt=") p
+(french_flag) str
+() p n
+0 T ("></a></li>) N
+(37) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" alt=") p
+(german_fla) str n
+0 T (g) S
+("></a></li>) p n
+(38) # () S 4 T () S 8 T (</ul>) N
+(39) # () S 4 T () S 8 T () N
+(40) # () S 4 T (</div>) N
+(41) # () S 4 T () N
+(42) # () S 4 T (<body>) N
+(43) # () S 4 T () S 8 T (<center>) N
+(44) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_CREATION_TITLE; ) p
+(?>) K
+(</h1>) p n
+(45) # () S 4 T () S 8 T (</center>) N
+(46) # () S 4 T () S 8 T () N
+(47) # () S 4 T () S 8 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_CREATION_INSTRUCTION_1; ) p
+(?>) K
+(</h4>) p n
+(48) # () N
+(49) # () S 4 T () S 8 T (<form  name=") S
+(formulaireR) str
+(" method=") p
+(POST) str
+(" action=") p
+(createFiles.php) str
+(">) p n
+(50) # () S 4 T () S 8 T () S 12 T (<input type=") S
+(text) str
+(" name=") p
+(reac) str
+(" value=") p
+(reaction : reag1 + reag2 => 2 prod1 + 4 prod2) str
+(" ) p n
+0 T (size=") S
+(60) str
+("/> ) p n
+(51) # () S 4 T () S 8 T () S 12 T (</br> </br>) N
+(52) # () S 4 T () S 8 T () S 12 T () S
+(<!--<label> <?php //echo TXT_CREATION_IS_REVERSIBLE; ?></label>) c n
+(53) # () S 4 T () S 8 T () S 12 T ( <label><?php //echo TXT_CREATION_HELP_REV; ?></label>) N
+(54) # () S 4 T () S 8 T () S 12 T (<input type="text" name="rev" value="0" size="5"> -->) N
+(55) # () S
+() p 4 T () S 8 T () S 12 T (</br> </br>) N
+(56) # () S 4 T () S 8 T () S 12 T () N
+(CPR_Web) (Page 1/2) (f\303\251vr. 04, 13 17:15) title
+border
+grestore
+(M2 BioInfo) rhead
+(createGrfile.php, create.php) (2/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (2,1) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(57) # () p 4 T () S 8 T () S 12 T () S
+(<!-- <input type="radio" name="choix1" value="Yes"> <?php //echo TXT) c n
+0 T (_CREATION_YES; ?>) N
+(58) # () S 4 T () S 8 T () S 12 T (<input type="radio" name="choix1" value="No"> <?php //echo TXT_CREAT) N
+0 T (ION_NO; ?> </br> </br> -->) N
+(59) # () N
+(60) # () S
+() p 4 T () S 8 T () S 12 T (<input type=") S
+(submit) str
+(" name=") p
+(button) str
+(" value=") p
+(<?php echo TXT_ADD_BUTTON; ?>) str
+(" /) p n
+0 T (></br></br> </br>) N
+(61) # () S 4 T () S 8 T () S 12 T (<label> ) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_CREATION_ALREADY_OK; ) p
+(?>) K
+(</label>) p n
+(62) # () S 4 T () S 8 T () S 12 T (</br> </br>) N
+(63) # () S 4 T () S 8 T () S 12 T (<iframe src=") S
+(reaction.txt) str
+(" width=") p
+(500) str
+(" height=") p
+(200) str
+("> </iframe>) p n
+(64) # () N
+(65) # () S 4 T () S 8 T (</form>) N
+(66) # () S 4 T () S 8 T (</br> </br>) N
+(67) # () S 4 T () S 8 T () N
+(68) # () S 4 T () S 8 T (<input type=") S
+(submit) str
+(" name=") p
+(button2) str
+(" value=") p
+(<?php echo TXT_NEXTSTEP_BUTTON; ?>) str
+(") p n
+0 T ( onclick=") S
+(self.location.href='generules.php') str
+(" />) p n
+(69) # () N
+(70) # () S 4 T () S 8 T (<FONT color=") S
+(red) str
+(" size=") p
+(4) str
+(">) p n
+(71) # () S 4 T () S 8 T () S 12 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_CREATION_WARNING_TITLE; ) p
+(?>) K
+(</h4>) p n
+(72) # () S 4 T () S 8 T () S 12 T (<p> ) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_CREATION_WARNING; ) p
+(?>) K
+(</p>) p n
+(73) # () S 4 T () S 8 T (</FONT>) N
+(74) # () S 4 T () S 8 T () N
+(75) # () S 4 T (</body>) N
+(76) # (</html>) N
+(77) # () S 4 T () S 8 T () N
+(78) # () S 4 T () S 8 T () N
+(CPR_Web) (Page 2/2) (f\303\251vr. 04, 13 17:15) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html>) p n
+(2) # () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html>) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T () S 8 T (<title>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_GENERULES_SITE_TITLE; ) p
+(?>) K
+(</title>) p n
+(6) # () S 4 T () S 8 T (<link rel=') S
+(stylesheet) str
+(' media=') p
+(screen) str
+(' type=') p
+(text/css) str
+(' href=') p
+(style.css) str
+('/>) p n
+(7) # () S 4 T () S 8 T (<meta http-equiv=') S
+(Content-Type) str
+(' content=') p
+(text/html;charset=UTF-8) str
+('>) p n
+(8) # () S 4 T () S 8 T () S
+(<?php) K
+( ) p
+(include) k
+( ') p
+(recupEnzymes.php) str
+('; ) p
+(?>) K n
+(9) # () S
+() p 4 T () S 8 T (<script type=') S
+(text/javascript) str
+(' src=') p
+(generules.js) str
+('></script>) p n
+(10) # () S 4 T (</head>) N
+(11) # () S 4 T () S
+(<?php) K
+( ) p n
+(12) # () S 4 T () S 8 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) === ) p n
+0 T (FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(13) # () S 4 T () S 8 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(14) # () S 4 T () S 8 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(15) # () S 4 T () S 8 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(16) # () S 4 T () S 8 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(17) # () S 4 T () S 8 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(18) # () S 4 T () S 8 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(19) # () S 4 T () S
+(?>) K n
+(20) # () S
+() p 4 T (<div id=") S
+(menu) str
+(">) p n
+(21) # () S 4 T () S 8 T (<ul>) N
+(22) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(index.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(23) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(create.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 72 T (</a></li) N
+0 T (>) N
+(24) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(load.php) str
+(">) p 36 T () S 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(25) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(modify.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(26) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(help.php) str
+(">) p 36 T () S 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(27) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-icon) str
+(") p n
+0 T ( alt=") S
+(english_flag) str
+("></a></li>) p n
+(28) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" ) p 72 T () S 76 T () S 80 T () N
+0 T () S 0 T () S 4 T (alt=") S
+(french_flag) str
+("></a></li>) p n
+(29) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" ) p 72 T () S 76 T () S 80 T () N
+0 T () S 0 T () S 4 T (alt=") S
+(german_flag) str
+("></a></li>) p n
+(30) # () S 4 T () S 8 T (</ul>) N
+(31) # () S 4 T () S 8 T () N
+(32) # () S 4 T (</div>) N
+(33) # () S 4 T (<body>) N
+(34) # () S 4 T () S 8 T (<center>) N
+(35) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_GENERULES_TITLE; ) p
+(?>) K
+(</h1>) p n
+(36) # () S 4 T () S 8 T (</center>) N
+(37) # () N
+(38) # () S 4 T () S 8 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_GENERULES_INSTRUCTION_1; ) p
+(?>) K
+(</h4>) p n
+(39) # () N
+(40) # () S 4 T () S 8 T (<label ) S
+(class) k
+(=') p
+(tooltip) str
+('>) p
+(<?php) K
+( ) p
+(echo) K
+( TXT_GENERULES_INSTRUCTION_2; ) p
+(?>) K
+(<span>) p
+(<?p) K n
+0 T (hp) S
+( ) p
+(echo) K
+( TXT_GENERULES_INSTRUCTION_3; ) p
+(?>) K
+(</span></label>) p n
+(41) # () S 4 T () S 8 T (</br>) N
+(42) # () S 4 T () S 8 T (<input type=') S
+(text) str
+(' id =') p
+(rule) str
+(' ) p 40 T (name=') S
+(rule) str
+(' ) p 56 T (size=') S
+(4) str
+('>) p n
+(43) # () S 4 T () S 8 T (<input type=') S
+(submit) str
+(' ) p 32 T () S 36 T () S 40 T (name=') S
+(button2) str
+(' ) p 56 T (value=') S
+(<?php echo TXT_OK_B) str n
+0 T (UTTON; ?>) S
+(' onclick=add_reaction\(\)>) p n
+(44) # () S 4 T () S 8 T (</br>) N
+(45) # () S 4 T () S 8 T (</br>) N
+(46) # () N
+(47) # () S 4 T () S 8 T (<form id=') S
+(b2) str
+(' name=') p
+(form) str
+(' method=') p
+(POST) str
+(' action=') p
+(createGrfile.php) str
+(' onSubmit=') p
+(ret) str n
+0 T (urn validateForm\(\)) S
+('></form>) p n
+(48) # () S 4 T () S 8 T (</br>) N
+(49) # () S 4 T () S 8 T (<input type=") S
+(submit) str
+(" name=") p
+(button2) str
+(" value=") p
+(<?php echo TXT_NEXTSTEP_BUTTON; ?>) str
+(") p n
+0 T ( onclick=") S
+(self.location.href='options.php') str
+("/>) p n
+(50) # () S 4 T (</body>) N
+(51) # (</html>) N
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 17:43) title
+border
+grestore
+(M2 BioInfo) rhead
+(create.php, generules.php) (3/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1,1) 4
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html >) p n
+(2) # () S 4 T () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html>) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T () S 8 T (<title>Help</title>) N
+(6) # () S 4 T () S 8 T (<link rel=") S
+(stylesheet) str
+(" media=") p
+(screen) str
+(" type=") p
+(text/css) str
+(" href=") p
+(style.css) str
+("/>) p n
+(7) # () S 4 T () S 8 T (<meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html;charset=UTF-8) str
+(">) p n
+(8) # () S 4 T (</head>) N
+(9) # () N
+(10) # () S 4 T () S
+(<?php) K
+( ) p n
+(11) # () S 4 T () S 8 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) === ) p n
+0 T (FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(12) # () S 4 T () S 8 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(13) # () S 4 T () S 8 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(14) # () S 4 T () S 8 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(15) # () S 4 T () S 8 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(16) # () S 4 T () S 8 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(17) # () S 4 T () S 8 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(18) # () S 4 T () S
+(?>) K n
+(19) # () S
+() p 4 T (<div id=") S
+(menu) str
+(">) p n
+(20) # () S 4 T () S 8 T (<ul>) N
+(21) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(index.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(22) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(create.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 76 T (</a>) N
+0 T (</li>) N
+(23) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(load.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(24) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(modify.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(25) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(help.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(26) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-icon) str
+(") p n
+0 T ( alt=") S
+(english_flag) str
+("></a></li>) p n
+(27) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" alt=") p
+(french_flag) str
+() p n
+0 T ("></a></li>) N
+(28) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" alt=") p
+(german_fla) str n
+0 T (g) S
+("></a></li>) p n
+(29) # () S 4 T () S 8 T (</ul>) N
+(30) # () S 4 T () S 8 T () N
+(31) # () S 4 T (</div>) N
+(32) # () N
+(33) # () S 4 T (<body>) N
+(34) # () S 4 T () S 8 T (<div id=") S
+(loadBody) str
+(">) p n
+(35) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HELP_TITLE; ) p
+(?>) K
+(</h1>) p n
+(36) # () S 4 T () S 8 T (</div>) N
+(37) # () N
+(38) # () S 4 T () S 8 T (<p>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HELP_INTRO; ) p
+(?>) K
+( </p>) p n
+(39) # () S 4 T () S 8 T (</br>) N
+(40) # () S 4 T () S 8 T (<h3>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HELP_FILES; ) p
+(?>) K
+(</h3>) p n
+(41) # () S 4 T () S 8 T () S 12 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HELP_METABO; ) p
+(?>) K
+(</h4>) p n
+(42) # () S 4 T (   ) S 8 T () S 12 T () S 16 T (<p>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HELP_EXTENSION; ) p
+(?>) K
+(</p>) p n
+(43) # () S 4 T () S 8 T (<p>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HELP_SUITE; ) p
+(?>) K
+(</p>) p n
+(44) # () S 4 T (</body>) N
+(45) # (</html>) N
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 18:23) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html>) p n
+(2) # () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html xmlns=") p
+(http://www.w3.org/1999/xhtml) str
+(" xml:lang=") p
+(fr) str
+(" >) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T () S 8 T (<link rel=") S
+(stylesheet) str
+(" media=") p
+(screen) str
+(" type=") p
+(text/css) str
+(" href=") p
+(style.css) str
+("/>) p n
+(6) # () S 4 T () S 8 T (<meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html;charset=UTF-8) str
+("/>) p n
+(7) # () S 4 T () S 8 T (<title>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_SITE_TITLE; ) p
+(?>) K
+(</title>) p n
+(8) # () S 4 T () S 8 T (<style media=") S
+(all) str
+(" type=") p
+(text/css) str
+("></style>) p n
+(9) # () S 4 T (</head>) N
+(10) # () S 4 T () S
+(<?php) K
+( ) p n
+(11) # () S 4 T () S 8 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) === ) p n
+0 T (FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(12) # () S 4 T () S 8 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(13) # () S 4 T () S 8 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(14) # () S 4 T () S 8 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(15) # () S 4 T () S 8 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(16) # () S 4 T () S 8 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(17) # () S 4 T () S 8 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(18) # () S 4 T () S
+(?>) K n
+(19) # () S
+() p 4 T (<div id=") S
+(menu) str
+(">) p n
+(20) # () S 4 T () S 8 T (<ul>) N
+(21) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(index.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(22) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(create.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 76 T (</a>) N
+0 T (</li>) N
+(23) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(load.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(24) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(modify.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(25) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(help.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(26) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-icon) str
+(") p n
+0 T ( alt=") S
+(english_flag) str
+("></a></li>) p n
+(27) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" alt=") p
+(french_flag) str
+() p n
+0 T ("></a></li>) N
+(28) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" alt=") p
+(german_fla) str n
+0 T (g) S
+("></a></li>) p n
+(29) # () S 4 T () S 8 T (</ul>) N
+(30) # () S 4 T () S 8 T () N
+(31) # () S 4 T (</div>) N
+(32) # () S 4 T () N
+(33) # () S 4 T (<body>) N
+(34) # () S 4 T () S 8 T (<center>) N
+(35) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HOMEPAGE_TITLE; ) p
+(?>) K
+(</h1>) p n
+(36) # () S 4 T () S 8 T (</center>) N
+(37) # () S 4 T () S 8 T (</br>) N
+(38) # () S 4 T () S 8 T (<p>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_HOMEPAGE_BODY; ) p
+(?>) K
+(</p>) p n
+(39) # () S 4 T (</body>) N
+(40) # (</html>) N
+(CPR_Web) (Page 1/1) (f\303\251vr. 01, 13 15:59) title
+border
+grestore
+(M2 BioInfo) rhead
+(help.php, index.php) (4/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html>) p n
+(2) # () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html>) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T () S 8 T (<title>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_LOAD_SITE_TITLE; ) p
+(?>) K
+(</title>) p n
+(6) # () S 4 T () S 8 T (<link rel=") S
+(stylesheet) str
+(" media=") p
+(screen) str
+(" type=") p
+(text/css) str
+(" href=") p
+(style.css) str
+("/>) p n
+(7) # () S 4 T () S 8 T (<meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html;charset=UTF-8) str
+(">) p n
+(8) # () S 4 T (</head>) N
+(9) # () S 4 T () S
+(<?php) K
+( ) p n
+(10) # () S 4 T () S 8 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) === ) p n
+0 T (FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(11) # () S 4 T () S 8 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(12) # () S 4 T () S 8 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(13) # () S 4 T () S 8 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(14) # () S 4 T () S 8 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(15) # () S 4 T () S 8 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(16) # () S 4 T () S 8 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(17) # () S 4 T () S
+(?>) K n
+(18) # () S
+() p 4 T (<div id=") S
+(menu) str
+(">) p n
+(19) # () S 4 T () S 8 T (<ul>) N
+(20) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(index.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(21) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(create.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 76 T (</a>) N
+0 T (</li>) N
+(22) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(load.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(23) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(modify.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(24) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(help.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(25) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-icon) str
+(") p n
+0 T ( alt=") S
+(english_flag) str
+("></a></li>) p n
+(26) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" alt=") p
+(french_flag) str
+() p n
+0 T ("></a></li>) N
+(27) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" alt=") p
+(german_fla) str n
+0 T (g) S
+("></a></li>) p n
+(28) # () S 4 T () S 8 T (</ul>) N
+(29) # () S 4 T () S 8 T () N
+(30) # () S 4 T (</div>) N
+(31) # () S 4 T () N
+(32) # () S 4 T (<body>) N
+(33) # () S 4 T () S 8 T (<div id=") S
+(loadBody) str
+("> ) p n
+(34) # () N
+(35) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_LOAD_TITLE; ) p
+(?>) K
+(</h1>) p n
+(36) # () S 4 T () S 8 T () S 12 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_LOAD_INSTRUCTION_1; ) p
+(?>) K
+(</h4>) p n
+(37) # () N
+(38) # () S 4 T () S 8 T () S 12 T (<table border=") S
+(3) str
+(" width=30) p
+(%>) K n
+(39) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T (<caption>sfile</caption>) N
+(40) # () S 4 T () S 8 T () S 12 T () S 16 T (<form action=") S
+(<?php move_uploaded_file\($_FILES['sfile']['tmp_name'],$_FILES['sfile) str n
+0 T (']['name']\);?>) S
+(" enctype=") p
+(multipart/form-data) str
+(" method=") p
+(post) str
+(">) p n
+(41) # () S 4 T () S 8 T () S 12 T () S 16 T (<tr><td>) N
+(42) # () S 4 T () S 8 T () S 12 T () S 16 T (<label =") S
+(NomDeFichier) str
+(">) p n
+(43) # () S 4 T () S 8 T () S 12 T () S 16 T (Nom du fichier \303\240 charger :<br />) N
+(44) # () S 4 T () S 8 T () S 12 T () S 16 T (</label>) N
+(45) # () S 4 T () S 8 T () S 12 T () S 16 T (<input type=") S
+(file) str
+(" name=") p
+(sfile) str
+(" id=") p
+(sfile) str
+(" /> ) p n
+(46) # () S 4 T () S 8 T () S 12 T () S 16 T (<input type=") S
+(file) str
+(" name=") p
+(mfile) str
+(" id=") p
+(mfile) str
+(" /> ) p n
+(47) # () S 4 T () S 8 T () S 12 T () S 16 T (<input type=") S
+(file) str
+(" name=") p
+(rvfile) str
+(" id=") p
+(rvfile) str
+(" /> ) p n
+(48) # () S 4 T () S 8 T () S 12 T () S 16 T (<input type=") S
+(file) str
+(" name=") p
+(grfile) str
+(" id=") p
+(grfile) str
+(" /> ) p n
+(49) # () S 4 T () S 8 T () S 12 T () S 16 T (<input type=") S
+(file) str
+(" name=") p
+(rfile) str
+(" id=") p
+(rfile) str
+(" /> ) p n
+(50) # () S 4 T () S 8 T () S 12 T () S 16 T (</td></tr><tr><td>) N
+(51) # () S 4 T () S 8 T () S 12 T () S 16 T (<input type=") S
+(submit) str
+(" name=") p
+(submit) str
+(" value=") p
+(Recuperer) str
+(" />) p n
+(52) # () S 4 T () S 8 T () S 12 T () S 16 T (</form>) N
+(53) # () S 4 T () S 8 T () S 12 T () S 16 T (</td></tr>) N
+(54) # () S 4 T () S 8 T () S 12 T (</table>) N
+(55) # () S 4 T () S 8 T (</div>) N
+(56) # () S 4 T () S 8 T () S
+(<?php) K n
+(CPR_Web) (Page 1/2) (f\303\251vr. 05, 13 9:02) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(57) # () p 4 T () S 8 T () S
+($commande) L
+(=') p
+(java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format) str n
+0 T ( plain -kind stoichiometry -stoich ) S
+('.) p
+($_FILES) L
+([') p
+(sfile) str
+('][') p
+(name) str
+('].') p
+( -rev ) str
+('.) p
+($_FILES) L
+([') p
+(rvfile) str
+('][') p
+(name) str
+('].') p
+( ) str n
+0 T (-meta ) S
+('.) p
+($_FILES) L
+([') p
+(mfile) str
+('][') p
+(name) str
+('].') p
+( -reac ) str
+('.) p
+($_FILES) L
+([') p
+(rfile) str
+('][') p
+(name) str
+('].') p
+( -out text-doubles modes_i) str n
+0 T (nc_generules.text -normalize none -maxthreads 2 -generule ) S
+('.) p
+($_FILES) L
+([') p
+(grfile) str
+('][') p
+(name) str
+('];) p n
+(58) # () S 4 T () S 8 T () S
+(echo) K
+( ) p
+($commande) L
+(;) p n
+(59) # () S 4 T () S 8 T (shell_exec\() S
+($commande) L
+(\);) p n
+(60) # () S 4 T () S 8 T () S
+(?>) K n
+(61) # () S
+() p 4 T (</body>) N
+(62) # (</html>) N
+(CPR_Web) (Page 2/2) (f\303\251vr. 05, 13 9:02) title
+border
+grestore
+(M2 BioInfo) rhead
+(load.php) (5/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1,1) 6
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html>) p n
+(2) # () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html>) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T (  <title>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MODIFY_SITE_TITLE; ) p
+(?>) K
+(</title>) p n
+(6) # () S 4 T (  <link rel=") S
+(stylesheet) str
+(" media=") p
+(screen) str
+(" type=") p
+(text/css) str
+(" href=") p
+(style.css) str
+("/>) p n
+(7) # () S 4 T (  <meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html;charset=UTF-8) str
+(">) p n
+(8) # () S 4 T (</head>) N
+(9) # () N
+(10) # () S 4 T () S
+(<?php) K
+( ) p n
+(11) # () S 4 T () S 8 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) === ) p n
+0 T (FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(12) # () S 4 T () S 8 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(13) # () S 4 T () S 8 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(14) # () S 4 T () S 8 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(15) # () S 4 T () S 8 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(16) # () S 4 T () S 8 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(17) # () S 4 T () S 8 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(18) # () S 4 T () S
+(?>) K n
+(19) # () S
+() p 4 T (<div id=") S
+(menu) str
+(">) p n
+(20) # () S 4 T () S 8 T (<ul>) N
+(21) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(index.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(22) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(create.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 76 T (</a>) N
+0 T (</li>) N
+(23) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(load.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(24) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(modify.php) str
+(">) p 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(25) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(help.php) str
+(">) p 36 T () S 40 T () S 44 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 76 T (</a>) N
+0 T (</li>) N
+(26) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-icon) str
+(") p n
+0 T ( alt=") S
+(english_flag) str
+(">) p 24 T (</a></li>) N
+(27) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" ) p 72 T () S 76 T () S 80 T () N
+0 T () S 0 T () S 4 T (alt=") S
+(french_flag) str
+(">) p 24 T (</a></li>) N
+(28) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" ) p 72 T () S 76 T () S 80 T () N
+0 T () S 0 T () S 4 T (alt=") S
+(german_flag) str
+(">) p 24 T (</a></li>) N
+(29) # () S 4 T () S 8 T (</ul>) N
+(30) # () S 4 T () S 8 T () N
+(31) # () S 4 T (</div>) N
+(32) # () S 4 T (<body>) N
+(33) # () S 4 T () S 8 T (<center>) N
+(34) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MODIFY_TITLE; ) p
+(?>) K
+(</h1>) p n
+(35) # () S 4 T () S 8 T (</center>) N
+(36) # () S 4 T () S 8 T (<p>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MODIFY_INSTRUCTION_1; ) p
+(?>) K
+(</p>) p n
+(37) # () S 4 T (</body>) N
+(38) # (</html>) N
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 13:38) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html >) p n
+(2) # () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html>) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T () S 8 T (<title>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SITE_TITLE; ) p
+(?>) K
+(</title>) p n
+(6) # () S 4 T () S 8 T (<link rel=") S
+(stylesheet) str
+(" media=") p
+(screen) str
+(" type=") p
+(text/css) str
+(" href=") p
+(style.css) str
+("/>) p n
+(7) # () S 4 T () S 8 T (<meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html;charset=UTF-8) str
+(">) p n
+(8) # () S 4 T () S 8 T (<script  type=") S
+(text/javascript) str
+(" src=") p
+(choixOptions.js) str
+(">) p 64 T (</script>) N
+(9) # () S 4 T (</head>) N
+(10) # () N
+(11) # () S 4 T (<body>) N
+(12) # () S 4 T () S 8 T () S
+(<?php) K
+( ) p n
+(13) # () S 4 T () S 8 T () S 12 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) ) p n
+0 T (=== FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(14) # () S 4 T () S 8 T () S 12 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(15) # () S 4 T () S 8 T () S 12 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(16) # () S 4 T () S 8 T () S 12 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(17) # () S 4 T () S 8 T () S 12 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(18) # () S 4 T () S 8 T () S 12 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(19) # () S 4 T () S 8 T () S 12 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(20) # () S 4 T () S 8 T () S
+(?>) K n
+(21) # () N
+(22) # () S
+() p 4 T () S 8 T (<div id=") S
+(menu) str
+(">) p n
+(23) # () S 4 T () S 8 T () S 12 T (<ul>) N
+(24) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=") S
+(index.php) str
+(">) p 44 T () S 48 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 80 T () N
+0 T (</a></li>) N
+(25) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=") S
+(create.php) str
+(">) p 44 T () S 48 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 80 T () N
+0 T (</a></li>) N
+(26) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=") S
+(load.php) str
+(">) p 40 T () S 44 T () S 48 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 80 T () N
+0 T (</a></li>) N
+(27) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=") S
+(modify.php) str
+(">) p 44 T () S 48 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 80 T () N
+0 T (</a></li>) N
+(28) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=") S
+(help.php) str
+(">) p 40 T () S 44 T () S 48 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 80 T () N
+0 T (</a></li>) N
+(29) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-i) str n
+0 T (con) S
+(" alt=") p
+(english_flag) str
+("></a></li>) p n
+(30) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" ) p 76 T () S 80 T () N
+0 T () S 0 T () S 4 T () S 8 T (alt=") S
+(french_flag) str
+("></a></li>) p n
+(31) # () S 4 T () S 8 T () S 12 T () S 16 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" ) p 76 T () S 80 T () N
+0 T () S 0 T () S 4 T () S 8 T (alt=") S
+(german_flag) str
+("></a></li>) p n
+(32) # () S 4 T () S 8 T () S 12 T (</ul>) N
+(33) # () S 4 T () S 8 T (</div>) N
+(34) # () S 4 T () N
+(35) # () S 4 T () S 8 T (<div id=") S
+(loadBody) str
+(">) p n
+(36) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_TITLE; ) p
+(?>) K
+(</h1>) p n
+(37) # () S 4 T () S 8 T () S 12 T (<p>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INSTRUCTION_1; ) p
+(?>) K
+(</p>) p n
+(38) # () N
+(39) # () S 4 T () S 8 T () S 12 T (<form name=") S
+(formulaire) str
+("> ) p n
+(40) # () N
+(41) # () S 4 T () S 8 T () S 12 T () S 16 T (<h3>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_1; ) p
+(?>) K
+(</h3>) p n
+(42) # () S 4 T () S 8 T () S 12 T () S 16 T (<table border=") S
+(3) str
+(" ) p
+(class) k
+(=") p
+(centered) str
+(">) p n
+(43) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (<tr> <td>) N
+(44) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_2; ) p
+(?>) K
+(</h4>) p n
+(45) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix1) str
+(" ) p 64 T (value=") S
+(log console) str
+(") p n
+0 T (>) S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_3; ) p
+(?>) K
+( &nbsp; &nbsp; &nbsp; &nbsp;) p n
+(46) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix1) str
+(" ) p 64 T (value=") S
+(log file) str
+("> ) p n
+0 T () S 0 T () S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_4; ) p
+(?>) K n
+(47) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T () S 32 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_5; ) p
+(?>) K
+( ) p 72 T (<input t) N
+0 T (ype=") S
+(text) str
+(") p 12 T (   name=") S
+(log_nomFichier) str
+(" ) p 40 T (size=") S
+(10) str
+(" id=") p
+(texte1) str
+(">) p n
+(48) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_ERROR_1; ) p
+(?>) K
+(</h4>) p n
+(49) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix2) str
+(" value=") p
+(level WARNING) str
+(">) p n
+0 T ( ) S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_ERROR_2; ) p
+(?>) K
+( &nbsp; &nbsp; &nbsp; ) p n
+(50) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T ( ) S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix2) str
+(" value=") p
+(level CONFIG) str
+("> ) p n
+0 T () S 0 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_ERROR_3; ) p
+(?>) K
+( &nbsp; &nbsp; &nbsp;) p n
+(51) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T ( ) S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix2) str
+(" value=") p
+(level INFO) str
+("> ) p n
+0 T () S 0 T () S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_ERROR_4; ) p
+(?>) K
+( &nbsp; &nbsp; &nbsp;) p n
+(CPR_Web) (Page 1/4) (f\303\251vr. 04, 13 18:15) title
+border
+grestore
+(M2 BioInfo) rhead
+(modify.php, options.php) (6/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (2-3) 7
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(52) # () p 4 T () S 8 T () S 12 T () S 16 T () S 20 T ( ) S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix2) str
+(" value=") p
+(level FINE) str
+("> ) p n
+0 T () S 0 T () S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_ERROR_5; ) p
+(?>) K
+( &nbsp; &nbsp; &nbsp;) p n
+(53) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T ( ) S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix2) str
+(" value=") p
+(level FINER) str
+("> ) p n
+0 T () S 0 T () S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_ERROR_6; ) p
+(?>) K
+( &nbsp; &nbsp; &nbsp;) p n
+(54) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T ( ) S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix2) str
+(" value=") p
+(level FINEST) str
+("> ) p n
+0 T () S 0 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_ERROR_7; ) p
+(?>) K
+( ) p 36 T () N
+(55) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_6; ) p
+(?>) K
+(</h4>) p n
+(56) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix3) str
+(" ) p 64 T (value=") S
+(format defau) str n
+0 T (lt) S
+("> ) p
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_7; ) p
+(?>) K
+() p 44 T (&nbsp; &nbsp; &nbsp;) N
+(57) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix3) str
+(" ) p 64 T (value=") S
+(format plain) str
+() p n
+0 T ("> ) S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_SAVING_8; ) p
+(?>) K
+() p 40 T () N
+(58) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (</td> </tr>) N
+(59) # () S 4 T () S 8 T () S 12 T () S 16 T (</table>) N
+(60) # () N
+(61) # () S 4 T () S 8 T () S 12 T () S 16 T (<h3>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH; ) p
+(?>) K
+(</h3>) p n
+(62) # () S 4 T () S 8 T () S 12 T () S 16 T (<table border=") S
+(3) str
+(" ) p
+(class) k
+(=") p
+(centered) str
+(">) p n
+(63) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (<tr> <td>) N
+(64) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH_1; ) p
+(?>) K
+(</h4>) p n
+(65) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T ( ) S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix4) str
+(" value=") p
+(kind flux-analyzer-) str n
+0 T (dir) S
+("> ) p 8 T () S 12 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH_1; ) p
+(?>) K
+() p 56 T (&nbsp; &nbsp; &nbsp;) N
+(66) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T ( ) S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix4) str
+(" value=") p
+(kind flux-analyzer-) str n
+0 T (files) S
+("> ) p 12 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH_2; ) p
+(?>) K
+() p 56 T (&nbsp; &nbsp; &nbsp;) N
+(67) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix4) str
+(" value=") p
+(kind reaction-list) str
+(">) p n
+0 T ( ) S 4 T () S 8 T () S 12 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH_3; ) p
+(?>) K
+( ) p 56 T (&nbsp; &nbsp; &nbsp;) N
+(68) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T ( ) S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix4) str
+(" value=") p
+(kind excel) str
+("> ) p n
+0 T () S 0 T () S 4 T () S 8 T () S 12 T () S 16 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH_4; ) p
+(?>) K
+() p 60 T (&nbsp; &nbsp; &nbsp;) N
+(69) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T ( ) S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix4) str
+(" value=") p
+(kind stoichiometry) str
+(") p n
+0 T (> ) S 4 T () S 8 T () S 12 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH_5; ) p
+(?>) K
+() p 56 T (&nbsp; &nbsp; &nbsp;) N
+(70) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T ( ) S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix4) str
+(" value=") p
+(kind sbml) str
+("> ) p n
+0 T () S 0 T () S 4 T () S 8 T () S 12 T () S 16 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_STOECH_6; ) p
+(?>) K
+() p 60 T () S 64 T () S 68 T () S 72 T () N
+(71) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY; ) p
+(?>) K
+(</h4>) p n
+(72) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" ) p 52 T (name=") S
+(choix5) str
+(" value=") p
+(in reactions ) str n
+0 T (macromolecules macromolecule_synthesis) S
+(">) p
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_1; ) p
+(?>) K
+(</br>) p n
+(73) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" ) p 52 T (name=") S
+(choix5) str
+(" value=") p
+(in directory) str
+() p n
+0 T ("> ) S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_2; ) p
+(?>) K n
+(74) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_3; ) p
+(?>) K
+(  <input ) p 80 T () N
+0 T (type=") S
+(text) str
+(" ) p 16 T (name=") S
+(in_nomDossier) str
+(" ) p 40 T () S 44 T (size=") S
+(10) str
+(" id=") p
+(texte5) str
+(">) p 68 T ( ) S 72 T () S 76 T () S 80 T () N
+0 T (</br>) N
+(75) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" ) p 52 T (name=") S
+(choix5) str
+(" value=") p
+(in file) str
+("> ) p n
+0 T () S 0 T () S 4 T () S 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_4; ) p
+(?>) K n
+(76) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_5; ) p
+(?>) K
+( <input ) p 80 T () N
+0 T (type=") S
+(text) str
+(" ) p 16 T (name=") S
+(in_nomFichier) str
+(" ) p 40 T () S 44 T (size=") S
+(10) str
+(" id=") p
+(texte51) str
+("> ) p 72 T () S 76 T () S 80 T () N
+0 T (</br>) S 8 T () N
+(77) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" ) p 52 T (name=") S
+(choix5) str
+(" value=") p
+(stoich sfile) str
+(") p n
+0 T (> ) S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_6; ) p
+(?>) K n
+(78) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_7; ) p
+(?>) K
+( <input ) p 80 T () N
+0 T (type=") S
+(text) str
+(" ) p 16 T (name=") S
+(in_nomFichierSfile) str
+(" ) p 44 T (size=") S
+(10) str
+(" id=") p
+(texte52) str
+("> ) p 72 T ( ) S 76 T () S 80 T () N
+0 T (</br>) N
+(79) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" ) p 52 T (name=") S
+(choix5) str
+(" value=") p
+(rev rvfile) str
+(">) p n
+0 T () S 0 T () S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_8; ) p
+(?>) K n
+(80) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_INPUT_F_ANALY_9; ) p
+(?>) K
+( <input ) p 80 T () N
+0 T (type=") S
+(text) str
+(" ) p 16 T (name=") S
+(in_nomFichierRVfile) str
+(" size=") p
+(10) str
+(" id=") p
+(texte53) str
+("> ) p 68 T () N
+(81) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (</td> </tr>) N
+(82) # () S 4 T () S 8 T () S 12 T () S 16 T (</table>) N
+(83) # () N
+(84) # () S 4 T () S 8 T () S 12 T () S 16 T (<h3>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_COMPRESS; ) p
+(?>) K
+(</h3>) p n
+(85) # () S 4 T () S 8 T () S 12 T () S 16 T (<table border=") S
+(3) str
+(" ) p
+(class) k
+(=") p
+(centered) str
+(">) p n
+(86) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (<tr> <td>) N
+(87) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" name=") p
+(choix6) str
+(" value=") p
+(compression default) str
+("> ) p n
+0 T () S 0 T () S 4 T () S 8 T () S 12 T () S 16 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_COMPRESS_1; ) p
+(?>) K
+() p 56 T (&nbsp; &nbsp; &nbsp;) N
+(88) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" name=") p
+(choix6) str
+(" value=") p
+(compression off) str
+("> ) p n
+0 T () S 0 T () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_COMPRESS_2; ) p
+(?>) K
+() p 60 T (&nbsp; &nbsp; &nbsp;) N
+(89) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" name=") p
+(choix6) str
+(" value=") p
+(compression unique) str
+("> ) p n
+0 T () S 0 T () S 4 T () S 8 T () S 12 T () S 16 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_COMPRESS_3; ) p
+(?>) K
+() p 56 T (&nbsp; &nbsp; &nbsp;) N
+(90) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" name=") p
+(choix6) str
+(" value=") p
+(compression nullspace) str
+(">) p n
+0 T ( ) S 4 T () S 8 T () S 12 T () S 16 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_COMPRESS_4; ) p
+(?>) K
+() p 56 T (&nbsp; &nbsp; &nbsp;) N
+(CPR_Web) (Page 2/4) (f\303\251vr. 04, 13 18:15) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(91) # () p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" name=") p
+(choix6) str
+(" value=") p
+(compression unique-no-r) str n
+0 T (ecursion) S
+("> ) p 12 T () S 16 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_COMPRESS_5; ) p
+(?>) K
+( ) p 56 T (&nbsp; &nbsp; &nbsp;) N
+(92) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" name=") p
+(choix6) str
+(" value=") p
+(compression nullspace-no) str n
+0 T (-recursion) S
+("> ) p 16 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_COMPRESS_6; ) p
+(?>) K n
+(93) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T (</td> </tr>) N
+(94) # () S 4 T () S 8 T () S 12 T () S 16 T (</table>) N
+(95) # () N
+(96) # () S 4 T () S 8 T () S 12 T () S 16 T (<h3>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT; ) p
+(?>) K
+(</h3>) p n
+(97) # () S 4 T () S 8 T () S 12 T () S 16 T (<table border=") S
+(3) str
+(" ) p
+(class) k
+(=") p
+(centered) str
+(">) p n
+(98) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (<tr> <td>) N
+(99) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" ) p 48 T (name=") S
+(choix7) str
+(" ) p 64 T (value=") S
+(out null) str
+("> ) p n
+0 T () S 0 T () S 4 T () S 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_1; ) p
+(?>) K
+( ) p 48 T () S 52 T (</br>) N
+(100) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(") p 44 T () S 48 T (name=") S
+(choix7) str
+(" ) p 64 T (value=") S
+(out count) str
+(">) p n
+0 T ( ) S 4 T () S 8 T () S 12 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_2; ) p
+(?>) K
+() p 48 T ( ) S 52 T () S 56 T (</br>) N
+(101) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" ) p 48 T (name=") S
+(choix7) str
+(" ) p 64 T (value=") S
+(out text-bool) str n
+0 T (ean) S
+("> ) p 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_3; ) p
+(?>) K n
+(102) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_4; ) p
+(?>) K
+( ) p 64 T (<input ) S 72 T (type=") S
+(te) str n
+0 T (xt) S
+(" ) p 8 T () S 12 T (name=") S
+(out_nomFichier) str
+(" ) p 36 T (size=") S
+(10) str
+(" id=") p
+(texte7) str
+("> </br>) p n
+(103) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" ) p 48 T (name=") S
+(choix7) str
+(" ) p 64 T (value=") S
+(out text-dou) str n
+0 T (bles) S
+("> ) p 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_5; ) p
+(?>) K n
+(104) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_6; ) p
+(?>) K
+( ) p 64 T (<input ) S 72 T (type=") S
+(te) str n
+0 T (xt) S
+(" ) p 8 T () S 12 T (name=") S
+(out_nomFichier) str
+(" ) p 36 T (size=") S
+(10) str
+(" id=") p
+(texte71) str
+("> </br>) p 68 T () N
+(105) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" ) p 48 T (name=") S
+(choix7) str
+(" ) p 64 T (value=") S
+(out binary-b) str n
+0 T (oolean) S
+("> ) p
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_7; ) p
+(?>) K n
+(106) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_8; ) p
+(?>) K
+() p 60 T () S 64 T (<input ) S 72 T (type=") S
+(te) str n
+0 T (xt) S
+(" ) p 8 T () S 12 T (name=") S
+(out_nomFichier) str
+(" ) p 36 T (size=") S
+(10) str
+(" id=") p
+(texte72) str
+("> </br>) p n
+(107) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" ) p 48 T (name=") S
+(choix7) str
+(" ) p 64 T (value=") S
+(out binary-d) str n
+0 T (oubles) S
+("> ) p
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_9; ) p
+(?>) K n
+(108) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_10; ) p
+(?>) K
+( ) p 64 T (<input ) S 72 T (type=") S
+(te) str n
+0 T (xt) S
+(" ) p 8 T () S 12 T (name=") S
+(out_nomFichier) str
+(" ) p 36 T (size=") S
+(10) str
+(" id=") p
+(texte73) str
+("> </br>) p 68 T () N
+(109) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<input type=") S
+(radio) str
+(" ) p 48 T (name=") S
+(choix7) str
+(" ) p 64 T (value=") S
+(out matlab) str
+(") p n
+0 T (> ) S 4 T () S 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_11; ) p
+(?>) K n
+(110) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_OUTPUT_12; ) p
+(?>) K
+( ) p 64 T (<input type=") S
+(text) str
+() p n
+0 T (" ) S 4 T () S 8 T () S 12 T (name=") S
+(out_nomFichier) str
+(" ) p 36 T (size=") S
+(10) str
+(" id=") p
+(texte74) str
+(">) p n
+(111) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (</td> </tr>) N
+(112) # () S 4 T () S 8 T () S 12 T () S 16 T (</table>) N
+(113) # () S 4 T () S 8 T () S 12 T () S 16 T () N
+(114) # () S 4 T () S 8 T () S 12 T () S 16 T (<h3>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFMTOOL; ) p
+(?>) K
+(</h3>) p n
+(115) # () S 4 T () S 8 T () S 12 T () S 16 T (<table ) S
+(class) k
+(=") p
+(centered) str
+(" border=") p
+(3) str
+(" >) p n
+(116) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (<tr> <td>) N
+(117) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_LINE; ) p
+(?>) K
+( <input type=") p
+(radio) str
+(" name=) p n
+0 T (") S
+(choix8) str
+(" value=") p
+(rowordering) str
+("> ) p n
+(118) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_ADJA; ) p
+(?>) K
+(</h4>) p n
+(119) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix9) str
+(" value=") p
+(adjacency-method p) str n
+0 T (attern-tree-minzero) S
+("> ) p 24 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_ADJA_1; ) p
+(?>) K
+() p 64 T (&nbsp; &nbsp; &n) N
+0 T (bsp;) N
+(120) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix9) str
+(" value=") p
+(adjacency-method p) str n
+0 T (attern-tree-rank) S
+("> ) p 20 T () S 24 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_ADJA_2; ) p
+(?>) K
+( ) p 64 T (&nbsp; &nbsp; &n) N
+0 T (bsp;) N
+(121) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_THREADS; ) p
+(?>) K
+(</h4>) p n
+(122) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix10) str
+(" value=") p
+(maxthreads) str
+("> ) p
+(<?) K n
+0 T (php) S
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_THREADS_1; ) p
+(?>) K
+() p 40 T () S 44 T () S 48 T () S 52 T () N
+(123) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T () S 32 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_THREADS_2; ) p
+(?>) K
+( ) p 76 T (<inp) N
+0 T (ut type=") S
+(text) str
+(" ) p 16 T () S 20 T (name=") S
+(maxthreads_value) str
+(" ) p 48 T (size=") S
+(10) str
+(" id=") p
+(texte10) str
+(">) p n
+(124) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_ARITHM; ) p
+(?>) K
+(</h4>) p n
+(125) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix11) str
+(" value=") p
+(arithmetic double) str
+(") p n
+0 T (> ) S 4 T () S 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_ARITHM_1; ) p
+(?>) K
+( ) p 52 T (&nbsp; &nbsp; &nbsp;) N
+(126) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix11) str
+(" value=") p
+(arithmetic fractiona) str n
+0 T (l) S
+("> ) p 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_ARITHM_2; ) p
+(?>) K
+( ) p 52 T (&nbsp; &nbsp; &nbsp;) N
+(127) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_NORMAL; ) p
+(?>) K
+(</h4>) p n
+(128) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix12) str
+(" value=") p
+(normalize max) str
+("> ) p n
+0 T () S 0 T () S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_NORMAL_1; ) p
+(?>) K
+( ) p 48 T () S 52 T (&nbsp; &nbsp; &nbsp;) N
+(129) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix12) str
+(" value=") p
+(normalize min) str
+("> ) p n
+0 T () S 0 T () S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_NORMAL_2; ) p
+(?>) K
+( ) p 48 T () S 52 T (&nbsp; &nbsp; &nbsp;) N
+(130) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix12) str
+(" value=") p
+(normalize norm2) str
+(") p n
+0 T (> ) S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_NORMAL_3; ) p
+(?>) K
+( ) p 48 T () S 52 T (&nbsp; &nbsp; &nbsp;) N
+(CPR_Web) (Page 3/4) (f\303\251vr. 04, 13 18:15) title
+border
+grestore
+(M2 BioInfo) rhead
+(options.php) (7/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (4,1) 8
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(131) # () p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix12) str
+(" value=") p
+(normalize squared) str
+() p n
+0 T ("> ) S 4 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_NORMAL_4; ) p
+(?>) K
+( ) p 48 T () S 52 T (&nbsp; &nbsp; &nbsp;) N
+(132) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix12) str
+(" value=") p
+(normalize none) str
+(">) p n
+0 T ( ) S 4 T () S 8 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_NORMAL_5; ) p
+(?>) K
+( ) p 52 T () S 56 T (&nbsp; ) S 64 T (&nbsp; &nbsp;) N
+(133) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_P_FRAC; ) p
+(?>) K
+(</h4>) p n
+(134) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix13) str
+(" value=") p
+(precision ) str
+("> ) p
+(<?p) K n
+0 T (hp) S
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_P_FRAC_1; ) p
+(?>) K n
+(135) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T () S 32 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_VALUE; ) p
+(?>) K
+() p 72 T (<input t) N
+0 T (ype=") S
+(text) str
+(" ) p 12 T () S 16 T (name=") S
+(precisionThread) str
+(" ) p 40 T (size=") S
+(10) str
+(" id=") p
+(texte13) str
+(">) p n
+(136) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_AUTO_T; ) p
+(?>) K
+(</h4>) p n
+(137) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix14) str
+(" value=") p
+(selftest true) str
+("> ) p n
+0 T () S 0 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_AUTO_T_1; ) p
+(?>) K
+( &nbsp; ) p 48 T (&nbsp; &nbsp;) N
+(138) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S 24 T () S 28 T (<input type=") S
+(radio) str
+(" name=") p
+(choix14) str
+(" value=") p
+(selftest false) str
+("> ) p n
+0 T () S 0 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_OPTIONS_EFM_AUTO_T_2; ) p
+(?>) K n
+(139) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T () S 20 T (</td> </tr>) N
+(140) # () S 4 T () S 8 T () S 12 T () S 16 T (</table>) N
+(141) # () N
+(142) # () S 4 T () S 8 T () S 12 T () S 16 T (<br/>) N
+(143) # () N
+(144) # () S 4 T () S 8 T () S 12 T () S 16 T (<input type=") S
+(button) str
+(" name=") p
+(bout) str
+(" value=") p
+(<?php echo TXT_GO_BUTTON; ?>) str
+(") p n
+0 T ( onclick=") S
+(choixParam\(formulaire\)) str
+(">) p n
+(145) # () S 4 T () S 8 T () S 12 T (</form>) N
+(146) # () N
+(147) # () S 4 T () S 8 T (</div>) N
+(148) # () N
+(149) # () S 4 T (</body>) N
+(150) # (</html>) N
+(151) # () N
+(152) # () S 4 T () S 8 T () N
+(CPR_Web) (Page 4/4) (f\303\251vr. 04, 13 18:15) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () S
+() p 4 T () S
+(# Opening the file containing all the metabolic metwork ) c n
+(3) # () S
+() p 4 T () S
+($file) L
+( = file\(') p
+(reaction.txt) str
+('\);) p n
+(4) # () S 4 T () N
+(5) # () S 4 T () S
+($enzymes) L
+( = array\(\);) p n
+(6) # () S 4 T () S
+($space) L
+(=") p
+( ) str
+(";) p n
+(7) # () S 4 T () S
+($syntaxe) L
+(=array\(") p
+(+) str
+(",") p
+(=>) str
+(",") p
+(=) str
+(",") p
+(:) str
+(",") p
+(\\n) str
+("\);) p n
+(8) # () N
+(9) # () S 4 T (foreach\() S
+($file) L
+( as ) p
+($cpt) L
+( => ) p
+($ligne) L
+(\) {) p n
+(10) # () N
+(11) # () S 4 T () S 8 T () S
+($array) L
+(=explode\() p
+($space) L
+(,) p
+($ligne) L
+(\);) p n
+(12) # () S 4 T () S 8 T () S
+($precedent) L
+(;) p n
+(13) # () S 4 T () S 8 T () S
+($verif) L
+( = ) p
+(true) K
+(;) p n
+(14) # () N
+(15) # () S 4 T () S 8 T (foreach\() S
+($array) L
+( as &) p
+($value) L
+(\){) p n
+(16) # () S 4 T () S 8 T () S 12 T () S
+(if) K
+( \(preg_match\(") p
+(*:*) str
+(",) p
+($value) L
+(\)==) p
+(true) K
+(\){) p n
+(17) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+($verif) L
+(=) p
+(true) K
+(;) p n
+(18) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(# Construction of the table of the reactions \(enzymes\) ) c n
+(19) # () S
+() p 4 T () S 8 T () S 12 T () S 16 T (array_push\() S
+($enzymes) L
+(,) p
+($precedent) L
+(\);) p n
+(20) # () S 4 T () S 8 T () S 12 T (}) N
+(21) # () S 4 T () S 8 T () S 12 T () S
+(else) K
+( ) p
+(if) K
+( \() p
+($value) L
+(==") p
+(-->) str
+("\){) p n
+(22) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+($verif) L
+(=) p
+(false) K
+(;) p n
+(23) # () S 4 T () S 8 T () S 12 T (}) N
+(24) # () S 4 T () S 8 T () S 12 T () S
+($precedent) L
+(=) p
+($value) L
+(;) p n
+(25) # () S 4 T () S 8 T (}) N
+(26) # () S 4 T (}) N
+(27) # () S 4 T () S
+(# Opening the file containing all enzymes names ) c n
+(28) # () S
+() p 4 T () S
+($data) L
+( = fopen\(') p
+(enzymes.txt) str
+(',') p
+(w) str
+('\);) p n
+(29) # () N
+(30) # () S 4 T () S
+(# Save if the enzymes list in the file enzymes.txt) c n
+(31) # () S
+() p 4 T (foreach\() S
+($enzymes) L
+( as ) p
+($enz) L
+(\){) p n
+(32) # () S 4 T () S 8 T (fputs\() S
+($data) L
+(, ") p
+(\\"$enz\\" ) str
+("\);) p n
+(33) # () S 4 T (}) N
+(34) # () S 4 T (fclose\() S
+($data) L
+(\);) p n
+(35) # () N
+(36) # () S 4 T () S
+(# Redirection to the file-creation page for regefmtool) c n
+(37) # () S
+() p 4 T (header\(') S
+(Refresh:3 ; url=create.php) str
+('\);) p n
+(38) # () S 4 T () S
+(echo) K
+( ') p
+(You\\'ll be redirected in about 3 secs. If not, click <a href="create.php">here</a>.) str
+(';) p n
+(39) # () S
+(?>) K n
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 13:44) title
+border
+grestore
+(M2 BioInfo) rhead
+(options.php, parser_enzymes.php) (8/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1,1) 9
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () N
+(3) # () S
+() p 4 T () S
+(# Opening of the file) c n
+(4) # () S
+() p 4 T () S 8 T () S
+($file) L
+( = file\(') p
+(reaction.txt) str
+('\);) p n
+(5) # () S 4 T () S 8 T () N
+(6) # () S 4 T () S
+(# Table containing all the metabolites) c n
+(7) # () S
+() p 4 T () S 8 T () S
+($METABOLITE) L
+(=array\(\);) p n
+(8) # () N
+(9) # () S 4 T () S 8 T () S
+($space) L
+(=") p
+( ) str
+(";) p n
+(10) # () S 4 T () S 8 T () S
+($syntaxe) L
+(=array\(") p
+(+) str
+(",") p
+(=>) str
+(",") p
+(=) str
+(",") p
+(:) str
+(",") p
+(\\n) str
+("\);) p n
+(11) # () S 4 T () S 8 T () S
+($enzymes) L
+( = array\(\);) p n
+(12) # () S 4 T () S 8 T () N
+(13) # () S 4 T (foreach\() S
+($file) L
+( as ) p
+($cpt) L
+( => ) p
+($ligne) L
+(\) {) p n
+(14) # () S 4 T () S
+(# Deleting the spaces ) c n
+(15) # () S
+() p 4 T () S 8 T () S
+($array) L
+(=explode\() p
+($space) L
+(,) p
+($ligne) L
+(\);) p n
+(16) # () N
+(17) # () S 4 T () S 8 T () S
+($precedent) L
+(;) p n
+(18) # () S 4 T () S 8 T () S
+($metabolites) L
+( = array\(\);) p n
+(19) # () S 4 T () S 8 T () S
+($total) L
+( = array\(\);) p n
+(20) # () S 4 T () S 8 T () S
+($stoech) L
+( = array\(\);) p n
+(21) # () S 4 T () S 8 T () S
+($reactions) L
+( = array\(\);) p n
+(22) # () S 4 T () S 8 T () S
+($verif) L
+( = ) p
+(true) K
+(;) p n
+(23) # () N
+(24) # () S 4 T () S 8 T (foreach\() S
+($array) L
+( as &) p
+($value) L
+(\){) p n
+(25) # () S 4 T () S 8 T () S 12 T () S
+(if) K
+( \(preg_match\(") p
+(*:*) str
+(",) p
+($value) L
+(\)==) p
+(true) K
+(\){) p n
+(26) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+($verif) L
+(=) p
+(true) K
+(;) p n
+(27) # () S 4 T () S 8 T () S 12 T () S 16 T (array_push\() S
+($enzymes) L
+(,) p
+($precedent) L
+(\);) p n
+(28) # () S 4 T () S 8 T () S 12 T (}) N
+(29) # () S 4 T () S 8 T () S 12 T () S
+(else) K
+( ) p
+(if) K
+( \() p
+($value) L
+(==") p
+(-->) str
+("\){) p n
+(30) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+($verif) L
+(=) p
+(false) K
+(;) p n
+(31) # () S 4 T () S 8 T () S 12 T (}) N
+(32) # () S 4 T () S 8 T () S 12 T () S
+(if) K
+( \(is_numeric\() p
+($value) L
+(\)\){) p n
+(33) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+( \() p
+($verif) L
+(\){) p n
+(34) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T () S
+($value) L
+( = 0-) p
+($value) L
+(;) p n
+(35) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(36) # () S 4 T () S 8 T () S 12 T () S 16 T (array_push\() S
+($stoech) L
+(,) p
+($value) L
+(\);) p n
+(37) # () S 4 T () S 8 T () S 12 T (}) N
+(38) # () S 4 T () S 8 T () S 12 T () S
+($precedent) L
+(=) p
+($value) L
+(;) p n
+(39) # () S 4 T () S 8 T (}) N
+(40) # () N
+(41) # () S 4 T () S
+(# Construction of the table deleting syntax, enzymes, integers) c n
+(42) # () S
+() p 4 T () S 8 T () S
+($metabolites) L
+(=array_diff\() p
+($array) L
+(,) p
+($syntaxe) L
+(\);) p n
+(43) # () S 4 T () S 8 T () S
+($metabolites) L
+(=array_diff\() p
+($metabolites) L
+(,) p
+($enzymes) L
+(\);) p n
+(44) # () S 4 T () S 8 T () S
+($metabolites) L
+(=array_diff\() p
+($metabolites) L
+(,) p
+($stoech) L
+(\);) p n
+(45) # () S 4 T () S 8 T (foreach\() S
+($metabolites) L
+( as ) p
+($met) L
+(\){) p n
+(46) # () S 4 T () S 8 T () S 12 T (array_push\() S
+($METABOLITE) L
+(,) p
+($met) L
+(\);) p n
+(47) # () S 4 T () S 8 T (}) N
+(48) # () S 4 T (}) N
+(49) # () S 4 T () S
+(# Deleting of the duplicates) c n
+(50) # () S
+() p 4 T () S
+($metab) L
+(=array_unique\() p
+($METABOLITE) L
+(\);) p n
+(51) # () N
+(52) # () S 4 T () S
+(# Opening the file containing the metabolites and writing of the list) c n
+(53) # () S
+() p 4 T () S
+($data) L
+( = fopen\(') p
+(metabolites.txt) str
+(',') p
+(w) str
+('\);) p n
+(54) # () S 4 T (foreach\() S
+($metab) L
+( as ) p
+($met) L
+(\){) p n
+(55) # () S 4 T () S 8 T (fputs\() S
+($data) L
+(, ") p
+(\\"$met\\" ) str
+("\);) p n
+(56) # () S 4 T (}) N
+(57) # () S 4 T (fclose\() S
+($data) L
+(\);) p n
+(58) # () N
+(59) # () S 4 T () S
+(# Redirection to the file-creation page ) c n
+(60) # () S
+() p 4 T (header\(') S
+(Refresh:1 ; url=create.php) str
+('\);) p n
+(61) # () S 4 T () S
+(echo) K
+( ') p
+(You\\'ll be redirected in about 3 secs. If not, click <a href="create.php">here</a>.) str
+(';) p n
+(62) # () N
+(63) # () S
+(?>) K n
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 14:06) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () N
+(3) # () S
+() p 4 T () S
+(# Opening of the file) c n
+(4) # () S
+() p 4 T () S
+($file) L
+( = file\(') p
+(reaction.txt) str
+('\);) p n
+(5) # () S 4 T () S
+($space) L
+(=") p
+( ) str
+(";) p n
+(6) # () S 4 T () S
+($syntaxe) L
+(=array\(") p
+(+) str
+(",") p
+(=>) str
+(",") p
+(=) str
+(",") p
+(:) str
+(",") p
+(\\n) str
+("\);) p n
+(7) # () S 4 T () S
+($reversibility) L
+( = array\(\);) p n
+(8) # () S 4 T () S
+($rev) L
+( = 1;) p n
+(9) # () S 4 T () S
+($irrev) L
+( = 0;) p n
+(10) # () N
+(11) # () S 4 T (foreach\() S
+($file) L
+( as ) p
+($cpt) L
+( => ) p
+($ligne) L
+(\) {) p n
+(12) # () S 4 T () S
+(# Deleting of the spaces) c n
+(13) # () S
+() p 4 T () S 8 T () S
+($array) L
+(=explode\() p
+($space) L
+(,) p
+($ligne) L
+(\);) p n
+(14) # () S 4 T () S 8 T (print_r\() S
+($array) L
+(\);) p n
+(15) # () N
+(16) # () S 4 T () S 8 T () S
+($precedent) L
+(;) p n
+(17) # () S 4 T () S 8 T () S
+($verif) L
+( = ) p
+(true) K
+(;) p n
+(18) # () N
+(19) # () S 4 T () S 8 T (foreach\() S
+($array) L
+( as &) p
+($value) L
+(\){) p n
+(20) # () S 4 T () S 8 T () S 12 T () S
+(if) K
+( \() p
+($value) L
+(==") p
+(=) str
+("\){) p n
+(21) # () S 4 T () S 8 T () S 12 T () S 16 T (array_push\() S
+($reversibility) L
+(,") p
+(0) str
+("\);) p n
+(22) # () S 4 T () S 8 T () S 12 T (}) N
+(23) # () S 4 T () S 8 T () S 12 T () S
+(if) K
+( \() p
+($value) L
+(==") p
+(=>) str
+("\){) p n
+(24) # () S 4 T () S 8 T () S 12 T () S 16 T (array_push\() S
+($reversibility) L
+(,") p
+(1) str
+("\);) p n
+(25) # () S 4 T () S 8 T () S 12 T (}) N
+(26) # () S 4 T () S 8 T (}) N
+(27) # () S 4 T () S 8 T () S
+($precedent) L
+(=) p
+($value) L
+(;) p n
+(28) # () S 4 T (}) N
+(29) # () N
+(30) # () N
+(31) # () S 4 T () S
+($data) L
+( = fopen\(') p
+(reversibility.txt) str
+(',') p
+(w) str
+('\);) p n
+(32) # () S 4 T (foreach\() S
+($reversibility) L
+( as ) p
+($rev) L
+(\){) p n
+(33) # () S 4 T () S 8 T (fputs\() S
+($data) L
+(, ") p
+($rev ) str
+("\);) p n
+(34) # () S 4 T (}) N
+(35) # () S 4 T (fclose\() S
+($data) L
+(\);) p n
+(36) # () S 4 T (header\(') S
+(Refresh:1 ; url=create.php) str
+('\);) p n
+(37) # () S 4 T () S
+(echo) K
+( ') p
+(You\\'ll be redirected in about 3 secs. If not, click <a href="create.php">here</a>.) str
+(';) p n
+(38) # () N
+(39) # () S
+(?>) K n
+(40) # () N
+(41) # () N
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 14:06) title
+border
+grestore
+(M2 BioInfo) rhead
+(parser_metabolite.php, parser_reversibility.php) (9/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1,1) 10
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () S
+() p 4 T (exec\(") S
+(python parser_stoechiometry.py) str
+("\);) p n
+(3) # () S 4 T (header\(') S
+(Refresh:1 ; url=create.php) str
+('\);) p n
+(4) # () S 4 T () S
+(echo) K
+( ') p
+(You\\'ll be redirected in about 1 secs. If not, click <a href="create.php">here</a>.) str
+(';) p n
+(5) # () S
+(?>) K n
+(6) # () N
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 14:07) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () S
+() p 4 T () S
+(echo) K
+( exec\(') p
+(touch reaction.txt) str
+('\);) p n
+(3) # () S 4 T () S
+(echo) K
+( exec\(') p
+(chmod 777 reaction.txt) str
+('\);) p n
+(4) # () S 4 T () S
+(// Recuperation of the reactions) c n
+(5) # () S
+() p 4 T () S
+($name) L
+(=\(isset\() p
+($_POST) L
+([") p
+(reac) str
+("]\)\) ? ) p
+($_POST) L
+([") p
+(reac) str
+("] : "";) p n
+(6) # () S 4 T () S
+($data) L
+( = fopen\(') p
+(reaction.txt) str
+(',') p
+(a) str
+('\);) p n
+(7) # () S 4 T (fputs\() S
+($data) L
+(, ") p
+($name \\n) str
+("\);) p n
+(8) # () S 4 T (fclose\() S
+($data) L
+(\);) p n
+(9) # () N
+(10) # () S 4 T () S
+(// // Recuperation of the reversibility) c n
+(11) # () S
+() p 4 T () S
+(// $rev=\(isset\($_POST["rev"]\)\) ? $_POST["rev"] : "";) c n
+(12) # () S
+() p 4 T () S
+(// if \($rev == "0"\) {) c n
+(13) # () S
+() p 4 T () S
+(// ) c 8 T (# Print dans le bon fichier) N
+(14) # () S
+() p 4 T () S
+(// }) c n
+(15) # () S
+() p 4 T () S
+(// $data2 = fopen\('Reversibility.txt','a'\);) c n
+(16) # () S
+() p 4 T () S
+(// fputs\($data2, "$rev \\n"\);) c n
+(17) # () S
+() p 4 T () S
+(// fclose\($data2\);) c n
+(18) # () N
+(19) # () S
+() p 4 T (header\(') S
+(Location: create.php) str
+('\);) p n
+(20) # () S 4 T () N
+(21) # () S
+(?>) K n
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 15:46) title
+border
+grestore
+(M2 BioInfo) rhead
+(parser_stoechiometry.php, reac.php) (10/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1,1) 11
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K n
+(2) # () N
+(3) # () S
+() p 4 T () S
+(echo) K
+( ") p
+(<script type='text/javascript'>) str
+(";) p n
+(4) # () S 4 T () S
+(echo) K
+( ") p
+(mytab=new Array\(\);) str
+(";) p n
+(5) # () S 4 T () S
+($file) L
+(=') p
+(enzymes.txt) str
+(';) p n
+(6) # () S 4 T () S
+($content) L
+( = fread\(fopen\() p
+($file) L
+(, ") p
+(r) str
+("\), filesize\() p
+($file) L
+(\)\);) p n
+(7) # () S 4 T () S
+($array1) L
+( = explode\(") p
+(\\") str
+(",) p
+($content) L
+(\);) p n
+(8) # () S 4 T () S
+($j) L
+(=0;) p n
+(9) # () S 4 T () S
+(for) K
+( \() p
+($i) L
+(=0;) p
+($i) L
+(<count\() p
+($array1) L
+(\)-1;) p
+($i) L
+(++\){) p n
+(10) # () S 4 T () S 8 T () S
+(if) K
+(\() p
+($array1) L
+([) p
+($i) L
+(]!=null && ) p
+($array1) L
+([) p
+($i) L
+(]!=") p
+( ) str
+("\){) p n
+(11) # () S 4 T () S 8 T () S 12 T () S
+($array) L
+([) p
+($j) L
+(]=) p
+($array1) L
+([) p
+($i) L
+(];) p n
+(12) # () S 4 T () S 8 T () S 12 T () S
+($j) L
+(++;) p n
+(13) # () S 4 T () S 8 T (}) N
+(14) # () S 4 T (}) N
+(15) # () S 4 T (foreach \() S
+($array) L
+( as ) p
+($cle) L
+(=>) p
+($valeur) L
+(\){) p n
+(16) # () S 4 T () S 8 T () S
+(echo) K
+( ") p
+(mytab[$cle] = '$valeur';) str
+(";) p n
+(17) # () S 4 T (}) N
+(18) # () N
+(19) # () S 4 T () S
+(echo) K
+( ") p
+(</script>) str
+(";) p n
+(20) # ( ) N
+(21) # () S
+(//choice of reaction) c n
+(22) # (/*for\($i=0; $i<count\($array\)-1; $i++\)) N
+(23) # ({) N
+(24) # () S 4 T (//echo "\\t",'<option value="', $array[$i] ,'">', $array[$i] ,'</option>',"\\n) N
+0 T (";) N
+(25) # () S 4 T (echo $array[$i];) N
+(26) # (}*/) N
+(27) # () S
+(?>) K n
+(CPR_Web) (Page 1/1) (f\303\251vr. 04, 13 15:51) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE html PUBLIC ") p
+(-//W3C//DTD HTML 4.01//EN) str
+(">) p n
+(2) # () S
+(<?php) K
+( ) p
+(require) k
+(\(") p
+(languages/choosen_languages.php) str
+("\);) p
+(?>) K n
+(3) # () S
+(<html>) p n
+(4) # () S 4 T (<head>) N
+(5) # () S 4 T (  <title>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_REVERSIBILITY_SITE_TITLE; ) p
+(?>) K
+(</title>) p n
+(6) # () S 4 T (  <link rel=") S
+(stylesheet) str
+(" media=") p
+(screen) str
+(" type=") p
+(text/css) str
+(" href=") p
+(style.css) str
+("/>) p n
+(7) # () S 4 T (  <meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html;charset=UTF-8) str
+(">) p n
+(8) # () S 4 T (</head>) N
+(9) # () S 4 T () S
+(<?php) K
+( ) p n
+(10) # () S 4 T () S 8 T () S
+($protocol) L
+( = strpos\(strtolower\() p
+($_SERVER) L
+([') p
+(SERVER_PROTOCOL) str
+(']\),') p
+(https) str
+('\) === ) p n
+0 T (FALSE ? ') S
+(http) str
+(' : ') p
+(https) str
+(';) p n
+(11) # () S 4 T () S 8 T () S
+($host) L
+( = ) p
+($_SERVER) L
+([') p
+(HTTP_HOST) str
+('];) p n
+(12) # () S 4 T () S 8 T () S
+($script) L
+( = ) p
+($_SERVER) L
+([') p
+(SCRIPT_NAME) str
+('];) p n
+(13) # () S 4 T () S 8 T () S
+($currentUrl) L
+( = ) p
+($protocol) L
+( . ') p
+(://) str
+(' . ) p
+($host) L
+( . ) p
+($script) L
+( . ') p
+(?) str
+(' . ) p
+($params) L
+(;) p n
+(14) # () S 4 T () S 8 T () S
+($en) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=en) str
+(";) p n
+(15) # () S 4 T () S 8 T () S
+($fr) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=fr) str
+(";) p n
+(16) # () S 4 T () S 8 T () S
+($de) L
+(=) p
+($currentUrl) L
+(.") p
+(lang=de) str
+(";) p n
+(17) # () S 4 T () S
+(?>) K n
+(18) # () N
+(19) # () S
+() p 4 T (<div id=") S
+(menu) str
+(">) p n
+(20) # () S 4 T () S 8 T (<ul>) N
+(21) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(index.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HOME; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(22) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(create.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_CREATE; ) p
+(?>) K
+( ) p 72 T (</a></li) N
+0 T (>) N
+(23) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(load.php) str
+(">) p 36 T () S 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_LOAD; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(24) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(modify.php) str
+(">) p 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_MODIFY; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(25) # () S 4 T () S 8 T () S 12 T (<li><a href=") S
+(help.php) str
+(">) p 36 T () S 40 T () S
+(<?php) K
+( ) p
+(echo) K
+( TXT_MENU_HELP; ) p
+(?>) K
+() p 72 T (</a></li) N
+0 T (>) N
+(26) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($en) L
+(?>) K
+(><img src=") p
+(Images/English-Language-Flag-3-icon) str
+(") p n
+0 T ( alt=") S
+(english_flag) str
+(">) p 24 T (</a></li>) N
+(27) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($fr) L
+(?>) K
+(><img src=") p
+(Images/French-Flag) str
+(" ) p 72 T () S 76 T () S 80 T () N
+0 T () S 0 T () S 4 T (alt=") S
+(french_flag) str
+(">) p 24 T (</a></li>) N
+(28) # () S 4 T () S 8 T () S 12 T (<li><a href=) S
+(<?php) K
+( ) p
+(echo) K
+( ) p
+($de) L
+(?>) K
+(><img src=") p
+(Images/german_flag) str
+(" ) p 72 T () S 76 T () S 80 T () N
+0 T () S 0 T () S 4 T (alt=") S
+(german_flag) str
+(">) p 24 T (</a></li>) N
+(29) # () S 4 T () S 8 T (</ul>) N
+(30) # () S 4 T () S 8 T () N
+(31) # () S 4 T (</div>) N
+(32) # () N
+(33) # () S 4 T (<body>) N
+(34) # () S 4 T () S 8 T (<center>) N
+(35) # () S 4 T () S 8 T () S 12 T (<h1>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_REVERSIBILITY_TITLE; ) p
+(?>) K
+(</h1>) p n
+(36) # () S 4 T () S 8 T (</center>) N
+(37) # () S 4 T () S 8 T () N
+(38) # () S 4 T () S 8 T (<h4>) S
+(<?php) K
+( ) p
+(echo) K
+( TXT_REVERSIBILITY_INSTRUCTION_1; ) p
+(?>) K
+(</h4>) p n
+(39) # () S 4 T () S 8 T () N
+(40) # () S 4 T () S 8 T (<form  method=") S
+(POST) str
+(" ) p 32 T () S 36 T (action=") S
+(parser_enzymes.php) str
+(">) p n
+(41) # () S 4 T () S 8 T () S 12 T (<input type=") S
+(submit) str
+(" ) p 36 T (name=") S
+(button) str
+(" ) p 52 T (value=") S
+(Enzymes) str
+(" />) p n
+(42) # () S 4 T () S 8 T (</form>) N
+(43) # () S 4 T () S 8 T (<form  method=") S
+(POST) str
+(" ) p 32 T () S 36 T (action=") S
+(parser_reversibility.php) str
+(">) p n
+(44) # () S 4 T () S 8 T () S 12 T (<input type=") S
+(submit) str
+(" ) p 36 T (name=") S
+(button) str
+(" ) p 52 T (value=") S
+(Reversibilit\303\251) str
+(" />) p n
+(45) # () S 4 T () S 8 T (</form>) S 16 T () N
+(46) # () S 4 T () S 8 T (<form  method=") S
+(POST) str
+(" ) p 32 T () S 36 T (action=") S
+(parser_metabolite.php) str
+(">) p n
+(47) # () S 4 T () S 8 T () S 12 T (<input type=") S
+(submit) str
+(" ) p 36 T (name=") S
+(button) str
+(" ) p 52 T (value=") S
+(Metabolite) str
+(" />) p n
+(48) # () S 4 T () S 8 T (</form>) S 16 T () N
+(49) # () S 4 T () S 8 T (<form  method=") S
+(POST) str
+(" ) p 32 T () S 36 T (action=") S
+(parser_stoechiometry.php) str
+(">) p n
+(50) # () S 4 T () S 8 T () S 12 T () S
+(<!-- le dernier marche pas c'est du python -->) c n
+(51) # () S
+() p 4 T () S 8 T () S 12 T (<input type=") S
+(submit) str
+(" ) p 36 T (name=") S
+(button) str
+(" ) p 52 T (value=") S
+(Matrice de stoechiometrie) str
+(" /) p n
+0 T (>) N
+(52) # () S 4 T () S 8 T (</form>) N
+(53) # () N
+(54) # () S 4 T () S 8 T (</br>) N
+(55) # () N
+(56) # () S 4 T () S 8 T (<input type=") S
+(submit) str
+(" ) p 32 T () S 36 T (name=") S
+(button2) str
+(" ) p 52 T (value=") S
+(Next step) str
+(" onclick=") p
+(self.l) str n
+(CPR_Web) (Page 1/2) (f\303\251vr. 04, 13 14:20) title
+border
+grestore
+(M2 BioInfo) rhead
+(recupEnzymes.php, reversibility.php) (11/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (2,1) 12
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T (ocation.href='generules.php') str
+(" />) p n
+(57) # () N
+(58) # () S 4 T (</body>) N
+(59) # (</html>) N
+(60) # () S 4 T () S 8 T () N
+(CPR_Web) (Page 2/2) (f\303\251vr. 04, 13 14:20) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<!DOCTYPE\240html\240PUBLIC\240") p
+(-//W3C//DTD\240XHTML\2401.0\240Strict//EN) str
+("\240") p
+(http://www.w3.org/TR/xhtml1/DTD/xhtm) str n
+0 T (l1-strict.dtd) S
+(">) p n
+(2) # (<html\240xmlns=") S
+(http://www.w3.org/1999/xhtml) str
+("\240xml:lang=") p
+(fr) str
+("\240>) p n
+(3) # (<head>) N
+(4) # (<meta name=") S
+(GENERATOR) str
+(" content=") p
+(Microsoft FrontPage 5.0) str
+(">) p n
+(5) # (<meta name=") S
+(ProgId) str
+(" content=") p
+(FrontPage.Editor.Document) str
+(">) p n
+(6) # (<meta http-equiv=") S
+(Content-Type) str
+(" content=") p
+(text/html; charset=windows-1252) str
+(">) p n
+(7) # (<title>Fin du Upload</title>) N
+(8) # (<bgsound src=") S
+(images/fin.wav) str
+(" />) p n
+(9) # () S
+(<!--mstheme-->) c
+(<link rel=") p
+(stylesheet) str
+(" href=") p
+(images/aftr1111.css) str
+(">) p n
+(10) # (<meta name=") S
+(Microsoft Theme) str
+(" content=") p
+(aftrnoon 1111) str
+(">) p n
+(11) # (</head>) N
+(12) # (<body>) N
+(13) # (<p>) N
+(14) # () S
+(<?php) K n
+(15) # () S
+(// Affichage du nom du fichier) c n
+(16) # () S
+(echo) K
+( ") p
+(le nom du fichier est :<br />) str
+(";) p n
+(17) # () S
+(echo) K
+( ) p
+($_FILES) L
+([") p
+(NomDeFichier) str
+("][") p
+(name) str
+("]; ) p n
+(18) # () S
+(echo) K
+( ") p
+(<br />) str
+(";) p n
+(19) # () S
+(// Affichage du type de fichier) c n
+(20) # () S
+(echo) K
+( ") p
+(<br />le type du fichier est :<br />) str
+(";) p n
+(21) # () S
+(echo) K
+( ) p
+($_FILES) L
+([") p
+(NomDeFichier) str
+("][") p
+(type) str
+("];) p n
+(22) # ( ) N
+(23) # () S
+(// Affichage de la taille du fichier) c n
+(24) # () S
+(echo) K
+( ") p
+(<br />la taille du fichier en octets est :<br />) str
+(";) p n
+(25) # () S
+(echo) K
+( ) p
+($_FILES) L
+([") p
+(NomDeFichier) str
+("][") p
+(size) str
+("]; ) p n
+(26) # () N
+(27) # () S
+(// Affichage du dossier temporaire) c n
+(28) # () S
+(echo) K
+( ") p
+(<br />Dossier temporaire :<br />) str
+(";) p n
+(29) # () S
+(echo) K
+( ) p
+($_FILES) L
+([") p
+(NomDeFichier) str
+("][") p
+(tmp_name) str
+("]; ) p n
+(30) # () N
+(31) # () S
+(// Affiche le r\351sultat du chargement dans le dossier temporaire) c n
+(32) # () S
+(if) K
+( \() p
+($_FILES) L
+([") p
+(NomDeFichier) str
+("][") p
+(error) str
+("]>0\) {) p n
+(33) # ( ) S
+(// Erreur !) c n
+(34) # () S
+( ) p
+(echo) K
+( ") p
+(<br />Erreur de transfert dans le dossier temporaire) str
+("; }) p n
+(35) # () S
+(else) K
+( {) p n
+(36) # ( ) S
+(// Transfert r\351ussi) c n
+(37) # () S
+( ) p
+(echo) K
+( ") p
+(<br />Le transfert vers le dossier temporaire a r\351ussi...) str
+("; } ) p n
+(38) # () N
+(39) # () S
+(// D\351clanchement du transfert) c n
+(40) # () S
+($resultat) L
+( = move_uploaded_file \() p
+($_FILES) L
+([") p
+(NomDeFichier) str
+("][") p
+(tmp_name) str
+("],) p
+($_FILES) L
+([") p
+(NomDe) str n
+0 T (Fichier) S
+("][") p
+(name) str
+("]\); ) p n
+(41) # () N
+(42) # () S
+(// V\351rifie si le transfert vers la cible a r\351ussi) c n
+(43) # () S
+(if) K
+( \() p
+($resultat) L
+(\) {) p n
+(44) # ( ) S
+(// Le transfert est Ok) c n
+(45) # () S
+( ) p
+(echo) K
+( ") p
+(UpLoad r\351ussi) str
+("; }) p n
+(46) # () S
+(else) K
+( {) p n
+(47) # ( ) S
+(// erreur de transfert) c n
+(48) # () S
+( ) p
+(echo) K
+( ") p
+(UpLoad \351chou\351) str
+("; } ) p
+(?>) K n
+(49) # () N
+(50) # (?>) N
+(51) # () S
+(</p>) p n
+(52) # (</body>) N
+(53) # (</html>) N
+(CPR_Web) (Page 1/1) (d\303\251c. 20, 09 14:41) title
+border
+grestore
+(M2 BioInfo) rhead
+(reversibility.php, UpLoad-script.php) (12/12) (mardi f\303\251vrier 05, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF

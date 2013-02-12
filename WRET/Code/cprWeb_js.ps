@@ -1,0 +1,1779 @@
+%!PS-Adobe-3.0
+%%Title: choixOptions.js, generules.js
+%%For: Charlotte Herice
+%%Creator: a2ps version 4.14
+%%CreationDate: Mon Feb  4 18:10:26 2013
+%%BoundingBox: 24 24 571 818
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 3
+%%PageOrder: Ascend
+%%DocumentMedia: A4 595 842 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black Blue Green Red 
+%%DocumentSuppliedResources: procset a2ps-color-prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontType get 0 eq {
+    currentfont /FontMatrix get 3 get
+  }{
+    currentfont /FontMatrix get 3 get 1000 mul
+  } ifelse
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% composite fonts for ASCII-EUC mixed strings
+% Version 1.2 1/31/1990
+% Original Ken'ichi HANDA (handa@etl.go.jp)
+% Modified Norio Katayama (katayama@rd.nacsis.ac.jp),1998
+% Extend & Fix Koji Nakamaru (maru@on.cs.keio.ac.jp), 1999
+% Anyone can freely copy, modify, distribute this program.
+
+/copyfont {	% font-dic extra-entry-count  copyfont  font-dic
+	1 index maxlength add dict begin
+	{	1 index /FID ne 2 index /UniqueID ne and
+		{def} {pop pop} ifelse
+	} forall
+	currentdict
+	end
+} bind def
+
+/compositefont { % ASCIIFontName EUCFontName RomanScale RomanOffset Rot(T/F) compositefont font
+    /RomanRotation exch def
+    /RomanOffset exch def
+    /RomanScale exch def
+    userdict /fixeucfont_dict known not {
+	userdict begin
+	    /fixeucfont_dict 2 dict begin
+		/UpperByteEncoding [
+		    16#00 1 16#20 { pop 0 } for
+		    16#21 1 16#28 { 16#20 sub } for
+		    16#29 1 16#2F { pop 0 } for
+		    16#30 1 16#74 { 16#27 sub } for
+		    16#75 1 16#FF { pop 0 } for
+		] def
+	        /LowerByteEncoding [
+		    16#00 1 16#A0 { pop /.notdef } for
+		    16#A1 1 16#FE { 16#80 sub 16 2 string cvrs
+				    (cXX) dup 1 4 -1 roll
+				    putinterval cvn } for
+		    /.notdef
+		] def
+		currentdict
+	    end def
+	end
+    } if
+    findfont dup /FontType get 0 eq {
+	14 dict begin
+	    %
+	    % 7+8 bit EUC font
+	    %
+	    12 dict begin
+		/EUCFont exch def
+		/FontInfo (7+8 bit EUC font) readonly def
+		/PaintType 0 def
+		/FontType 0 def
+		/FontMatrix matrix def
+		% /FontName
+		/Encoding fixeucfont_dict /UpperByteEncoding get def
+		/FMapType 2 def
+		EUCFont /WMode known
+		{ EUCFont /WMode get /WMode exch def }
+		{ /WMode 0 def } ifelse
+		/FDepVector [
+		    EUCFont /FDepVector get 0 get
+		    [ 16#21 1 16#28 {} for 16#30 1 16#74 {} for ]
+		    {
+			13 dict begin
+			    /EUCFont EUCFont def
+			    /UpperByte exch 16#80 add def	
+			    % /FontName
+			    /FontInfo (EUC lower byte font) readonly def
+			    /PaintType 0 def
+			    /FontType 3 def
+			    /FontMatrix matrix def
+			    /FontBBox {0 0 0 0} def
+			    /Encoding
+				fixeucfont_dict /LowerByteEncoding get def
+			    % /UniqueID
+			    % /WMode
+			    /BuildChar {
+				gsave
+				exch dup /EUCFont get setfont
+				/UpperByte get
+				2 string
+				dup 0 4 -1 roll put
+				dup 1 4 -1 roll put
+				dup stringwidth setcharwidth
+				0 0 moveto show
+				grestore
+			    } bind def
+			    currentdict
+			end
+			/lowerbytefont exch definefont
+		    } forall
+		] def
+		currentdict
+	    end
+	    /eucfont exch definefont
+	    exch
+	    findfont 1 copyfont dup begin
+		RomanRotation {
+			/FontMatrix FontMatrix
+			[ 0 RomanScale neg RomanScale 0 RomanOffset neg 0 ]
+			matrix concatmatrix def
+		}{
+			/FontMatrix FontMatrix
+			[ RomanScale 0 0 RomanScale 0 RomanOffset ] matrix concatmatrix
+			def
+			/CDevProc
+			    {pop pop pop pop 0 exch -1000 exch 2 div 880} def
+		} ifelse
+	    end
+	    /asciifont exch definefont
+	    exch
+	    /FDepVector [ 4 2 roll ] def
+	    /FontType 0 def
+	    /WMode 0 def
+	    /FMapType 4 def
+	    /FontMatrix matrix def
+	    /Encoding [0 1] def
+	    /FontBBox {0 0 0 0} def
+%	    /FontHeight 1.0 def % XXXX
+	    /FontHeight RomanScale 1.0 ge { RomanScale }{ 1.0 } ifelse def
+	    /Descent -0.3 def   % XXXX
+	    currentdict
+	end
+	/tmpfont exch definefont
+	pop
+	/tmpfont findfont
+    }{
+	pop findfont 0 copyfont
+    } ifelse
+} def	
+
+/slantfont {	% FontName slant-degree  slantfont  font'
+    exch findfont 1 copyfont begin
+    [ 1 0 4 -1 roll 1 0 0 ] FontMatrix exch matrix concatmatrix
+    /FontMatrix exch def
+    currentdict
+    end
+} def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  0 setgray
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.5 0.5 1 setrgbcolor
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    1 setgray
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+%%BeginResource: procset a2ps-color-prolog 2.0 1
+
+%% Definition of the color faces.
+/p {
+  0 0 0 FG
+  false BG
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  0 0 0 FG
+  false BG
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false BG
+  false UL
+  false BX
+  0 0 0.9 FG
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false BG
+  false UL
+  false BX
+  0 0 0.8 FG
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false BG
+  false UL
+  false BX
+  0.8 0 0 FG
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false BG
+  false UL
+  false BX
+  0.8 0 0 FG
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/l {
+  0 0 0 FG
+  0.8 0.8 0 true BG
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  0 0 0 FG
+  1 1 0 true BG
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/str {
+  false BG
+  false UL
+  false BX
+  0 0.5 0 FG
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  1 0 0 true BG
+  false UL
+  true BX
+  1 1 1 FG
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul 2 div neg 0 rmoveto
+    f# setfont
+    0.8 0.1 0.1 FG
+    c-show
+  grestore
+} bind def
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 595 def
+/sw 842 def
+/llx 24 def
+/urx 818 def
+/ury 571 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 7.542439 def
+/cw 4.525463 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 6 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 86.400000 mul
+def
+/ph
+   503.080648 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 5 def
+/tab 4 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (function) K
+( ) p
+(choixParam) l
+(\(formulaire\) {) p n
+(2) # () N
+(3) # (  ) S
+(var) K
+( valeur1 = "";) p n
+(4) # (  ) S
+(var) K
+( valeur2 = "";) p n
+(5) # (  ) S
+(var) K
+( valeur3 = "";) p n
+(6) # (  ) S
+(var) K
+( valeur4 = "";) p n
+(7) # (  ) S
+(var) K
+( valeur5 = "";) p n
+(8) # (  ) S
+(var) K
+( valeur6 = "";) p n
+(9) # (  ) S
+(var) K
+( valeur7 = "";) p n
+(10) # (  ) S
+(var) K
+( valeur8 = "";) p n
+(11) # (  ) S
+(var) K
+( valeur9 = "";) p n
+(12) # (  ) S
+(var) K
+( valeur10 = "";) p n
+(13) # (  ) S
+(var) K
+( valeur11 = "";) p n
+(14) # (  ) S
+(var) K
+( valeur12 = "";) p n
+(15) # (  ) S
+(var) K
+( valeur13 = "";) p n
+(16) # (  ) S
+(var) K
+( valeur14 = "";) p n
+(17) # () N
+(18) # (  ) S
+(// Test) c n
+(19) # () S
+(  ) p
+(// if \(formulaire.choix[0].checked\) { ) c n
+(20) # () S
+(  ) p
+(//   valeur = " -" + formulaire.choix[0].value\); ) c n
+(21) # () S
+(  ) p
+(// }) c n
+(22) # () S
+(  ) p
+(// if \(formulaire.choix[1].checked\) { ) c n
+(23) # () S
+(  ) p
+(//   valeur = " -" + formulaire.choix[1].value\); ) c n
+(24) # () S
+(  ) p
+(// }) c n
+(25) # () S
+(  ) p
+(// if \(formulaire.choix[2].checked\) { ) c n
+(26) # () S
+(  ) p
+(//   valeur = " -" + formulaire.choix[2].value\); ) c n
+(27) # () S
+(  ) p
+(// }) c n
+(28) # () S
+( ) p n
+(29) # (  ) S
+(var) K
+( commande = ") p
+(java -Xmx1G -jar ../regEfmtool.jar) str
+(";) p n
+(30) # () N
+(31) # (  ) S
+(// SAVE) c n
+(32) # () S
+(  ) p
+(// Display) c n
+(33) # () S
+(  ) p
+(if) K
+( \(formulaire.choix1[0].checked\) { ) p n
+(34) # (    valeur1 = ") S
+( -) str
+(" + formulaire.choix1[0].value; ) p n
+(35) # (    commande = commande + valeur1;) N
+(36) # (  }) N
+(37) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix1[1].checked\) { ) p n
+(38) # (    ) S
+(var) K
+( nom1 = document.getElementById\(') p
+(texte1) str
+('\).value;) p n
+(39) # (    valeur1 = ") S
+( -) str
+(" + formulaire.choix1[1].value + ") p
+( ) str
+(" + nom1; ) p n
+(40) # (    commande = commande + valeur1;) N
+(41) # (  }) N
+(42) # (  ) S
+(// Errors) c n
+(43) # () S
+(  ) p
+(if) K
+( \(formulaire.choix2[0].checked\) { ) p n
+(44) # (    valeur2 = ") S
+( -) str
+(" + formulaire.choix2[0].value; ) p n
+(45) # (    commande = commande + valeur2;) N
+(46) # (  }) N
+(47) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix2[1].checked\) { ) p n
+(48) # (    valeur2 = ") S
+( -) str
+(" + formulaire.choix2[1].value; ) p n
+(49) # (    commande = commande + valeur2;) N
+(50) # (  }) N
+(51) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix2[2].checked\) { ) p n
+(52) # (    valeur2 = ") S
+( -) str
+(" + formulaire.choix2[2].value; ) p n
+(53) # (    commande = commande + valeur2;) N
+(54) # (  }) N
+(55) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix2[3].checked\) { ) p n
+(56) # (    valeur2 = ") S
+( -) str
+(" + formulaire.choix2[3].value; ) p n
+(57) # (    commande = commande + valeur2;) N
+(58) # (  }) N
+(59) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix2[4].checked\) { ) p n
+(60) # (    valeur2 = ") S
+( -) str
+(" + formulaire.choix2[4].value; ) p n
+(61) # (    commande = commande + valeur2;) N
+(62) # (  }) N
+(63) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix2[5].checked\) { ) p n
+(64) # (    valeur2 = ") S
+( -) str
+(" + formulaire.choix2[5].value; ) p n
+(65) # (    commande = commande + valeur2;) N
+(66) # (  }) N
+(CPR_Web) (Page 1/4) (f\303\251vr. 04, 13 15:35) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(67) # (  ) p
+(// Format) c n
+(68) # () S
+(  ) p
+(if) K
+( \(formulaire.choix3[0].checked\) { ) p n
+(69) # (    valeur3 = ") S
+( -) str
+(" + formulaire.choix3[0].value;  ) p n
+(70) # (    commande = commande + valeur3;) N
+(71) # (  }) N
+(72) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix3[1].checked\) { ) p n
+(73) # (    valeur3 = ") S
+( -) str
+(" + formulaire.choix3[1].value; ) p n
+(74) # (    commande = commande + valeur3;) N
+(75) # (  }) N
+(76) # () N
+(77) # (  ) S
+(// INPUT) c n
+(78) # () S
+(  ) p
+(// Type) c n
+(79) # () S
+(  ) p
+(if) K
+( \(formulaire.choix4[0].checked\) { ) p n
+(80) # (    valeur4 = ") S
+( -) str
+(" + formulaire.choix4[0].value; ) p n
+(81) # (    commande = commande + valeur4;) N
+(82) # (  }) N
+(83) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix4[1].checked\) { ) p n
+(84) # (    valeur4 = ") S
+( -) str
+(" + formulaire.choix4[1].value; ) p n
+(85) # (    commande = commande + valeur4;) N
+(86) # (  }) N
+(87) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix4[2].checked\) { ) p n
+(88) # (    valeur4 = ") S
+( -) str
+(" + formulaire.choix4[2].value; ) p n
+(89) # (    commande = commande + valeur4;) N
+(90) # (  }) N
+(91) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix4[3].checked\) { ) p n
+(92) # (    valeur4 = ") S
+( -) str
+(" + formulaire.choix4[3].value; ) p n
+(93) # (    commande = commande + valeur4;) N
+(94) # (  }) N
+(95) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix4[4].checked\) { ) p n
+(96) # (    valeur4 = ") S
+( -) str
+(" + formulaire.choix4[4].value; ) p n
+(97) # (    commande = commande + valeur4;) N
+(98) # (  }) N
+(99) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix4[5].checked\) { ) p n
+(100) # (    valeur4 = ") S
+( -) str
+(" + formulaire.choix4[5].value; ) p n
+(101) # (    commande = commande + valeur4;) N
+(102) # (  }) N
+(103) # (  ) S
+(// Analysor) c n
+(104) # () S
+(  ) p
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix5[0].checked\) { ) p n
+(105) # (    valeur5 = ") S
+( -) str
+(" + formulaire.choix5[0].value; ) p n
+(106) # (    commande = commande + valeur5;) N
+(107) # (  }) N
+(108) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix5[1].checked\) { ) p n
+(109) # (    ) S
+(var) K
+( nom5 = document.getElementById\(') p
+(texte5) str
+('\).value;) p n
+(110) # (    valeur5 = ") S
+( -) str
+(" + formulaire.choix5[1].value + ") p
+( ) str
+(" + nom5; ) p n
+(111) # (    commande = commande + valeur5;) N
+(112) # (  }) N
+(113) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix5[2].checked\) { ) p n
+(114) # (    ) S
+(var) K
+( nom5 = document.getElementById\(') p
+(texte51) str
+('\).value;) p n
+(115) # (    valeur5 = ") S
+( -) str
+(" + formulaire.choix5[2].value + ") p
+( ) str
+(" + nom5; ) p n
+(116) # (    commande = commande + valeur5;) N
+(117) # (  }) N
+(118) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix5[3].checked\) { ) p n
+(119) # (    ) S
+(var) K
+( nom5 = document.getElementById\(') p
+(texte52) str
+('\).value;) p n
+(120) # (    valeur5 = ") S
+( -) str
+(" + formulaire.choix5[3].value + ") p
+( ) str
+(" + nom5; ) p n
+(121) # (    commande = commande + valeur5;) N
+(122) # (  }) N
+(123) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix5[4].checked\) { ) p n
+(124) # (    ) S
+(var) K
+( nom5 = document.getElementById\(') p
+(texte53) str
+('\).value;) p n
+(125) # (    valeur5 = ") S
+( -) str
+(" + formulaire.choix5[4].value + ") p
+( ) str
+(" + nom5; ) p n
+(126) # (    commande = commande + valeur5;) N
+(127) # (  }) N
+(128) # (  ) N
+(129) # (  ) S
+(// COMPRESSION) c n
+(130) # () S
+(  ) p
+(if) K
+( \(formulaire.choix6[0].checked\) { ) p n
+(131) # (    valeur6 = ") S
+( -) str
+(" + formulaire.choix6[0].value; ) p n
+(132) # (    commande = commande + valeur6;) N
+(CPR_Web) (Page 2/4) (f\303\251vr. 04, 13 15:35) title
+border
+grestore
+(M2 BioInfo) rhead
+(choixOptions.js) (1/3) (lundi f\303\251vrier 04, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3-4) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(133) # (  }) p n
+(134) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix6[1].checked\) { ) p n
+(135) # (    valeur6 = ") S
+( -) str
+(" + formulaire.choix6[1].value; ) p n
+(136) # (    commande = commande + valeur6;) N
+(137) # (  }) N
+(138) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix6[2].checked\) { ) p n
+(139) # (    valeur6 = ") S
+( -) str
+(" + formulaire.choix6[2].value; ) p n
+(140) # (    commande = commande + valeur6;) N
+(141) # (  }) N
+(142) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix6[3].checked\) { ) p n
+(143) # (    valeur6 = ") S
+( -) str
+(" + formulaire.choix6[3].value; ) p n
+(144) # (    commande = commande + valeur6;) N
+(145) # (  }) N
+(146) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix6[4].checked\) { ) p n
+(147) # (    valeur6 = ") S
+( -) str
+(" + formulaire.choix6[4].value; ) p n
+(148) # (    commande = commande + valeur6;) N
+(149) # (  }) N
+(150) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix6[5].checked\) { ) p n
+(151) # (    valeur6 = ") S
+( -) str
+(" + formulaire.choix6[5].value; ) p n
+(152) # (    commande = commande + valeur6;) N
+(153) # (  }) N
+(154) # () N
+(155) # (  ) S
+(// OUTPUT) c n
+(156) # () S
+(  ) p
+(if) K
+( \(formulaire.choix7[0].checked\) { ) p n
+(157) # (    valeur7 = ") S
+( -) str
+(" + formulaire.choix7[0].value; ) p n
+(158) # (    commande = commande + valeur7;) N
+(159) # (  }) N
+(160) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix7[1].checked\) { ) p n
+(161) # (    valeur7 = ") S
+( -) str
+(" + formulaire.choix7[1].value; ) p n
+(162) # (    commande = commande + valeur7;) N
+(163) # (  }) N
+(164) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix7[2].checked\) { ) p n
+(165) # (    ) S
+(var) K
+( nom7 = document.getElementById\(') p
+(texte7) str
+('\).value;) p n
+(166) # (    valeur7 = ") S
+( -) str
+(" + formulaire.choix7[2].value + ") p
+( ) str
+(" + nom7; ) p n
+(167) # (    commande = commande + valeur7;) N
+(168) # (  }) N
+(169) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix7[3].checked\) { ) p n
+(170) # (    ) S
+(var) K
+( nom7 = document.getElementById\(') p
+(texte71) str
+('\).value;) p n
+(171) # (    valeur7 = ") S
+( -) str
+(" + formulaire.choix7[3].value + ") p
+( ) str
+(" + nom7; ) p n
+(172) # (    commande = commande + valeur7;) N
+(173) # (  }) N
+(174) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix7[4].checked\) { ) p n
+(175) # (    ) S
+(var) K
+( nom7 = document.getElementById\(') p
+(texte72) str
+('\).value;) p n
+(176) # (    valeur7 = ") S
+( -) str
+(" + formulaire.choix7[4].value + ") p
+( ) str
+(" + nom7; ) p n
+(177) # (    commande = commande + valeur7;) N
+(178) # (  }) N
+(179) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix7[5].checked\) { ) p n
+(180) # (    ) S
+(var) K
+( nom7 = document.getElementById\(') p
+(texte73) str
+('\).value;) p n
+(181) # (    valeur7 = ") S
+( -) str
+(" + formulaire.choix7[5].value + ") p
+( ) str
+(" + nom7; ) p n
+(182) # (    commande = commande + valeur7;) N
+(183) # (  }) N
+(184) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix7[6].checked\) { ) p n
+(185) # (    ) S
+(var) K
+( nom7 = document.getElementById\(') p
+(texte74) str
+('\).value;) p n
+(186) # (    valeur7 = ") S
+( -) str
+(" + formulaire.choix7[6].value + ") p
+( ) str
+(" + nom7; ) p n
+(187) # (    commande = commande + valeur7;) N
+(188) # (  }) N
+(189) # (  ) N
+(190) # (  ) S
+(// PARAMETERS) c n
+(191) # () S
+(  ) p
+(// Command) c n
+(192) # () S
+(  ) p
+(if) K
+( \(formulaire.choix8.checked\) { ) p n
+(193) # (    valeur8 = ") S
+( -) str
+(" + formulaire.choix8.value; ) p n
+(194) # (    commande = commande + valeur8;) N
+(195) # (  }) N
+(196) # (  ) S
+(// Adjency) c n
+(197) # () S
+(  ) p
+(if) K
+( \(formulaire.choix9[0].checked\) { ) p n
+(198) # (    valeur9 = ") S
+( -) str
+(" + formulaire.choix9[0].value; ) p n
+(CPR_Web) (Page 3/4) (f\303\251vr. 04, 13 15:35) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(199) # (    commande = commande + valeur9;) p n
+(200) # (  }) N
+(201) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix9[1].checked\) { ) p n
+(202) # (    valeur9 = ") S
+( -) str
+(" + formulaire.choix9[1].value; ) p n
+(203) # (    commande = commande + valeur9;) N
+(204) # (  }) N
+(205) # (  ) S
+(// Threads) c n
+(206) # () S
+(  ) p
+(if) K
+( \(formulaire.choix10.checked\) { ) p n
+(207) # (    ) S
+(var) K
+( nom10 = document.getElementById\(') p
+(texte10) str
+('\).value;) p n
+(208) # (    valeur10 = ") S
+( -) str
+(" + formulaire.choix10.value + ") p
+( ) str
+(" + nom10; ) p n
+(209) # (    commande = commande + valeur10;) N
+(210) # (  }) N
+(211) # (  ) S
+(// Arithmetic) c n
+(212) # () S
+(  ) p
+(if) K
+( \(formulaire.choix11[0].checked\) { ) p n
+(213) # (    valeur11 = ") S
+( -) str
+(" + formulaire.choix11[0].value; ) p n
+(214) # (    commande = commande + valeur11;) N
+(215) # (  }) N
+(216) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix11[1].checked\) { ) p n
+(217) # (    valeur11 = ") S
+( -) str
+(" + formulaire.choix11[1].value; ) p n
+(218) # (    commande = commande + valeur11;) N
+(219) # (  }) N
+(220) # (  ) S
+(// Normalize) c n
+(221) # () S
+(  ) p
+(if) K
+( \(formulaire.choix12[0].checked\) { ) p n
+(222) # (    valeur12 = ") S
+( -) str
+(" + formulaire.choix12[0].value; ) p n
+(223) # (    commande = commande + valeur12;) N
+(224) # (  }) N
+(225) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix12[1].checked\) { ) p n
+(226) # (    valeur12 = ") S
+( -) str
+(" + formulaire.choix12[1].value; ) p n
+(227) # (    commande = commande + valeur12;) N
+(228) # (  }) N
+(229) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix12[2].checked\) { ) p n
+(230) # (    valeur12 = ") S
+( -) str
+(" + formulaire.choix12[2].value; ) p n
+(231) # (    commande = commande + valeur12;) N
+(232) # (  }) N
+(233) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix12[3].checked\) { ) p n
+(234) # (    valeur12 = ") S
+( -) str
+(" + formulaire.choix12[3].value; ) p n
+(235) # (    commande = commande + valeur12;) N
+(236) # (  }) N
+(237) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix12[4].checked\) { ) p n
+(238) # (    valeur12 = ") S
+( -) str
+(" + formulaire.choix12[4].value; ) p n
+(239) # (    commande = commande + valeur12;) N
+(240) # (  }) N
+(241) # (  ) S
+(// Fraction) c n
+(242) # () S
+(  ) p
+(if) K
+( \(formulaire.choix13.checked\) { ) p n
+(243) # (    ) S
+(var) K
+( nom13 = document.getElementById\(') p
+(texte13) str
+('\).value;) p n
+(244) # (    valeur13 = ") S
+( -) str
+(" + formulaire.choix13.value + ") p
+( ) str
+(" + nom13; ) p n
+(245) # (    commande = commande + valeur13;) N
+(246) # (  }) N
+(247) # (  ) S
+(// Self-test) c n
+(248) # () S
+(   ) p
+(if) K
+( \(formulaire.choix14[0].checked\) { ) p n
+(249) # (    valeur14 = ") S
+( -) str
+(" + formulaire.choix14[0].value; ) p n
+(250) # (    commande = commande + valeur14;) N
+(251) # (  }) N
+(252) # (  ) S
+(else) K
+( ) p
+(if) K
+( \(formulaire.choix14[1].checked\) { ) p n
+(253) # (    valeur14 = ") S
+( -) str
+(" + formulaire.choix14[1].value; ) p n
+(254) # (    commande = commande + valeur14;) N
+(255) # (  }) N
+(256) # (  alert\(commande\);) N
+(257) # (}) N
+(258) # () N
+(CPR_Web) (Page 4/4) (f\303\251vr. 04, 13 15:35) title
+border
+grestore
+(M2 BioInfo) rhead
+(choixOptions.js) (2/3) (lundi f\303\251vrier 04, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (var) K
+( num;) p n
+(2) # () S
+(var) K
+( select1=) p
+(new) K
+( Array\(\);) p n
+(3) # () N
+(4) # () S
+(function) K
+( ) p
+(add_reaction) l
+(\(\){) p n
+(5) # () S 4 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML ="";) p n
+(6) # () S 4 T (num = document.getElementById\(") S
+(rule) str
+("\).value;) p n
+(7) # () S 4 T () S
+(if) K
+( \(num<2\){) p n
+(8) # () S 4 T () S 8 T (alert\( ") S
+(Enter a value higher than 1) str
+("\);) p n
+(9) # () S 4 T (}) N
+(10) # () S 4 T () S
+(else) K
+({) p n
+(11) # () S 4 T () S 8 T () S
+(for) K
+( \() p
+(var) K
+( i=1; i<=num; i++\){) p n
+(12) # () S 4 T () S 8 T () S 12 T () N
+(13) # () S 4 T () S 8 T () S 12 T () S
+(if) K
+(\(i==1\){) p n
+(14) # () S 4 T () S 8 T () S 12 T () S 16 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<label>IF  &nbsp; &nbsp; </la) str n
+0 T (bel>) S
+(";) p n
+(15) # () S 4 T () S 8 T () S 12 T (}) N
+(16) # () S 4 T () S 8 T () S 12 T () S
+(else) K
+( ) p
+(if) K
+(\(i!=num\){) p n
+(17) # () S 4 T () S 8 T () S 12 T () S 16 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<label>AND  &nbsp; </label>) str
+() p n
+0 T (";) N
+(18) # () S 4 T () S 8 T () S 12 T (}) N
+(19) # () S 4 T () S 8 T () S 12 T () S
+(else) K
+({) p n
+(20) # () S 4 T () S 8 T () S 12 T () S 16 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<label>THEN </label>) str
+(";) p n
+(21) # () S 4 T () S 8 T () S 12 T (}) N
+(22) # () S 4 T () S 8 T () S 12 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<select id='box) str
+("+i+") p
+(' name='box) str
+(") p n
+0 T (+i+") S
+(' onchange='choice\(this,) str
+("+i+") p
+(\)'><option selected='selected'>Choose a reaction</option></select>) str
+(";) p n
+(23) # () S 4 T () S 8 T () S 12 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<label> Value: </label>) str
+(";) p n
+(24) # () S 4 T () S 8 T () S 12 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<select id='value) str
+("+i+") p
+(' name='val) str n
+0 T (ue) S
+("+i+") p
+('><option selected='selected'>Choose a value</option><option>0</option><option>1</option></select>) str
+(";) p n
+(25) # () S 4 T () S 8 T () S 12 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(</br>) str
+(";) p n
+(26) # () S 4 T () S 8 T (}) N
+(27) # () S 4 T () S 8 T () S
+(for) K
+(\() p
+(var) K
+( l=0; l<mytab.length; l++\){) p n
+(28) # () S 4 T () S 8 T () S 12 T (document.getElementById\(") S
+(box1) str
+("\).innerHTML +=") p
+(<option>) str
+("+mytab[l]+") p
+(</optio) str n
+0 T (n>) S
+(";) p n
+(29) # () S 4 T () S 8 T (}) N
+(30) # () S 4 T () S 8 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(</br>) str
+(";) p n
+(31) # () S 4 T () S 8 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<input type='hidden' name='num' value=') str
+() p n
+0 T ("+num+") S
+(' >) str
+(";) p n
+(32) # () S 4 T () S 8 T (document.getElementById\(") S
+(b2) str
+("\).innerHTML +=") p
+(<input type='submit' name='button' value) str n
+0 T (='Add' >) S
+(";) p n
+(33) # () S 4 T (}) N
+(34) # () N
+(35) # (}) N
+(36) # () N
+(37) # () S
+(function) K
+( ) p
+(choice) l
+(\(f, val\){ ) p n
+(38) # () S 4 T () S
+(for) K
+(\() p
+(var) K
+( i=0; i<f.length;i++\) {) p n
+(39) # () S 4 T () S 8 T () S
+(if) K
+( \(i!=0 && f[i].selected\){) p n
+(40) # () S 4 T () S 8 T () S 12 T (select1.push\(f[i].value\);) N
+(41) # () S 4 T () S 8 T (}) N
+(42) # () S 4 T (}) N
+(43) # () S 4 T () N
+(44) # () S 4 T () S
+(if) K
+( \(val!=num\){) p n
+(45) # () S 4 T () S 8 T () S
+(var) K
+( p=val+1;) p n
+(46) # () S 4 T () S 8 T () S
+(var) K
+( id2=") p
+(box) str
+("+p;) p n
+(47) # () N
+(48) # () S 4 T () S 8 T () S
+(var) K
+( mytab2=mytab.slice\(0\);) p n
+(49) # () S 4 T () S 8 T () N
+(50) # () S 4 T () S 8 T () S
+(for) K
+(\() p
+(var) K
+( z=0; z<mytab2.length; z++\){) p n
+(51) # () S 4 T () S 8 T () S 12 T () S
+(for) K
+( \() p
+(var) K
+( m=0; m<select1.length;m++\){) p n
+(52) # () S 4 T () S 8 T () S 12 T () S 16 T () S
+(if) K
+(\(mytab2[z]==select1[m]\){) p n
+(53) # () S 4 T () S 8 T () S 12 T () S 16 T () S 20 T (mytab2.splice\(z,1\);) N
+(54) # () S 4 T () S 8 T () S 12 T () S 16 T (}) N
+(55) # () S 4 T () S 8 T () S 12 T (}) N
+(56) # () S 4 T () S 8 T (}) N
+(57) # () S 4 T () S 8 T () N
+(58) # () S 4 T () S 8 T () S
+(for) K
+(\() p
+(var) K
+( z=0; z<mytab2.length; z++\){) p n
+(59) # () S 4 T () S 8 T () S 12 T (document.getElementById\(id2\).innerHTML+=") S
+(<option>) str
+("+mytab2[z]+") p
+(</option>) str
+(") p n
+(CPR_Web) (Page 1/2) (f\303\251vr. 04, 13 16:28) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T (;) p n
+(60) # () S 4 T () S 8 T (}) N
+(61) # () S 4 T (}) N
+(62) # () S 4 T () S
+(else) K
+({) p n
+(63) # () S 4 T () S 8 T () S
+(return) K
+(;) p n
+(64) # () S 4 T (}) N
+(65) # () N
+(66) # (}) N
+(67) # () N
+(68) # () S
+(function) K
+( ) p
+(validateForm) l
+(\(\){ ) p n
+(69) # () S 4 T () N
+(70) # () S 4 T () S
+(for) K
+( \() p
+(var) K
+( i=1; i<=num;i++\){) p n
+(71) # () S 4 T () S 8 T () S
+(var) K
+( k=") p
+(box) str
+("+i;) p n
+(72) # () S 4 T () S 8 T () S
+(var) K
+( j=") p
+(value) str
+("+i;) p n
+(73) # () S 4 T () S 8 T () S
+(var) K
+( reac=document.getElementById\(k\).value;) p n
+(74) # () S 4 T () S 8 T () S
+(var) K
+( value=document.getElementById\(j\).value;) p n
+(75) # () S 4 T () S 8 T () N
+(76) # () S 4 T () S 8 T () S
+(if) K
+(\(reac==") p
+(Choose a reaction) str
+(" || value==") p
+(Choose a value) str
+("\){) p n
+(77) # () S 4 T () S 8 T () S 12 T (alert\(") S
+(You have to choose a reaction and a value for the reaction ) str
+("+i\);) p n
+(78) # () S 4 T () S 8 T () S 12 T () S
+(return) K
+( ) p
+(false) k
+(;) p n
+(79) # () S 4 T () S 8 T (}) N
+(80) # () S 4 T (}) N
+(81) # () S 4 T () S
+(return) K
+( ) p
+(true) k
+(;) p n
+(82) # (}) N
+(CPR_Web) (Page 2/2) (f\303\251vr. 04, 13 16:28) title
+border
+grestore
+(M2 BioInfo) rhead
+(generules.js) (3/3) (lundi f\303\251vrier 04, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF
