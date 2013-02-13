@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html >
 <?php require("languages/choosen_languages.php");?>
 <html>
 	<head>
@@ -6,12 +6,7 @@
 	  <link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
 	  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	  <script type="text/javascript" >
-	  		// function isReversible(formulaireR) {
-	  		// 	if (formulaireR.choix1[0].checked) { 
-    	// 			var valeur1 = " -" + formulaire.choix1[0].value; 
-				 //    commande = commande + valeur1;
-				 //  }
-	  		// }
+
 			function validateForm(){
 				console.log('coucou');
 				if (document.getElementById("choix1").checked==false && document.getElementById("choix0").checked==false){
@@ -22,8 +17,6 @@
 					return true;
 				}				
 			}
-			
-			//function validateForm(){
 	  </script>
 
 	</head>
@@ -84,12 +77,15 @@
 			<label> <?php echo TXT_CREATION_ALREADY_OK; ?></label>
 			</br> </br>
 			
-			<?php $reactions = open("reaction.txt","w"); ?>
-			<input type="text" name="reac" value="bonjour" width="500" height="500" /> 
-			
+<!--
 			<iframe src="reactionTemp.txt" width="500" height="200"> </iframe>
-
+-->
 		</form>
+		
+		<form method="post" action="modifier.php">
+			 <textarea name="reactions" cols="100" rows="25"><?php echo file_get_contents( 'reactionTemp2.txt' ); ?> </textarea><br/>
+			 <input type="submit" value="modifier" />
+			</form>
 		</br> </br>
 
 		<h4><?php echo TXT_CREATION_FINISH; ?></h4>

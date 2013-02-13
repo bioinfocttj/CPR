@@ -1,2 +1,0 @@
--IRREV 
-reaction reaction reaction 
