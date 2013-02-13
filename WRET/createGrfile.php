@@ -6,7 +6,6 @@
 	</head>
 	<body>
 		<?php
-			require("languages/choosen_languages.php");
 
 			if(isset($_POST['button'])) { 
 				$num=$_POST["num"];
