@@ -26,7 +26,6 @@
 			<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 			<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
 			<li><a href="load.php">			<?php echo TXT_MENU_LOAD; ?>	</a></li>
-			<li><a href="modify.php">		<?php echo TXT_MENU_MODIFY; ?>	</a></li>
 			<li><a href="help.php">			<?php echo TXT_MENU_HELP; ?>	</a></li>
 			<li><a href=<?php echo $en?>><img src="Images/English-Language-Flag-3-icon.png" alt="english_flag.png"></a></li>
 			<li><a href=<?php echo $fr?>><img src="Images/French-Flag.png" alt="french_flag.png"></a></li>
@@ -230,7 +229,6 @@
 		<?php
 			session_start();
 			$commande = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -stoich '.$_FILES['sfile']['name'].' -rev '.$_FILES['rvfile']['name'].' -meta '.$_FILES['mfile']['name'].' -reac '.$_FILES['rfile']['name'].' -out text-doubles modes_inc_generules.text -normalize none -maxthreads 2 -generule '.$_FILES['grfile']['name'];
-			$expire=2*3600;
 			$_SESSION['commande']=$commande;
 			echo $commande;
 		?>
