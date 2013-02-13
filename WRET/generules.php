@@ -59,7 +59,7 @@
 			<label><?php echo TXT_GENERULES_RULES; ?></label>
 			<br/>
 			<textarea name="rules" cols="100" rows="25"><?php echo file_get_contents( 'generules.grfile' ); ?> </textarea><br/>
-			<input type="submit" value="Modifier" />
+			<input type="submit" value="<?php echo TXT_MODIFY_BUTTON;?>" />
 		</form>
 		<br/>
 		<br/>

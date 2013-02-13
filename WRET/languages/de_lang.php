@@ -45,6 +45,7 @@ define('TXT_CREATION_CLIC', "Sie müssen auf die Schaltfläche klicken");
 // Buttons 
 //---------------------------------------------------------
 define('TXT_ADD_BUTTON', "Hinzufügen");
+define('TXT_MODIFY_BUTTON', "Ändern");
 define('TXT_NEXTSTEP_BUTTON', "Nächsten Schritt");
 define('TXT_GO_BUTTON', "Anfang");
 

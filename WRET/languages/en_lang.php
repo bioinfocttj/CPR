@@ -45,6 +45,7 @@ define('TXT_CREATION_CLIC', "You have to click one the button");
 // Buttons create.php
 //---------------------------------------------------------
 define('TXT_ADD_BUTTON', "Add");
+define('TXT_MODIFY_BUTTON', "Modify");
 define('TXT_NEXTSTEP_BUTTON', "Next step");
 define('TXT_GO_BUTTON', "Go");
 
