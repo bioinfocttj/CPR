@@ -23,6 +23,7 @@
 		function waiting(){
 			//~ document.getElementById("results").innerHTML='<img src="../Images/waiting.gif" alt="please Wait...">';
 			//~ echo '<img src="Images/waiting.gif" alt="please Wait...">';
+			echo '<img src="Images/waiting_fun.gif" alt="please Wait...">';
 		}
 		function parse_res(){
 			$file = file('modes2.text');
