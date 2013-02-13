@@ -1,39 +1,50 @@
-<?php
-	# Opening the file containing all the metabolic metwork 
-	$file = file('reactionTemp2.txt');
+<!DOCTYPE html >
+<html>
+	<head>
+		<title><?php echo TXT_CREATION_SITE_TITLE; ?></title>
+		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	</head>
 	
-	$enzymes = array();
-	$space=" ";
-	$syntaxe=array("+","=>","=",":",".","\n");
+	<body>
+		<?php
+			# Opening the file containing all the metabolic metwork 
+			$file = file('reactionTemp2.txt');
+			
+			$enzymes = array();
+			$space=" ";
+			$syntaxe=array("+","=>","=",":",".","\n");
 
-	foreach($file as $cpt => $ligne) {
+			foreach($file as $cpt => $ligne) {
 
-		$array=explode($space,$ligne);
-		$precedent;
-		$verif = true;
+				$array=explode($space,$ligne);
+				$precedent;
+				$verif = true;
 
-		foreach($array as &$value){
-			if (preg_match("*:*",$value)==true){
-				$verif=true;
-				# Construction of the table of the reactions (enzymes) 
-				array_push($enzymes,$precedent);
+				foreach($array as &$value){
+					if (preg_match("*:*",$value)==true){
+						$verif=true;
+						# Construction of the table of the reactions (enzymes) 
+						array_push($enzymes,$precedent);
+					}
+					else if ($value=="-->"){
+						$verif=false;
+					}
+					$precedent=$value;
+				}
 			}
-			else if ($value=="-->"){
-				$verif=false;
+			# Opening the file containing all enzymes names 
+			$data = fopen('reactions.rfile','w');
+
+			# Save if the enzymes list in the file enzymes.txt
+			foreach($enzymes as $enz){
+				fputs($data, "\"$enz\" ");
 			}
-			$precedent=$value;
-		}
-	}
-	# Opening the file containing all enzymes names 
-	$data = fopen('reactions.rfile','w');
+			fclose($data);
 
-	# Save if the enzymes list in the file enzymes.txt
-	foreach($enzymes as $enz){
-		fputs($data, "\"$enz\" ");
-	}
-	fclose($data);
-
-	# Redirection to the file-creation page for regefmtool
-	header('Refresh:3 ; url=create.php');
-	echo 'You\'ll be redirected in about 3 secs. If not, click <a href="create.php">here</a>.';
-?>
+			# Redirection to the file-creation page for regefmtool
+			header('Refresh:3 ; url=create.php');
+			echo 'You\'ll be redirected in about 3 secs. If not, click <a href="create.php">here</a>.';
+		?>
+	</body>
+</html>

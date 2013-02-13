@@ -52,7 +52,7 @@ define('TXT_GO_BUTTON', "Lancement");
 // generules.php
 //---------------------------------------------------------
 define('TXT_GENERULES_SITE_TITLE', "Création des règles des gènes");
-define('TXT_GENERULES_TITLE', "Règle des gèenes");
+define('TXT_GENERULES_TITLE', "Règle des gènes");
 define('TXT_GENERULES_INSTRUCTION_1', "Ecrivez une nouvelle règle :");
 define('TXT_GENERULES_INSTRUCTION_2', "Choisissez le nombre de réaction :");
 define('TXT_GENERULES_INSTRUCTION_3', " Nombre de réaction dans la forme IF AND THEN");

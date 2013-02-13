@@ -1,8 +1,17 @@
+
+<!DOCTYPE html >
+<head>
+		<title><?php echo TXT_GENERULES_SITE_TITLE; ?></title>
+		<link rel='stylesheet' media='screen' type='text/css' href='style.css'/>
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>
+		
+		</head>
+		<body>
 <?php
 
 	echo "<script type='text/javascript'>";
 	echo "mytab=new Array();";
-	$file='enzymes.txt';
+	$file='reactions.rfile';
 	$content = fread(fopen($file, "r"), filesize($file));
 	$array1 = explode("\"",$content);
 	$j=0;
@@ -113,3 +122,5 @@
 	
 	echo "</script>";
 ?>
+</body>
+</html>
