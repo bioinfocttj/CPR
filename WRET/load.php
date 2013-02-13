@@ -5,6 +5,7 @@
 		<title><?php echo TXT_LOAD_SITE_TITLE; ?></title>
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<script  type="text/javascript" src="actionLoad.js">	</script>
 	</head>
 	<?php 
 		$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
@@ -290,23 +291,5 @@
 		?>
 	</br>
 		<a href='results.php'> Lancement </a>
-
-	</body>
-</html>
-
-		
-
-				</form>
-				</td></tr>
-			</table>
-		</div>
-		<?php
-		session_start();
-		$commande = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -stoich '.$_FILES['sfile']['name'].' -rev '.$_FILES['rvfile']['name'].' -meta '.$_FILES['mfile']['name'].' -reac '.$_FILES['rfile']['name'].' -out text-doubles modes_inc_generules.text -normalize none -maxthreads 2 -generule '.$_FILES['grfile']['name'];
-		$expire=2*3600;
-		$_SESSION['commande']=$commande;
-		echo $commande;
-		?>
-		<a href='results.php'>go</a>
 	</body>
 </html>

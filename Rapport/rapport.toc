@@ -20,16 +20,14 @@
 \contentsline {subsubsection}{R\IeC {\'e}sultats}{6}
 \contentsline {subsubsection}{Aide en ligne}{6}
 \contentsline {subsubsection}{Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seau}{6}
-\contentsline {subsubsection}{Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}existant}{7}
-\contentsline {subsubsection}{Lancement du programme}{7}
+\contentsline {subsubsection}{Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}existant}{6}
+\contentsline {subsubsection}{Lancement du programme}{6}
 \contentsline {subsubsection}{Affichage des r\IeC {\'e}sultats}{7}
-\contentsline {subsubsection}{Comparaison des r\IeC {\'e}sultats}{7}
 \contentsline {subsection}{\numberline {1.3.2}Besoins non fonctionnels}{7}
 \contentsline {subsubsection}{Portabilit\IeC {\'e}}{7}
 \contentsline {subsubsection}{S\IeC {\'e}curit\IeC {\'e} et robustesse}{7}
-\contentsline {subsubsection}{Temps de calcul}{7}
-\contentsline {subsubsection}{Documentation}{8}
-\contentsline {chapter}{\numberline {2}Conception}{9}
-\contentsline {section}{\numberline {2.1}R\IeC {\`e}gles g\IeC {\'e}n\IeC {\'e}rales}{9}
-\contentsline {chapter}{\numberline {3}R\IeC {\'e}alisation}{10}
-\contentsline {section}{\numberline {3.1}R\IeC {\`e}gles g\IeC {\'e}n\IeC {\'e}rales}{10}
+\contentsline {subsubsection}{Documentation}{7}
+\contentsline {chapter}{\numberline {2}Conception}{8}
+\contentsline {section}{\numberline {2.1}R\IeC {\`e}gles des g\IeC {\`e}nes}{8}
+\contentsline {chapter}{\numberline {3}R\IeC {\'e}alisation}{9}
+\contentsline {section}{\numberline {3.1}R\IeC {\`e}gles g\IeC {\'e}n\IeC {\'e}rales}{9}

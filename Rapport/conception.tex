@@ -2,12 +2,12 @@
 \chapter{Conception}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Règles générales}
-Lorsque l'utilisateur a choisi de créer un nouveau réseau métabolique, il doit créer les règles qui permettront de le définir. Cette étape n'est possible que lorsque l'utilisateur a créer son réseau et donné les réactions réversibles.\\
+\section{Règles des gènes}
+Lorsque l'utilisateur a choisi de créer un nouveau réseau métabolique, il doit créer les règles qui permettront de le définir. Cette étape n'est possible que lorsque l'utilisateur a créé l'ensemble des réactions constituants sont réseau.\\
 
 Tout d'abord, l'utilisateur choisi le nombre de réactions qui composent la règle qu'il veut créer.
-Une fois ce choix effectué, il clique sur le bouton "ok". S'affichent alors deux menus déroulant par réaction. Le premier permet de choisir la réaction et le second sa valeur (0 ou 1).\\
+Une fois ce choix effectué, il clique sur le bouton "ok". S'affichent alors de deux ou trois menus déroulant par réaction. Quand il y en a trois, le premier permet de choisir l'opérateur, le second, la réaction et le dernier sa valeur (0 ou 1). Quand il y en a deux, ils correspondent à la réaction et à sa valeur. L'utilisateur doit entrer un nombre de réactions au moins égal à deux.
 
-L'utilisateur ne peut sélectionner le nom de la deuxième réaction que lorsqu'il a choisi la première, ce qui l'empêche de choisir deux fois la même réaction. Le même principe s'applique a chaque nouvelle réaction choisie.\\
+L'utilisateur ne peut sélectionner le nom d'une réaction que lorsqu'il a choisi la précédente. Ceci permet de ne proposer que les réactions non sélectionnées précédemment pour le choix de la dernière réaction composant la règle (principe utilisé dans la documentation de \emph{regEfmtool}).\\
 
-Enfin, quand l'utilisateur a sélectionné toutes les réactions ainsi que leur valeur, il clique sur le bouton "Ajouter", la règle est alors écrite dans le fichier \emph{grfile}.
+Enfin, quand l'utilisateur a sélectionné toutes les réactions ainsi que leur valeur, il clique sur le bouton "Ajouter", la règle est alors écrite dans le fichier \emph{grfile.txt} si l'utilisateur a bien rempli tous les champs.
