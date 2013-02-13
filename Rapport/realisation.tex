@@ -2,14 +2,14 @@
 \chapter{Réalisation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Règles générales}
+\section{Règles des gènes}
 La page permettant la saisie des règles générales est obtenue à l'aide du fichier \emph{generules.php}.\\
-L'affichage à l'ouverture de la page n'est composé que d'une zone de texte et d'un bouton "ok" qui est de type submit. Au clic, il fait appel à la fonction \emph{add\_reaction()} qui créée deux menus déroulant (pour la première et la dernière) ou trois menus déroulants (pour les autres) par réaction jusqu'à atteindre le nombre de réactions entrées par l'utilisateur. Elle vérifie également que le nombre de réactions entrées par l'utilisateur est au moins égal à 2, sinon elle affiche un message sous la forme d'une alert à l'utilisateur.\\
-Les réactions sont récupérées à partir de ???.\\
+L'affichage à l'ouverture de la page n'est composé que d'une zone de texte et d'un bouton \emph{ok} qui est de type submit. Au clic, il fait appel à la fonction \emph{add\_reaction()} qui créée deux menus déroulant (pour la première et la dernière) ou trois menus déroulants (pour les autres) par réaction jusqu'à atteindre le nombre de réactions entrées par l'utilisateur. Elle vérifie également que le nombre de réactions entrées par l'utilisateur est au moins égal à 2, sinon elle affiche un message sous la forme d'une alert à l'utilisateur.\\
+Les réactions sont récupérées à partir de \emph{reactions.rfile}.\\
 
 L'utilisateur peur sélectionner plusieurs fois la m\^eme réaction dans sa règle, sauf pour le choix de la dernière (ligne THEN). Cette particularité est gérée par la fonction \emph{choice(form, val)}. Celle-ci permet de remplir les menus déroulants quand une réaction a été choisie et pour la dernière seules les réactions non sélectionnées précédemment appara\^issent.
 
-Lorsque l'utilisateur a choisi toutes ses réactions, leur opérateur et leur valeur, il clique sur le bouton "Ajouter". Celui-ci fait appel à la fonction \emph{validateForm()} qui vérifie que tous les champs ont bien été sélectionnés. Si la fonction retourne VRAI, il fait appel au fichier \emph{createGrfile.php} qui écrit la règle dans le fichier \emph{grfile.txt}.\\
+Lorsque l'utilisateur a choisi toutes ses réactions, leur opérateur et leur valeur, il clique sur le bouton \emph{Ajouter}. Celui-ci fait appel à la fonction \emph{validateForm()} qui vérifie que tous les champs ont bien été sélectionnés. Si la fonction retourne VRAI, il fait appel au fichier \emph{createGrfile.php} qui écrit la règle dans le fichier \emph{grfile.txt}.\\
 Le fichier \emph{createGrfile.php} écrit dans le fichier \emph{grfile} selon certaines règles. En effet, l'écriture de la règle dépend des valeurs associées aux réactions et des opérateurs choisis.\\
 
 Si la valeur de la réaction qui suit le "THEN" est 0, alors il y aura le symbole "!" au début de la règle (juste après le "="), sauf si la règle ne contient que deux réactions.\\
@@ -27,7 +27,7 @@ En revanche, si la valeur de la réaction après "THEN" est 1, les autres réact
 \end{itemize}
 De plus, si l'opérateur "AND" est sélectionné il sera écrit sous la forme \& dans le fichier, l'opérateur OR sera lui écrit $|$. Quand la règle est composée d'au moins trois réactions, des parenthèses sont ajoutées après chaque réaction sauf la première et la dernière. Des parenthèses entourent l'ensemble des réactions situées après le "=".\\
 
-Pour mieux comprendre l'écriture du fichier \emph{grfile}, voici un exemple:\\
+Pour mieux comprendre l'écriture du fichier \emph{generules.grfile}, voici un exemple:\\
 Choix de l'utilisateur sur la page web:\\
 \textbf{IF réaction: R1 valeur: 1\\
 Opérateur: AND réaction: R2 valeur: 0\\

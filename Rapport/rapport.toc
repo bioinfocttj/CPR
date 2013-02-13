@@ -28,6 +28,8 @@
 \contentsline {subsubsection}{S\IeC {\'e}curit\IeC {\'e} et robustesse}{9}
 \contentsline {subsubsection}{Documentation}{9}
 \contentsline {chapter}{\numberline {2}Conception}{10}
-\contentsline {section}{\numberline {2.1}R\IeC {\`e}gles des g\IeC {\`e}nes}{10}
-\contentsline {chapter}{\numberline {3}R\IeC {\'e}alisation}{11}
-\contentsline {section}{\numberline {3.1}R\IeC {\`e}gles g\IeC {\'e}n\IeC {\'e}rales}{11}
+\contentsline {section}{\numberline {2.1}Interface graphique}{10}
+\contentsline {section}{\numberline {2.2}Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seau}{10}
+\contentsline {section}{\numberline {2.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{11}
+\contentsline {chapter}{\numberline {3}R\IeC {\'e}alisation}{12}
+\contentsline {section}{\numberline {3.1}R\IeC {\`e}gles des g\IeC {\`e}nes}{12}
