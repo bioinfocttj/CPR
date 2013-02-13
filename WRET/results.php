@@ -5,7 +5,7 @@
 	<head>
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-		<title><?php echo TXT_SITE_TITLE; ?></title>
+		<title><?php echo TXT_DISPLAY_RESULTS_SITE_TITLE; ?></title>
 		<style media="all" type="text/css"></style>
 	<?php
 		function compare(){
@@ -78,12 +78,13 @@
 		</ul>
 	</div>
 	<body>
+		<h1><?php echo TXT_DISPLAY_RESULTS_TITLE; ?></h1>
 		<div id="results" name="results" title="waiting_results" >
 			<?php 
 				if ($_SESSION["isCompared"]==0){
 					$res=$_SESSION["compare"];
 					echo "<div id='original' name='original' title='original results' >";
-					echo '<p>original</p>';
+					echo '<p>' . TXT_DISPLAY_RESULTS_ORIGINAL . '</p>';
 					show_results($res);
 					echo "</div>";
 				}
@@ -96,7 +97,7 @@
 					}
 					echo '<script>document.getElementById("new").innerHTML = "";</script>';
 					$res2=parse_res();
-					echo "<p>nouveau</p>";
+					echo '<p>' . TXT_DISPLAY_RESULTS_NEW . '</p>';
 					show_results($res2);
 					$_SESSION['compare']=$res2;
 				?>
@@ -114,8 +115,8 @@
 		</div>
 		<div id='compare' name='compare'>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-				<input type="submit" name="compare" value="compare">
-				<input type="submit" name="finish" value="finish">
+				<input type="submit" name="compare" value="<?php echo TXT_COMPARE_BUTTON; ?>">
+				<input type="submit" name="finish" value="<?php echo TXT_FINISH_BUTTON; ?>">
 			</form>
 			<?php
 				if(isset($_POST['compare'])) {compare();}

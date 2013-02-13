@@ -48,12 +48,14 @@ define('TXT_ADD_BUTTON', "Ajouter");
 define('TXT_MODIFY_BUTTON', "Modifier");
 define('TXT_NEXTSTEP_BUTTON', "Étape suivante");
 define('TXT_GO_BUTTON', "Lancement");
+define('TXT_COMPARE_BUTTON', "Comparer");
+define('TXT_FINISH_BUTTON', "Finir");
 
 //---------------------------------------------------------
 // generules.php
 //---------------------------------------------------------
 define('TXT_GENERULES_SITE_TITLE', "Création des règles des gènes");
-define('TXT_GENERULES_TITLE', "Règle des gènes");
+define('TXT_GENERULES_TITLE', "Règles des gènes");
 define('TXT_GENERULES_INSTRUCTION_1', "Ecrivez une nouvelle règle :");
 define('TXT_GENERULES_INSTRUCTION_2', "Choisissez le nombre de réaction :");
 define('TXT_GENERULES_INSTRUCTION_3', " Nombre de réaction dans la forme IF AND THEN");
@@ -252,12 +254,14 @@ define('TXT_PARSE_RESULTS_TITLE', "Extraction des résultats");
 define('TXT_PARSE_RESULTS_FILE', "Fichier traité : ");
 
 //---------------------------------------------------------
-// display_results.php
+// results.php
 //---------------------------------------------------------
 define('TXT_DISPLAY_RESULTS_SITE_TITLE', "Résultats");
 define('TXT_DISPLAY_RESULTS_TITLE', "Affichage des résultats");
 define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Fichier choisi");
 define('TXT_DISPLAY_RESULTS_FILE', "Fichier traité : ");
+define('TXT_DISPLAY_RESULTS_ORIGINAL', "original : ");
+define('TXT_DISPLAY_RESULTS_NEW', "nouveau : ");
 
 //---------------------------------------------------------
 // Fin
