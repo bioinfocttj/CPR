@@ -55,9 +55,12 @@
 		
 		<form id='b2' name='form' method='POST' action='createGrfile.php' onSubmit='return validateForm()'></form>
 		<br/> <br/>
+		<form method="post" action="modifyRules.php">
 			<label><?php echo TXT_GENERULES_RULES; ?></label>
 			<br/>
-			<iframe src="grfile.txt" width="650" height="200"> </iframe>
+			<textarea name="rules" cols="100" rows="25"><?php echo file_get_contents( 'generules.grfile' ); ?> </textarea><br/>
+			<input type="submit" value="Modifier" />
+		</form>
 		<br/>
 		<br/>
 		<input type="submit" name="button2" value="<?php echo TXT_NEXTSTEP_BUTTON; ?>" onclick="self.location.href='options.php'"/>
