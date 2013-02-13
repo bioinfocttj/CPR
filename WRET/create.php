@@ -14,7 +14,7 @@
 	  		// }
 			function validateForm(){
 				console.log('coucou');
-				if (document.getElementById("choix1").checked==false && document.getElementById("choix1").checked==false){
+				if (document.getElementById("choix1").checked==false && document.getElementById("choix0").checked==false){
 					alert("vous devez choisir la réversibilité");
 					return false;
 				}
@@ -84,9 +84,8 @@
 			<label> <?php echo TXT_CREATION_ALREADY_OK; ?></label>
 			</br> </br>
 			
-<!--
-			<input type="text" name="reac" value= <?php open("reaction.txt","w"); ?> width="500" height="500" /> 
--->
+			<?php $reactions = open("reaction.txt","w"); ?>
+			<input type="text" name="reac" value="bonjour" width="500" height="500" /> 
 			
 			<iframe src="reactionTemp.txt" width="500" height="200"> </iframe>
 
