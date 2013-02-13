@@ -37,4 +37,5 @@
 \contentsline {section}{\numberline {3.3}Nom de r\IeC {\'e}actions : enzymes}{12}
 \contentsline {section}{\numberline {3.4}M\IeC {\'e}tabolites}{13}
 \contentsline {section}{\numberline {3.5}sto\IeC {\'e}chiom\IeC {\'e}trie}{13}
-\contentsline {section}{\numberline {3.6}R\IeC {\`e}gles des g\IeC {\`e}nes}{13}
+\contentsline {section}{\numberline {3.6}Modification du r\IeC {\'e}seaux}{13}
+\contentsline {section}{\numberline {3.7}R\IeC {\`e}gles des g\IeC {\`e}nes}{13}
