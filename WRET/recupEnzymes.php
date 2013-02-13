@@ -2,7 +2,7 @@
 
 	echo "<script type='text/javascript'>";
 	echo "mytab=new Array();";
-	$file='enzymes.txt';
+	$file='reactions.rfile';
 	$content = fread(fopen($file, "r"), filesize($file));
 	$array1 = explode("\"",$content);
 	$j=0;

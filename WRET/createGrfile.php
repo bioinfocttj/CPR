@@ -22,7 +22,7 @@
 			}
 		}
 		
-		$data = fopen('grfile.txt','a'); // writting the grfile
+		$data = fopen('generules.grfile','a'); // writting the grfile
 		fputs($data, $myarray[$num][0]);
 		
 		$reac0=$myarray[$num ][1];

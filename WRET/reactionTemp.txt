@@ -15,3 +15,7 @@ reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .
 reaction : reag1 + reag2 => 2 prod1 + 4 prod2 . 
 reaction : reag1 + reag2 => 2 prod1 + 4 prod2 . 
 reaction : reag1 + reag2 => 2 prod1 + 4 prod2 . 
+reaction1 : reag1 + reag2 => 2 prod1 + 4 prod2 . 
+reaction2 : reag21 + reag22 => 2 prod21 + 2 prod22 . 
+reaction3 : reag5 + reag4 => 4 prod31 + 4 prod32 . 
+reaction4 : 5 reag41 + reag42 => 2 prod41 + 4 prod42 . 
