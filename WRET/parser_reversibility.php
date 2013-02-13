@@ -10,7 +10,7 @@
 		<?php
 
 			# Opening of the file
-			$file = file('reaction.txt');
+			$file = file('reactionTemp.txt');
 			$space=" ";
 			$syntaxe=array("+","=>","=",":","\n");
 			$reversibility = array();
