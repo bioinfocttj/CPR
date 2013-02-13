@@ -48,6 +48,8 @@ define('TXT_ADD_BUTTON', "Hinzufügen");
 define('TXT_MODIFY_BUTTON', "Ändern");
 define('TXT_NEXTSTEP_BUTTON', "Nächsten Schritt");
 define('TXT_GO_BUTTON', "Anfang");
+define('TXT_COMPARE_BUTTON', "vergleichen");
+define('TXT_FINISH_BUTTON', "beenden");
 
 //---------------------------------------------------------
 // generules.php
@@ -264,6 +266,8 @@ define('TXT_DISPLAY_RESULTS_SITE_TITLE', "Ergebnisse");
 define('TXT_DISPLAY_RESULTS_TITLE', "Ergebnisse anzeigen");
 define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Ausgewählte Datei");
 define('TXT_DISPLAY_RESULTS_FILE', "Bearbeiteten Datei : ");
+define('TXT_DISPLAY_RESULTS_ORIGINAL', "Original : ");
+define('TXT_DISPLAY_RESULTS_NEW', "neu : ");
 //---------------------------------------------------------
 // Fin
 //---------------------------------------------------------

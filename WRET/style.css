@@ -377,3 +377,25 @@ div#buttons4-4 {
 	width:100px;
 }
 
+div#log{
+	float:right;
+	width:30%;
+
+}
+div#original{
+	float:left;
+	width:30%;
+}
+}
+div#results{
+	float:left;
+	width:60%;
+}
+div#new{
+	float:left;
+	width:30%;
+}
+div#compare{
+	float:left;
+	width:60%;
+}
