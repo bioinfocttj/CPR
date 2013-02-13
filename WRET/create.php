@@ -67,7 +67,7 @@
 		
 		<h4><?php echo TXT_CREATION_INSTRUCTION_1; ?></h4>
 		
-		<form  name="formulaireR" method="POST" action="createFiles.php">
+		<form  name="formulaireR" method="POST" action="createFiles.php" onSubmit="return validateForm()">
 			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60" onfocus="this.value = this.value=='reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .'?'':this.value;" onblur="this.value = this.value==''?'reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .':this.value;"/> 
 
 			</br> </br>
@@ -83,6 +83,11 @@
 			<input type="submit" name="button" value="<?php echo TXT_ADD_BUTTON; ?>" /></br></br> </br>
 			<label> <?php echo TXT_CREATION_ALREADY_OK; ?></label>
 			</br> </br>
+			
+<!--
+			<input type="text" name="reac" value= <?php open("reaction.txt","w"); ?> width="500" height="500" /> 
+-->
+			
 			<iframe src="reactionTemp.txt" width="500" height="200"> </iframe>
 
 		</form>
