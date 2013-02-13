@@ -40,9 +40,12 @@
 
 		<p><?php echo TXT_HELP_INTRO; ?> </p>
 		</br>
-		<h3><?php echo TXT_HELP_FILES; ?></h3>
-			<h4><?php echo TXT_HELP_METABO; ?></h4>
-	   			<p><?php echo TXT_HELP_EXTENSION; ?></p>
+		<h3><?php echo TXT_HELP_FILES_LOAD; ?></h3>
+	   	<h3><?php echo TXT_HELP_FILES_CREATE; ?></h3>
+			<ul>
+				<li><a href="help_create.php">		<?php echo TXT_HELP_CREATION; ?> 	</a></li>
+				<li><a href="help_rules.php">		<?php echo TXT_HELP_GENERULES; ?> 	</a></li>
+			</ul>
 		<p><?php echo TXT_HELP_SUITE; ?></p>
 	</body>
 </html>

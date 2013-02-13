@@ -184,9 +184,10 @@ define('TXT_OPTIONS_EFM_AUTO_T_2', "Nein ");
 
 define('TXT_HELP_TITLE', "Online-Hilfe");
 define('TXT_HELP_INTRO', "Dies ist eine Beihilfe für die Verwendung von Online-RegEfmtool.");
-define('TXT_HELP_FILES', "Lädt vorhandene Dateien von Ihrer Festplatte");
-define('TXT_HELP_METABO', "Metaboliten");
-define('TXT_HELP_EXTENSION', " Die Verlängerung muss vom Typ 'mfile' sein <br /> Der Inhalt der Form : 'A' 'B' 'C' 'D' 'P' ");
+define('TXT_HELP_FILES_LOAD', "Lädt vorhandene Dateien von Ihrer Festplatte");
+define('TXT_HELP_FILES_CREATE', "Schaffung von neuen metabolische Netzwerk");
+define('TXT_HELP_CREATION', "Aide à la création d'un réseau");
+define('TXT_HELP_GENERULES', "Aide à la création des règles des gènes");
 define('TXT_HELP_SUITE', "Der Rest kommt ...");
 
 //---------------------------------------------------------
