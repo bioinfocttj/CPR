@@ -53,6 +53,9 @@
 	?>
 	</head>
 	<?php 
+		
+		if (isset($_COOKIE['commande'])) $_SESSION['commande']=$_COOKIE['commande']; 
+		
 		$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
 		$host = $_SERVER['HTTP_HOST'];
 		$script = $_SERVER['SCRIPT_NAME'];
