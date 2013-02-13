@@ -28,6 +28,18 @@ Enfin après génération des fichiers: \emph{rvfile}, \emph{mfile}, \emph{sfile
 Une fois les fichiers générés l'utilisateur est redirigé sur la page \emph{create.php}.
 Sous la touche \emph{ajouter} se trouve une zone de texte ou on peut modifier un réseaux déja rentré. En effet cette zone appel le fichier \emph{reactionTemp.txt} est permet la modification de son contenu (pour corriger une erreure de frappe notament). Cette zone de texte lors de l'utilisation de la touche \emph{modifier} va appeler la page \emph{modifier.php}. Cette page efface le précédant fichier \emph{reactionTemp.txt} et insère le nouveau contenu que l'utilisateur a modifié.
 
+\section{Création du fichier \emph{DAT}}
+Sous la zone de texte modifiable, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédement rentré.
+Cette touche appelle la page \emph{finish\_files.php} qui va concatener trois fichiers :
+\begin{itemize}
+\item \emph{irrevTemp.txt}
+\item \emph{revTemp.txt}
+\item \emph{reactiontemp2.txt}
+\end{itemize}
+Le premier fichier contient l'ensemble des enzymes catalysant les réactions irreversibles.
+Le second contient l'ensemble des enzymes catalysant des réactions réversibles, et enfin le dernier fichier contenant l'ensemble des réactions du réseaux.
+Chacun de ces fichiers contient les balises \emph{-IRREV}, \emph{-REV}, \emph{-CAT}, selon son contenu et respecte la syntaxe propre au format \emph{DAT}.
+
 
 
 \section{Règles des gènes}
