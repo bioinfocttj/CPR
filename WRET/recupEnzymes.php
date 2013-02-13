@@ -1,3 +1,12 @@
+
+<!DOCTYPE html >
+<head>
+		<title><?php echo TXT_GENERULES_SITE_TITLE; ?></title>
+		<link rel='stylesheet' media='screen' type='text/css' href='style.css'/>
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>
+		
+		</head>
+		<body>
 <?php
 
 	echo "<script type='text/javascript'>";
@@ -113,3 +122,5 @@
 	
 	echo "</script>";
 ?>
+</body>
+</html>
