@@ -1,16 +1,29 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+<?php session_start();?>
 <html>
 	<head>
 		<title>results</title>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		
 	<?php
+		function compare(){
+			$_SESSION["isCompared"]=0;
+			print ("<script language = \"JavaScript\">");
+			print ("location.href = 'index.php';"); 
+			print ("</script>");
+		}
+		function finish(){
+			$_SESSION["isCompared"]=1;
+			print ("<script language = \"JavaScript\">"); 
+			print ("location.href = 'index.php';"); 
+			print ("</script>");
+		}
 		function waiting(){
-			//~ document.getElementById("results").innerHTML='<img src="Images/waiting.gif" alt="please Wait...">';
-			echo '<img src="Images/waiting_fun.gif" alt="please Wait...">';
+			//~ document.getElementById("results").innerHTML='<img src="../Images/waiting.gif" alt="please Wait...">';
+			//~ echo '<img src="Images/waiting.gif" alt="please Wait...">';
 		}
 		function parse_res(){
-			$file = file('modes_inc_generules.text');
+			$file = file('modes2.text');
 			//~ $lines=explode("\n",$file);
 			$modes=array();
 			$i=0;
@@ -21,7 +34,10 @@
 				$i++;
 				//~ echo '<p>'.$lines.'</p>';
 			}
-
+			return $modes;
+			//~ echo '<p>' . $modes[2][3] . '</p>';
+		}
+		function show_results($modes){
 			foreach($modes as $value){
 				$temp = '';
 				foreach ($value as $v){
@@ -30,27 +46,43 @@
 				}
 				echo '<p>' . $temp . '</p>';
 			}
-			//~ echo '<p>' . $modes[2][3] . '</p>';
 		}
 	?>
 	</head>
 	<body>
-			plouf
-				<?php 
-				session_start();
-			echo '<p>' . $_SESSION['commande'] . '</p>';?>
 		<div id="results" name="results" title="waiting_results" >
-		<?php 
-			//~ echo '<p>ploup</p>';
-			if (!isset($res)){
-			echo '<script>document.getElementById("results").innerHTML = "";</script>';
-				waiting();
+			<?php 
+			if ($_SESSION["isCompared"]==0){
+				$res=$_SESSION["compare"];
+				echo "<div id='original' name='original' title='original results' >";
+				echo '<p>original</p>';
+				show_results($res);
+				echo "</div>";
 			}
-			echo '<script>document.getElementById("results").innerHTML = "";</script>';
-			parse_res();
+			?>
+			<div id="new" name="new" title="new results">
+				<?php
+					if (!isset($modes)){
+						echo '<script>document.getElementById("new").innerHTML = "";</script>';
+						waiting();
+					}
+					echo '<script>document.getElementById("new").innerHTML = "";</script>';
+					$res2=parse_res();
+					echo "<p>nouveau</p>";
+					show_results($res2);
+					$_SESSION['compare']=$res2;
+				?>
+			</div>
+		
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+			<input type="submit" name="compare" value="compare">
+			<input type="submit" name="finish" value="finish">
+		</form>
+		<?php
+			if(isset($_POST['compare'])) {compare();}
+			else if (isset($_POST['finish'])){finish();}
 		?>
 		</div>
-		
 	</body>
 
 <!--
