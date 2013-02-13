@@ -19,6 +19,13 @@
 			}
 	  </script>
 
+	  <script type="text/javascript">
+			// Popup window code
+			function newPopup(url) {
+				popupWindow = window.open(url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+			}
+		</script>
+
 	</head>
 	<?php 
 		$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
@@ -59,6 +66,8 @@
 		</form>	
 		
 		<h4><?php echo TXT_CREATION_INSTRUCTION_1; ?></h4>
+
+		<a href="JavaScript:newPopup('help_create.php');"><?php echo TXT_GENERULES_HELP_RULES; ?></a> <br/><br/>
 		
 		<form  name="formulaireR" method="POST" action="createFiles.php" onSubmit="return validateForm()">
 			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60" onfocus="this.value = this.value=='reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .'?'':this.value;" onblur="this.value = this.value==''?'reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .':this.value;"/> 

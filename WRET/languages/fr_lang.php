@@ -190,7 +190,8 @@ define('TXT_HELP_SUITE', "Le reste est à venir ...");
 //---------------------------------------------------------
 //help_rule.php
 //--------------------------------------------------------
-define('TXT_HELP_RULE_TITLE', "Aide à la création des règles des gène");
+define('TXT_HELP_RULE_TITLE', "Aide");
+define('TXT_HELP_RULE_TITLE1', "Aide à la création des règles des gène");
 define('TXT_HELP_RULE_INTRO', "La réaction gène-enzyme est générée grâce à des règles booléennes, comme par exemple R2= !R1.\n
 Ce qui veut dire:\n");
 define('TXT_FLUX_1', "Que la réaction R2 ne doit pas apporter de flux si R1 apporte un flux");
@@ -208,6 +209,21 @@ lors du calcul des modes élémentaires.");
 define('TXT_HELP_RULE_INFO_3', "La traduction des règles précédentes est:");
 define('TXT_R1_2', "R3 = (1R1 & (!0R2))");
 define('TXT_R2_2', "R1 = (!((!0R4) | 1R2))");
+
+//---------------------------------------------------------
+//help_create.php
+//--------------------------------------------------------
+define('TXT_HELP_CREATE_TITLE', "Aide");
+define('TXT_HELP_CREATE_TITLE1', "Aide à la création d'un nouveau réseau");
+define('TXT_HELP_CREATE_INTRO', "Pour la création de votre réseau, vous devez générer certains fichiers au fur et à mesure.");
+define('TXT_HELP_CREATE_1', "Cliquer sur le bouton \"Initialiser fichiers\".");
+define('TXT_HELP_CREATE_2', "Écrire les réactions du réseau une par une (en veillant à préciser la stoechiométrie à chaque fois). ");
+define('TXT_HELP_CREATE_3', "Cliquer sur le bouton \"Ajouter\" pour valider la réaction. ");
+define('TXT_HELP_CREATE_4', "Si vous avez fait une erreur de saisie, vous pouvez la modifier dans la zone de texte \"Réactions déjà rentrées\".");
+define('TXT_HELP_CREATE_5', "Ensuite, cliquer sur \"Modifier\" pour que les modifications soient prises en compte.");
+define('TXT_HELP_CREATE_6', "Vous ne pouvez pas rentrer directement une réaction dans cette zone de texte, ni en supprimer une. ");
+define('TXT_HELP_CREATE_7', "Vous pouvez créer un fichier.dat qui contiendra votre réseau en cliquant sur le bouton \"DAT\". ");
+define('TXT_HELP_CREATE_8', "Lorsque vous avez terminé, cliquer sur \"Étape suivante\" pour passer à la création des règles. ");
 
 //---------------------------------------------------------
 // copyright.php

@@ -2,7 +2,7 @@
 	<?php require("languages/choosen_languages.php");?>
 <html>
 	<head>
-		<title>Help</title>
+		<title><?php echo TXT_HELP_RULE_TITLE; ?></title>
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	</head>
@@ -23,7 +23,7 @@
 	
 	<body>
 		<div id="loadBody">
-			<h1><?php echo TXT_HELP_RULE_TITLE; ?></h1>
+			<h1><?php echo TXT_HELP_RULE_TITLE1; ?></h1>
 		</div>
 
 		<p><?php echo TXT_HELP_RULE_INTRO; ?> </p>

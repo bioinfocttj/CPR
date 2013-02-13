@@ -190,7 +190,8 @@ define('TXT_HELP_SUITE', "The rest is coming ...");
 //---------------------------------------------------------
 //help_rule.php
 //--------------------------------------------------------
-define('TXT_HELP_RULE_TITLE', "Help to gene rule creation");
+define('TXT_HELP_RULE_TITLE', "Help");
+define('TXT_HELP_RULE_TITLE1', "Help to gene rule creation");
 define('TXT_HELP_RULE_INTRO', "The gene-enzyme-reaction mapping is typically provided by boolean rules, e.g R2 = !R1.</br>
 Which means that:");
 define('TXT_HELP_RULE_FLUX_1', "The reaction R2 must not carry a flux, if R1 carries a flux ");
@@ -208,6 +209,21 @@ define('TXT_HELP_RULE_INFO_2', "When you click on the \"Add\" button, the rules 
 define('TXT_HELP_RULE_INFO_3', "The traduction of the rules is:");
 define('TXT_HELP_RULE_R1_2', "R3 = (1R1 & (!0R2))");
 define('TXT_HELP_RULE_R2_2', "R1 = (!((!0R4) | 1R2))");
+
+//---------------------------------------------------------
+//help_create.php
+//--------------------------------------------------------
+define('TXT_HELP_CREATE_TITLE', "Help");
+define('TXT_HELP_CREATE_TITLE1', "Help to create a new chemical network");
+define('TXT_HELP_CREATE_INTRO', "To create your network, you have to generate some files.");
+define('TXT_HELP_CREATE_1', "Click on the button \"Init files\".");
+define('TXT_HELP_CREATE_2', "Write the reactions of the network one by one (you have to precise the stoechimetry each time). ");
+define('TXT_HELP_CREATE_3', "Click on the button \"Add\" for validate your reactions. ");
+define('TXT_HELP_CREATE_4', "If you have made a mistake, you can modify in the text-zone \"Reactions already saved\".");
+define('TXT_HELP_CREATE_5', "Then, click on \"Modify\" for the changes to take effect.");
+define('TXT_HELP_CREATE_6', "You can not write directly a reaction in this text-zone, or not delete one. ");
+define('TXT_HELP_CREATE_7', "You can create a file.dat which will contain your chemical network by clicking on the button \"DAT\". ");
+define('TXT_HELP_CREATE_8', "When you have finished, click on \"Next step\" to move to the creation of rules step. ");
 
 //---------------------------------------------------------
 // copyright.php
