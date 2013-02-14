@@ -155,6 +155,7 @@ define('TXT_OPTIONS_OUTPUT_10', "Nom du fichier : ");
 define('TXT_OPTIONS_OUTPUT_11', "Matlab : ");
 define('TXT_OPTIONS_OUTPUT_12', "Nom du fichier (sans extension) ");
 define('TXT_OPTIONS_EFMTOOL', "Paramètres d'EfmTool ");
+define('TXT_OPTIONS_EFM_CMD', "Commande");
 define('TXT_OPTIONS_EFM_LINE', "Ligne de commandes ");
 define('TXT_OPTIONS_EFM_ADJA', "Méthode d'adjacence  ");
 define('TXT_OPTIONS_EFM_ADJA_1', "Pattern-tree-minzero ");

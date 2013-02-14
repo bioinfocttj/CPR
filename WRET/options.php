@@ -136,8 +136,8 @@
 							<input type="radio"		name="choix7" 	value="out count"> 			<?php echo TXT_OPTIONS_OUTPUT_2; ?>	 			<br/>
 							<input type="radio" 	name="choix7" 	value="out text-boolean"> 	<?php echo TXT_OPTIONS_OUTPUT_3; ?>
 							<?php echo TXT_OPTIONS_OUTPUT_4; ?> 	<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte7"> 	<br/>
-							<input type="radio" 	name="choix7" 	value="out text-doubles"> 	<?php echo TXT_OPTIONS_OUTPUT_5; ?>
-							<?php echo TXT_OPTIONS_OUTPUT_6; ?> 	<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte71"> <br/>	
+							<input type="radio" 	name="choix7" 	value="out text-doubles" checked="checked"> 	<?php echo TXT_OPTIONS_OUTPUT_5; ?>
+							<?php echo TXT_OPTIONS_OUTPUT_6; ?> 	<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte71" value="results.txt"> <br/>	
 							<input type="radio" 	name="choix7" 	value="out binary-boolean"> <?php echo TXT_OPTIONS_OUTPUT_7; ?>
 							<?php echo TXT_OPTIONS_OUTPUT_8; ?>		<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte72"> <br/>
 							<input type="radio" 	name="choix7" 	value="out binary-doubles"> <?php echo TXT_OPTIONS_OUTPUT_9; ?>
@@ -155,7 +155,7 @@
 					</div>
 					<div id="subPart">
 						<div id="subPart3-1">
-							<p>plouf</p>
+							<p>	<?php echo TXT_OPTIONS_EFM_CMD; ?> </p>
 						</div>
 						<div id="subPart3-2">
 							<h4><?php echo TXT_OPTIONS_EFM_ADJA; ?>	</h4>
@@ -173,8 +173,8 @@
 							<input type="radio" name="choix9" value="adjacency-method pattern-tree-rank"> 		<?php echo TXT_OPTIONS_EFM_ADJA_2; ?> 	<br/>	
 						</div>
 						<div id="buttons3-3">
-							<input type="radio" name="choix10" value="maxthreads"> <?php echo TXT_OPTIONS_EFM_THREADS_1; ?>				
-								<?php echo TXT_OPTIONS_EFM_THREADS_2; ?> 	<input type="text" 		name="maxthreads_value" 	size="10" id="texte10">
+							<input type="radio" name="choix10" value="maxthreads" checked="checked"> <?php echo TXT_OPTIONS_EFM_THREADS_1; ?>				
+								<?php echo TXT_OPTIONS_EFM_THREADS_2; ?> 	<input type="text" 		name="maxthreads_value" 	size="5" id="texte10" value="2">
 						</div>
 					</div>
 
