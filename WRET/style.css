@@ -35,6 +35,26 @@ select#box1 {
 	margin-top:-30px; 
 	/*margin-left:25px; */
 }
+
+select#metabext{
+	margin-top:-30px; 
+	margin-left:50px; 
+}
+
+input#addext{
+	margin-top:-50px; 
+	margin-left:20px;
+}
+
+input#removeext{
+	margin-top:-50px; 
+	margin-left:10px;
+}
+
+b#int{
+	margin-left:300px; 
+}
+
 /*
 div#parent {
 	position : absolute ;
@@ -134,7 +154,7 @@ div#subPart {
 }
 div#subPart1 {
 	float:left;
-	width:1000%;
+	width:100%;
 	height:60px;
 	background-color:#9ECAE1;
 	text-align: center;

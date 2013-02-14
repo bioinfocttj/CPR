@@ -5,8 +5,76 @@
 	  <title><?php echo TXT_CREATION_SITE_TITLE; ?></title>
 	  <link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
 	  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	  <script type="text/javascript" >
+	  
+	  <?php
 
+			echo "<script type='text/javascript'>";
+			echo "metabo=new Array();";
+			$file='metabolites.mfile';
+			$content = fread(fopen($file, "r"), filesize($file));
+			$array1 = explode("\"",$content);
+			$j=0;
+			for ($i=0;$i<count($array1)-1;$i++){
+				if($array1[$i]!=null && $array1[$i]!=" " && $array1[$i]!="" && $array1[$i]!="\n"){
+					$array[$j]=$array1[$i];
+					$j++;
+				}
+			}
+			foreach ($array as $cle=>$valeur){
+				echo "metabo[$cle] = '$valeur';\n";
+			}
+			
+			echo "function add_metabo(){\n";
+				echo "nbmetab=metabo.length-1;\n";
+				
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<div><b id='ext'>";
+				echo TXT_CREATE_EXT;
+				echo"</b><b id='int'>";
+				echo TXT_CREATE_INT;
+				echo"</b></div>\";\n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<select id='metab' name='Metab[]' size='30'></select>\";\n";
+				echo "for (var i=0; i<metabo.length; i++){\n";
+				echo "document.getElementById(\"metab\").innerHTML+=\"<option value='\"+metabo[i]+\"'>\"+metabo[i]+\"</option>\";\n";
+				echo "}\n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<input id='addext' type='button' name='addext' value='";
+				echo TXT_CREATE_BUTTON_ADD1;
+				echo "' onclick=selectExt('metab','metabext')>\"; \n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<input id='removeext' type='button' name='removeext' value='";
+				echo TXT_CREATE_BUTTON_REMOVE1;
+				echo "' onclick=selectExt('metabext','metab')>\"; \n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<select id='metabext' name='extMetab[]' size='30'></select><br/><br/>\";\n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<input type='submit' name='reac' value='DAT' />\"; \n";
+			echo "}\n";
+			
+		echo "</script>\n";
+		?>
+		
+		<script type="text/javascript">
+			function selectExt(sourceID, destID) {
+				var src = document.getElementById(sourceID);
+				var dest = document.getElementById(destID);
+			 
+				for(var count=0; count < src.options.length; count++) {
+			 
+					if(src.options[count].selected == true) {
+							var option = src.options[count];
+			 
+							var newOption = document.createElement("option");
+							newOption.value = option.value;
+							newOption.text = option.text;
+							newOption.selected = true;
+							try {
+									 dest.add(newOption, null); //Standard
+									 src.remove(count, null);
+							 }catch(error) {
+									 dest.add(newOption); // IE only
+									 src.remove(count);
+							 }
+							count--;
+					}
+				}
+			}
+				
 			function validateForm(){
 				if (document.getElementById("choix1").checked==false && document.getElementById("choix0").checked==false){
 					alert("vous devez choisir la réversibilité");
@@ -16,9 +84,7 @@
 					return true;
 				}				
 			}
-	  </script>
-
-	  <script type="text/javascript">
+	
 			// Popup window code
 			function newPopup(url) {
 				popupWindow = window.open(url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
@@ -94,11 +160,14 @@
 			 <input type="submit" value="<?php echo TXT_MODIFY_BUTTON; ?>" />
 			</form>
 		</br> </br>
-
+		
 		<h4><?php echo TXT_CREATION_FINISH; ?></h4>
+		<input type='submit' name='buttonMext' 	value="Sélectionner les métabolites externes" onclick=add_metabo()>
+		<br/>
+		<br/>
 
-		<form  name="datFile" method="POST" action="finish_files.php">
-			<input type="submit" name="reac" value="DAT" /> 
+		<form  id="datFile" name="datFile" method="POST" action="finish_files.php">
+			
 		</form>	
 		
 		</br> </br>
