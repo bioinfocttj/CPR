@@ -155,7 +155,7 @@
 					</div>
 					<div id="subPart">
 						<div id="subPart3-1">
-							<p>	<?php echo TXT_OPTIONS_EFM_CMD; ?> </p>
+							<h4><p>	<?php echo TXT_OPTIONS_EFM_CMD; ?> </p></h4>
 						</div>
 						<div id="subPart3-2">
 							<h4><?php echo TXT_OPTIONS_EFM_ADJA; ?>	</h4>
