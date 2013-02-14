@@ -37,7 +37,7 @@
 \contentsline {section}{\numberline {3.2}R\IeC {\'e}actions et r\IeC {\'e}versibilit\IeC {\'e}}{13}
 \contentsline {section}{\numberline {3.3}Nom de r\IeC {\'e}actions : enzymes}{13}
 \contentsline {section}{\numberline {3.4}M\IeC {\'e}tabolites}{14}
-\contentsline {section}{\numberline {3.5}sto\IeC {\'e}chiom\IeC {\'e}trie}{14}
+\contentsline {section}{\numberline {3.5}Sto\IeC {\'e}chiom\IeC {\'e}trie}{14}
 \contentsline {section}{\numberline {3.6}Modification du r\IeC {\'e}seaux}{14}
 \contentsline {section}{\numberline {3.7}Cr\IeC {\'e}ation du fichier \emph {DAT}}{14}
 \contentsline {section}{\numberline {3.8}R\IeC {\`e}gles des g\IeC {\`e}nes}{14}
