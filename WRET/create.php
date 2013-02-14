@@ -32,7 +32,7 @@
 				echo"</b><b id='int'>";
 				echo TXT_CREATE_INT;
 				echo"</b></div>\";\n";
-				echo "document.getElementById(\"datFile\").innerHTML+=\"<select id='metab' name='Metab[]' size='30'></select>\";\n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<select id='metab' multiple name='Metab[]' size='30'></select>\";\n";
 				echo "for (var i=0; i<metabo.length; i++){\n";
 				echo "document.getElementById(\"metab\").innerHTML+=\"<option value='\"+metabo[i]+\"'>\"+metabo[i]+\"</option>\";\n";
 				echo "}\n";
@@ -42,8 +42,8 @@
 				echo "document.getElementById(\"datFile\").innerHTML+=\"<input id='removeext' type='button' name='removeext' value='";
 				echo TXT_CREATE_BUTTON_REMOVE1;
 				echo "' onclick=selectExt('metabext','metab')>\"; \n";
-				echo "document.getElementById(\"datFile\").innerHTML+=\"<select id='metabext' name='extMetab[]' size='30'></select><br/><br/>\";\n";
-				echo "document.getElementById(\"datFile\").innerHTML+=\"<input type='submit' name='reac' value='DAT' />\"; \n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<select id='metabext' multiple name='extMetab[]' size='30'></select><br/><br/>\";\n";
+				echo "document.getElementById(\"datFile\").innerHTML+=\"<input type='button' name='reac' value='DAT' onclick='formulaire(this.form)' />\"; \n";
 			echo "}\n";
 			
 		echo "</script>\n";
@@ -74,7 +74,23 @@
 					}
 				}
 			}
+			
+			function formulaire(form){
+				var selectExt=form.elements["Metab[]"];
+				var nbExt=selectExt.length;
+				var selectInt=form.elements["extMetab[]"];
+				var nbInt=selectInt.length;
 				
+				for (var a = 0; a < nbExt; a++){
+					selectExt.options[a].selected = "selected";
+				}
+			   
+				for (var a = 0; a < nbInt; a++){
+					selectInt.options[a].selected = "selected";
+				}
+				form.submit();
+			}
+			
 			function validateForm(){
 				if (document.getElementById("choix1").checked==false && document.getElementById("choix0").checked==false){
 					alert("vous devez choisir la réversibilité");
