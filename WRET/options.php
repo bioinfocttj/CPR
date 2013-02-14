@@ -28,7 +28,6 @@
 				<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 				<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
 				<li><a href="load.php">			<?php echo TXT_MENU_LOAD; ?>	</a></li>
-				<li><a href="modify.php">		<?php echo TXT_MENU_MODIFY; ?>	</a></li>
 				<li><a href="help.php">			<?php echo TXT_MENU_HELP; ?>	</a></li>
 				<li><a href=<?php echo $en?>><img src="Images/English-Language-Flag-3-icon.png" alt="english_flag.png"></a></li>
 				<li><a href=<?php echo $fr?>><img src="Images/French-Flag.png" alt="french_flag.png"></a></li>

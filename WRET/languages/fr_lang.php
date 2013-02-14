@@ -184,10 +184,10 @@ define('TXT_OPTIONS_EFM_AUTO_T_2', "Non ");
 
 define('TXT_HELP_TITLE', "Aide en ligne");
 define('TXT_HELP_INTRO', " Ceci est une aide pour l'usage de RegEfmtool en ligne.");
-define('TXT_HELP_FILES', "Chargement de fichiers pré-existants depuis votre disque dur");
-define('TXT_HELP_METABO', "Métabolites");
-define('TXT_HELP_EXTENSION', "L'extension doit être du type 'mfile' <br /> 
-					Le contenu de la forme : 'A' 'B' 'C' 'D' 'P' ");
+define('TXT_HELP_FILES_LOAD', "Chargement de fichiers pré-existants depuis votre disque dur");
+define('TXT_HELP_FILES_CREATE', "Création d'un nouveau réseau");
+define('TXT_HELP_CREATION', "Aide à la création d'un réseau");
+define('TXT_HELP_GENERULES', "Aide à la création des règles des gènes");
 define('TXT_HELP_SUITE', "Le reste est à venir ...");
 
 //---------------------------------------------------------

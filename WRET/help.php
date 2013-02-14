@@ -26,7 +26,6 @@
 			<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 			<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
 			<li><a href="load.php">			<?php echo TXT_MENU_LOAD; ?>	</a></li>
-			<li><a href="modify.php">		<?php echo TXT_MENU_MODIFY; ?>	</a></li>
 			<li><a href="help.php">			<?php echo TXT_MENU_HELP; ?>	</a></li>
 			<li><a href=<?php echo $en?>><img src="Images/English-Language-Flag-3-icon.png" alt="english_flag.png"></a></li>
 			<li><a href=<?php echo $fr?>><img src="Images/French-Flag.png" alt="french_flag.png"></a></li>
@@ -41,9 +40,12 @@
 
 		<p><?php echo TXT_HELP_INTRO; ?> </p>
 		</br>
-		<h3><?php echo TXT_HELP_FILES; ?></h3>
-			<h4><?php echo TXT_HELP_METABO; ?></h4>
-	   			<p><?php echo TXT_HELP_EXTENSION; ?></p>
+		<h3><?php echo TXT_HELP_FILES_LOAD; ?></h3>
+	   	<h3><?php echo TXT_HELP_FILES_CREATE; ?></h3>
+			<ul>
+				<li><a href="help_create.php">		<?php echo TXT_HELP_CREATION; ?> 	</a></li>
+				<li><a href="help_rules.php">		<?php echo TXT_HELP_GENERULES; ?> 	</a></li>
+			</ul>
 		<p><?php echo TXT_HELP_SUITE; ?></p>
 	</body>
 </html>

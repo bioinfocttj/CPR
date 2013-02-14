@@ -184,10 +184,10 @@ define('TXT_OPTIONS_EFM_AUTO_T_2', "No ");
 
 define('TXT_HELP_TITLE', "Online help");
 define('TXT_HELP_INTRO', " This is an aid for the use of online RegEfmtool.");
-define('TXT_HELP_FILES', "Loading preexisting files from your hard drive");
-define('TXT_HELP_METABO', "Metabolites");
-define('TXT_HELP_EXTENSION', "The extension must be of type 'mfile' <br /> 
-					The content of the shape : 'A' 'B' 'C' 'D' 'P' ");
+define('TXT_HELP_FILES_LOAD', "Loading preexisting files from your hard drive");
+define('TXT_HELP_FILES_CREATE', "Create a new network");
+define('TXT_HELP_CREATION', "Help to create a new network");
+define('TXT_HELP_GENERULES', "Help to create the gene rules");
 define('TXT_HELP_SUITE', "The rest is coming ...");
 
 //---------------------------------------------------------

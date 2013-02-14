@@ -184,9 +184,10 @@ define('TXT_OPTIONS_EFM_AUTO_T_2', "Nein ");
 
 define('TXT_HELP_TITLE', "Online-Hilfe");
 define('TXT_HELP_INTRO', "Dies ist eine Beihilfe für die Verwendung von Online-RegEfmtool.");
-define('TXT_HELP_FILES', "Lädt vorhandene Dateien von Ihrer Festplatte");
-define('TXT_HELP_METABO', "Metaboliten");
-define('TXT_HELP_EXTENSION', " Die Verlängerung muss vom Typ 'mfile' sein <br /> Der Inhalt der Form : 'A' 'B' 'C' 'D' 'P' ");
+define('TXT_HELP_FILES_LOAD', "Lädt vorhandene Dateien von Ihrer Festplatte");
+define('TXT_HELP_FILES_CREATE', "Schaffung von neuen metabolische Netzwerk");
+define('TXT_HELP_CREATION', "Aide à la création d'un réseau");
+define('TXT_HELP_GENERULES', "Aide à la création des règles des gènes");
 define('TXT_HELP_SUITE', "Der Rest kommt ...");
 
 //---------------------------------------------------------
@@ -218,21 +219,13 @@ define('TXT_HELP_CREATE_TITLE', "Online-Hilfe");
 define('TXT_HELP_CREATE_TITLE1', "Diese Seite ist ein Hilfsmittel, um die Schaffung eines neuen Netzwerks");
 define('TXT_HELP_CREATE_INTRO', "Generieren Sie certais Dateien, um Ihre chemische Netzwerk zu erstellen.");
 define('TXT_HELP_CREATE_1', "Klicken Sie auf den \"Init-Dateien\" Button.");
-define('TXT_HELP_CREATE_2', "Écrire les réactions du réseau une par une (en veillant à préciser la stoechiométrie à chaque fois). ");
-define('TXT_HELP_CREATE_3', "Cliquer sur le bouton \"Ajouter\" pour valider la réaction. ");
-define('TXT_HELP_CREATE_4', "Si vous avez fait une erreur de saisie, vous pouvez la modifier dans la zone de texte \"Réactions déjà rentrées\".");
-define('TXT_HELP_CREATE_5', "Ensuite, cliquer sur \"Modifier\" pour que les modifications soient prises en compte.");
-define('TXT_HELP_CREATE_6', "Vous ne pouvez pas rentrer directement une réaction dans cette zone de texte, ni en supprimer une. ");
-define('TXT_HELP_CREATE_7', "Vous pouvez créer un fichier.dat qui contiendra votre réseau en cliquant sur le bouton \"DAT\". ");
-define('TXT_HELP_CREATE_8', "Lorsque vous avez terminé, cliquer sur \"Étape suivante\" pour passer à la création des règles. ");
-
-// Schreiben Sie die chemischen Reaktionen des Netzwerks nacheinander (Sie müssen die Stöchiometrie jedes Mal).
-// Klicken Sie auf die Schaltfläche "Hinzufügen", um die Reaktion zu validieren.
-// Wenn Sie einen Fehler machen, können Sie ihn in das Textfeld bearbeiten.
-// Dann klicken Sie auf die Schaltfläche für die Änderungen wirksam werden.
-// Sie können nicht direkt schreiben, um eine Reaktion in das Textfeld ein, oder entfernen Sie ein.
-// Sie können einen datafile.dat mit Ihrem Netzwerk, indem Sie auf den Button erstellen.
-// Wenn Sie fertig sind, klicken Sie auf die Schaltfläche, um den Schritt der Schaffung der Regeln gehen.
+define('TXT_HELP_CREATE_2', "Schreiben Sie die chemischen Reaktionen des Netzwerks nacheinander (Sie müssen die Stöchiometrie jedes Mal schreiben).");
+define('TXT_HELP_CREATE_3', "Klicken Sie auf die Button \"Hinzufügen\", um die Reaktion zu validieren. ");
+define('TXT_HELP_CREATE_4', "Wenn Sie einen Fehler machen, können Sie ihn in das \"Reaktionen zuvor gespeicherte\" Textfeld bearbeiten. ");
+define('TXT_HELP_CREATE_5', "Dann klicken Sie auf die \"Ändern\" Button für die Änderungen wirksam werden.");
+define('TXT_HELP_CREATE_6', "Sie können nicht direkt schreiben, um eine Reaktion in das Textfeld ein, oder entfernen Sie ein.");
+define('TXT_HELP_CREATE_7', "Sie können einen datafile.dat mit Ihrem Netzwerk, indem Sie auf den \"DAT\" Button erstellen. ");
+define('TXT_HELP_CREATE_8', "Wenn Sie fertig sind, klicken Sie auf die \"Nächsten Schritt\" Button, um den Schritt der Schaffung der Regeln gehen. ");
 
 //---------------------------------------------------------
 // copyright.php
