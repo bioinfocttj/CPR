@@ -2,7 +2,7 @@
 \chapter{Réalisation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Création  d'un nouveau réseaux}
+\section{Création d'un nouveau réseaux}
 La création d'un nouveau réseaux dans WRET se fait via la page \emph{create.php}.
 A partir de cette page l'utilisateur doit dans un premier temps appuyer sur la touche \emph{init} si il désire initialiser ses fichiers. Ce bouton appelle le fichier \emph{initfiles.php} qui va créer les 11 fichiers nécessaires à la mise en place d'un nouveau réseaux.\\
 Dans ces fichiers, on trouve des fichiers qui seront utilisé dans le lancement de \emph{regEfmTool} (rfile, mfile, rvfile, sfile) et également des fichiers temporaires (\emph{irrevTemp}, \emph{revTemp}, \emph{reactionTemp.txt}, \emph{reactionTemp2.txt}, \emph{matrice.txt} ou encore \emph{matrice2.txt} ainsi que la base du fichier au format \emph{DAT}).\\
@@ -15,7 +15,7 @@ La première page \emph{reac.php} va permettre d'écrire dans un fichier tempora
 L'ordre est ainsi conservé entre les réactions et leur réversibilité.
 
 \section{Nom de réactions : enzymes}
-Une fois les données de réactions et de réversibilité enregistrées, la page \emph{parser\_enzymes.php} est appelée, elle va parser le fichier temporaire des réactions  (reactionTemp.txt) et va extraire le premier élément de la réaction situé avant le ":" qui se trouve être le nom de la réaction (nom de l'enzyme généralement).\\
+Une fois les données de réactions et de réversibilité enregistrées, la page \emph{parser\_enzymes.php} est appelée, elle va parser le fichier temporaire des réactions (reactionTemp.txt) et va extraire le premier élément de la réaction situé avant le ":" qui se trouve être le nom de la réaction (nom de l'enzyme généralement).\\
 Ces noms sont enregistrés dans un fichier (\emph{reaction.rfile}) en respectant les espaces et la syntaxe nécessaire à l'utilisation au sein de \emph{regEfmTool}.
 
 \section{Métabolites}
