@@ -2,7 +2,9 @@
 \chapter{Conception}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Interface graphique}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Comme nous l'avons précisé précédemment, notre interface graphique se présente sous la forme d'un site Web. 
 
@@ -33,7 +35,9 @@ Le menu contient quatre onglets:
 \end{itemize}
 On trouve aussi dans le menu, trois drapeaux qui permettent de changer la langue du site Web. Les trois langues proposées sont: l'anglais, le français et l'allemand. Par défaut le site est en français.
 
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Création d'un nouveau réseau}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Si l'utilisateur choisi de créer un nouveau réseau, il arrive sur une page qui va lui permettre d'ajouter de nouvelles réactions à celui-ci. \\
 
@@ -81,7 +85,9 @@ Si l'utilisateur ne sait pas comment faire, il lui suffit de cliquer sur \textit
 
 Quand l'utilisateur a fini de créer toutes les réactions qui composent son réseau, il clique sur le bouton \emph{\'Etape suivante} et arrive alors sur la page de création des règles des gènes.
 
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Règles des gènes}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ces règles sont utilisées pour éliminer les modes élémentaires non possibles dans un réseau métabolique réel.\\
 
@@ -128,7 +134,9 @@ Si l'utilisateur ne sait pas comment faire, il lui suffit de cliquer sur \textit
 
 Une fois les règles entrées, l'utilisateur peut passer à l'étape suivante en cliquant sur le bouton correspondant. Il arrive alors sur la page de sélection des options nécessaires au lancement de la commande regEfmtool.
 
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Choix des options de lancement}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Comme nous l'avons dit précédemment, regEfmtool se lance gr\^ace à une ligne de commande. Cette page d'options (Figure \ref{options}) permet donc à l'utilisateur de sélectionner les paramètres de calcul qu'il souhaite, par la biais de boutons à cocher. Certaines options sont pré-cochées, se sont les options de base nécessaires au bon déroulement des calculs du logiciel. Cela permet à un utilisateur non expérimenté de lancer ses calculs avec le réseau qu'il vient de créer. Un utilisateur plus averti pourra modifier ces options à sa guise afin d'avoir un niveau de complexité d'exécution des calculs supérieur.\\
 
@@ -155,9 +163,12 @@ Les options sont regroupées par catégories (en fonction de ce qui était préc
 
 Une fois que l'utilisateur a coché toutes les options qu'il souhaite, il lui suffit de cliquer sur le bouton \emph{Lancement} afin de générer la commande et lancer regEfmtool. Ensuite, une page d'affichage des résultats s'affiche. 
 
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Chargement d'un réseau pré-existant}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Cette page accessible depuis le menu général permet à un utilisateur de charger un réseau préexistant depuis son disque dur. Il pourra également générer la ligne de commandes nécessaire au lancement de regEfmtool. Cette page est basée sur le modèle de la page du choix des options, à un détail près : dans la catégorie du type des fichiers stœchiométriques, les fichiers ne sont pas prédéfinis mais c'est à l'utilisateur à les charger. Le reste fonctionne de la m\^eme façon que précédemment. Les noms de fichiers (et leurs chemins relatifs) sont récupérés et la ligne de commande est créée. \\
+\subsection{Choix des paramètres}
+Cette page accessible depuis le menu général permet à un utilisateur de charger un réseau préexistant depuis son disque dur (Figure \ref{chargement1}). Il pourra également générer la ligne de commandes nécessaire au lancement de regEfmtool. Cette page est basée sur le modèle de la page du choix des options après création, à un détail près : dans la catégorie du type des fichiers stœchiométriques, il n'y a plus la sous-catégorie des fichiers d'analyseur de flux. Le reste fonctionne de la m\^eme façon que précédemment. \\
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -166,14 +177,31 @@ Cette page accessible depuis le menu général permet à un utilisateur de charg
   			\includegraphics[width=0.90\textwidth]{../Images/Rapport/chargement.png}  
 		 \end{minipage}}
 		\caption{Partie de la page de chargement d'un réseau préexistant}
-  		\label{chargement}
+  		\label{chargement1}
   	\end{center}	
 \end{figure}
 
-L'utilisateur n'aura plus qu'à cliquer sur \textit{Lancement} pour lancer la récupération des noms des fichiers (et leurs chemins relatifs) ainsi que la création de la ligne de commande et le démarrage du logiciel. Une page de résultats s'affichera ensuite. 
+L'utilisateur n'aura plus qu'à cliquer sur \textit{Lancement} pour lancer la création de la ligne de commande. Cependant, la ligne de commande générée n'est pas la m\^eme qu'après l'étape de création: elle est incomplète. Tous les paramètres concernant les fichiers d'entrée seront récupérés lors du clic sur le bouton \textit{Étape suivante}. 
 
+\subsection{Chargement des fichiers}
+Cette page permet à l'utilisateur de sélectionner les fichiers à charger depuis son disque dur. Il y a un ordre précis du type des fichiers à charger (indiqué à l'utilisateur). 
+
+%\begin{figure}[!ht]
+%	\begin{center}
+%		\fbox{
+%   		 \begin{minipage}[c]{0.9\textwidth}
+%  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/chargement.png}  
+%		 \end{minipage}}
+%		\caption{Partie de la page de chargement d'un réseau préexistant}
+%  		\label{chargement2}
+%  	\end{center}	
+%\end{figure}
+
+Une fois les fichiers sélectionnés, il suffit de cliquer sur \textit{Submit} pour effectuer le chargement. Ensuite, l'utilisateur devra cliquer sur "\textit{Résultats}" pour être dirigé vers la page d'affichage des résultats.  
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Affichage des résultats}
-
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 

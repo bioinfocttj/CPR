@@ -203,7 +203,7 @@
 						</div>
 					</div>
 					<br/>
-					<input type="button" name="bout" value="<?php echo TXT_GO_BUTTON; ?>" onclick="choixParam(formulaire)">
+					<input type="button" name="bout" value="<?php echo TXT_NEXTSTEP_BUTTON; ?>" onclick="choixParam(formulaire)">
 			</form>
 
 		</div>
