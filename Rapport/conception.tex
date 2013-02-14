@@ -33,26 +33,43 @@ Enfin, l'utilisateur peut aussi générer un fichier au format \emph{.dat} qui p
 
 Quand l'utilisateur a fini de créer toutes les réactions qui composent son réseau, il clique sur le bouton \emph{\'Etape suivante} et arrive alors sur la page de création des règles des gènes.
 
-
 \section{Règles des gènes}
 Ces règles sont utilisées pour éliminer les modes élémentaires non possibles dans un réseau métabolique réel.\\
 
-Une réaction R peut \^etre 1-active (R=1), 0-active (R=0 ou encore full-active (R=f).\\
+Une réaction R peut \^etre 1-active (R=1), 0-active (R=0) ou encore full-active (R=f).\\
 La création des règles est régie selon certains principes:
 \begin{itemize}
 \item La réaction de sortie ne peut jamais être une réaction d'entrée. \\On ne peut pas écrire: R3 = ( ! ( ( ! 0R3) $|$  1R1) )
 \item Une réaction peut être utilisée plusieurs fois comme réaction d'entrée. \\Ex: R11 = ( ( ! ( ( ! 0R3) $|$ 1R5) ) \& 1R3)
-\item le préfixe d'une réaction n'est valable que pour une opération.\\ Ainsi dans la règle R11 = ( ( ! ( ( ! 0R3) $|$ 1R5) ) \& 1R3), la réaction R3 est 0-active dans l'opération OR et 1-active dans l'opération AND.
+\item Le préfixe d'une réaction n'est valable que pour une opération.\\ Ainsi dans la règle R11 = ( ( ! ( ( ! 0R3) $|$ 1R5) ) \& 1R3), la réaction R3 est 0-active dans l'opération OR et 1-active dans l'opération AND.
 \item Chaque réaction doit être entourée d'exactement une paire de parenthèses. \\R3 = ( ! 0R1 ) est correcte, mais R3 = ( ( ! 0R1) ) et R3 = ! 0R1 sont incorrectes
 \item Il n'existe pas d'opération permettant de représenter la relation R2 = R1, elle sera représentée de la façon suivante: R2 = (fR1 $|$ fR1).\\
 \end{itemize}
 
-
 Tout d'abord, l'utilisateur choisi le nombre de réactions qui composent la règle qu'il veut créer.
-Une fois ce choix effectué, il clique sur le bouton \emph{ok}. S'affichent alors de deux ou trois menus déroulant par réaction. Quand il y en a trois, le premier permet de choisir l'opérateur, le second la réaction et le dernier sa valeur (0, 1 ou f). Quand il y en a deux, ils correspondent à la réaction et à sa valeur. L'utilisateur doit entrer un nombre de réactions au moins égal à deux.\\
+Une fois ce choix effectué, il clique sur le bouton \emph{Ok}. S'affichent alors de deux ou trois menus déroulant par réaction. Quand il y en a trois, le premier permet de choisir l'opérateur, le second la réaction et le dernier sa valeur (0, 1 ou f). Quand il y en a deux, ils correspondent à la réaction et à sa valeur. L'utilisateur doit entrer un nombre de réactions au moins égal à deux.\\
 
 L'utilisateur ne peut sélectionner le nom d'une réaction que lorsqu'il a choisi la précédente. Ceci permet de ne proposer que les réactions non sélectionnées précédemment pour le choix de la  réaction de sortie (principe utilisé dans la documentation de \emph{regEfmtool}).\\
 
-Enfin, quand l'utilisateur a sélectionné toutes les réactions ainsi que leur valeur, il clique sur le bouton \emph{Ajouter}, la règle est alors écrite dans le fichier \emph{generules.grfile} si l'utilisateur a bien rempli tous les champs. Celle-ci apparaît alors dans la zone de texte située en-dessous. Dans cette zone, l'utilisateur a la possibilité de modifier, ajouter ou supprimer une règle déjà écrite, mais également d'en écrire de nouvelles manuellement. lorsqu'il a fini ses modifications, il clique sur le bouton \emph{Modifier}, le fichier \emph{generules.grfile} est alors modifié en conséquence.\\
+Enfin, quand l'utilisateur a sélectionné toutes les réactions ainsi que leur valeur, il clique sur le bouton \emph{Ajouter}. La règle est alors écrite dans le fichier \emph{generules.grfile} si l'utilisateur a bien rempli tous les champs. Celle-ci apparaît alors dans la zone de texte située en-dessous. Dans cette zone, l'utilisateur a la possibilité de modifier, ajouter ou supprimer une règle déjà écrite, mais également d'en écrire de nouvelles manuellement. Lorsqu'il a fini ses modifications, il clique sur le bouton \emph{Modifier}, le fichier \emph{generules.grfile} est alors modifié en conséquence.\\
 
 Une fois les règles entrées, l'utilisateur peut passer à l'étape suivante en cliquant sur le bouton correspondant. Il arrive alors sur la page de sélection des options nécessaires au lancement de la commande regEfmtool.
+
+\section{Choix des options de lancement}
+
+Comme nous l'avons dit précédemment, regEfmtool se lance gr\^ace à une ligne de commande. Cette page d'options permet donc à l'utilisateur de sélectionner les paramètres de calcul qu'il souhaite, par la biais de boutons à cocher. Certaines options sont pré-cochées, se sont les options de base nécessaires au bon déroulement des calculs du logiciel. Cela permet à un utilisateur non expérimenté de lancer ses calculs avec le réseau qu'il vient de créer. Un utilisateur plus averti pourra modifier ces options à sa guise afin d'avoir un niveau de complexité d'exécution des calculs supérieur.\\
+
+Les options sont regroupées par catégories (en fonction de ce qui était précisé dans le fichier \textit{metabolic-efm.xml} de regEfmtool):
+
+\paragraph*{Enregistrement} Cette catégorie contient trois sous catégories précisant le type d'affichage des résultats, le niveau d'informations sur le déroulement des calculs et le format d'enregistrement. Par défaut, l'affichage se fera en ligne sur le site et le type de message d'information est le plus complet possible. 
+
+\paragraph*{Types de fichiers stœchiométriques} Cette catégorie possède deux sous catégories précisant le type de parsage en entrée et l'analyseur de flux. Cette dernière permet de définir les types de fichiers d'entrée que regEfmtool utilisera. Ces fichiers étant lors des étapes précédentes, leurs noms sont déjà pré-rentrés dans les cases correspondantes.
+
+\paragraph*{Compression et paramètres de sortie} Ces deux catégories contiennent chacune une seule sous catégorie, servant respectivement à définir le niveau de compression (et également l'utilisation de la récursivité dans les calculs) et le type de fichier désiré en paramètre de sortie. L'option "text-doubles" est cochée par défaut, avec le nom du fichier qui contiendra les modes élémentaires calculés. 
+
+
+
+
+
+
+ 

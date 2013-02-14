@@ -85,6 +85,7 @@
 		<h1><?php echo TXT_DISPLAY_RESULTS_TITLE; ?></h1>
 		<div id="results" name="results" title="waiting_results" >
 			<?php 
+			echo $_SESSION["commande"];
 				if ($_SESSION["isCompared"]==0){
 					$res=$_SESSION["compare"];
 					echo "<div id='original' name='original' title='original results' >";
