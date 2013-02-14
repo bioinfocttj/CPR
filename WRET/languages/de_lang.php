@@ -40,7 +40,11 @@ define('TXT_CREATION_NO', "Nein");
 define('TXT_CREATION_ALREADY_OK', "Reaktionen zuvor gespeicherte :");
 define('TXT_CREATION_FINISH', "Creation der DAT Datei Format");
 define('TXT_CREATION_CLIC', "Sie müssen auf die Schaltfläche klicken");
-
+define('TXT_CREATE_EXT', "Externen Metaboliten :");
+define('TXT_CREATE_INT', "Interner Metaboliten : ");
+define('TXT_CREATE_BUTTON_ADD1', "Hinzufügen");
+define('TXT_CREATE_BUTTON_REMOVE1', "Zurücktreten");
+define('TXT_CREATE_CHOOSE_EXT', "Wählen Sie die externen und internen Metaboliten");
 //---------------------------------------------------------
 // Buttons 
 //---------------------------------------------------------

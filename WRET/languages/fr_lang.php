@@ -40,6 +40,12 @@ define('TXT_CREATION_NO', "Non");
 define('TXT_CREATION_ALREADY_OK', "Réactions déjà entrées :");
 define('TXT_CREATION_FINISH', "Création du fichier au format \"DAT\"");
 define('TXT_CREATION_CLIC', "Vous devez cliquer sur le bouton");
+define('TXT_CREATE_EXT', "Métabolites externes :");
+define('TXT_CREATE_INT', "Métabolites internes : ");
+define('TXT_CREATE_BUTTON_ADD1', "Ajouter");
+define('TXT_CREATE_BUTTON_REMOVE1', "Retirer");
+define('TXT_CREATE_CHOOSE_EXT', "Choisir les métabolites externes et internes");
+
 
 //---------------------------------------------------------
 // Buttons 

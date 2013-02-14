@@ -40,6 +40,11 @@ define('TXT_CREATION_NO', "No");
 define('TXT_CREATION_ALREADY_OK', "Reactions already saved");
 define('TXT_CREATION_FINISH', "Creation of the DAT file format network");
 define('TXT_CREATION_CLIC', "You have to click one the button");
+define('TXT_CREATE_EXT', "External metabolites :");
+define('TXT_CREATE_INT', "Internal metabolites : ");
+define('TXT_CREATE_BUTTON_ADD1', "Add");
+define('TXT_CREATE_BUTTON_REMOVE1', "Remove");
+define('TXT_CREATE_CHOOSE_EXT', "Choose external and internal metabolites");
 
 //---------------------------------------------------------
 // Buttons create.php
