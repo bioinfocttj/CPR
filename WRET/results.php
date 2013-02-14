@@ -21,9 +21,10 @@
 			print ("</script>");
 		}
 		function waiting(){
-			//~ document.getElementById("results").innerHTML='<img src="../Images/waiting.gif" alt="please Wait...">';
 			//~ echo '<img src="Images/waiting.gif" alt="please Wait...">';
 			echo '<img src="Images/waiting_fun.gif" alt="please Wait...">';
+			if ($_SESSION['isCompared']==0) shell_exec($_SESSION['commande'] . '> log2.txt');
+			else shell_exec($_SESSION['commande'] . '> log1.txt');
 		}
 		function parse_res(){
 			$file = file('modes2.text');
@@ -74,7 +75,6 @@
 			<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 			<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
 			<li><a href="load.php">			<?php echo TXT_MENU_LOAD; ?>	</a></li>
-			<li><a href="modify.php">		<?php echo TXT_MENU_MODIFY; ?>	</a></li>
 			<li><a href="help.php">			<?php echo TXT_MENU_HELP; ?>	</a></li>
 			<li><a href=<?php echo $en?>><img src="Images/English-Language-Flag-3-icon.png" alt="english_flag.png"></a></li>
 			<li><a href=<?php echo $fr?>><img src="Images/French-Flag.png" alt="french_flag.png"></a></li>
@@ -108,13 +108,19 @@
 			</div>
 		</div>
 		<div id="log" name="log" title="log">
+			
+			<?php 
+			function update(){
+				echo 'ploup';}
+				?>
+				
 			<h1><?php echo TXT_FILE_CHOOSE_TITLE; ?></h1>
 			<h4><?php echo TXT_FILE_CHOOSE_SUBTITLE; ?></h4>
 			</br>
-			<form action = "parse_results.php" method="POST">
+			<form action = <?php update()?> method="POST">
 				<label class='tooltip'><?php echo TXT_FILE_CHOOSE; ?></label>
 				<input type = "text"	name = "fichier">
-				<input type= "submit" value='ok' onclick="parse_results.php">
+				<input type= "submit" value='ok'>
 			</form>
 		</div>
 		<div id='compare' name='compare'>
