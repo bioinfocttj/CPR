@@ -13,7 +13,15 @@
 			//init temp dat                                                               
 			echo exec('rm fichier.dat');                                                  
 			echo exec('touch fichier.dat');                                               
-			echo exec('chmod 777 fichier.dat');                                           
+			echo exec('chmod 777 fichier.dat');   
+			
+			//init temp metabolites file                                        
+			echo exec('rm metabolitesTemp.txt');                                                  
+			echo exec('touch metabolitesTemp.txt');                                               
+			echo exec('chmod 777 metabolitesTemp.txt'); 
+			$data5 = fopen('metabolitesTemp.txt','w');                                        
+			fputs($data5, "-METINT \n");                                                      
+			fclose($data5);                                           
 																						  
 			//init stoechiometry file                                                     
 			echo exec('rm stoech.txt');                                                   
