@@ -81,36 +81,18 @@
 						<h3><?php echo TXT_OPTIONS_INPUT_STOECH; ?></h3>
 					</div>
 					<div id="subPart">
-						<div id="subPart2-1">
+						<div id="subPart1">
 							<h4><?php echo TXT_OPTIONS_INPUT_STOECH_1; ?></h4>
-						</div>
-						<div id="subPart2-2">
-							<h4><?php echo TXT_OPTIONS_INPUT_F_ANALY; ?></h4>
 						</div>
 					</div>
 					<div id="buttons">
-						<div id="buttons2-1">
+						<div id="buttons1">
 							<input type="radio" name="choix4" value="kind flux-analyzer-dir"> 		<?php echo TXT_OPTIONS_INPUT_STOECH_1; ?>	<br/>
 						 	<input type="radio" name="choix4" value="kind flux-analyzer-files"> 	<?php echo TXT_OPTIONS_INPUT_STOECH_2; ?>	<br/>
 							<input type="radio" name="choix4" value="kind reaction-list"> 			<?php echo TXT_OPTIONS_INPUT_STOECH_3; ?> 	<br/>
 						 	<input type="radio" name="choix4" value="kind excel"> 					<?php echo TXT_OPTIONS_INPUT_STOECH_4; ?>	<br/>
 						 	<input type="radio" name="choix4" value="kind stoichiometry" checked="checked"> 			<?php echo TXT_OPTIONS_INPUT_STOECH_5; ?>	<br/>
 						 	<input type="radio" name="choix4" value="kind sbml"> 					<?php echo TXT_OPTIONS_INPUT_STOECH_6; ?>				
-						</div>
-						<div id="buttons2-2">
-							<table width=70%>
-								<tr><td>
-								<label ="NomDeFichier">
-								<?php echo TXT_LOAD_FILE_NAME; ?><br />
-								</label>
-								<input type="file" name="sfile" 	id="stoich" value="<?php move_uploaded_file($_FILES['sfile']['tmp_name'],$_FILES['sfile']['name']);?>"/> 	<?php echo TXT_LOAD_SFILE; ?> 
-								<input type="file" name="mfile" 	id="meta" /> 		<?php echo TXT_LOAD_MFILE; ?> 
-								<input type="file" name="rvfile" 	id="rev" /> 		<?php echo TXT_LOAD_RVFILE; ?> 
-								<input type="file" name="grfile" 	id="generule" /> 	<?php echo TXT_LOAD_GRFILE; ?> 
-								<input type="file" name="rfile" 	id="reac" /> 		&nbsp;&nbsp;<?php echo TXT_LOAD_RFILE; ?> 
-								</td></tr><tr><td>
-								</td></tr>
-							</table>
 						</div>
 					</div>
 
@@ -139,8 +121,8 @@
 							<input type="radio"		name="choix7" 	value="out count"> 			<?php echo TXT_OPTIONS_OUTPUT_2; ?>	 			<br/>
 							<input type="radio" 	name="choix7" 	value="out text-boolean"> 	<?php echo TXT_OPTIONS_OUTPUT_3; ?>
 							<?php echo TXT_OPTIONS_OUTPUT_4; ?> 	<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte7"> 	<br/>
-							<input type="radio" 	name="choix7" 	value="out text-doubles"> 	<?php echo TXT_OPTIONS_OUTPUT_5; ?>
-							<?php echo TXT_OPTIONS_OUTPUT_6; ?> 	<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte71"> <br/>	
+							<input type="radio" 	name="choix7" 	value="out text-doubles" checked="checked"> 	<?php echo TXT_OPTIONS_OUTPUT_5; ?>
+							<?php echo TXT_OPTIONS_OUTPUT_6; ?> 	<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte71" value="results.txt"> <br/>	
 							<input type="radio" 	name="choix7" 	value="out binary-boolean"> <?php echo TXT_OPTIONS_OUTPUT_7; ?>
 							<?php echo TXT_OPTIONS_OUTPUT_8; ?>		<input 	type="text" 		name="out_nomFichier" 	size="10" id="texte72"> <br/>
 							<input type="radio" 	name="choix7" 	value="out binary-doubles"> <?php echo TXT_OPTIONS_OUTPUT_9; ?>
@@ -158,7 +140,7 @@
 					</div>
 					<div id="subPart">
 						<div id="subPart3-1">
-							<p>plouf</p>
+							<h4><?php echo TXT_OPTIONS_EFM_CMD; ?>	</h4>
 						</div>
 						<div id="subPart3-2">
 							<h4><?php echo TXT_OPTIONS_EFM_ADJA; ?>	</h4>
@@ -176,8 +158,8 @@
 							<input type="radio" name="choix9" value="adjacency-method pattern-tree-rank"> 		<?php echo TXT_OPTIONS_EFM_ADJA_2; ?> 	<br/>	
 						</div>
 						<div id="buttons3-3">
-							<input type="radio" name="choix10" value="maxthreads"> <?php echo TXT_OPTIONS_EFM_THREADS_1; ?>				
-								<?php echo TXT_OPTIONS_EFM_THREADS_2; ?> 	<input type="text" 		name="maxthreads_value" 	size="10" id="texte10">
+							<input type="radio" name="choix10" value="maxthreads" checked="checked"> <?php echo TXT_OPTIONS_EFM_THREADS_1; ?>				
+								<?php echo TXT_OPTIONS_EFM_THREADS_2; ?> 	<input type="text" 		name="maxthreads_value" 	size="5" id="texte10" value="2">
 						</div>
 					</div>
 
@@ -226,13 +208,6 @@
 
 		</div>
 
-		<?php
-			session_start();
-			$commande = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -stoich '.$_FILES['sfile']['name'].' -rev '.$_FILES['rvfile']['name'].' -meta '.$_FILES['mfile']['name'].' -reac '.$_FILES['rfile']['name'].' -out text-doubles modes_inc_generules.text -normalize none -maxthreads 2 -generule '.$_FILES['grfile']['name'];
-			$_SESSION['commande']=$commande;
-			echo $commande;
-		?>
 	<br/>
-		<a href='results.php'> Lancement </a>
 	</body>
 </html>

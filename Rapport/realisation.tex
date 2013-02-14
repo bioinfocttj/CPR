@@ -4,55 +4,140 @@
 
 \section{Création d'un nouveau réseaux}
 La création d'un nouveau réseaux dans WRET se fait via la page \emph{create.php}.
-A partir de cette page l'utilisateur doit dans un premier temps appuyer sur la touche \emph{init} si il désire initialiser ses fichiers. Ce bouton appelle le fichier \emph{initfiles.php} qui va créer les 11 fichiers nécessaires à la mise en place d'un nouveau réseaux.\\
-Dans ces fichiers, on trouve des fichiers qui seront utilisé dans le lancement de \emph{regEfmTool} (rfile, mfile, rvfile, sfile) et également des fichiers temporaires (\emph{irrevTemp}, \emph{revTemp}, \emph{reactionTemp.txt}, \emph{reactionTemp2.txt}, \emph{matrice.txt} ou encore \emph{matrice2.txt} ainsi que la base du fichier au format \emph{DAT}).\\
-Tous ces fichiers sont donc créer et on les droits de d'édition, de lecture et d'exécution à tous les utilisateurs pour ces fichiers afin de pouvoir être modifiés sur le serveur.
+A partir de cette page l'utilisateur doit dans un premier temps appuyer sur le bouton \emph{Initialiser les fichiers} (Figure \ref{boutonInit}) s'il désire initialiser ses fichiers. 
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.5\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-1.png}  
+		 \end{minipage}}
+		\caption{Bouton d'initialisation des fichiers}
+  		\label{boutonInit}
+  	\end{center}	
+\end{figure}
+
+Ce bouton appelle le fichier \emph{initfiles.php} qui va créer les 11 fichiers nécessaires à la mise en place d'un nouveau réseau.\\
+Dans ces fichiers, nous trouvons des fichiers qui seront utilisés dans le lancement de \emph{regEfmtool} (rfile, mfile, rvfile, sfile) et également des fichiers temporaires (\emph{irrevTemp}, \emph{revTemp}, \emph{reactionTemp.txt}, \emph{reactionTemp2.txt}, \emph{matrice.txt} ou encore \emph{matrice2.txt} ainsi que la base du fichier au format \emph{DAT}).\\
+Tous ces fichiers sont donc créés et donnent les droits d'édition, de lecture et d'exécution à tous les utilisateurs pour ces fichiers, afin de pouvoir être modifiés sur le serveur.
 
 \section{Réactions et réversibilité}
-Sous la touche \emph{init} de la page \emph{create.php}, une fenêtre de texte permet de rentrer les réactions du réseaux métabolique une à une ainsi que la réversibilité de la réaction . Si l'utilisateur oubli de cocher la réversibilité de la réaction et click sur \emph{ok} un message d'erreur s'affichera et empêchera le passage à l'étape suivante. Les réactions doivent etre enregistrée par l'utilisateur en respectant la syntaxe des fichier au format \emph{DAT}.Ces informations via le bouton \emph{ok} vont alors être envoyés au fichier \emph{createFiles.php}.\\
+Sous la touche \emph{Initialiser les fichiers} de la page \emph{create.php}, une fenêtre de texte permet de rentrer les réactions du réseau métabolique une à une ainsi que la réversibilité de la réaction (Figure \ref{boutonAjout}). 
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.7\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-2.png}  
+		 \end{minipage}}
+		\caption{Bouton d'ajout d'une réaction}
+  		\label{boutonAjout}
+  	\end{center}	
+\end{figure}
+
+Si l'utilisateur oublie de cocher la réversibilité de la réaction et clique sur \emph{Ajouter}, un message d'erreur s'affichera et empêchera le passage à l'étape suivante. Les réactions doivent être enregistrées par l'utilisateur en respectant la syntaxe des fichier au format \emph{DAT}. Ces informations vont alors être envoyées au fichier \emph{createFiles.php}, via le bouton \emph{Ajouter}.\\
 Ce fichier redirige vers différentes pages, dans l'ordre : \emph{reac.php}, \emph{parser\_enzyme.php}, \emph{parser\_reversibility.php}, \emph{parser\_metabolite.php}, \emph{parser\_stoechiometry.php}.
 La première page \emph{reac.php} va permettre d'écrire dans un fichier temporaire (reactionTemp.txt) les réactions, et également, de sauvegarder la réversibilité de la réaction (0 pour non réversible, et 1 pour réversible).\\
 L'ordre est ainsi conservé entre les réactions et leur réversibilité.
 
 \section{Nom de réactions : enzymes}
-Une fois les données de réactions et de réversibilité enregistrées, la page \emph{parser\_enzymes.php} est appelée, elle va parser le fichier temporaire des réactions (reactionTemp.txt) et va extraire le premier élément de la réaction situé avant le ":" qui se trouve être le nom de la réaction (nom de l'enzyme généralement).\\
-Ces noms sont enregistrés dans un fichier (\emph{reaction.rfile}) en respectant les espaces et la syntaxe nécessaire à l'utilisation au sein de \emph{regEfmTool}.
+Une fois les données de réactions et de réversibilité enregistrées, la page \emph{parser\_enzymes.php} est appelée. Elle va parser le fichier temporaire des réactions (\emph{reactionTemp.txt}) et va extraire le premier élément de la réaction situé avant le ":", qui se trouve être le nom de la réaction (nom de l'enzyme généralement).\\
+Ces noms sont enregistrés dans un fichier (\emph{reaction.rfile}) en respectant les espaces et la syntaxe nécessaire à l'utilisation au sein de \emph{regEfmtool}.
 
 \section{Métabolites}
-Après enregistrements des enzymes, le fichier \emph{parser\_metabolites.php} est appelé. Ce script va parser le fichier temporaire contenant les réactions (\emph{reactionTemp.txt}) et va enregistrer chacun des métabolites dans un fichier (\emph{meatbolites.mfile}). Au cours de ce parsage, seul les éléments situés après le nom de l'enzyme sont pris en compte. Les noms présents plusieurs fois dans le fichier de réactions sont enregistrés une seul fois dans le fichier \emph{metabolites.mfile}.
+Après enregistrements des enzymes, le fichier \emph{parser\_metabolites.php} est appelé. Ce script va parser le fichier temporaire contenant les réactions (\emph{reactionTemp.txt}) et va enregistrer chacun des métabolites dans un fichier (\emph{meatbolites.mfile}). Au cours de ce parsage, seuls les éléments situés après le nom de l'enzyme seront pris en compte. Les noms présents plusieurs fois dans le fichier de réactions sont enregistrés une seule fois dans le fichier \emph{metabolites.mfile}.
 
-\section{Stoéchiométrie}
-Enfin après génération des fichiers: \emph{rvfile}, \emph{mfile}, \emph{sfile}, \emph{rfile}, le script \emph{parser\_stoechiometry} est appelé, il va lancer le script \emph{parser\_stoechiometry.py}. Ce script permet de générer la matrice de stoechiométrie nécessaire a \emph{regEfmTool}. Pour ce faire il prend les fichiers \emph{reactionTemp.txt} et \emph{metabolites.mfile} en entrée. Il génère la matrice ligne par ligne (une ligne correspondant à une réaction). \\
-Pour chaque ligne du fichier \emph{reactionTemp.txt} une liste est créée, pour chaque métabolite de cette réaction sa stoéchiométrie est enregistrée en respectant son ordre dans le fichiers contenant les réactifs.Ce script fournit alors en sortie le fichier \emph{stoechiometry.sfile}.
+\section{Stœchiométrie}
+Enfin après génération des fichiers: \emph{rvfile}, \emph{mfile}, \emph{sfile}, \emph{rfile}, le script \emph{parser\_stoechiometry} est appelé. Il va lancer le script \emph{parser\_stoechiometry.py}. Ce dernier permet de générer la matrice de stœchiométrie nécessaire a \emph{regEfmtool}. Pour ce faire, il prend les fichiers \emph{reactionTemp.txt} et \emph{metabolites.mfile} en entrée. Il génère la matrice ligne par ligne (une ligne correspondant à une réaction). \\
+Pour chaque ligne du fichier \emph{reactionTemp.txt} une liste est créée et, pour chaque métabolite de cette réaction, sa stœchiométrie est enregistrée en respectant son ordre dans le fichiers contenant les réactifs. Ce script fournit alors en sortie le fichier \emph{stoechiometry.sfile}.
 
 \section{Modification du réseaux}
 Une fois les fichiers générés l'utilisateur est redirigé sur la page \emph{create.php}.
-Sous la touche \emph{ajouter} se trouve une zone de texte ou on peut modifier un réseaux déjà rentré. En effet cette zone appel le fichier \emph{reactionTemp.txt} est permet la modification de son contenu (pour corriger une erreur de frappe notamment). Cette zone de texte lors de l'utilisation de la touche \emph{modifier} va appeler la page \emph{modifier.php}.\\
- Cette page efface le précédant fichier \emph{reactionTemp.txt} et insère le nouveau contenu que l'utilisateur a modifié.
- Les fichiers \emph{metabolites.mfile}, \emph{stoechiometry.sfile}, \emph{reactions.rfile}, \emph{reversibility}, sont également générés à nouveau a chaque modifications du fichier \emph{reactionTemp.txt}.
+Sous la touche \emph{Ajouter} se trouve une zone de texte (Figure \ref{boutonAjout}) où l'utilisateur peut modifier un réseau déjà rentré. 
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.7\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-3.png}  
+		 \end{minipage}}
+		\caption{Bouton de modification}
+  		\label{boutonModif}
+  	\end{center}	
+\end{figure}
+
+En effet cette zone appelle le fichier \emph{reactionTemp.txt} et permet la modification de son contenu (pour corriger une erreur de frappe notamment). Cette zone de texte va appeler la page \emph{modifier.php} lors de l'utilisation du bouton \emph{Modifier}.\\
+ Cette page efface le précédant fichier \emph{reactionTemp.txt} et insère le nouveau contenu que l'utilisateur a modifié. \\
+ Les fichiers \emph{metabolites.mfile}, \emph{stoechiometry.sfile}, \emph{reactions.rfile}, \emph{reversibility}, sont également générés à nouveau, à chaque modification du fichier \emph{reactionTemp.txt}.
  
 \section{Création du fichier \emph{DAT}}
-Sous la zone de texte modifiable, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédemment rentré.
-Cette touche appelle la page \emph{finish\_files.php} qui va concaténer trois fichiers :
+Sous la zone de texte modifiable, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédemment rentré. \\
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.3\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation2-1.png}  
+		 \end{minipage}}
+		\caption{Bouton de création du fichier au format \emph{DAT}}
+  		\label{boutonDAT}
+  	\end{center}	
+\end{figure}
+
+Ce bouton (Figure \ref{boutonDAT}) appelle la page \emph{finish\_files.php} qui va concaténer trois fichiers :
 \begin{itemize}
 \item \emph{irrevTemp.txt}
 \item \emph{revTemp.txt}
 \item \emph{reactiontemp2.txt}
 \end{itemize}
-Le premier fichier contient l'ensemble des enzymes catalysant les réactions irreversibles.\\
-Le second contient l'ensemble des enzymes catalysant des réactions réversibles, et enfin le dernier fichier contenant l'ensemble des réactions du réseaux.
+Le premier fichier contient l'ensemble des enzymes catalysant les réactions irréversibles. Le second contient l'ensemble des enzymes catalysant des réactions réversibles, et enfin le dernier fichier contient l'ensemble des réactions du réseaux. \\
 Chacun de ces fichiers contient les balises \emph{-IRREV}, \emph{-REV}, \emph{-CAT}, selon son contenu et respecte la syntaxe propre au format \emph{DAT}.
-
-
 
 \section{Règles des gènes}
 La page permettant la saisie des règles générales est obtenue à l'aide du fichier \emph{generules.php}.\\
-L'affichage à l'ouverture de la page n'est composé que d'une zone de texte et d'un bouton \emph{ok} qui est de type submit. Au clic, il fait appel à la fonction \emph{add\_reaction()} qui créée deux menus déroulant (pour la première et la dernière) ou trois menus déroulants (pour les autres) par réaction jusqu'à atteindre le nombre de réactions entrées par l'utilisateur. Elle vérifie également que le nombre de réactions entrées par l'utilisateur est au moins égal à 2, sinon elle affiche un message sous la forme d'une alerte à l'utilisateur.\\
+L'affichage à l'ouverture de la page n'est composé que d'une zone de texte et d'un bouton \emph{Ok} (Figure \ref{boutonOK}) qui est de type \textit{submit}. 
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.3\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/generules-1.png}  
+		 \end{minipage}}
+		\caption{Bouton du choix du nombre de réactions pour une règle}
+  		\label{boutonOK}
+  	\end{center}	
+\end{figure}
+
+Au clic, ce bouton fait appel à la fonction \emph{add\_reaction()} qui créée  deux menus déroulants (pour la première et la dernière, Figure \ref{menusDeroulants1}) ou trois menus déroulants (pour les autres, Figure \ref{menusDeroulants2}) par réaction jusqu'à atteindre le nombre de réactions entrées par l'utilisateur. 
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.7\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/generules-2.png}  
+		 \end{minipage}}
+		\caption{Menus déroulant si 2 réactions dans la règle}
+  		\label{menusDeroulants1}
+  	\end{center}	
+\end{figure}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.8\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/generules-3.png}  
+		 \end{minipage}}
+		\caption{Menus déroulant si 3 réactions dans la règle}
+  		\label{menusDeroulants2}
+  	\end{center}	
+\end{figure}
+
+Elle vérifie également que le nombre de réactions entrées par l'utilisateur est au moins égal à 2, sinon elle affiche un message sous la forme d'une alerte à l'utilisateur.\\
 Les réactions sont récupérées à partir de \emph{reactions.rfile}.\\
 
-L'utilisateur peur sélectionner plusieurs fois la m\^eme réaction dans sa règle, sauf pour le choix de la dernière (ligne THEN). Cette particularité est gérée par la fonction \emph{choice(form, val)}. Celle-ci permet de remplir les menus déroulants quand une réaction a été choisie et pour la dernière seules les réactions non sélectionnées précédemment appara\^issent.
+L'utilisateur peut sélectionner plusieurs fois la m\^eme réaction dans sa règle, sauf pour le choix de la dernière (ligne THEN). Cette particularité est gérée par la fonction \texttt{choice(form, val)}. Celle-ci permet de remplir les menus déroulants quand une réaction a été choisie et pour la dernière seules les réactions non sélectionnées précédemment appara\^issent.
 
-Lorsque l'utilisateur a choisi toutes ses réactions, leur opérateur et leur valeur, il clique sur le bouton \emph{Ajouter}. Celui-ci fait appel à la fonction \emph{validateForm()} qui vérifie que tous les champs ont bien été sélectionnés. Si la fonction retourne VRAI, il fait appel au fichier \emph{createGrfile.php} qui écrit la règle dans le fichier \emph{grfile.txt}.\\
+Lorsque l'utilisateur a choisi toutes ses réactions, leur opérateur et leur valeur, il clique sur le bouton \emph{Ajouter}. Celui-ci fait appel à la fonction \texttt{validateForm()} qui vérifie que tous les champs ont bien été sélectionnés. Si la fonction retourne VRAI, il fait appel au fichier \emph{createGrfile.php} qui écrit la règle dans le fichier \emph{grfile.txt}.\\
 Le fichier \emph{createGrfile.php} écrit dans le fichier \emph{grfile} selon certaines règles. En effet, l'écriture de la règle dépend des valeurs associées aux réactions et des opérateurs choisis.\\
 
 Si la valeur de la réaction qui suit le "THEN" est 0, alors il y aura le symbole "!" au début de la règle (juste après le "="), sauf si la règle ne contient que deux réactions.\\
@@ -71,11 +156,15 @@ En revanche, si la valeur de la réaction après "THEN" est 1, les autres réact
 De plus, si l'opérateur "AND" est sélectionné il sera écrit sous la forme \& dans le fichier, l'opérateur OR sera lui écrit $|$. Quand la règle est composée d'au moins trois réactions, des parenthèses sont ajoutées après chaque réaction sauf la première et la dernière. Des parenthèses entourent l'ensemble des réactions situées après le "=".\\
 
 Pour mieux comprendre l'écriture du fichier \emph{generules.grfile}, voici un exemple:\\
-Choix de l'utilisateur sur la page Web:\\
-\textbf{IF réaction: R1 valeur: 1\\
-Opérateur: AND réaction: R2 valeur: 0\\
-Opérateur: OR réaction: R3 valeur: 0\\
-THEN réaction: R4 valeur: 0}\\
+Choix de l'utilisateur sur la page Web:
+\begin{verbatim}
+IF réaction: R1 valeur: 1
+Opérateur: AND réaction: R2 valeur: 0
+Opérateur: OR réaction: R3 valeur: 0
+THEN réaction: R4 valeur: 0
+\end{verbatim}
 
-Règle écrite dans le fichier: \\
-\textbf{R4 = (!((1R1 \& (!0R2)) $|$ (!0R3))}
+Règle écrite dans le fichier: 
+\begin{verbatim}
+R4 = (!((1R1 \& (!0R2)) $|$ (!0R3))
+\end{verbatim}

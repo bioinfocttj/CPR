@@ -105,25 +105,25 @@ function choixParam(formulaire) {
     commande = commande + valeur4;
   }
   // Analysor
-  var nom5 = document.getElementById('stoich').value;
-  valeur5 = " -" + formulaire.stoich.id + " " + nom5; 
-  commande = commande + valeur5;
+  // var nom5 = document.getElementById('stoich').value;
+  // valeur5 = " -" + formulaire.stoich.id + " " + nom5; 
+  // commande = commande + valeur5;
 
-  var nom51 = document.getElementById('meta').value;
-  valeur51 = " -" + formulaire.meta.id + " " + nom51; 
-  commande = commande + valeur51;
+  // var nom51 = document.getElementById('meta').value;
+  // valeur51 = " -" + formulaire.meta.id + " " + nom51; 
+  // commande = commande + valeur51;
   
-  var nom52 = document.getElementById('rev').value;
-  valeur52 = " -" + formulaire.rev.id + " " + nom52; 
-  commande = commande + valeur52;
+  // var nom52 = document.getElementById('rev').value;
+  // valeur52 = " -" + formulaire.rev.id + " " + nom52; 
+  // commande = commande + valeur52;
   
-  var nom53 = document.getElementById('generule').value;
-  valeur53 = " -" + formulaire.generule.id + " " + nom53; 
-  commande = commande + valeur53;
+  // var nom53 = document.getElementById('generule').value;
+  // valeur53 = " -" + formulaire.generule.id + " " + nom53; 
+  // commande = commande + valeur53;
   
-  var nom54 = document.getElementById('reac').value;
-  valeur54 = " -" + formulaire.reac.id + " " + nom54; 
-  commande = commande + valeur54;
+  // var nom54 = document.getElementById('reac').value;
+  // valeur54 = " -" + formulaire.reac.id + " " + nom54; 
+  // commande = commande + valeur54;
   
   // if (formulaire.choix51.checked) { 
   //   var nom5 = document.getElementById('texte50').value;
@@ -278,9 +278,8 @@ function choixParam(formulaire) {
     valeur14 = " -" + formulaire.choix14[1].value; 
     commande = commande + valeur14;
   }
-  commande = commande + " &";
   alert(commande);
   document.cookie="commande="+commande;
-  window.location.assign('results.php');
+  window.location.assign('load_files.php');
 }
 
