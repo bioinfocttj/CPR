@@ -27,7 +27,7 @@
 						# Construction of the table of the reactions (enzymes) 
 						array_push($enzymes,$precedent);
 					}
-					else if ($value=="-->"){
+					else if ($value=="=>" or $value=="="){
 						$verif=false;
 					}
 					$precedent=$value;

@@ -34,6 +34,7 @@
 			fclose($reac);
 			fclose($reac2);
 			include 'createFiles.php';
+
 			header("Location: create.php");                                               
 		?>
 	</body>

@@ -27,7 +27,7 @@
 			
 
 			$space=" ";
-			$syntaxe=array("+",":","\n");
+			$syntaxe=array("+",":",".","=","=>","\n");
 			$array=explode($space,$name);
 			$precedent;
 			

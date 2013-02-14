@@ -35,7 +35,7 @@
 						$verif=true;
 						array_push($enzymes,$precedent);
 					}
-					else if ($value=="-->"){
+					else if ($value=="=>" or $value=="="){
 						$verif=false;
 					}
 					if (is_numeric($value)){

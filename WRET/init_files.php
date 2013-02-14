@@ -61,11 +61,11 @@
 			fputs($data, "-CAT \n");                                                      
 			fclose($data);                                                                
 																						  
-			// init of reaction file2                                                     
+			// init of reaction file2     
+			echo exec('rm reactionTemp2.txt');                                                                                         
 			echo exec('touch reactionTemp2.txt');                                         
 			echo exec('chmod 777 reactionTemp2.txt');                                     
-			$data2 = fopen('reactionTemp2.txt','w');                                      
-			fclose($data2);                                                               
+                                                             
 																						  
 			// init of reversibility file                                                 
 			echo exec('touch irrevTemp.txt');                                             
