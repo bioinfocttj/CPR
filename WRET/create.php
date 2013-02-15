@@ -26,7 +26,7 @@
 			
 			echo "function add_metabo(){\n";
 				echo "nbmetab=metabo.length-1;\n";
-				
+				echo "document.getElementById(\"datFile\").innerHTML=\"\"\n";
 				echo "document.getElementById(\"datFile\").innerHTML+=\"<div><b id='ext'>";
 				echo TXT_CREATE_EXT;
 				echo"</b><b id='int'>";
