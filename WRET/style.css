@@ -52,18 +52,8 @@ input#removeext{
 }
 
 b#int{
-	margin-left:250px; 
+	margin-left:100px; 
 }
-
-/*
-div#parent {
-	position : absolute ;
-	background-image: url(Images/logo.png);
-	background-repeat: no-repeat;
-	width: 1000px;
-	height: 1003px;
-	padding: 0;
-}*/
 
 form#reag{position: absolute;
 	right: 330px;	
