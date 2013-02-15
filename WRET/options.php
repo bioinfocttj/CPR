@@ -93,9 +93,9 @@
 							<input type="radio" name="choix4" value="kind flux-analyzer-dir"> 		<?php echo TXT_OPTIONS_INPUT_STOECH_1; ?>	<br/>
 						 	<input type="radio" name="choix4" value="kind flux-analyzer-files"> 	<?php echo TXT_OPTIONS_INPUT_STOECH_2; ?>	<br/>
 							<input type="radio" name="choix4" value="kind reaction-list"> 			<?php echo TXT_OPTIONS_INPUT_STOECH_3; ?> 	<br/>
-						 	<input type="radio" name="choix4" value="kind excel"> 					<?php echo TXT_OPTIONS_INPUT_STOECH_4; ?>	<br/>
+						 	<!-- <input type="radio" name="choix4" value="kind excel"> 					<?php //echo TXT_OPTIONS_INPUT_STOECH_4; ?>	<br/> -->
 						 	<input type="radio" name="choix4" value="kind stoichiometry" checked="checked"> 			<?php echo TXT_OPTIONS_INPUT_STOECH_5; ?>	<br/>
-						 	<input type="radio" name="choix4" value="kind sbml"> 					<?php echo TXT_OPTIONS_INPUT_STOECH_6; ?>				
+						 	<!-- <input type="radio" name="choix4" value="kind sbml"> 					<?php //echo TXT_OPTIONS_INPUT_STOECH_6; ?>				 -->
 						</div>
 						<div id="buttons2-2">
 							<input type="radio" 	name="choix51" value="meta" checked="checked"><?php echo TXT_OPTIONS_INPUT_F_ANALY_1; ?>

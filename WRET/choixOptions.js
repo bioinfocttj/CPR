@@ -92,14 +92,14 @@ function choixParam(formulaire) {
     valeur4 = " -" + formulaire.choix4[3].value; 
     commande = commande + valeur4;
   }
-  else if (formulaire.choix4[4].checked) { 
-    valeur4 = " -" + formulaire.choix4[4].value; 
-    commande = commande + valeur4;
-  }
-  else if (formulaire.choix4[5].checked) { 
-    valeur4 = " -" + formulaire.choix4[5].value; 
-    commande = commande + valeur4;
-  }
+  // else if (formulaire.choix4[4].checked) { 
+  //   valeur4 = " -" + formulaire.choix4[4].value; 
+  //   commande = commande + valeur4;
+  // }
+  // else if (formulaire.choix4[5].checked) { 
+  //   valeur4 = " -" + formulaire.choix4[5].value; 
+  //   commande = commande + valeur4;
+  // }
   // Analysor
   if (formulaire.choix51.checked) { 
     var nom5 = document.getElementById('texte50').value;

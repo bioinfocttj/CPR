@@ -96,14 +96,14 @@ function choixParam(formulaire) {
     valeur4 = " -" + formulaire.choix4[3].value; 
     commande = commande + valeur4;
   }
-  else if (formulaire.choix4[4].checked) { 
-    valeur4 = " -" + formulaire.choix4[4].value; 
-    commande = commande + valeur4;
-  }
-  else if (formulaire.choix4[5].checked) { 
-    valeur4 = " -" + formulaire.choix4[5].value; 
-    commande = commande + valeur4;
-  }
+  // else if (formulaire.choix4[4].checked) { 
+  //   valeur4 = " -" + formulaire.choix4[4].value; 
+  //   commande = commande + valeur4;
+  // }
+  // else if (formulaire.choix4[5].checked) { 
+  //   valeur4 = " -" + formulaire.choix4[5].value; 
+  //   commande = commande + valeur4;
+  // }
   // Analysor
   // var nom5 = document.getElementById('stoich').value;
   // valeur5 = " -" + formulaire.stoich.id + " " + nom5; 
