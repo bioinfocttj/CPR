@@ -93,6 +93,8 @@ define('TXT_LOAD_MFILE', ".mfile file");
 define('TXT_LOAD_RVFILE', ".rvfile file");
 define('TXT_LOAD_GRFILE', ".grfile file");
 define('TXT_LOAD_RFILE', ".rfile file");
+define('TXT_LOAD_TITLE2', "Next step of loading");
+define('TXT_LOAD_INSTRUCTION_2', "Please, choose the files to load");
 //---------------------------------------------------------
 // modify.php
 //---------------------------------------------------------
@@ -246,7 +248,7 @@ define('TXT_COPYRIGHT_CPY', "© Copyright 2013 <br />
 			The aim of this interface is to give a user-friendly environment to the software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. ");
 
 //---------------------------------------------------------
-// file_choose.php
+// results.php
 //---------------------------------------------------------
 define('TXT_FILE_CHOOSE_SITE_TITLE', "Results");
 define('TXT_FILE_CHOOSE_TITLE', "Visualization of results");
@@ -268,8 +270,8 @@ define('TXT_DISPLAY_RESULTS_SITE_TITLE', "Results");
 define('TXT_DISPLAY_RESULTS_TITLE', "Display results");
 define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Log file");
 define('TXT_DISPLAY_RESULTS_FILE', "File processed : ");
-define('TXT_DISPLAY_RESULTS_ORIGINAL', "original : ");
-define('TXT_DISPLAY_RESULTS_NEW', "new : ");
+define('TXT_DISPLAY_RESULTS_ORIGINAL', "Original : ");
+define('TXT_DISPLAY_RESULTS_NEW', "New : ");
 
 //---------------------------------------------------------
 // Fin

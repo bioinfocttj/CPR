@@ -152,14 +152,14 @@ Une fois les données de réactions et de réversibilité enregistrées, la page
 Ces noms sont enregistrés dans un fichier (\emph{reaction.rfile}) en respectant les espaces et la syntaxe nécessaire à l'utilisation au sein de \emph{regEfmtool}.
 
 \subsection{Métabolites}
-Après enregistrements des enzymes, le fichier \emph{parser\_metabolites.php} est appelé. Ce script va parser le fichier temporaire contenant les réactions (\emph{reactionTemp.txt}) et va enregistrer chacun des métabolites dans un fichier (\emph{meatbolites.mfile}). Au cours de ce parsage, seuls les éléments situés après le nom de l'enzyme seront pris en compte. Les noms présents plusieurs fois dans le fichier de réactions sont enregistrés une seule fois dans le fichier \emph{metabolites.mfile}.
+Après enregistrement des enzymes, le fichier \emph{parser\_metabolites.php} est appelé. Ce script va parser le fichier temporaire contenant les réactions (\emph{reactionTemp.txt}) et va enregistrer chacun des métabolites dans un fichier (\emph{meatbolites.mfile}). Au cours de ce parsage, seuls les éléments situés après le nom de l'enzyme seront pris en compte. Les noms présents plusieurs fois dans le fichier de réactions sont enregistrés une seule fois dans le fichier \emph{metabolites.mfile}.
 
 \subsection{Stœchiométrie}
 Enfin après génération des fichiers: \emph{rvfile}, \emph{mfile}, \emph{sfile}, \emph{rfile}, le script \emph{parser\_stoechiometry} est appelé. Il va lancer le script \emph{parser\_stoechiometry.py}. Ce dernier permet de générer la matrice de stœchiométrie nécessaire a \emph{regEfmtool}. Pour ce faire, il prend les fichiers \emph{reactionTemp.txt} et \emph{metabolites.mfile} en entrée. Il génère la matrice ligne par ligne (une ligne correspondant à une réaction). \\
-Pour chaque ligne du fichier \emph{reactionTemp.txt} une liste est créée et, pour chaque métabolite de cette réaction, sa stœchiométrie est enregistrée en respectant son ordre dans le fichiers contenant les réactifs. Ce script fournit alors en sortie le fichier \emph{stoechiometry.sfile}.
+Pour chaque ligne du fichier \emph{reactionTemp.txt}, une liste est créée et, pour chaque métabolite de cette réaction, sa stœchiométrie est enregistrée en respectant son ordre dans le fichier contenant les réactifs. Ce script fournit alors en sortie le fichier \emph{stoechiometry.sfile}.
 
 \subsection{Modification du réseaux}
-Une fois les fichiers générés l'utilisateur est redirigé sur la page \emph{create.php}.
+Une fois les fichiers générés, l'utilisateur est redirigé sur la page \emph{create.php}.
 Sous la touche \emph{Ajouter} se trouve une zone de texte (Figure \ref{boutonAjout}) où l'utilisateur peut modifier un réseau déjà rentré.
 
 \begin{figure}[!ht]
@@ -173,13 +173,13 @@ Sous la touche \emph{Ajouter} se trouve une zone de texte (Figure \ref{boutonAjo
       \end{center}   
 \end{figure}
 
-En effet cette zone appelle le fichier \emph{reactionTemp.txt} et permet la modification de son contenu (pour corriger une erreur de frappe notamment). Cette zone de texte va appeler la page \emph{modifier.php} lors de l'utilisation du bouton \emph{Modifier}.\\
+En effet, cette zone appelle le fichier \emph{reactionTemp.txt} et permet la modification de son contenu (pour corriger une erreur de frappe notamment). Cette zone de texte va appeler la page \emph{modifier.php} lors de l'utilisation du bouton \emph{Modifier}.\\
  Cette page efface le précédant fichier \emph{reactionTemp.txt} et insère le nouveau contenu que l'utilisateur a modifié. \\
  Les fichiers \emph{metabolites.mfile}, \emph{stoechiometry.sfile}, \emph{reactions.rfile}, \emph{reversibility}, sont également générés à nouveau, à chaque modification du fichier \emph{reactionTemp.txt}.
  
 \subsection{Création du fichier \emph{DAT}}
 
-En dessous de la zone de texte modifiable, une touche nommée \emph{choisir les métabolites internes et externes} (Figure \ref{boutonMET_int_EXT}) permet à l'utilisateur de définir dans son réseaux les métabolites internes et externes . Ce bouton va effectuer un parsage du fichier \emph{metabolites.mfile} et afficher dans une colonne à gauche contenant tous les métabolites. Une colonne a droite vide peut être remplie ou vidé via les bouton \emph{ajouter}, \emph{supprimer} situés sous les colonnes.
+En dessous de la zone de texte modifiable, une touche nommée \emph{Choisir les métabolites internes et externes} (Figure \ref{boutonMET_int_EXT}) permet à l'utilisateur de définir dans son réseaux les métabolites internes et externes . Ce bouton va effectuer un parsage du fichier \emph{metabolites.mfile} et afficher dans une colonne à gauche contenant tous les métabolites. Une colonne a droite vide peut être remplie ou vidé via les bouton \emph{Ajouter}, \emph{Supprimer} situés sous les colonnes.
 Ces touches d'ajout et de suppression font appelle à des fonctions \emph{javascript}, directement intégrées à la page \emph{create.php}.\\
 
 \begin{figure}[!ht]
@@ -193,7 +193,7 @@ Ces touches d'ajout et de suppression font appelle à des fonctions \emph{javasc
       \end{center}   
 \end{figure}
 
-Sous la zone de selection des métabolites internes et externes, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédemment rentré. \\
+Sous la zone de sélection des métabolites internes et externes, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédemment rentré. \\
 
 \begin{figure}[!ht]
     \begin{center}
@@ -206,7 +206,7 @@ Sous la zone de selection des métabolites internes et externes, un bouton \emph
       \end{center}   
 \end{figure}
 
-Ce bouton (Figure \ref{boutonDAT}) appelle la page \emph{finish\_files.php} qui va  récupérer les choix de l'utilisateur en ce qui concernes les métabolites internes et externes, et concaténer trois fichiers :
+Ce bouton (Figure \ref{boutonDAT}) appelle la page \emph{finish\_files.php} qui va  récupérer les choix de l'utilisateur en ce qui concerne les métabolites internes et externes, et concaténer trois fichiers :
 \begin{itemize}
 \item \emph{irrevTemp.txt}
 \item \emph{revTemp.txt}
@@ -215,7 +215,7 @@ Ce bouton (Figure \ref{boutonDAT}) appelle la page \emph{finish\_files.php} qui 
 
 Le premier fichier contient l'ensemble des enzymes catalysant les réactions irréversibles. Le second contient l'ensemble des enzymes catalysant des réactions réversibles, et enfin le dernier fichier contient l'ensemble des réactions du réseaux. \\
 Chacun de ces fichiers contient les balises \emph{-ENZIRREV}, \emph{-ENZREV}, \emph{-CAT}, selon son contenu et respecte la syntaxe propre au format \emph{DAT}.
-Les noms des métabolites sont insérer dans le fichier au format \emph{DAT} après une balise \emph{-METINT} ou \emph{-METEXT} selon leur rôle dans le réseaux défini par l'utilisateur.
+Les noms des métabolites sont insérés dans le fichier au format \emph{DAT} après une balise \emph{-METINT} ou \emph{-METEXT}, selon leur rôle dans le réseaux défini par l'utilisateur.
 
 Il en résulte en sortie du script \emph{finish\_files.php} un fichier au format \emph{DAT}, de la forme:
 \\
@@ -270,7 +270,7 @@ T12 : Asp + Glu_ext = Asp_ext + Glu .
   	\end{center}	
 \end{figure}
 
-La page permettant la saisie des règles générales est obtenue à l'aide du fichier \emph{generules.php} (Figure \ref{DiagCreate}).\\
+La page permettant la saisie des règles générales est obtenue à l'aide du fichier \emph{generules.php} (Figure \ref{DiagRegles}).\\
 L'affichage à l'ouverture de la page n'est composé que d'une zone de texte et d'un bouton \emph{Ok} (Figure \ref{boutonOK}) qui est de type \textit{submit}. 
 
 \begin{figure}[!ht]
@@ -436,7 +436,7 @@ Cette commande est envoyée via un \textit{cookie} à la page d'affichage des r�
   	\end{center}	
 \end{figure}
 
-Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton "Étape suivante". Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
+Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton \textit{Étape suivante}. Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
 
 Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php}, qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans regEfmtool. Ce processus est faisable grâce au script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
 
