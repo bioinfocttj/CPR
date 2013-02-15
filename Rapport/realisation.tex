@@ -231,8 +231,7 @@ Le premier \textit{radiobouton} est pré-coché avec l'attribut \textit{checked=
 
 Ce sont les attributs \textit{value} de ces boutons qui sont récupérés avec un script JavaScript. Ce dernier, nommé \emph{choixOptions.js}, permet de vérifier quels \textit{radioboutons} sont cochés et récupère ce qu'il a dans l'attribut \textit{value} de ceux-ci quand c'est le cas. Il est appelé lors du clic sur le bouton \textit{Lancement} en bas de la page. De plus, c'est dans ce script qu'est générée la commande qui permettra le lancement de regEfmtool. Elle est contenue dans une variable nommée  \textit{commande}, qui se remplit des paramètres sélectionnés. \\
 
-Exemple du code JavaScript qui permet la récupération des \textit{values} précédentes :
-
+Exemple du code JavaScript qui permet la récupération des \textit{values} précédentes : \\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -252,11 +251,14 @@ var commande = "java -Xmx1G -jar ../regEfmtool.jar";
 \end{lstlisting}
 \end{DDbox}
 
+La variable \textit{commande} est une chaîne de caractères qui contient le début de la commande Java. Les paramètres sont ensuite ajoutés au fur et à mesure de la vérification de la sélection des boutons. \\
 
+Cette commande est envoyée via un \textit{cookie} à la page d'affichage des résultats pour le lancement de regEfmtool. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Chargement d'un réseau pré-existant}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
