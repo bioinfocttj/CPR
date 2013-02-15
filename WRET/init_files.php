@@ -13,15 +13,7 @@
 			//init temp dat                                                               
 			echo exec('rm fichier.dat');                                                  
 			echo exec('touch fichier.dat');                                               
-			echo exec('chmod 777 fichier.dat');   
-			
-			//init temp metabolites file                                        
-			echo exec('rm metabolitesTemp.txt');                                                  
-			echo exec('touch metabolitesTemp.txt');                                               
-			echo exec('chmod 777 metabolitesTemp.txt'); 
-			$data5 = fopen('metabolitesTemp.txt','w');                                        
-			fputs($data5, "-METINT \n");                                                      
-			fclose($data5);                                           
+			echo exec('chmod 777 fichier.dat');                                    
 																						  
 			//init stoechiometry file                                                     
 			echo exec('rm stoech.txt');                                                   
@@ -71,14 +63,14 @@
 			echo exec('touch irrevTemp.txt');                                             
 			echo exec('chmod 777 irrevTemp.txt');                                         
 			$data2 = fopen('irrevTemp.txt','w');                                          
-			fputs($data2, "-IRREV \n");                                                   
+			fputs($data2, "-ENZIRREV \n");                                                   
 			fclose($data2);                                                               
 																						  
 			// init of irreversibility file                                               
 			echo exec('touch revTemp.txt');                                               
 			echo exec('chmod 777 revTemp.txt');                                           
 			$data3 = fopen('revTemp.txt','w');                                            
-			fputs($data3, "-REV \n");                                                     
+			fputs($data3, "-ENZREV \n");                                                     
 			fclose($data3);                                                               
 																						  
 																						  
