@@ -1,0 +1,315 @@
+2013-01-22  17:25:47.303  main                     INFO     | =====================================================
+2013-01-22  17:25:47.304  main                     INFO     | efmtool version 4.7.1, 2009-12-04 18:30:05
+2013-01-22  17:25:47.304  main                     INFO     | Copyright (c) 2009, Marco Terzer, Zurich, Switzerland
+2013-01-22  17:25:47.304  main                     INFO     | This is free software, !!! NO WARRANTY !!!
+2013-01-22  17:25:47.304  main                     INFO     | See LICENCE.txt for redistribution conditions
+2013-01-22  17:25:47.304  main                     INFO     | =====================================================
+2013-01-22  17:25:47.414  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.search.PatternTreeMinZerosAdjacencyEnumerator
+2013-01-22  17:25:47.415  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.search.PatternTreeLinearSearchAdjacencyEnumerator
+2013-01-22  17:25:47.421  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.rank.PatternTreeRankAdjacencyEnumerator
+2013-01-22  17:25:47.431  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.rank.PatternTreeModRankAdjacencyEnumerator
+2013-01-22  17:25:47.432  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.urank.modpi.ModIntPrimePatternTreeRankUpdateAdjacencyEnumerator
+2013-01-22  17:25:47.433  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.urank.modp.ModPrimePatternTreeRankUpdateAdjacencyEnumerator
+2013-01-22  17:25:47.434  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.urank.frac.FractionalPatternTreeRankUpdateAdjacencyEnumerator
+2013-01-22  17:25:47.436  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.urank.frac2.Fractional2PatternTreeRankUpdateAdjacencyEnumerator
+2013-01-22  17:25:47.437  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.urank.dbl.DoublePatternTreeRankUpdateAdjacencyEnumerator
+2013-01-22  17:25:47.438  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.tree.urank.dbl2.Double2PatternTreeRankUpdateAdjacencyEnumerator
+2013-01-22  17:25:47.438  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.FastRankTestAdjacencyEnumerator
+2013-01-22  17:25:47.438  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.ModRankTestAdjacencyEnumerator
+2013-01-22  17:25:47.439  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.PatternTreeSearchAdjacencyEnumerator
+2013-01-22  17:25:47.440  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.incore.LinearSearchAdjacencyEnumerator
+2013-01-22  17:25:47.444  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.ModIntPrimeInCoreAdjEnum
+2013-01-22  17:25:47.445  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.ModIntPrimeOutCoreAdjEnum
+2013-01-22  17:25:47.446  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.adj.SearchInCoreAdjEnum
+2013-01-22  17:25:47.446  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.dist.impl.adj.DistModIntPrimeInCoreAdjEnum
+2013-01-22  17:25:47.447  main    efm.adj          FINER    | registered distributed adjacency-method: ch.javasoft.metabolic.efm.dist.impl.adj.DistModIntPrimeInCoreAdjEnum
+2013-01-22  17:25:47.447  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.dist.impl.adj.DistModIntPrimeOutCoreAdjEnum
+2013-01-22  17:25:47.447  main    efm.adj          FINER    | registered distributed adjacency-method: ch.javasoft.metabolic.efm.dist.impl.adj.DistModIntPrimeOutCoreAdjEnum
+2013-01-22  17:25:47.449  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.dist.impl.adj.MultiThreadedAdjEnum
+2013-01-22  17:25:47.450  main    efm.adj          FINER    | registered adjacency-method: ch.javasoft.metabolic.efm.dist.impl.adj.MultiProcessedAdjEnum
+2013-01-22  17:25:47.500  main    efm.impl         INFO     | Elemetary flux mode computation
+2013-01-22  17:25:47.500  main    efm.impl         INFO     | Implementation:
+2013-01-22  17:25:47.501  main    efm.impl         INFO     | ..algorithm name   : SequentialDoubleDescriptionImpl
+2013-01-22  17:25:47.501  main    efm.impl         INFO     | ..model type       : NullspaceEfmModel
+2013-01-22  17:25:47.501  main    efm.impl         INFO     | ..memory type      : InCoreMemory
+2013-01-22  17:25:47.501  main    efm.impl         INFO     | ..output type      : Text
+2013-01-22  17:25:47.501  main    efm.impl         INFO     | System:
+2013-01-22  17:25:47.508  main    efm.impl         INFO     | ..hostname         : gauguin
+2013-01-22  17:25:47.508  main    efm.impl         INFO     | ..operating system : amd64/Linux/3.2.0-4-amd64
+2013-01-22  17:25:47.509  main    efm.impl         INFO     | ..processors       : 16
+2013-01-22  17:25:47.509  main    efm.impl         INFO     | ..vm               : Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/23.1-b03
+2013-01-22  17:25:47.509  main    efm.impl         INFO     | ..vm-spec          : Oracle Corporation/Java Virtual Machine Specification/1.7
+2013-01-22  17:25:47.510  main    efm.impl         INFO     | ..vm arguments     : [-Xmx1G]
+2013-01-22  17:25:47.510  main    efm.impl         INFO     | ..memory, commited : 188M
+2013-01-22  17:25:47.511  main    efm.impl         INFO     | ..memory, used     : 14M
+2013-01-22  17:25:47.511  main    efm.impl         INFO     | Config:
+2013-01-22  17:25:47.511  main    efm.impl         INFO     | ..generator        : Efm
+2013-01-22  17:25:47.511  main    efm.impl         INFO     | ..adj method       : pattern-tree-minzero
+2013-01-22  17:25:47.511  main    efm.impl         INFO     | ..row ordering     : MostZerosOrAbsLexMin
+2013-01-22  17:25:47.511  main    efm.impl         INFO     | ..arithmetic       : double (prec: -1 / zero: 1.0E-10)
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..compression      : on
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..compr. methods   : [CoupledZero, CoupledContradicting, CoupledCombine, UniqueFlows, DeadEnd, Recursive]
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..normalize        : none
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..max threads      : 2
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..self test        : off
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..progress type    : None
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..progress part.   : 100
+2013-01-22  17:25:47.512  main    efm.impl         INFO     | ..suppress         : []
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | ..enforce          : []
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | ..nosplit          : []
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | ..temp dir         : /local/tmp/???
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | ..flag             : (none)
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | Distributed Config:
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | ..node count       : 2
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | ..nodes            : [localhost, localhost]
+2013-01-22  17:25:47.513  main    efm.impl         INFO     | ..vmargs           : [-Xmx800M, -Xmx500M]
+2013-01-22  17:25:47.514  main    efm.impl         INFO     | ..command          : /usr/bin/java [vmargs] -cp [classpath] [class] [args]
+2013-01-22  17:25:47.514  main    efm.impl         INFO     | ..partition        : 256
+2013-01-22  17:25:47.514  main    efm.impl         INFO     | ..cand. threshold  : 100000
+2013-01-22  17:25:47.514  main    efm.impl         FINEST   | Network metabolites: 
+2013-01-22  17:25:47.516  main    efm.impl         FINEST   | A, B, C, D, P, 
+2013-01-22  17:25:47.516  main    efm.impl         FINEST   | Network reactions: 
+2013-01-22  17:25:47.517  main    efm.impl         FINEST   | R1:	# --> A
+2013-01-22  17:25:47.517  main    efm.impl         FINEST   | R2:	A --> C
+2013-01-22  17:25:47.518  main    efm.impl         FINEST   | R3:	C --> D + P
+2013-01-22  17:25:47.518  main    efm.impl         FINEST   | R4:	P --> #
+2013-01-22  17:25:47.518  main    efm.impl         FINEST   | R5:	A --> B
+2013-01-22  17:25:47.518  main    efm.impl         FINEST   | R6r:	B <--> C
+2013-01-22  17:25:47.518  main    efm.impl         FINEST   | R7:	B --> 2 P
+2013-01-22  17:25:47.518  main    efm.impl         FINEST   | R8r:	B <--> #
+2013-01-22  17:25:47.518  main    efm.impl         FINEST   | R9:	D --> #
+2013-01-22  17:25:47.519  main    efm.impl         INFO     | original network: 5 metabolites, 9 reactions (2 reversible)
+2013-01-22  17:25:47.536  main    metabolic.compr  FINE     | compression iteration 1 (dead-ends/inconsistencies)
+2013-01-22  17:25:47.539  main    metabolic.compr  FINEST   | stoich matrix:
+2013-01-22  17:25:47.539  main    metabolic.compr  FINEST   | 5x9 {
+2013-01-22  17:25:47.540  main    metabolic.compr  FINEST   |  [ 1 , -1 , 0 , 0 , -1 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.540  main    metabolic.compr  FINEST   |  [ 0 , 0 , 0 , 0 , 1 , -1 , -1 , -1 , 0 ]
+2013-01-22  17:25:47.540  main    metabolic.compr  FINEST   |  [ 0 , 1 , -1 , 0 , 0 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.541  main    metabolic.compr  FINEST   |  [ 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , -1 ]
+2013-01-22  17:25:47.541  main    metabolic.compr  FINEST   |  [ 0 , 0 , 1 , -1 , 0 , 0 , 2 , 0 , 0 ]
+2013-01-22  17:25:47.541  main    metabolic.compr  FINEST   | }
+2013-01-22  17:25:47.541  main    metabolic.compr  FINEST   | kernel matrix:
+2013-01-22  17:25:47.541  main    metabolic.compr  FINEST   | 9x4 {
+2013-01-22  17:25:47.541  main    metabolic.compr  FINEST   |  [ 0 , 1 , 1 , 1 ]
+2013-01-22  17:25:47.541  main    metabolic.compr  FINEST   |  [ -1 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.542  main    metabolic.compr  FINEST   |  [ 0 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.542  main    metabolic.compr  FINEST   |  [ 0 , 2 , 0 , 1 ]
+2013-01-22  17:25:47.542  main    metabolic.compr  FINEST   |  [ 1 , 1 , 1 , 0 ]
+2013-01-22  17:25:47.542  main    metabolic.compr  FINEST   |  [ 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.542  main    metabolic.compr  FINEST   |  [ 0 , 1 , 0 , 0 ]
+2013-01-22  17:25:47.543  main    metabolic.compr  FINEST   |  [ 0 , 0 , 1 , 0 ]
+2013-01-22  17:25:47.543  main    metabolic.compr  FINEST   |  [ 0 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.543  main    metabolic.compr  FINEST   | }
+2013-01-22  17:25:47.543  main    metabolic.compr  FINE     | compression iteration 2 (unique fluxes)
+2013-01-22  17:25:47.543  main    metabolic.compr  FINE     | found uniquely produced metabolite: A
+2013-01-22  17:25:47.545  main    metabolic.compr  FINER    |    [-] R1 := # --> A
+2013-01-22  17:25:47.545  main    metabolic.compr  FINER    |    [+] R2 := A --> C
+2013-01-22  17:25:47.545  main    metabolic.compr  FINER    |    [>] R2 := # --> C
+2013-01-22  17:25:47.546  main    metabolic.compr  FINER    |    [+] R5 := A --> B
+2013-01-22  17:25:47.546  main    metabolic.compr  FINER    |    [>] R5 := # --> B
+2013-01-22  17:25:47.548  main    metabolic.compr  FINE     | found uniquely consumed metabolite: P
+2013-01-22  17:25:47.548  main    metabolic.compr  FINER    |    [-] R4 := P --> #
+2013-01-22  17:25:47.548  main    metabolic.compr  FINER    |    [+] R3 := C --> P + D
+2013-01-22  17:25:47.548  main    metabolic.compr  FINER    |    [>] R3 := C --> D
+2013-01-22  17:25:47.549  main    metabolic.compr  FINER    |    [+] R7 := B --> 2 P
+2013-01-22  17:25:47.549  main    metabolic.compr  FINER    |    [>] R7 := B --> #
+2013-01-22  17:25:47.549  main    metabolic.compr  FINE     | found uniquely consumed metabolite: D
+2013-01-22  17:25:47.549  main    metabolic.compr  FINER    |    [-] R9 := D --> #
+2013-01-22  17:25:47.549  main    metabolic.compr  FINER    |    [+] R3 := C --> D
+2013-01-22  17:25:47.549  main    metabolic.compr  FINER    |    [>] R3 := C --> #
+2013-01-22  17:25:47.550  main    metabolic.compr  FINE     | compression iteration 3 (unique fluxes)
+2013-01-22  17:25:47.550  main    metabolic.compr  FINE     | compression iteration 4 (nullspace)
+2013-01-22  17:25:47.550  main    metabolic.compr  FINEST   | stoich matrix:
+2013-01-22  17:25:47.550  main    metabolic.compr  FINEST   | 2x6 {
+2013-01-22  17:25:47.550  main    metabolic.compr  FINEST   |  [ 0 , 1 , -1 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.551  main    metabolic.compr  FINEST   |  [ -1 , 0 , 0 , -1 , 1 , -1 ]
+2013-01-22  17:25:47.551  main    metabolic.compr  FINEST   | }
+2013-01-22  17:25:47.551  main    metabolic.compr  FINEST   | kernel matrix:
+2013-01-22  17:25:47.551  main    metabolic.compr  FINEST   | 6x4 {
+2013-01-22  17:25:47.551  main    metabolic.compr  FINEST   |  [ 0 , -1 , 1 , -1 ]
+2013-01-22  17:25:47.551  main    metabolic.compr  FINEST   |  [ 1 , 0 , 0 , -1 ]
+2013-01-22  17:25:47.552  main    metabolic.compr  FINEST   |  [ 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.552  main    metabolic.compr  FINEST   |  [ 0 , 1 , 0 , 0 ]
+2013-01-22  17:25:47.552  main    metabolic.compr  FINEST   |  [ 0 , 0 , 1 , 0 ]
+2013-01-22  17:25:47.552  main    metabolic.compr  FINEST   |  [ 0 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.552  main    metabolic.compr  FINEST   | }
+2013-01-22  17:25:47.552  main    metabolic.compr  FINE     | compression iteration 5 (unique/nullspace)
+2013-01-22  17:25:47.553  main    metabolic.compr  FINEST   | stoich matrix:
+2013-01-22  17:25:47.553  main    metabolic.compr  FINEST   | 2x6 {
+2013-01-22  17:25:47.553  main    metabolic.compr  FINEST   |  [ 0 , 1 , -1 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.553  main    metabolic.compr  FINEST   |  [ -1 , 0 , 0 , -1 , 1 , -1 ]
+2013-01-22  17:25:47.553  main    metabolic.compr  FINEST   | }
+2013-01-22  17:25:47.553  main    metabolic.compr  FINEST   | kernel matrix:
+2013-01-22  17:25:47.554  main    metabolic.compr  FINEST   | 6x4 {
+2013-01-22  17:25:47.554  main    metabolic.compr  FINEST   |  [ 0 , -1 , 1 , -1 ]
+2013-01-22  17:25:47.554  main    metabolic.compr  FINEST   |  [ 1 , 0 , 0 , -1 ]
+2013-01-22  17:25:47.554  main    metabolic.compr  FINEST   |  [ 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.554  main    metabolic.compr  FINEST   |  [ 0 , 1 , 0 , 0 ]
+2013-01-22  17:25:47.555  main    metabolic.compr  FINEST   |  [ 0 , 0 , 1 , 0 ]
+2013-01-22  17:25:47.555  main    metabolic.compr  FINEST   |  [ 0 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.555  main    metabolic.compr  FINEST   | }
+2013-01-22  17:25:47.555  main    compress.stats   FINE     | compression statistics
+2013-01-22  17:25:47.555  main    compress.stats   FINE     |   meta[0].DeadEnd = 0
+2013-01-22  17:25:47.555  main    compress.stats   FINE     |   meta[0].UniqueFlow = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   meta[0].Unused = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   meta[0].InterchangeableMetaboliteSimple = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   meta[0].InterchangeableMetaboliteComplex = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   reac[0].ZeroFlux = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   reac[0].Contradicting = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   reac[0].Coupled = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   reac[0].UniqueFlow = 0
+2013-01-22  17:25:47.556  main    compress.stats   FINE     |   reac[0].DeadEnd = 0
+2013-01-22  17:25:47.557  main    compress.stats   FINE     |   reac[0].DuplicateGeneSimple = 0
+2013-01-22  17:25:47.557  main    compress.stats   FINE     |   reac[0].DuplicateGeneComplex = 0
+2013-01-22  17:25:47.557  main    compress.stats   FINE     |   meta[1].DeadEnd = 0
+2013-01-22  17:25:47.557  main    compress.stats   FINE     |   meta[1].UniqueFlow = 3
+2013-01-22  17:25:47.557  main    compress.stats   FINE     |   meta[1].Unused = 0
+2013-01-22  17:25:47.557  main    compress.stats   FINE     |   meta[1].InterchangeableMetaboliteSimple = 0
+2013-01-22  17:25:47.557  main    compress.stats   FINE     |   meta[1].InterchangeableMetaboliteComplex = 0
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   reac[1].ZeroFlux = 0
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   reac[1].Contradicting = 0
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   reac[1].Coupled = 0
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   reac[1].UniqueFlow = 3
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   reac[1].DeadEnd = 0
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   reac[1].DuplicateGeneSimple = 0
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   reac[1].DuplicateGeneComplex = 0
+2013-01-22  17:25:47.558  main    compress.stats   FINE     |   meta.DeadEnd = 0
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   meta.UniqueFlow = 3
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   meta.Unused = 0
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   meta.InterchangeableMetaboliteSimple = 0
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   meta.InterchangeableMetaboliteComplex = 0
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   reac.ZeroFlux = 0
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   reac.Contradicting = 0
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   reac.Coupled = 0
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   reac.UniqueFlow = 3
+2013-01-22  17:25:47.559  main    compress.stats   FINE     |   reac.DeadEnd = 0
+2013-01-22  17:25:47.560  main    compress.stats   FINE     |   reac.DuplicateGeneSimple = 0
+2013-01-22  17:25:47.560  main    compress.stats   FINE     |   reac.DuplicateGeneComplex = 0
+2013-01-22  17:25:47.560  main    compress.stats   FINE     |   meta = 3
+2013-01-22  17:25:47.560  main    compress.stats   FINE     |   reac = 3
+2013-01-22  17:25:47.560  main    compress.data    FINER    | compression matrices:
+2013-01-22  17:25:47.560  main    compress.data    FINER    |   pre * stoich * post  = cmp
+2013-01-22  17:25:47.560  main    compress.data    FINER    | efm uncompression:
+2013-01-22  17:25:47.560  main    compress.data    FINER    |   stoich * post * efmc = 0
+2013-01-22  17:25:47.561  main    compress.data    FINER    |   stoich * efm         = 0
+2013-01-22  17:25:47.561  main    compress.data    FINER    |   -->      efm         = post * efmc
+2013-01-22  17:25:47.561  main    compress.data    FINER    | stoich: 
+2013-01-22  17:25:47.561  main    compress.data    FINER    | 5x9 {
+2013-01-22  17:25:47.561  main    compress.data    FINER    |  [ 1 , -1 , 0 , 0 , -1 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.561  main    compress.data    FINER    |  [ 0 , 0 , 0 , 0 , 1 , -1 , -1 , -1 , 0 ]
+2013-01-22  17:25:47.562  main    compress.data    FINER    |  [ 0 , 1 , -1 , 0 , 0 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.562  main    compress.data    FINER    |  [ 0 , 0 , 1 , 0 , 0 , 0 , 0 , 0 , -1 ]
+2013-01-22  17:25:47.562  main    compress.data    FINER    |  [ 0 , 0 , 1 , -1 , 0 , 0 , 2 , 0 , 0 ]
+2013-01-22  17:25:47.562  main    compress.data    FINER    | }
+2013-01-22  17:25:47.562  main    compress.data    FINER    | pre: 
+2013-01-22  17:25:47.563  main    compress.data    FINER    | 2x5 {
+2013-01-22  17:25:47.563  main    compress.data    FINER    |  [ 0 , 0 , 1 , 0 , 0 ]
+2013-01-22  17:25:47.563  main    compress.data    FINER    |  [ 0 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.563  main    compress.data    FINER    | }
+2013-01-22  17:25:47.563  main    compress.data    FINER    | post: 
+2013-01-22  17:25:47.563  main    compress.data    FINER    | 9x6 {
+2013-01-22  17:25:47.563  main    compress.data    FINER    |  [ 1 , 0 , 0 , 0 , 1 , 0 ]
+2013-01-22  17:25:47.564  main    compress.data    FINER    |  [ 1 , 0 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.564  main    compress.data    FINER    |  [ 0 , 1 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.564  main    compress.data    FINER    |  [ 0 , 1 , 0 , 0 , 0 , 2 ]
+2013-01-22  17:25:47.564  main    compress.data    FINER    |  [ 0 , 0 , 0 , 0 , 1 , 0 ]
+2013-01-22  17:25:47.565  main    compress.data    FINER    |  [ 0 , 0 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.565  main    compress.data    FINER    |  [ 0 , 0 , 0 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.565  main    compress.data    FINER    |  [ 0 , 0 , 0 , 1 , 0 , 0 ]
+2013-01-22  17:25:47.565  main    compress.data    FINER    |  [ 0 , 1 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.565  main    compress.data    FINER    | }
+2013-01-22  17:25:47.565  main    compress.data    FINER    | cmp: 
+2013-01-22  17:25:47.565  main    compress.data    FINER    | 2x6 {
+2013-01-22  17:25:47.566  main    compress.data    FINER    |  [ 1 , -1 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.566  main    compress.data    FINER    |  [ 0 , 0 , -1 , -1 , 1 , -1 ]
+2013-01-22  17:25:47.566  main    compress.data    FINER    | }
+2013-01-22  17:25:47.566  main    compress.data    FINER    | cmp_reversibilities = [false, false, true, true, false, false]
+2013-01-22  17:25:47.569  main    metabolic.compr  FINE     | network compression methods are [CoupledZero, CoupledContradicting, CoupledCombine, UniqueFlows, DeadEnd, Recursive]
+2013-01-22  17:25:47.569  main    metabolic.compr  FINE     | Uncompressed network size: 5 metabolites, 9 reactions (2 reversible)
+2013-01-22  17:25:47.569  main    metabolic.compr  FINE     | Compressed network size: 2 metabolites, 6 reactions (2 reversible)
+2013-01-22  17:25:47.569  main    efm.impl         INFO     | compressed network: 2 metabolites, 6 reactions (2 reversible)
+2013-01-22  17:25:47.602  main    efm.util         FINEST   | formatted kernel before reestablishing reaction category sorting:
+2013-01-22  17:25:47.602  main    efm.util         FINEST   | 8x6 {
+2013-01-22  17:25:47.603  main    efm.util         FINEST   |  [ 1 , 0 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.603  main    efm.util         FINEST   |  [ 0 , 1 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.603  main    efm.util         FINEST   |  [ 0 , 0 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.603  main    efm.util         FINEST   |  [ 0 , 0 , 0 , 1 , 0 , 0 ]
+2013-01-22  17:25:47.603  main    efm.util         FINEST   |  [ 0 , 0 , 0 , 0 , 1 , 0 ]
+2013-01-22  17:25:47.604  main    efm.util         FINEST   |  [ 0 , 0 , 0 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.604  main    efm.util         FINEST   |  [ 0 , 1 , -1 , 1 , 1 , -1 ]
+2013-01-22  17:25:47.604  main    efm.util         FINEST   |  [ 1 , 0 , 1 , -1 , -1 , 1 ]
+2013-01-22  17:25:47.604  main    efm.util         FINEST   | }
+2013-01-22  17:25:47.608  main    efm.util         FINEST   | formatted kernel after reestablishing reaction category sorting:
+2013-01-22  17:25:47.608  main    efm.util         FINEST   | 8x6 {
+2013-01-22  17:25:47.608  main    efm.util         FINEST   |  [ 1 , 0 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.608  main    efm.util         FINEST   |  [ 0 , 1 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.608  main    efm.util         FINEST   |  [ 0 , 0 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.609  main    efm.util         FINEST   |  [ 0 , 0 , 0 , 1 , 0 , 0 ]
+2013-01-22  17:25:47.609  main    efm.util         FINEST   |  [ 0 , 0 , 0 , 0 , 1 , 0 ]
+2013-01-22  17:25:47.609  main    efm.util         FINEST   |  [ 0 , 0 , 0 , 0 , 0 , 1 ]
+2013-01-22  17:25:47.609  main    efm.util         FINEST   |  [ 0 , 1 , -1 , 1 , 1 , -1 ]
+2013-01-22  17:25:47.609  main    efm.util         FINEST   |  [ 1 , 0 , 1 , -1 , -1 , 1 ]
+2013-01-22  17:25:47.609  main    efm.util         FINEST   | }
+2013-01-22  17:25:47.615  main    efm.impl         FINE     | efm-model:
+2013-01-22  17:25:47.615  main    efm.impl         FINE     | ..kind             : NullspaceEfmModel
+2013-01-22  17:25:47.615  main    efm.impl         FINE     | ..arithmetic       : double
+2013-01-22  17:25:47.615  main    efm.impl         FINE     | ..adj enum threads : 2
+2013-01-22  17:25:47.615  main    efm.impl         FINE     | ..stoich type      : DefaultBigIntegerRationalMatrix
+2013-01-22  17:25:47.616  main    efm.impl         FINE     | ..stoich rank      : 2
+2013-01-22  17:25:47.616  main    efm.impl         FINE     | ..reaction sorting : [1, 3, 4, 5, 6, 7, 2, 0]
+2013-01-22  17:25:47.616  main    efm.impl         FINE     | ..metabolite sort. : [0, 1]
+2013-01-22  17:25:47.616  main    efm.impl         FINE     | ..col i/m factory  : NullspaceEfmModelFactory
+2013-01-22  17:25:47.616  main    efm.impl         INFO     | stoich expanded has dimensions 2x8
+2013-01-22  17:25:47.616  main    efm.impl         FINER    | stoichiometric matrix
+2013-01-22  17:25:47.616  main    efm.impl         FINER    | 2x6 {
+2013-01-22  17:25:47.616  main    efm.impl         FINER    |  [ 1 , -1 , 1 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.617  main    efm.impl         FINER    |  [ 0 , 0 , -1 , -1 , 1 , -1 ]
+2013-01-22  17:25:47.617  main    efm.impl         FINER    | }
+2013-01-22  17:25:47.617  main    efm.impl         FINER    | expanded stoichiometric matrix
+2013-01-22  17:25:47.617  main    efm.impl         FINER    | 2x8 {
+2013-01-22  17:25:47.617  main    efm.impl         FINER    |  [ 1 , -1 , 1 , -1 , 0 , 0 , 0 , 0 ]
+2013-01-22  17:25:47.618  main    efm.impl         FINER    |  [ 0 , 0 , -1 , 1 , -1 , 1 , 1 , -1 ]
+2013-01-22  17:25:47.618  main    efm.impl         FINER    | }
+2013-01-22  17:25:47.618  main    efm.impl         INFO     | kernel matrix has dimensions 8x6
+2013-01-22  17:25:47.618  main    efm.impl         FINER    | kernel matrix (unmapped):
+2013-01-22  17:25:47.618  main    efm.impl         FINER    | 8x6 {
+2013-01-22  17:25:47.618  main    efm.impl         FINER    |  [ 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.619  main    efm.impl         FINER    |  [ 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.619  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.619  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.619  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 ]
+2013-01-22  17:25:47.619  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 ]
+2013-01-22  17:25:47.619  main    efm.impl         FINER    |  [ 0.0 , 1.0 , -1.0 , 1.0 , 1.0 , -1.0 ]
+2013-01-22  17:25:47.620  main    efm.impl         FINER    |  [ 1.0 , 0.0 , 1.0 , -1.0 , -1.0 , 1.0 ]
+2013-01-22  17:25:47.620  main    efm.impl         FINER    | }
+2013-01-22  17:25:47.620  main    efm.impl         FINER    | kernel matrix:
+2013-01-22  17:25:47.620  main    efm.impl         FINER    | 8x6 {
+2013-01-22  17:25:47.620  main    efm.impl         FINER    |  [ 1.0 , 0.0 , 1.0 , -1.0 , -1.0 , 1.0 ]
+2013-01-22  17:25:47.621  main    efm.impl         FINER    |  [ 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.621  main    efm.impl         FINER    |  [ 0.0 , 1.0 , -1.0 , 1.0 , 1.0 , -1.0 ]
+2013-01-22  17:25:47.621  main    efm.impl         FINER    |  [ 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.621  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.621  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.622  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 ]
+2013-01-22  17:25:47.622  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 ]
+2013-01-22  17:25:47.622  main    efm.impl         FINER    | }
+2013-01-22  17:25:47.622  main    efm.impl         FINER    | mx * kernel:
+2013-01-22  17:25:47.626  main    efm.impl         FINER    | 2x6 {
+2013-01-22  17:25:47.627  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.627  main    efm.impl         FINER    |  [ 0.0 , 0.0 , 0.0 , 0.0 , 0.0 , 0.0 ]
+2013-01-22  17:25:47.627  main    efm.impl         FINER    | }
+2013-01-22  17:25:47.627  main    efm.impl         INFO     | TIME preprocessing: 129ms
+2013-01-22  17:25:47.636  main    efm.impl         INFO     | iteration 0/2: 6 modes, dt=0ms.	{ next 1/2: 6 adj candidates, [+/0/-] = [3/1/2] }
+2013-01-22  17:25:47.669  main    efm.impl         INFO     | iteration 1/2: 10 modes, dt=33ms.	{ next 2/2: 6 adj candidates, [+/0/-] = [3/5/2] }
+2013-01-22  17:25:47.677  main    efm.impl         INFO     | iteration 2/2: 10 modes, dt=8ms.
+2013-01-22  17:25:47.677  main    efm.impl         INFO     | TIME iterate: 44ms
+2013-01-22  17:25:47.677  main    efm.impl         FINE     | TIME jvm (total): 80ms
+2013-01-22  17:25:47.677  main    efm.impl         FINE     | TIME jvm (per core): 40ms
+2013-01-22  17:25:47.735  main    efm.impl         FINER    | TIME java (threads): cpu=0ms, user=0ms, system=0ms
+2013-01-22  17:25:47.736  main    efm.impl         INFO     | efm count before postprocessing: 10
+DEBUG: after AbstractDoubleDescriptionImpl.filterModes()
+2013-01-22  17:25:47.738  main    efm.impl         INFO     | efm count after filtering/consolidation: 8
+2013-01-22  17:25:47.738  main    efm.impl         INFO     | uncompressing modes (can take a while)
+2013-01-22  17:25:47.744  main    efm.model        FINE     | uncompressing efms: 8 done.
+2013-01-22  17:25:47.752  main    efm.impl         INFO     | TIME postprocessing: 16ms
+2013-01-22  17:25:47.752  main    efm.impl         INFO     | overall computation time: 254ms
