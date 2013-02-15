@@ -14,6 +14,35 @@
 \author{Typhaine PL}
 \setcounter{tocdepth}{1} 
 \usepackage{lmodern}
+\usepackage{fancyvrb}
+\definecolor{Zgris}{rgb}{0.87,0.85,0.85}
+
+% Pour avoir du code coloré
+\usepackage{listings}
+\lstset{
+language=HTML,        % choix du langage
+basicstyle=\ttfamily\footnotesize,       % taille de la police du code
+keywordstyle=\ttfamily\bfseries\color{blue},  %style des mots clefs
+commentstyle=\ttfamily\slshape\color{green},  %style des commentaires
+identifierstyle=  \ttfamily\color{brown},  %style des identificateurs
+stringstyle= \ttfamily\color{gray},  %style des chaines de caractères
+showstringspaces=false,
+numbers=left,                   % placer les numéros de lignes à gauche (left)
+numberstyle=\footnotesize,        % taille de la police des numéros
+numbersep=6pt,            % distance entre le code et sa numérotation
+tabsize=4,
+xleftmargin=17pt,
+escapeinside={\%*}{*)},
+breaklines=true,
+breakatwhitespace=true,
+string=[b]{'}
+}
+
+ \newsavebox{\BBbox}
+\newenvironment{DDbox}[1]{
+\begin{lrbox}{\BBbox}\begin{minipage}{\linewidth}}
+{\end{minipage}\end{lrbox}\noindent\colorbox{Zgris}{\usebox{\BBbox}} \\
+[.5cm]}
 
 \makeatletter
 \def\clap#1{\hbox to 0pt{\hss #1\hss}}%
@@ -85,6 +114,8 @@ Master 2 BioInformatique
 }%
 \begin{document}
 \maketitle
+
+
 
 \chapter*{Résumé}
 \addcontentsline{toc}{chapter}{Résumé}

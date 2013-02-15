@@ -9,6 +9,9 @@
 \subsection{Mise en page}
 Expliquer les div, le css ...
 
+% Page d'options
+Elle est composée d'un emboîtement de plusieurs sections, grâce à la balise HTML  \texttt{<div>}, qui est une sorte de conteneur. Comme nous l'avons précisé précédemment, nous avons séparé les options en plusieurs catégories et sous-catégories. 
+
 \subsection{Langues}
 ...
 
@@ -170,25 +173,84 @@ En revanche, si la valeur de la réaction après "THEN" est 1, les autres réact
 \item 1reac si sa valeur est 1
 \item freac si sa valeur est f
 \end{itemize}
-De plus, si l'opérateur "AND" est sélectionné il sera écrit sous la forme \& dans le fichier, l'opérateur OR sera lui écrit $|$. Quand la règle est composée d'au moins trois réactions, des parenthèses sont ajoutées après chaque réaction sauf la première et la dernière. Des parenthèses entourent l'ensemble des réactions situées après le "=".\\
+De plus, si l'opérateur "AND" est sélectionné il sera écrit sous la forme \& dans le fichier, l'opérateur "OR" sera lui écrit $|$. Quand la règle est composée d'au moins trois réactions, des parenthèses sont ajoutées après chaque réaction sauf la première et la dernière. Des parenthèses entourent l'ensemble des réactions situées après le "=".\\
 
 Pour mieux comprendre l'écriture du fichier \emph{generules.grfile}, voici un exemple:\\
-Choix de l'utilisateur sur la page Web:
-\begin{verbatim}
-IF réaction: R1 valeur: 1
-Opérateur: AND réaction: R2 valeur: 0
-Opérateur: OR réaction: R3 valeur: 0
-THEN réaction: R4 valeur: 0
-\end{verbatim}
 
-Règle écrite dans le fichier: 
-\begin{verbatim}
+Choix de l'utilisateur sur la page Web: \\
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+IF reaction: R1 valeur: 1
+Operateur: AND reaction: R2 valeur: 0
+Operateur: OR reaction: R3 valeur: 0
+THEN reaction: R4 valeur: 0
+\end{lstlisting}
+\end{DDbox}
+
+Règle écrite dans le fichier: \\
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
 R4 = (!((1R1 \& (!0R2)) $|$ (!0R3))
-\end{verbatim}
+\end{lstlisting}
+\end{DDbox}
+
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Choix des options de lancement}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+La page permettant la sélection des options de lancement est obtenue à l'aide du fichier \emph{options.php}. Comme nous l'avons dit précédemment, nous avons séparé les options en une série de catégories et sous catégories, le tout contenu dans un formulaire afin de gérer l'interaction avec l'utilisateur. Ce dernier peut sélectionner les options qu'il désire avec une combinaison de \textit{radioboutons} et de zones de texte. Les \textit{radioboutons} d'une même sous-section ont le même attribut \textit{name} afin de ne pouvoir en sélectionner qu'un seul. \\
+
+Prenons comme exemple la première sous catégorie (Figure \ref{affichageResults}) :
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.3\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/options-1.png}  
+		 \end{minipage}}
+		\caption{Sous catégorie d'affichage des résultats dans la catégorie d'enregistrement}
+  		\label{affichageResults}
+  	\end{center}	
+\end{figure}
+
+Voici le code HTML/PHP qui correspond :
+
+\scriptsize
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+<input type="radio" name="choix1" value="log console" checked="checked">	<?php echo TXT_OPTIONS_SAVING_3; ?> 
+<input type="radio" name="choix1" value="log file"> <?php echo TXT_OPTIONS_SAVING_4; ?> 
+<?php echo TXT_OPTIONS_SAVING_5; ?> <input type="text"	 name="log_nomFichier" 	size="10" id="texte1">
+\end{lstlisting}
+\end{DDbox}
+
+\normalsize
+
+Le premier \textit{radiobouton} est pré-coché avec l'attribut \textit{checked="checked"} afin de guider l'utilisateur. Si cette option ne lui contient pas, il lui suffit de cocher le deuxième \textit{radiobouton} et de remplir la zone de texte associée. \\
+
+Ce sont les attributs \textit{value} de ces boutons qui sont récupérés avec un script JavaScript. Ce dernier, nommé \emph{choixOptions.js}, permet de vérifier quels \textit{radioboutons} sont cochés et récupère ce qu'il a dans l'attribut \textit{value} de ceux-ci quand c'est le cas. Il est appelé lors du clic sur le bouton \textit{Lancement} en bas de la page. De plus, c'est dans ce script qu'est générée la commande qui permettra le lancement de regEfmtool. Elle est contenue dans une variable nommée  \textit{commande}, qui se remplit des paramètres sélectionnés. \\
+
+Exemple du code JavaScript qui permet la récupération des \textit{values} précédentes :
+
+
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+var commande = "java -Xmx1G -jar ../regEfmtool.jar";
+
+  // SAVE
+  // Display
+  if (formulaire.choix1[0].checked) { 
+    valeur1 = " -" + formulaire.choix1[0].value; 
+    commande = commande + valeur1;
+  }
+  else if (formulaire.choix1[1].checked) { 
+    var nom1 = document.getElementById('texte1').value;
+    valeur1 = " -" + formulaire.choix1[1].value + " " + nom1; 
+    commande = commande + valeur1;
+  }
+\end{lstlisting}
+\end{DDbox}
 
 
 
