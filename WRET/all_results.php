@@ -74,7 +74,9 @@
 				fclose($fichier);
 				return;
 			}
-
+			echo '<form name="form" method="POST">';
+			echo results();
+			echo '</form></br>';
 			?>
 			
 			
