@@ -45,16 +45,14 @@
 		</div>
 		
 		<h4><?php echo TXT_DISPLAY_RESULTS_INSTRUCTION_1; ?> </h4>
-
-		<form action="display_results.php" method="POST">
+		
+		
+		<form action="" method="POST">
 			<?php
 			
 			function results(){
 				$fichier = 'log.txt';
-				$start = $_POST['start'];
-				$end;
 				$numligne = 0;
-				global $item;
 				
 	
 				define ('FICHIER', $fichier);
@@ -66,90 +64,17 @@
 						$ligne = trim(substr($lignes,$posi+1,strlen($lignes))); 
 						$resultats[] = trim($ligne); 
 
-						$pos = strpos($ligne, ':' );
-						if ( $pos == true && $numligne >= 32){
-							$line = trim(substr($ligne,0, $pos)); 
-							$item[] = $line;
-						}
 				}
-				
-				$count = count($resultats);
-				$counte = count($item);
-				$motif='R';
-				$vraie=true; 
-				$vrai = true;
 				//Cas ou $start est sous la forme R1:
-				if (preg_match($motif,$start)){
-					for ($numero=0; $numero<$count; $numero++){
-						if (preg_match('/^'.$start.'/i', $resultats[$numero])){
-							echo '<div>';
-							echo '<pre>' .$resultats[$numero]. '</pre>';
-							echo '</div>';
-							fclose($fichier);
-							return;
-						}
-			
-					}
+				echo '<div>';
+				for ($numero = 0; $numero < count($resultats); $numero++){
+					echo '<pre>' . $resultats[$numero] . '</pre>';
 				}
-				//l'autre cas
-				if ($vraie){
-					for ($num = 0; $num < $counte; $num++){
-						if (preg_match('/^'.$start.'/',$item[$num]) && !preg_match('/^'.$motif.'/',$item[$num+1])){
-							$end = $item[$num+1];
-							$vraie = false;
-						}
-						else if (preg_match('/^'.$start.'/',$item[$num]) && preg_match('/^'.$motif.'/',$item[$num+1])){
-							for ($numer = $num; $numer < $counte; $numer++){
-								if (preg_match('/^'.$motif.'/',$item[$numer])){
-									$end = $item[$numer];
-									$vraie = false;
-								}
-							}
-						}
-					}
-				}
-			
-				if ($vrai){
-					for ($nume = 0; $nume < $count; $nume++){
-						if (preg_match('/^'.$start.'/',$resultats[$nume])){
-							$start_pos=$nume;
-							$vrai = false;
-						}
-					}
-				}
-			
-				for ($numero = $start_pos; $numero < $count; $numero++){
-					if (preg_match('/^'.$start.'/', $resultats[$numero])){
-						echo '<div>';
-						echo '<pre>' . $resultats[$numero] . '</pre>';
-
-					}
-					else if (preg_match('/^'.$end.'/', $resultats[$numero])){
-						echo'</div>';
-						fclose($fichier);
-						return;
-					}
-					else if (preg_match('/^'.$motif.'/', $resultats[$numero])){
-						echo '<pre>' . $resultats[$numero] . '</pre>'; 
-
-					}
-					else{
-						echo '<pre>' . $resultats[$numero] . '</pre>'; 
-
-					}
-				}
+				echo'</div>';
+				fclose($fichier);
+				return;
 			}
-			
-			if (isset($_POST['start'])) { 
-				echo '<form name="form" method="POST">';
-				echo results();
-				echo '</form></br>';
-					
-			}
-			else if (isset($_POST['start'])) { 
-					echo 'start existe';
-					
-			}
+
 			?>
 			
 			
