@@ -42,9 +42,16 @@
 		
 		<h4><?php echo TXT_PARSE_RESULTS_FILE; ?></h4>
 	
-		<form name="fichier" action="display_results.php" method="POST">
+		<form name="fichier" action="all_results.php" method="POST">
 			<pre name="fichier"> Log.txt</pre>
+			
+			<input type="submit" value="<?php echo TXT_FILE_CHOOSE_TITLE; ?>" onclick="all_results.php">
+			
+			</form>
 			</br></br>
+			
+			<form name="fichier" action="display_results.php" method="POST">
+			<pre><?php echo TXT_PARSE_RESULTS_DISPLAY; ?></pre>
 			<?php
 				function item(){
 					
@@ -80,7 +87,8 @@
 					
 			
 			?>
-			<input type= "submit" value="ok" onclick="display_results.php">	
+			</br>
+			<input type= "submit" value="<?php echo TXT_BUTTON_RESULT; ?>" onclick="display_results.php">	
 			
 		</form>
 	</body>

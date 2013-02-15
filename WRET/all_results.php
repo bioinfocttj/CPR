@@ -5,7 +5,7 @@
 	<head>
 		<title><?php echo TXT_DISPLAY_RESULTS_SITE_TITLE; ?></title>
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
-		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">s 
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<style media="all" type="text/css"></style>
 	</head>
 	
@@ -47,7 +47,10 @@
 		<h4><?php echo TXT_DISPLAY_RESULTS_INSTRUCTION_1; ?> </h4>
 		
 		
-		<form action="" method="POST">
+		<form action="parse_results.php" method="POST">
+			
+			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>" onclick="parse_results.php">
+			
 			<?php
 			
 			function results(){

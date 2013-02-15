@@ -56,6 +56,8 @@ define('TXT_NEXTSTEP_BUTTON', "Next step");
 define('TXT_GO_BUTTON', "Go");
 define('TXT_COMPARE_BUTTON', "Compare");
 define('TXT_FINISH_BUTTON', "Finish");
+define('TXT_BUTTON_RESULT', "View the result");
+define('TXT_BUTTON_EXTRACTION', "Back: Extraction results");
 
 //---------------------------------------------------------
 // generules.php
@@ -257,13 +259,14 @@ define('TXT_FILE_CHOOSE', "File : ");
 define('TXT_PARSE_RESULTS_SITE_TITLE', "Results");
 define('TXT_PARSE_RESULTS_TITLE', "Extraction results");
 define('TXT_PARSE_RESULTS_FILE', "File processed : ");
+define('TXT_PARSE_RESULTS_DISPLAY',"Extraction results below : ");
 
 //---------------------------------------------------------
 // display_results.php
 //---------------------------------------------------------
 define('TXT_DISPLAY_RESULTS_SITE_TITLE', "Results");
 define('TXT_DISPLAY_RESULTS_TITLE', "Display results");
-define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Choosen file");
+define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Log file");
 define('TXT_DISPLAY_RESULTS_FILE', "File processed : ");
 define('TXT_DISPLAY_RESULTS_ORIGINAL', "original : ");
 define('TXT_DISPLAY_RESULTS_NEW', "new : ");

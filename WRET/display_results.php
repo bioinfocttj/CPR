@@ -5,7 +5,7 @@
 	<head>
 		<title><?php echo TXT_DISPLAY_RESULTS_SITE_TITLE; ?></title>
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
-		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">s 
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<style media="all" type="text/css"></style>
 	</head>
 	
@@ -46,7 +46,7 @@
 		
 		<h4><?php echo TXT_DISPLAY_RESULTS_INSTRUCTION_1; ?> </h4>
 
-		<form action="display_results.php" method="POST">
+		<form action="parse_results.php" method="POST">
 			<?php
 			
 			function results(){
@@ -141,17 +141,11 @@
 			}
 			
 			if (isset($_POST['start'])) { 
-				echo '<form name="form" method="POST">';
 				echo results();
-				echo '</form></br>';
-					
-			}
-			else if (isset($_POST['start'])) { 
-					echo 'start existe';
 					
 			}
 			?>
-			
+			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>" onclick="parse_results.php">
 			
 		</form>
 	</body>

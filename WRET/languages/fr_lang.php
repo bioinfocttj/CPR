@@ -57,6 +57,8 @@ define('TXT_NEXTSTEP_BUTTON', "Étape suivante");
 define('TXT_GO_BUTTON', "Lancement");
 define('TXT_COMPARE_BUTTON', "Comparer");
 define('TXT_FINISH_BUTTON', "Finir");
+define('TXT_BUTTON_RESULT', "Afficher le résultat");
+define('TXT_BUTTON_EXTRACTION', "Retour : Extraction des résultats");
 
 //---------------------------------------------------------
 // generules.php
@@ -248,7 +250,7 @@ define('TXT_COPYRIGHT_CPY', "© Copyright 2013 <br />
 // all_results.php
 //---------------------------------------------------------
 define('TXT_FILE_CHOOSE_SITE_TITLE', "Résultats");
-define('TXT_FILE_CHOOSE_TITLE', "Visualisation de résultatS");
+define('TXT_FILE_CHOOSE_TITLE', "Visualisation des résultats");
 define('TXT_FILE_CHOOSE_SUBTITLE', "Choisir un fichier");
 define('TXT_FILE_CHOOSE', "Fichier : ");
 
@@ -258,13 +260,14 @@ define('TXT_FILE_CHOOSE', "Fichier : ");
 define('TXT_PARSE_RESULTS__SITE_TITLE', "Résultats");
 define('TXT_PARSE_RESULTS_TITLE', "Extraction des résultats");
 define('TXT_PARSE_RESULTS_FILE', "Fichier traité : ");
+define('TXT_PARSE_RESULTS_DISPLAY',"Extraction des résultats ci-dessous : ");
 
 //---------------------------------------------------------
 // results.php
 //---------------------------------------------------------
 define('TXT_DISPLAY_RESULTS_SITE_TITLE', "Résultats");
 define('TXT_DISPLAY_RESULTS_TITLE', "Affichage des résultats");
-define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Fichier choisi");
+define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Fichier log");
 define('TXT_DISPLAY_RESULTS_FILE', "Fichier traité : ");
 define('TXT_DISPLAY_RESULTS_ORIGINAL', "original : ");
 define('TXT_DISPLAY_RESULTS_NEW', "nouveau : ");
