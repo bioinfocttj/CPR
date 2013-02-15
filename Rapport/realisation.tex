@@ -259,9 +259,17 @@ Cette commande est envoyée via un \textit{cookie} à la page d'affichage des r�
 \section{Chargement d'un réseau pré-existant}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton "Étape suivante". Ce bouton fait appel au script JavaScript \emph{actioLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
+Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton "Étape suivante". Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
 
-Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php} 
+Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php}, qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans regEfmtool. Ce processus est faisable grâce au script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
+
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+move_uploaded_file($_FILES["sfile"]["tmp_name"],"upload/" . $_FILES["sfile"]["name"]);shell_exec('mv upload/'.$_FILES["sfile"]["name"].' upload/sfile');
+\end{lstlisting}
+\end{DDbox}
+
+Ce script est contenu dans l'attribut \textit{value} du bouton de chargement du fichier en question. La ligne de commande est donc complétée et le lancement du logiciel peut commencer. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Affichage des résultats}
