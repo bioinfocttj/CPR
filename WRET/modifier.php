@@ -16,14 +16,6 @@
 			fputs($data, "-CAT \n");                                                      
 			fclose($data);  
 
-			//init temp metabolites file                                        
-			echo exec('rm metabolitesTemp.txt');                                                  
-			echo exec('touch metabolitesTemp.txt');                                               
-			echo exec('chmod 777 metabolitesTemp.txt'); 
-			$data5 = fopen('metabolitesTemp.txt','w');                                        
-			fputs($data5, "-METINT \n");                                                      
-			fclose($data5);
-
 			// reaction saving in a file
 			$name=(isset($_POST["reactions"])) ? $_POST["reactions"] : "";
 			$reac = fopen('reactionTemp.txt','w');
