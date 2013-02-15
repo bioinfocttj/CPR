@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php require("languages/choosen_languages.php");?>
+<?php require("languages/choosen_languages.php");session_start();?>
 <html>
 	<head>
 		<title><?php echo TXT_LOAD_SITE_TITLE; ?></title>
@@ -32,21 +32,28 @@
 			<li><a href=<?php echo $de?>><img src="Images/german_flag.gif" alt="german_flag.gif"></a></li>
 		</ul>
 	</div>
-	
-<body>
-<form  method="post"
-enctype="multipart/form-data">
-<?php $_COOKIE['commande'] = $_COOKIE['commande'] . '-stoich upload/sfile -meta upload/mfile -generule upload/grfile -reac uplad/rfile -rev upload/rvfile';
-echo $_COOKIE['commande'];?>
-<label for="file">Filename:</label>
-<input type="file" name="sfile" id="sfile" value="<?php move_uploaded_file($_FILES["sfile"]["tmp_name"],"upload/" . $_FILES["sfile"]["name"]);shell_exec('mv upload/'.$_FILES["sfile"]["name"].' upload/sfile');?>"><br>
-<input type="file" name="mfile" id="mfile" value ="<?php move_uploaded_file($_FILES["mfile"]["tmp_name"],"upload/" . $_FILES["mfile"]["name"]);shell_exec('mv upload/'.$_FILES["mfile"]["name"].' upload/mfile'); ?>"><br>
-<input type="file" name="rvfile" id="rvfile" value ="<?php move_uploaded_file($_FILES["rvfile"]["tmp_name"],"upload/" . $_FILES["rvfile"]["name"]);shell_exec('mv upload/'.$_FILES["rvfile"]["name"].' upload/rvfile');?>"><br>
-<input type="file" name="grfile" id="grfile" value ="<?php move_uploaded_file($_FILES["grfile"]["tmp_name"],"upload/" . $_FILES["grfile"]["name"]);shell_exec('mv upload/'.$_FILES["grfile"]["name"].' upload/grfile');?>"><br>
-<input type="file" name="rfile" id="rfile" value ="<?php move_uploaded_file($_FILES["rfile"]["tmp_name"],"upload/" . $_FILES["rfile"]["name"]);shell_exec('mv upload/'.$_FILES["rfile"]["name"].' upload/rfile');?>"><br>
-<input type="submit" name="submit" value="Submit">
-</form>
 
-<a href="results.php"> Résultats</a>
+<body>
+<form  action="<?=$_POST['PHP_SELF']?>" method="post"
+enctype="multipart/form-data">
+
+<label form="file"></label>
+sfile<input type="file" name="sfile" id="sfile" value="<?php move_uploaded_file($_FILES["sfile"]["tmp_name"],$_FILES["sfile"]["name"]);shell_exec('mv ' . $_FILES["sfile"]["name"] . ' sfile');?>"><br>
+mfile<input type="file" name="mfile" id="mfile" value ="<?php move_uploaded_file($_FILES["mfile"]["tmp_name"],$_FILES["mfile"]["name"]);shell_exec('mv ' . $_FILES["mfile"]["name"] . ' mfile'); ?>"><br>
+rvfile<input type="file" name="rvfile" id="rvfile" value ="<?php move_uploaded_file($_FILES["rvfile"]["tmp_name"],$_FILES["rvfile"]["name"]);shell_exec('mv ' . $_FILES["rvfile"]["name"] . ' rvfile');?>"><br>
+grfile<input type="file" name="grfile" id="grfile" value ="<?php move_uploaded_file($_FILES["grfile"]["tmp_name"],$_FILES["grfile"]["name"]);shell_exec('mv ' . $_FILES["grfile"]["name"] . ' grfile');?>"><br>
+rfile<input type="file" name="rfile" id="rfile" value ="<?php move_uploaded_file($_FILES["rfile"]["tmp_name"],$_FILES["rfile"]["name"]);shell_exec('mv ' . $_FILES["rfile"]["name"] . ' rfile');?>"><br>
+<input type="submit" name="files" value="Submit">
+</form>
 </body>
+<?php 
+if (isset($_POST['files'])){ 
+	$commande = $_COOKIE['commande'] . ' -stoich sfile -meta mfile -rev rvfile -generule grfile -reac rfile &';
+	setcookie('commande',$commande);
+	print ("<script language = \"JavaScript\">"); 
+	print ("location.href = 'results.php';"); 
+	print ("</script>");
+	}
+else echo 'prout';
+?>
 </html>
