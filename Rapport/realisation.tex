@@ -2,6 +2,19 @@
 \chapter{Réalisation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Nous allons intégrer des digrammes d'organisation des pages Web le long de notre explication afin d'avoir un support visuel. La légende est représentée dans la Figure \ref{DiagLegende}.
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.4\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../WRET/Diagramme/legende.png}  
+		 \end{minipage}}
+		\caption{Légende de nos diagrammes d'organisation}
+  		\label{DiagLegende}
+  	\end{center}	
+\end{figure}
+
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Ergonomie de l'interface}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -9,19 +22,43 @@
 \subsection{Mise en page}
 Expliquer les div, le css ...
 
-% Page d'options
+% Pour la page d'options
 Elle est composée d'un emboîtement de plusieurs sections, grâce à la balise HTML  \texttt{<div>}, qui est une sorte de conteneur. Comme nous l'avons précisé précédemment, nous avons séparé les options en plusieurs catégories et sous-catégories. 
 
 \subsection{Langues}
-...
+
+Figure \ref{DiagLangues}. 
+à développer
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.8\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../WRET/Diagramme/langues.png}  
+		 \end{minipage}}
+		\caption{Diagramme d'organisation pour le changement de langue}
+  		\label{DiagLangues}
+  	\end{center}	
+\end{figure}
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Création d'un nouveau réseaux}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{1.0\textwidth}
+  			\includegraphics[width=1.0\textwidth]{../WRET/Diagramme/create.png}  
+		 \end{minipage}
+		}
+		\caption{Diagramme d'organisation pour la création d'un nouveau réseau}
+  		\label{DiagCreate}
+  	\end{center}	
+\end{figure}
+
 \subsection{Initialisation des fichiers}
-La création d'un nouveau réseaux dans WRET se fait via la page \emph{create.php}.
-A partir de cette page l'utilisateur doit dans un premier temps appuyer sur le bouton \emph{Initialiser les fichiers} (Figure \ref{boutonInit}) s'il désire initialiser ses fichiers. 
+La création d'un nouveau réseaux dans WRET se fait via la page \emph{create.php} (Figure \ref{DiagCreate}). A partir de cette page l'utilisateur doit dans un premier temps appuyer sur le bouton \emph{Initialiser les fichiers} (Figure \ref{boutonInit}) s'il désire initialiser ses fichiers. 
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -114,7 +151,18 @@ Chacun de ces fichiers contient les balises \emph{-IRREV}, \emph{-REV}, \emph{-C
 \section{Règles des gènes}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La page permettant la saisie des règles générales est obtenue à l'aide du fichier \emph{generules.php}.\\
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.7\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../WRET/Diagramme/generules.png}  
+		 \end{minipage}}
+		\caption{Diagramme d'organisation pour le changement de langue}
+  		\label{DiagRegles}
+  	\end{center}	
+\end{figure}
+
+La page permettant la saisie des règles générales est obtenue à l'aide du fichier \emph{generules.php} (Figure \ref{DiagCreate}).\\
 L'affichage à l'ouverture de la page n'est composé que d'une zone de texte et d'un bouton \emph{Ok} (Figure \ref{boutonOK}) qui est de type \textit{submit}. 
 
 \begin{figure}[!ht]
@@ -194,12 +242,22 @@ R4 = (!((1R1 \& (!0R2)) $|$ (!0R3))
 \end{lstlisting}
 \end{DDbox}
 
-
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Choix des options de lancement}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La page permettant la sélection des options de lancement est obtenue à l'aide du fichier \emph{options.php}. Comme nous l'avons dit précédemment, nous avons séparé les options en une série de catégories et sous catégories, le tout contenu dans un formulaire afin de gérer l'interaction avec l'utilisateur. Ce dernier peut sélectionner les options qu'il désire avec une combinaison de \textit{radioboutons} et de zones de texte. Les \textit{radioboutons} d'une même sous-section ont le même attribut \textit{name} afin de ne pouvoir en sélectionner qu'un seul. \\
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.6\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../WRET/Diagramme/options.png}  
+		 \end{minipage}}
+		\caption{Diagramme d'organisation pour le choix des options après création}
+  		\label{DiagOptions}
+  	\end{center}	
+\end{figure}
+
+La page permettant la sélection des options de lancement est obtenue à l'aide du fichier \emph{options.php} (Figure \ref{DiagOptions}). Comme nous l'avons dit précédemment, nous avons séparé les options en une série de catégories et sous catégories, le tout contenu dans un formulaire afin de gérer l'interaction avec l'utilisateur. Ce dernier peut sélectionner les options qu'il désire avec une combinaison de \textit{radioboutons} et de zones de texte. Les \textit{radioboutons} d'une même sous-section ont le même attribut \textit{name} afin de ne pouvoir en sélectionner qu'un seul. \\
 
 Prenons comme exemple la première sous catégorie (Figure \ref{affichageResults}) :
 
@@ -259,7 +317,18 @@ Cette commande est envoyée via un \textit{cookie} à la page d'affichage des r�
 \section{Chargement d'un réseau pré-existant}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton "Étape suivante". Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.7\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../WRET/Diagramme/load.png}  
+		 \end{minipage}}
+		\caption{Diagramme d'organisation pour le chargement des fichiers}
+  		\label{DiagLoad}
+  	\end{center}	
+\end{figure}
+
+Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton "Étape suivante". Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
 
 Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php}, qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans regEfmtool. Ce processus est faisable grâce au script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
 

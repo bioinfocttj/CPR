@@ -1,57 +1,57 @@
 \select@language {french}
 \contentsline {chapter}{R\IeC {\'e}sum\IeC {\'e}}{2}
-\contentsline {chapter}{Introduction}{4}
-\contentsline {chapter}{\numberline {1}Analyse}{5}
-\contentsline {section}{\numberline {1.1}Contexte}{5}
-\contentsline {subsection}{\numberline {1.1.1}Sujet}{5}
-\contentsline {subsection}{\numberline {1.1.2}Objectif}{5}
-\contentsline {section}{\numberline {1.2}\IeC {\'E}tat de l'existant}{6}
-\contentsline {subsection}{\numberline {1.2.1}Efmtool}{6}
-\contentsline {subsection}{\numberline {1.2.2}\emph {RegEfmtool}}{6}
-\contentsline {subsection}{\numberline {1.2.3}METATOOL}{6}
-\contentsline {subsection}{\numberline {1.2.4}CellNetAnalyzer}{7}
-\contentsline {subsection}{\numberline {1.2.5}Yana}{7}
-\contentsline {subsection}{\numberline {1.2.6}Acom}{7}
-\contentsline {subsection}{\numberline {1.2.7}JACoMode}{7}
-\contentsline {subsection}{\numberline {1.2.8}Langages}{7}
-\contentsline {section}{\numberline {1.3}Analyse des besoins}{9}
-\contentsline {subsection}{\numberline {1.3.1}Besoins fonctionnels}{9}
-\contentsline {subsubsection}{Interface Homme Machine (IHM)}{9}
-\contentsline {subsubsection}{Chargement des donn\IeC {\'e}es}{9}
-\contentsline {subsubsection}{R\IeC {\'e}glage des param\IeC {\`e}tres}{9}
-\contentsline {subsubsection}{R\IeC {\'e}sultats}{9}
-\contentsline {subsubsection}{Aide en ligne}{9}
-\contentsline {subsubsection}{Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seau}{9}
-\contentsline {subsubsection}{Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}existant}{9}
-\contentsline {subsubsection}{Lancement du programme}{10}
-\contentsline {subsubsection}{Affichage des r\IeC {\'e}sultats}{10}
-\contentsline {subsection}{\numberline {1.3.2}Besoins non fonctionnels}{10}
-\contentsline {subsubsection}{Portabilit\IeC {\'e}}{10}
-\contentsline {subsubsection}{S\IeC {\'e}curit\IeC {\'e} et robustesse}{10}
-\contentsline {subsubsection}{Documentation}{10}
-\contentsline {chapter}{\numberline {2}Conception}{11}
-\contentsline {section}{\numberline {2.1}Interface graphique}{11}
-\contentsline {section}{\numberline {2.2}Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seau}{12}
-\contentsline {section}{\numberline {2.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{12}
-\contentsline {section}{\numberline {2.4}Choix des options de lancement}{15}
-\contentsline {section}{\numberline {2.5}Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}-existant}{16}
-\contentsline {subsection}{\numberline {2.5.1}Choix des param\IeC {\`e}tres}{16}
-\contentsline {subsection}{\numberline {2.5.2}Chargement des fichiers}{16}
-\contentsline {section}{\numberline {2.6}Affichage des r\IeC {\'e}sultats}{17}
-\contentsline {chapter}{\numberline {3}R\IeC {\'e}alisation}{18}
-\contentsline {section}{\numberline {3.1}Ergonomie de l'interface}{18}
-\contentsline {subsection}{\numberline {3.1.1}Mise en page}{18}
-\contentsline {subsection}{\numberline {3.1.2}Langues}{18}
-\contentsline {section}{\numberline {3.2}Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seaux}{18}
-\contentsline {subsection}{\numberline {3.2.1}Initialisation des fichiers}{18}
-\contentsline {subsection}{\numberline {3.2.2}R\IeC {\'e}actions et r\IeC {\'e}versibilit\IeC {\'e}}{19}
-\contentsline {subsection}{\numberline {3.2.3}Nom de r\IeC {\'e}actions : enzymes}{19}
-\contentsline {subsection}{\numberline {3.2.4}M\IeC {\'e}tabolites}{19}
-\contentsline {subsection}{\numberline {3.2.5}St\IeC {\oe }chiom\IeC {\'e}trie}{19}
-\contentsline {subsection}{\numberline {3.2.6}Modification du r\IeC {\'e}seaux}{20}
-\contentsline {subsection}{\numberline {3.2.7}Cr\IeC {\'e}ation du fichier \emph {DAT}}{20}
-\contentsline {section}{\numberline {3.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{21}
-\contentsline {section}{\numberline {3.4}Choix des options de lancement}{22}
-\contentsline {section}{\numberline {3.5}Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}-existant}{23}
-\contentsline {section}{\numberline {3.6}Affichage des r\IeC {\'e}sultats}{24}
-\contentsline {chapter}{Conclusion}{25}
+\contentsline {chapter}{Introduction}{5}
+\contentsline {chapter}{\numberline {1}Analyse}{6}
+\contentsline {section}{\numberline {1.1}Contexte}{6}
+\contentsline {subsection}{\numberline {1.1.1}Sujet}{6}
+\contentsline {subsection}{\numberline {1.1.2}Objectif}{6}
+\contentsline {section}{\numberline {1.2}\IeC {\'E}tat de l'existant}{7}
+\contentsline {subsection}{\numberline {1.2.1}Efmtool}{7}
+\contentsline {subsection}{\numberline {1.2.2}\emph {RegEfmtool}}{7}
+\contentsline {subsection}{\numberline {1.2.3}METATOOL}{7}
+\contentsline {subsection}{\numberline {1.2.4}CellNetAnalyzer}{8}
+\contentsline {subsection}{\numberline {1.2.5}Yana}{8}
+\contentsline {subsection}{\numberline {1.2.6}Acom}{8}
+\contentsline {subsection}{\numberline {1.2.7}JACoMode}{8}
+\contentsline {subsection}{\numberline {1.2.8}Langages}{8}
+\contentsline {section}{\numberline {1.3}Analyse des besoins}{10}
+\contentsline {subsection}{\numberline {1.3.1}Besoins fonctionnels}{10}
+\contentsline {subsubsection}{Interface Homme Machine (IHM)}{10}
+\contentsline {subsubsection}{Chargement des donn\IeC {\'e}es}{10}
+\contentsline {subsubsection}{R\IeC {\'e}glage des param\IeC {\`e}tres}{10}
+\contentsline {subsubsection}{R\IeC {\'e}sultats}{10}
+\contentsline {subsubsection}{Aide en ligne}{10}
+\contentsline {subsubsection}{Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seau}{10}
+\contentsline {subsubsection}{Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}existant}{10}
+\contentsline {subsubsection}{Lancement du programme}{11}
+\contentsline {subsubsection}{Affichage des r\IeC {\'e}sultats}{11}
+\contentsline {subsection}{\numberline {1.3.2}Besoins non fonctionnels}{11}
+\contentsline {subsubsection}{Portabilit\IeC {\'e}}{11}
+\contentsline {subsubsection}{S\IeC {\'e}curit\IeC {\'e} et robustesse}{11}
+\contentsline {subsubsection}{Documentation}{11}
+\contentsline {chapter}{\numberline {2}Conception}{12}
+\contentsline {section}{\numberline {2.1}Interface graphique}{12}
+\contentsline {section}{\numberline {2.2}Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seau}{13}
+\contentsline {section}{\numberline {2.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{13}
+\contentsline {section}{\numberline {2.4}Choix des options de lancement}{16}
+\contentsline {section}{\numberline {2.5}Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}-existant}{17}
+\contentsline {subsection}{\numberline {2.5.1}Choix des param\IeC {\`e}tres}{17}
+\contentsline {subsection}{\numberline {2.5.2}Chargement des fichiers}{17}
+\contentsline {section}{\numberline {2.6}Affichage des r\IeC {\'e}sultats}{18}
+\contentsline {chapter}{\numberline {3}R\IeC {\'e}alisation}{19}
+\contentsline {section}{\numberline {3.1}Ergonomie de l'interface}{19}
+\contentsline {subsection}{\numberline {3.1.1}Mise en page}{19}
+\contentsline {subsection}{\numberline {3.1.2}Langues}{19}
+\contentsline {section}{\numberline {3.2}Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seaux}{19}
+\contentsline {subsection}{\numberline {3.2.1}Initialisation des fichiers}{19}
+\contentsline {subsection}{\numberline {3.2.2}R\IeC {\'e}actions et r\IeC {\'e}versibilit\IeC {\'e}}{21}
+\contentsline {subsection}{\numberline {3.2.3}Nom de r\IeC {\'e}actions : enzymes}{21}
+\contentsline {subsection}{\numberline {3.2.4}M\IeC {\'e}tabolites}{21}
+\contentsline {subsection}{\numberline {3.2.5}St\IeC {\oe }chiom\IeC {\'e}trie}{21}
+\contentsline {subsection}{\numberline {3.2.6}Modification du r\IeC {\'e}seaux}{22}
+\contentsline {subsection}{\numberline {3.2.7}Cr\IeC {\'e}ation du fichier \emph {DAT}}{22}
+\contentsline {section}{\numberline {3.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{23}
+\contentsline {section}{\numberline {3.4}Choix des options de lancement}{24}
+\contentsline {section}{\numberline {3.5}Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}-existant}{26}
+\contentsline {section}{\numberline {3.6}Affichage des r\IeC {\'e}sultats}{26}
+\contentsline {chapter}{Conclusion}{27}
