@@ -53,5 +53,5 @@
 \contentsline {section}{\numberline {3.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{21}
 \contentsline {section}{\numberline {3.4}Choix des options de lancement}{22}
 \contentsline {section}{\numberline {3.5}Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}-existant}{23}
-\contentsline {section}{\numberline {3.6}Affichage des r\IeC {\'e}sultats}{23}
-\contentsline {chapter}{Conclusion}{24}
+\contentsline {section}{\numberline {3.6}Affichage des r\IeC {\'e}sultats}{24}
+\contentsline {chapter}{Conclusion}{25}
