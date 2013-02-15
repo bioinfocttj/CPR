@@ -20,7 +20,7 @@ Nous allons intégrer des digrammes d'organisation des pages Web le long de notr
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsection{Mise en page}
-Nous avons utilisé le CSS afin de régler la mise en page de notre interface. Nous avons intégré une bande verticale sur la gauche du site, contenant un logo de notre création. Nous avons dû adapter la zone d'affichage en fonction de cette bande, mais également faire attention à ce que l'affichage soit ajusté à la taille de l'écran de l'utilisateur. Ce dernier critère était très important notamment pour l'affichage du menu des onglets en haut des pages, mais aussi pour celui des pages de choix d'options de lancement. 
+Nous avons utilisé le CSS afin de régler la mise en page de notre interface. Nous avons intégré une bande verticale sur la gauche du site, contenant un logo de notre création. Nous avons dû adapter la zone d'affichage en fonction de cette bande, mais également faire attention à ce que l'affichage soit ajusté à la taille de l'écran de l'utilisateur. Ce dernier critère était très important, notamment pour l'affichage du menu des onglets en haut des pages, mais aussi pour celui des pages de choix d'options de lancement. 
 
 \paragraph*{Exemple de la page du choix des options}
 Cette page est composée d'un emboîtement de plusieurs sections, grâce à la balise HTML \texttt{<div>}, qui est une sorte de conteneur. Comme nous l'avons précisé précédemment, nous avons séparé les options en plusieurs catégories et sous-catégories, distinguées par une combinaison de dégradé de bleus. 
@@ -37,11 +37,11 @@ Cette page est composée d'un emboîtement de plusieurs sections, grâce à la b
   	\end{center}	
 \end{figure}
 
-Nous avons pris l'exemple des paramètres d'enregistrement des fichiers avec trois sous-catégories, contenu dans une \texttt{<div>}. 
+Nous avons pris l'exemple des paramètres d'enregistrement des fichiers avec trois sous-catégories, contenu dans une \textit{division}. 
 \begin{itemize}
-\item L'intitulé de la catégorie générale (\textit{Enregistrement}) est en bleu foncé (le même que celui de la bande verticale) et représente une sorte de \textit{sous-div}. 
-\item Les titres des trois sous catégories (\textit{Affichage des résultats}, \textit{Type de messages d'erreurs} et \textit{Méthode d'enregistrement}) sont en bleu clair et représentent également une \textit{sous div}. Cette dernière est aussi divisée en trois sortes de \textit{sous-sous-div} (en orange).
-\item Les contenus correspondants aux trois sous catégories sont également divisés en trois \textit{sous-sous-div} (en vert).
+\item L'intitulé de la catégorie générale (\textit{Enregistrement}) est en bleu foncé (le même que celui de la bande verticale) et représente une sorte de \textit{sous-division}. 
+\item Les titres des trois sous catégories (\textit{Affichage des résultats}, \textit{Type de messages d'erreurs} et \textit{Méthode d'enregistrement}) sont en bleu clair et représentent également une \textit{sous division}. Cette dernière est aussi divisée en trois sortes de \textit{sous-sous-division} (en orange).
+\item Les contenus correspondants aux trois sous catégories sont également divisés en trois \textit{sous-sous-division} (en vert).
 \end{itemize} 
 
 Il a fallu ajuster la taille de ces sous catégories de manière relative à la taille de l'écran. Voici un exemple du code CSS correspondant:\\
@@ -55,29 +55,25 @@ div#part {
 	background-color:#4388CC;
 	margin-top: 30px;
 	margin-bottom: 0px;
-	padding: 0px;
-}
+	padding: 0px;}
 div#subPart {
 	margin-bottom: 0px;
 	margin-top: 0px;
 	width:100%;
 	height: 80px;
 	background-color:#9ECAE1;
-	padding: 0px;
-}
+	padding: 0px;}
 div#subPart3-2 {
 	float:left;
 	width:33.3%;
 	height:60px;
 	background-color:#9ECAE1;
-	text-align: center;
-}
+	text-align: center;}
 div#buttons {
 	width:100%;
 	height:175px;
 	background-color:#DEEBF7;
-	clear:both;
-}
+	clear:both;}
 div#buttons3-2 {
 	float:left;
 	width:33.3%;
@@ -85,8 +81,7 @@ div#buttons3-2 {
 	background-color:#DEEBF7;
 	text-align: justify;
 	margin-right: -10%;
-	margin-left: 10%;
-}
+	margin-left: 10%;}
 \end{lstlisting}
 \end{DDbox}
 
@@ -107,59 +102,49 @@ Dans un soucis de convivialité, notre interface est développée de manière à
 \end{figure}
 
 Pour ce faire, nous n'avons pas mis de texte dans les pages affichant à l'écran. Nous l'avons remplacé par des variables, qui afficheront le texte qu'elles contiennent dans la langue désirée. Par exemple, le titre de la page d'accueil "Bienvenue sur WebRegEfmTool" est appelé par \texttt{<?php echo TXT\_HOMEPAGE\_TITLE; ?>} et est contenu dans le fichier \emph{fr\_lang.php} de la manière suivante :
-\texttt{define('TXT\_HOMEPAGE\_TITLE', 'Bienvenue sur WebRegEfmTool');}. De ce fait, un nouveau fichier du type \emph{xx\_lang.php} pourrait être créé afin d'intégrer une nouvelle langue. Bien sûr, il faudrait ajouter les appels à ce fichier dans toutes les pages affichant à l'écran par la suite. 
+\texttt{define('TXT\_HOMEPAGE\_TITLE', 'Bienvenue sur WebRegEfmTool');}. De ce fait, un nouveau fichier du type \emph{XX\_lang.php} pourrait être créé afin d'intégrer une nouvelle langue. Bien sûr, il faudrait ajouter les appels à ce fichier dans toutes les pages affichant à l'écran par la suite. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Création d'un nouveau réseaux}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\begin{figure}[!ht]
-	\begin{center}
-		\fbox{
-   		 \begin{minipage}[c]{1.0\textwidth}
-  			\includegraphics[width=1.0\textwidth]{../WRET/Diagramme/create.png}  
-		 \end{minipage}
-		}
-		\caption{Diagramme d'organisation pour la création d'un nouveau réseau}
-  		\label{DiagCreate}
-  	\end{center}	
-\end{figure}
-
 \subsection{Initialisation des fichiers}
-La création d'un nouveau réseaux dans WRET se fait via la page \emph{create.php} (Figure \ref{DiagCreate}). A partir de cette page l'utilisateur doit dans un premier temps appuyer sur le bouton \emph{Initialiser les fichiers} (Figure \ref{boutonInit}) s'il désire initialiser ses fichiers. 
+La création d'un nouveau réseaux dans WRET se fait via la page \emph{create.php}.
+A partir de cette page, l'utilisateur doit dans un premier temps appuyer sur le bouton \emph{Initialiser les fichiers} (Figure \ref{boutonInit}) s'il désire initialiser ses fichiers.
 
 \begin{figure}[!ht]
-	\begin{center}
-		\fbox{
-   		 \begin{minipage}[c]{0.5\textwidth}
-  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-1.png}  
-		 \end{minipage}}
-		\caption{Bouton d'initialisation des fichiers}
-  		\label{boutonInit}
-  	\end{center}	
+    \begin{center}
+        \fbox{
+            \begin{minipage}[c]{0.5\textwidth}
+              \includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-1.png} 
+         \end{minipage}}
+        \caption{Bouton d'initialisation des fichiers}
+          \label{boutonInit}
+      \end{center}   
 \end{figure}
 
 Ce bouton appelle le fichier \emph{initfiles.php} qui va créer les 11 fichiers nécessaires à la mise en place d'un nouveau réseau.\\
 Dans ces fichiers, nous trouvons des fichiers qui seront utilisés dans le lancement de \emph{regEfmtool} (rfile, mfile, rvfile, sfile) et également des fichiers temporaires (\emph{irrevTemp}, \emph{revTemp}, \emph{reactionTemp.txt}, \emph{reactionTemp2.txt}, \emph{matrice.txt} ou encore \emph{matrice2.txt} ainsi que la base du fichier au format \emph{DAT}).\\
-Tous ces fichiers sont donc créés et donnent les droits d'édition, de lecture et d'exécution à tous les utilisateurs pour ces fichiers, afin de pouvoir être modifiés sur le serveur.
+Tous ces fichiers sont donc créés et donnent les droits d'édition, de lecture et d'exécution à tous les utilisateurs pour chacun d'entre eux, afin de pouvoir être modifiés sur le serveur.
 
 \subsection{Réactions et réversibilité}
-Sous la touche \emph{Initialiser les fichiers} de la page \emph{create.php}, une fenêtre de texte permet de rentrer les réactions du réseau métabolique une à une ainsi que la réversibilité de la réaction (Figure \ref{boutonAjout}). 
+Sous la touche \emph{Initialiser les fichiers} de la page \emph{create.php}, une fenêtre de texte permet de rentrer les réactions du réseau métabolique une à une ainsi que la réversibilité de la réaction (Figure \ref{boutonAjout}).
 
 \begin{figure}[!ht]
-	\begin{center}
-		\fbox{
-   		 \begin{minipage}[c]{0.7\textwidth}
-  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-2.png}  
-		 \end{minipage}}
-		\caption{Bouton d'ajout d'une réaction}
-  		\label{boutonAjout}
-  	\end{center}	
+    \begin{center}
+        \fbox{
+            \begin{minipage}[c]{0.7\textwidth}
+              \includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-2.png} 
+         \end{minipage}}
+        \caption{Bouton d'ajout d'une réaction}
+          \label{boutonAjout}
+      \end{center}   
 \end{figure}
 
 Si l'utilisateur oublie de cocher la réversibilité de la réaction et clique sur \emph{Ajouter}, un message d'erreur s'affichera et empêchera le passage à l'étape suivante. Les réactions doivent être enregistrées par l'utilisateur en respectant la syntaxe des fichier au format \emph{DAT}. Ces informations vont alors être envoyées au fichier \emph{createFiles.php}, via le bouton \emph{Ajouter}.\\
-Ce fichier redirige vers différentes pages, dans l'ordre : \emph{reac.php}, \emph{parser\_enzyme.php}, \emph{parser\_reversibility.php}, \emph{parser\_metabolite.php}, \emph{parser\_stoechiometry.php}.
-La première page \emph{reac.php} va permettre d'écrire dans un fichier temporaire (reactionTemp.txt) les réactions, et également, de sauvegarder la réversibilité de la réaction (0 pour non réversible, et 1 pour réversible).\\
+Ce fichier redirige vers différentes pages, dans l'ordre : \emph{reac.php}, \emph{parser\_enzyme.php},
+\\ \emph{parser\_reversibility.php}, \emph{parser\_metabolite.php}, \emph{parser\_stoechiometry.php}.
+La première page \emph{reac.php} va permettre d'écrire dans un fichier temporaire (\emph{reactionTemp.txt}) les réactions, et également, de sauvegarder la réversibilité de la réaction (0 pour non réversible, et 1 pour réversible).\\
 L'ordre est ainsi conservé entre les réactions et leur réversibilité.
 
 \subsection{Nom de réactions : enzymes}
@@ -175,17 +160,17 @@ Pour chaque ligne du fichier \emph{reactionTemp.txt} une liste est créée et, p
 
 \subsection{Modification du réseaux}
 Une fois les fichiers générés l'utilisateur est redirigé sur la page \emph{create.php}.
-Sous la touche \emph{Ajouter} se trouve une zone de texte (Figure \ref{boutonAjout}) où l'utilisateur peut modifier un réseau déjà rentré. 
+Sous la touche \emph{Ajouter} se trouve une zone de texte (Figure \ref{boutonAjout}) où l'utilisateur peut modifier un réseau déjà rentré.
 
 \begin{figure}[!ht]
-	\begin{center}
-		\fbox{
-   		 \begin{minipage}[c]{0.7\textwidth}
-  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-3.png}  
-		 \end{minipage}}
-		\caption{Bouton de modification}
-  		\label{boutonModif}
-  	\end{center}	
+    \begin{center}
+        \fbox{
+            \begin{minipage}[c]{0.7\textwidth}
+              \includegraphics[width=0.90\textwidth]{../Images/Rapport/creation1-3.png} 
+         \end{minipage}}
+        \caption{Bouton de modification}
+          \label{boutonModif}
+      \end{center}   
 \end{figure}
 
 En effet cette zone appelle le fichier \emph{reactionTemp.txt} et permet la modification de son contenu (pour corriger une erreur de frappe notamment). Cette zone de texte va appeler la page \emph{modifier.php} lors de l'utilisation du bouton \emph{Modifier}.\\
@@ -193,27 +178,82 @@ En effet cette zone appelle le fichier \emph{reactionTemp.txt} et permet la modi
  Les fichiers \emph{metabolites.mfile}, \emph{stoechiometry.sfile}, \emph{reactions.rfile}, \emph{reversibility}, sont également générés à nouveau, à chaque modification du fichier \emph{reactionTemp.txt}.
  
 \subsection{Création du fichier \emph{DAT}}
-Sous la zone de texte modifiable, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédemment rentré. \\
+
+En dessous de la zone de texte modifiable, une touche nommée \emph{choisir les métabolites internes et externes} (Figure \ref{boutonMET_int_EXT}) permet à l'utilisateur de définir dans son réseaux les métabolites internes et externes . Ce bouton va effectuer un parsage du fichier \emph{metabolites.mfile} et afficher dans une colonne à gauche contenant tous les métabolites. Une colonne a droite vide peut être remplie ou vidé via les bouton \emph{ajouter}, \emph{supprimer} situés sous les colonnes.
+Ces touches d'ajout et de suppression font appelle à des fonctions \emph{javascript}, directement intégrées à la page \emph{create.php}.\\
 
 \begin{figure}[!ht]
-	\begin{center}
-		\fbox{
-   		 \begin{minipage}[c]{0.3\textwidth}
-  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/creation2-1.png}  
-		 \end{minipage}}
-		\caption{Bouton de création du fichier au format \emph{DAT}}
-  		\label{boutonDAT}
-  	\end{center}	
+    \begin{center}
+        \fbox{
+            \begin{minipage}[c]{0.5\textwidth}
+              \includegraphics[width=0.9\textwidth]{../Images/Rapport/creation3.png} 
+         \end{minipage}}
+        \caption{Zone de sélection des métabolites internes et externes}
+          \label{boutonMET_int_EXT}
+      \end{center}   
 \end{figure}
 
-Ce bouton (Figure \ref{boutonDAT}) appelle la page \emph{finish\_files.php} qui va concaténer trois fichiers :
+Sous la zone de selection des métabolites internes et externes, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédemment rentré. \\
+
+\begin{figure}[!ht]
+    \begin{center}
+        \fbox{
+            \begin{minipage}[c]{0.3\textwidth}
+              \includegraphics[width=0.90\textwidth]{../Images/Rapport/creation2-1.png} 
+         \end{minipage}}
+        \caption{Bouton de création du fichier au format \emph{DAT}}
+          \label{boutonDAT}
+      \end{center}   
+\end{figure}
+
+Ce bouton (Figure \ref{boutonDAT}) appelle la page \emph{finish\_files.php} qui va  récupérer les choix de l'utilisateur en ce qui concernes les métabolites internes et externes, et concaténer trois fichiers :
 \begin{itemize}
 \item \emph{irrevTemp.txt}
 \item \emph{revTemp.txt}
 \item \emph{reactiontemp2.txt}
 \end{itemize}
+
 Le premier fichier contient l'ensemble des enzymes catalysant les réactions irréversibles. Le second contient l'ensemble des enzymes catalysant des réactions réversibles, et enfin le dernier fichier contient l'ensemble des réactions du réseaux. \\
-Chacun de ces fichiers contient les balises \emph{-IRREV}, \emph{-REV}, \emph{-CAT}, selon son contenu et respecte la syntaxe propre au format \emph{DAT}.
+Chacun de ces fichiers contient les balises \emph{-ENZIRREV}, \emph{-ENZREV}, \emph{-CAT}, selon son contenu et respecte la syntaxe propre au format \emph{DAT}.
+Les noms des métabolites sont insérer dans le fichier au format \emph{DAT} après une balise \emph{-METINT} ou \emph{-METEXT} selon leur rôle dans le réseaux défini par l'utilisateur.
+
+Il en résulte en sortie du script \emph{finish\_files.php} un fichier au format \emph{DAT}, de la forme:
+\\
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+-ENZREV
+R9 R12 R13 R14 R15   T1 T2 T5 T7 T12
+
+-ENZIRREV
+R6i R7i R8i R10i R11i T6
+
+-METINT
+OAA ACoA Cit Akg SucCoA Succ Fum Mal Isocit  Pi  Glu Asp Pyr
+
+-METEXT
+Pyr_ext Glu_ext NAD NADH2 FAD FADH2  CoA ADP ATP  H2O CO2 Mal_ext Cit_ext AKG_ext Pi_ext Asp_ext
+
+-CAT
+
+R6i : Pyr + CO2 + ATP = OAA + Pi + ADP .
+R7i : Pyr + NAD + CoA = ACoA + NADH2 + CO2 .
+R8i : OAA + ACoA + H2O = Cit + CoA .
+R9 : Cit = Isocit .
+R10i : Isocit + NAD = Akg + NADH2 + CO2 .
+R11i : Akg + NAD + CoA = SucCoA + NADH2 + CO2 .
+R12 : SucCoA + Pi + ADP = Succ + CoA + ATP .
+R13 : Succ + FAD = Fum + FADH2 .
+R14 : Fum + H2O = Mal .
+R15 : Mal + NAD = OAA + NADH2 .
+T1 : Cit + Mal_ext = Mal + Cit_ext .
+T2 : AKG_ext + Mal = Mal_ext + Akg .
+T5 : Pi_ext = Pi .
+T6 : Pyr_ext = Pyr .
+T7 : Mal + Pi_ext = Pi + Mal_ext .
+T12 : Asp + Glu_ext = Asp_ext + Glu .
+
+\end{lstlisting}
+\end{DDbox}
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Règles des gènes}
