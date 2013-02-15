@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html >
 <?php require("languages/choosen_languages.php");?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
@@ -49,7 +49,7 @@
 		
 		<form action="parse_results.php" method="POST">
 			
-			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>" onclick="parse_results.php">
+			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>">
 			
 			<?php
 			
@@ -81,7 +81,7 @@
 			echo results();
 			echo '</form></br>';
 			?>
-			
+			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>">
 			
 		</form>
 	</body>

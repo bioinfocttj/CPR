@@ -145,7 +145,7 @@
 					
 			}
 			?>
-			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>" onclick="parse_results.php">
+			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>" >
 			
 		</form>
 	</body>
