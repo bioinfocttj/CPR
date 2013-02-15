@@ -5,7 +5,7 @@
 	<head>	
 		<link rel='stylesheet' media='screen' type='text/css' href='style.css'/>
 		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>
-		<title><?php echo TXT_PARSE_RESULTS_SITE_TITLE; ?></title>
+		<title><?php echo TXT_PARSE_RESULTS__SITE_TITLE; ?></title>
 		<style media="all" type="text/css"></style>
 	</head>
 	<?php 
