@@ -42,9 +42,15 @@
 		
 		function parse_res(){
 			$file = file('modes2.text');
-			//~ $lines=explode("\n",$file);
+			$reac = file('rfile');
 			$modes=array();
-			$i=0;
+			foreach($reac as &$lines){
+				$reactions=array();
+				$reactions = explode(" ",$lines);
+				$modes[0]=$reactions;
+			}
+			//~ $lines=explode("\n",$file);
+			$i=1;
 			foreach($file as &$lines){
 				//~ $temp = $temp . $line;
 				$values=explode("\t",$lines);
@@ -57,19 +63,29 @@
 		}
 		
 		function show_results($modes){
+			echo '<table>';
+			$m = 0;
 			foreach($modes as $value){
+				echo '<tr>';
 				$temp = '';
+				echo '<td>';
+				echo 'mode ' . $m;
+				echo '</td>';
+				$m=$m + 1;
 				foreach ($value as $v){
-				//~ foreach ($modes[$key] as $v){
-					$temp = $temp . ' ' . $v;
+					echo '<td>';
+					echo $v;
+					echo '</td>';
 				}
 				echo '<p>' . $temp . '</p>';
+				echo '</tr>';
 			}
+			echo '</table>';
 		}
 	?>
 	</head>
 		<?php 
-			echo $_COOKIE['commande'];
+			//~ echo $_COOKIE['commande'];
 			$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
 			$host = $_SERVER['HTTP_HOST'];
 			$script = $_SERVER['SCRIPT_NAME'];
