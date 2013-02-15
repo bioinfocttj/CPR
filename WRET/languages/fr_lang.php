@@ -245,7 +245,7 @@ define('TXT_COPYRIGHT_CPY', "© Copyright 2013 <br />
 			Le but de cette interface est de fournir un environnement ergonomique au logiciel <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. ");
 
 //---------------------------------------------------------
-// file_choose.php
+// all_results.php
 //---------------------------------------------------------
 define('TXT_FILE_CHOOSE_SITE_TITLE', "Résultats");
 define('TXT_FILE_CHOOSE_TITLE', "Visualisation de résultatS");
