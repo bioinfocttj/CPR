@@ -32,7 +32,7 @@
 \contentsline {chapter}{\numberline {2}Conception}{12}
 \contentsline {section}{\numberline {2.1}Interface graphique}{12}
 \contentsline {section}{\numberline {2.2}Cr\IeC {\'e}ation d'un nouveau r\IeC {\'e}seau}{13}
-\contentsline {section}{\numberline {2.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{13}
+\contentsline {section}{\numberline {2.3}R\IeC {\`e}gles des g\IeC {\`e}nes}{14}
 \contentsline {section}{\numberline {2.4}Choix des options de lancement}{16}
 \contentsline {section}{\numberline {2.5}Chargement d'un r\IeC {\'e}seau pr\IeC {\'e}-existant}{17}
 \contentsline {subsection}{\numberline {2.5.1}Choix des param\IeC {\`e}tres}{17}

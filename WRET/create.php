@@ -173,12 +173,13 @@
 		
 		<form method="post" action="modifier.php">
 			 <textarea name="reactions" cols="100" rows="25"><?php echo file_get_contents( 'reactionTemp2.txt' ); ?> </textarea><br/>			
-			 <input type="submit" value="<?php echo TXT_MODIFY_BUTTON; ?>" />
-			</form>
+			 
 			<FONT color="red" size="4">
 				<h4><?php echo TXT_CREATION_WARNING_TITLE; ?></h4>
 				<p> <?php echo TXT_CREATION_WARNING_2; ?></p>
 			</FONT>
+			<input type="submit" value="<?php echo TXT_MODIFY_BUTTON; ?>" />
+		</form>
 		<br/> <br/>
 		
 		<h4><?php echo TXT_CREATION_FINISH; ?></h4>
