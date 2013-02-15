@@ -20,7 +20,6 @@
 			echo exec('touch stoech.txt');                                                
 			echo exec('chmod 777 stoech.txt');                                            
 																						  
-																						  
 			//init metabolites file                                                       
 			echo exec('rm metabolites.mfile');                                            
 			echo exec('touch metabolites.mfile');                                         

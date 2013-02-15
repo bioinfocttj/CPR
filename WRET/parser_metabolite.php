@@ -60,14 +60,11 @@
 
 			# Opening the file containing the metabolites and writing of the list
 			$data = fopen('metabolites.mfile','w');
-			$data2 = fopen('metabolitesTemp.txt','w');
-			fputs($data2, "-METINT \n");  
+			
 			foreach($metab as $met){
 				fputs($data, "\"$met\" ");
-				fputs($data2, "$met ");
 			}
 			fclose($data);
-			fclose($data2);
 
 			# Redirection to the file-creation page 
 			header('Refresh:1 ; url=create.php');

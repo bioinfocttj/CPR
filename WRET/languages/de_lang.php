@@ -27,13 +27,14 @@ define('TXT_INIT_FILES', "Initialisieren Sie die Dateien vor dem Erstellen eines
 define('TXT_CREATION_INIT', "\"Init-Dateien\"");
 define('TXT_CREATION_TITLE', "Schaffung von neuen metabolische Netzwerk");
 define('TXT_CREATION_INSTRUCTION_1', "Schreiben Sie eine neue Reaktion");
-define('TXT_CREATION_INSTRUCTION_2', "Überprüfen Sie, ob die chemische Reaktion bereits registriert.");
+define('TXT_CREATION_INSTRUCTION_2', "Überprüfen Sie, ob die chemische Reaktion bereits registriert");
 define('TXT_CREATION_WARNING_TITLE', "Achtung !");
 define('TXT_CREATION_WARNING', "Keine Leerzeichen in den Namen, verwenden Sie einen Unterstrich '_' statt.<br />
 			Die Syntax der Reaktionen ist:
-			Reaktion_Name : 2 Reaktive1 + 5 Reaktive2 => 3 Produkt1 + 7 Produkt2 (irreversible) <br />
-			Reaktion_Name : 2 Reaktive1 + 5 Reaktive2 = 3 Produkt1 + 7 Produkt2 (reversible) <br />
-			Bitte lassen Sie ein Leerzeichen zwischen den stöchiometrischen Koeffizienten und die damit verbundenen Metaboliten.");
+			Reaktion_Name : 2 Reaktive1 + 5 Reaktive2 => 3 Produkt1 + 7 Produkt2 <br />
+			Bitte lassen Sie ein Leerzeichen zwischen den stöchiometrischen Koeffizienten und die damit verbundenen Metaboliten");
+define('TXT_CREATION_WARNING_2', "Nicht löschen oder hinzufügen Reaktion in diesem Bereich<br />
+				Kein Platz nach der letzten Metabolit");
 define('TXT_CREATION_IS_REVERSIBLE', "Reversible :");
 define('TXT_CREATION_YES', "Ja");
 define('TXT_CREATION_NO', "Nein");

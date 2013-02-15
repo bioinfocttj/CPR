@@ -29,11 +29,12 @@ define('TXT_CREATION_TITLE', "Création d'un nouveau réseau");
 define('TXT_CREATION_INSTRUCTION_1', "Ecrivez une nouvelle réaction");
 define('TXT_CREATION_INSTRUCTION_2', "Verifier si la réaction à déjà été enregistrée :");
 define('TXT_CREATION_WARNING_TITLE', "Attention !");
-define('TXT_CREATION_WARNING', "Pas d'espaces dans les noms, utiliser un underscore '_' à la place.<br />
+define('TXT_CREATION_WARNING', "Pas d'espaces dans les noms, utiliser un underscore '_' à la place <br />
 			La synthaxe des réactions est la suivante :<br />
-			Nom_reaction : 2 reactif1 + 5 reactif2 => 3 produit1 + 7 produit2 (irréversible) <br />
-			Nom_reaction : 2 reactif1 + 5 reactif2 = 3 produit1 + 7 produit2 (réversible) <br />
-			Attention a laisser un espace entre le coefficient stoechiométrique et le métabolite associé.");
+			Nom_reaction : 2 reactif1 + 5 reactif2 => 3 produit1 + 7 produit2 <br />
+			Attention a laisser un espace entre le coefficient stoechiométrique et le métabolite associé");
+define('TXT_CREATION_WARNING_2', "Vous ne pouvez ni supprimer ni ajouter de réaction dans cette zone de modification<br />
+				Il ne doit pas y avoir d'espace après le dernier métabolite");
 define('TXT_CREATION_IS_REVERSIBLE', "Réversible :");
 define('TXT_CREATION_YES', "Oui");
 define('TXT_CREATION_NO', "Non");

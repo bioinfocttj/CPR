@@ -29,11 +29,12 @@ define('TXT_CREATION_TITLE', "Creation of a new network");
 define('TXT_CREATION_INSTRUCTION_1', "enter a new reaction");
 define('TXT_CREATION_INSTRUCTION_2', "Check if the raction has already been registered :");
 define('TXT_CREATION_WARNING_TITLE', "WARNING !");
-define('TXT_CREATION_WARNING', "No space in the names, please use underscore '_' instead.<br />
+define('TXT_CREATION_WARNING', "No space in the names, please use underscore '_' instead <br />
 			This is how to write a reaction : <br />
-			Name_of_reaction : 2 reactant1 + 5 reactant2 => 3 product1 + 7 product2 (irreversible) <br />
-			Name_of_reaction : 2 reactant1 + 5 reactant2 = 3 product1 + 7 product2 (reversible) <br />
-			Please be sure to let a space between the stoechiometry coefficient and the associate metabolite.");
+			Name_of_reaction : 2 reactant1 + 5 reactant2 => 3 product1 + 7 product2 <br />
+			Please be sure to let a space between the stoechiometry coefficient and the associate metabolite");
+define('TXT_CREATION_WARNING_2', "You mustn't add or remove a reaction in this area<br />
+				No space after the last metabolite");
 define('TXT_CREATION_IS_REVERSIBLE', "Reversible :");
 define('TXT_CREATION_YES', "Yes");
 define('TXT_CREATION_NO', "No");

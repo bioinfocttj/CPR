@@ -152,30 +152,34 @@
 		<form  name="formulaireR" method="POST" action="createFiles.php" onSubmit="return validateForm()">
 			<input type="text" name="reac" value="reaction : reag1 + reag2 => 2 prod1 + 4 prod2 ." size="60" onfocus="this.value = this.value=='reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .'?'':this.value;" onblur="this.value = this.value==''?'reaction : reag1 + reag2 => 2 prod1 + 4 prod2 .':this.value;"/> 
 
-			</br> </br>
+			<br/> <br/>
 			<label> <?php echo TXT_CREATION_IS_REVERSIBLE; ?></label>
-<!--
-			<input type="text" name="rev" value="0" size="5">
--->
-			</br> </br>
-			
-			 <input type="radio" name="choix1" id="choix1" value="1"> <?php echo TXT_CREATION_YES; ?>
-			<input type="radio" name="choix1" id="choix0" value="0"> <?php echo TXT_CREATION_NO; ?> </br> </br>
 
-			<input type="submit" name="button" value="<?php echo TXT_ADD_BUTTON; ?>" /></br></br> </br>
-			<label> <?php echo TXT_CREATION_ALREADY_OK; ?></label>
-			</br> </br>
+			<br/> <br/>
 			
-<!--
-			<iframe src="reactionTemp.txt" width="500" height="200"> </iframe>
--->
+			<input type="radio" name="choix1" id="choix1" value="1"> <?php echo TXT_CREATION_YES; ?>
+			<input type="radio" name="choix1" id="choix0" value="0"> <?php echo TXT_CREATION_NO; ?> <br/> 
+			
+			<FONT color="red" size="4">
+				<h4><?php echo TXT_CREATION_WARNING_TITLE; ?></h4>
+				<p> <?php echo TXT_CREATION_WARNING; ?></p>
+			</FONT>
+		
+			<input type="submit" name="button" value="<?php echo TXT_ADD_BUTTON; ?>" /><br/><br/> <br/>
+			<label> <?php echo TXT_CREATION_ALREADY_OK; ?></label>
+			<br/> <br/>
+			
 		</form>
 		
 		<form method="post" action="modifier.php">
-			 <textarea name="reactions" cols="100" rows="25"><?php echo file_get_contents( 'reactionTemp2.txt' ); ?> </textarea><br/>
+			 <textarea name="reactions" cols="100" rows="25"><?php echo file_get_contents( 'reactionTemp2.txt' ); ?> </textarea><br/>			
 			 <input type="submit" value="<?php echo TXT_MODIFY_BUTTON; ?>" />
 			</form>
-		</br> </br>
+			<FONT color="red" size="4">
+				<h4><?php echo TXT_CREATION_WARNING_TITLE; ?></h4>
+				<p> <?php echo TXT_CREATION_WARNING_2; ?></p>
+			</FONT>
+		<br/> <br/>
 		
 		<h4><?php echo TXT_CREATION_FINISH; ?></h4>
 		<input type='submit' name='buttonMext' 	value="<?php echo TXT_CREATE_CHOOSE_EXT;?>" onclick=add_metabo()>
@@ -186,14 +190,11 @@
 			
 		</form>	
 		
-		</br> </br>
+		<br/> <br/>
 		
 		<input type="submit" name="button2" value="<?php echo TXT_NEXTSTEP_BUTTON; ?>" onclick="self.location.href='generules.php'" />
 
-		<FONT color="red" size="4">
-			<h4><?php echo TXT_CREATION_WARNING_TITLE; ?></h4>
-			<p> <?php echo TXT_CREATION_WARNING; ?></p>
-		</FONT>
+		
 		
 	</body>
 </html>
