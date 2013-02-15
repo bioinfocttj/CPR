@@ -26,12 +26,9 @@
 			//~ echo '<img src="Images/waiting.gif" alt="please Wait...">';
 			echo ('<img src="Images/waiting_fun.gif" alt="please Wait...">');
 			$com = $_COOKIE['commande'];
-			$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rfile -generule grfile -reac rfile';
+			$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rfile -generule grfile -reac rfile > log.txt';
 			if ($_SESSION['isCompared']==0) {
-/*
-				$com = $com . ' > log2.txt';
-*/
-				$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rvfile -generule grfile -reac rfile & > log3.txt';
+				$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rvfile -generule grfile -reac rfile & > log.txt';
 				shell_exec($com);
 			}
 			else {
@@ -124,7 +121,7 @@
 			?>
 			<div id="new" name="new" title="new results">
 				<?php
-					if (!isset($modes)){
+					if (count($modes)<2){
 						echo '<script>document.getElementById("new").innerHTML = "";</script>';
 						waiting();
 					}
