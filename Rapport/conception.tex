@@ -153,13 +153,13 @@ Comme nous l'avons dit précédemment, regEfmtool se lance gr\^ace à une ligne 
 
 Les options sont regroupées par catégories (en fonction de ce qui était précisé dans le fichier \textit{metabolic-efm.xml} de regEfmtool):
 
-\paragraph*{Enregistrement} Cette catégorie contient trois sous catégories précisant le type d'affichage des résultats, le niveau d'informations sur le déroulement des calculs et le format d'enregistrement. Par défaut, l'affichage se fera en ligne sur le site et le type de message d'information est le plus complet possible. 
+\paragraph*{Enregistrement} Cette catégorie contient trois sous catégories précisant le type d'affichage des résultats, le niveau d'information sur le déroulement des calculs et le format d'enregistrement. Par défaut, l'affichage se fera en ligne sur le site et le type de message d'information sur le déroulement des calculs sera le plus complet possible. 
 
-\paragraph*{Types de fichiers stœchiométriques} Cette catégorie possède deux sous catégories précisant le type de parsage en entrée et l'analyseur de flux. Cette dernière permet de définir les types de fichiers d'entrée que regEfmtool utilisera. Ces fichiers étant lors des étapes précédentes, leurs noms sont déjà pré-rentrés dans les cases correspondantes.
+\paragraph*{Types de fichiers stœchiométriques} Cette catégorie possède deux sous catégories précisant le type de parsage en entrée et l'analyseur de flux. Cette dernière permet de définir les types de fichiers d'entrée que regEfmtool utilisera. Ces fichiers étant créés lors des étapes précédentes, leurs noms sont déjà pré-rentrés dans les cases correspondantes.
 
 \paragraph*{Compression et paramètres de sortie} Ces deux catégories contiennent chacune une seule sous catégorie, servant respectivement à définir le niveau de compression (et également l'utilisation de la récursivité dans les calculs) et le type de fichier désiré en paramètre de sortie. L'option "text-doubles" est cochée par défaut, avec le nom du fichier qui contiendra les modes élémentaires calculés. Nous avons appelé ce fichier \textit{results.txt}. 
 
-\paragraph*{Paramètres d'Efmtool} Cette dernière catégorie contient sept sous catégories: le "\textit{rowordering}" (ou la ligne de commande à utiliser), la méthode d'adjacence, le nombre maxiamal de "\textit{threads}" (prédéfini à 2 suivant les exemples de regEfmtool), l'arithmétique des nombres, le type de normalisation pour la sortie (prédéfinie à "aucune"), la précision fractionnaire et l'activation ou non d'un auto-test après chaque itération. \\
+\paragraph*{Paramètres d'Efmtool} Cette dernière catégorie contient sept sous catégories: le "\textit{rowordering}" (ou la ligne de commande à utiliser), la méthode d'adjacence, le nombre maximal de "\textit{threads}" (prédéfini à 2 suivant les exemples de regEfmtool), l'arithmétique des nombres, le type de normalisation pour la sortie (prédéfinie à "aucune"), la précision fractionnaire et l'activation ou non d'un auto-test après chaque itération. \\
 
 Une fois que l'utilisateur a coché toutes les options qu'il souhaite, il lui suffit de cliquer sur le bouton \emph{Lancement} afin de générer la commande et lancer regEfmtool. Ensuite, une page d'affichage des résultats s'affiche. 
 
@@ -181,7 +181,7 @@ Cette page accessible depuis le menu général permet à un utilisateur de charg
   	\end{center}	
 \end{figure}
 
-L'utilisateur n'aura plus qu'à cliquer sur \textit{Lancement} pour lancer la création de la ligne de commande. Cependant, la ligne de commande générée n'est pas la m\^eme qu'après l'étape de création: elle est incomplète. Tous les paramètres concernant les fichiers d'entrée seront récupérés lors du clic sur le bouton \textit{Étape suivante}. 
+L'utilisateur n'aura plus qu'à cliquer sur le bouton \textit{Étape suivante} pour générer le début de la ligne de commande. Tous les paramètres sauf ceux concernant les fichiers d'entrée seront alors récupérés. L'utilisateur est renvoyé sur une nouvelle page qui permet de charger ses fichiers depuis son disque dur et de lancer le logiciel. 
 
 \subsection{Chargement des fichiers}
 Cette page permet à l'utilisateur de sélectionner les fichiers à charger depuis son disque dur. Il y a un ordre précis du type des fichiers à charger (indiqué à l'utilisateur). 
@@ -197,17 +197,26 @@ Cette page permet à l'utilisateur de sélectionner les fichiers à charger depu
 %  	\end{center}	
 %\end{figure}
 
-Une fois les fichiers sélectionnés, il suffit de cliquer sur \textit{Submit} pour effectuer le chargement. Ensuite, l'utilisateur devra cliquer sur "\textit{Résultats}" pour être dirigé vers la page d'affichage des résultats.  
+Une fois les fichiers sélectionnés, il suffit de cliquer sur \textit{Submit} pour effectuer le chargement. Ensuite, l'utilisateur devra cliquer sur \textit{Résultats} pour être dirigé vers la page d'affichage des résultats.  
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Affichage des résultats}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La page des résultats permet deux choses : l'éxécution de regefmtool et l'affichage des modes elementaires, obtenu par le parse du fichier generé par l'execution de regefmtool. Tout d'abord, la commande d'éxecution de regefmtool est generée auparavant depuis la page de choix des options. Elle est ensuite récupérée sur la page des resultats pour permettre son execution.
-Cette execution genere deux types de resultats : le fichiers contenant les modes elementaires ainsi que le log s'il est demandé. Ce sont ces deux resultats que nous afficherons dans cette page.
-Tout d'abord les modes elementaires, affichée comme un tableau contenant en abscisse les modes elementaires obtenus, en ordonnées, toutes les reactions pouvant etre impliquées.
-Cette page contient aussi deux boutons : l'un permet de finir les calculs et de revenir a la page d'accueil, l'autre permet de revenir a la page d'accueil mais pour analyser un nouveau réseau et ainsi comparer les deux résultats générés.
-Le deuxieme resultat, le log, est affichée sur la droite de la page. un menu permet l'obtention,  soit d'une categorie du log, soit de la totalité.
+La page des résultats permet deux choses : l'exécution de regEfmtool et l'affichage des modes élémentaires, obtenus par le parse du fichier généré par l'exécution de regEfmtool.\\
+
+Tout d'abord, la commande d'exécution de regEfmtool générée en partie depuis la page de choix des options est récupérée sur la page des résultats pour permettre son exécution.\\
+L'exécution génère deux types de résultats : le fichier contenant les modes élémentaires ainsi que le log s'il est demandé.\\ 
+
+Une fois l'exécution terminée, les résultats précédents seront affichés.\\
+Les modes élémentaires sont affichés sous la forme d'un tableau contenant:
+\begin{itemize}
+\item En abscisse, les modes élémentaires obtenus
+\item En ordonnée, toutes les réactions pouvant être impliquées\\
+\end{itemize}
+
+Cette page contient aussi deux boutons : l'un permet de finir les calculs et de revenir à la page d'accueil, l'autre permet de revenir à la page d'accueil mais pour analyser un nouveau réseau et ainsi comparer les deux résultats générés.\\
+Un menu permet d'afficher soit une catégorie du log du deuxième résultat, soit sa totalité sur la droite de la page. 
 
 
 
