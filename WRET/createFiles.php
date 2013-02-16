@@ -12,7 +12,7 @@
 			include 'reac.php';
 			include 'parser_enzymes.php';	
 			include 'parser_metabolite.php';
-			//include 'parser_stoechiometry.php';
+			include 'parser_stoechiometry.php';
 		?>
 	</body>
 </html>

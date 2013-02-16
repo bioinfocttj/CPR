@@ -66,7 +66,6 @@
 				if ($met!="" or $met!="."){
 					fputs($data, "\"$met\" ");
 				}
-				echo "$met";
 			}
 			fclose($data);
 
