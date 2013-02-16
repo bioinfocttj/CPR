@@ -14,9 +14,9 @@
 				
 			# Table containing all the metabolites
 				$METABOLITE=array();
-
+				
 				$space=" ";
-				$syntaxe=array("+","=>","=",":",".","\n");
+				$syntaxe=array("+","=>","=",":",".","\n",".\n","\t",".\r\n","\r\n");
 				$enzymes = array();
 				
 			foreach($file as $cpt => $ligne) {
@@ -58,17 +58,20 @@
 			# Deleting of the duplicates
 			$metab=array_unique($METABOLITE);
 			$metab2=array_diff($metab,$syntaxe);
-
+			$metab2=array_filter($metab2);
+			$metab3 = array_filter($metab2, function($var){
+				return (!in_array($var, $syntaxe));
+				});
 			# Opening the file containing the metabolites and writing of the list
 			$data = fopen('metabolites.mfile','w');
 			
-			foreach($metab2 as $met){
-				if ($met!="" or $met!="."){
+			foreach($metab3 as $met){
+				if ($met!=null or $met!="." or $met!="\n"){
 					fputs($data, "\"$met\" ");
 				}
 			}
 			fclose($data);
-
+			print_r($metab3);
 			# Redirection to the file-creation page 
 			//header('Refresh:1 ; url=create.php');
 			echo 'You\'ll be redirected in about 3 secs. If not, click <a href="create.php">here</a>.';
