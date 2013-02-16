@@ -93,7 +93,7 @@ define('TXT_LOAD_RVFILE', ".rvfile Datei");
 define('TXT_LOAD_GRFILE', ".grfile Datei");
 define('TXT_LOAD_RFILE', ".rfile Datei");
 define('TXT_LOAD_TITLE2', "Nach dem Beladung");
-define('TXT_LOAD_INSTRUCTION_2', "Bitte wählen Sie Dateien zum Upload ");
+define('TXT_LOAD_INSTRUCTION_3', "Bitte wählen Sie Dateien zum Upload ");
 //---------------------------------------------------------
 // modify.php
 //---------------------------------------------------------

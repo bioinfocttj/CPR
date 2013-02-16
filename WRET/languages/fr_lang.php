@@ -95,7 +95,7 @@ define('TXT_LOAD_RVFILE', "Fichier .rvfile");
 define('TXT_LOAD_GRFILE', "Fichier .grfile");
 define('TXT_LOAD_RFILE', "Fichier .rfile");
 define('TXT_LOAD_TITLE2', "Suite du chargement");
-define('TXT_LOAD_INSTRUCTION_2', "Veuillez charger les fichiers nécessaires");
+define('TXT_LOAD_INSTRUCTION_3', "Veuillez charger les fichiers nécessaires");
 
 //---------------------------------------------------------
 // modify.php

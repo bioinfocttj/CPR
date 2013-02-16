@@ -94,7 +94,7 @@ define('TXT_LOAD_RVFILE', ".rvfile file");
 define('TXT_LOAD_GRFILE', ".grfile file");
 define('TXT_LOAD_RFILE', ".rfile file");
 define('TXT_LOAD_TITLE2', "Next step of loading");
-define('TXT_LOAD_INSTRUCTION_2', "Please, choose the files to load");
+define('TXT_LOAD_INSTRUCTION_3', "Please, choose the files to load");
 //---------------------------------------------------------
 // modify.php
 //---------------------------------------------------------
