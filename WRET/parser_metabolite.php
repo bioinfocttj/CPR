@@ -22,7 +22,7 @@
 			foreach($file as $cpt => $ligne) {
 			# Deleting the spaces 
 				$array=explode($space,$ligne);
-
+				
 				$precedent;
 				$metabolites = array();
 				$total = array();
@@ -30,7 +30,7 @@
 				$reactions = array();
 				$verif = true;
 
-				foreach($array as &$value){
+				foreach($array as $value){
 					if (preg_match("*:*",$value)==true){
 						$verif=true;
 						array_push($enzymes,$precedent);
