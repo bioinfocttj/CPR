@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Réalisation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -573,8 +573,7 @@ Une fois toutes ces étapes finie, le résultat est sauvegardé dans la variable
 
 L'utilisateur a le choix de terminer ses calculs ou de comparer le résultat obtenu. Pour cela, deux boutons \emph{comparer} et \emph{finir} lui permette de retourner à l'écran d'accueil, à la différence près que \emph{comparer} fait appel a la fonction \emph{compare()}  qui conserve en mémoire grace à une variable de session PHP \emph{isCompared} que l'utilisateur veut comparer son résultat et redirige l'utilisateur tandis que l'autre, \emph{finir} réinitialise cette m\^eme variable.\\
 
-Après avoir lancé les commandes RegEfmtool et récupéré les résultats qui en découle dans un fichier \emph{log.txt}, la page d'extracion des résultats permet à l'utilisateur de visualiser ce fichier.
-
+Sur cette même page, l'utilisateur à aussi la possibilité d'afficher les résultats de la commande qu'il vient de lancer. Pour cela, le fichier  \emph{parse\_results.php} récupère le fichier \emph{log.txt} dans lequel à été redirectionné les résultats générés par RegEfmtool.
 
 Cette page offre deux options:
 \begin{itemize}
@@ -582,10 +581,45 @@ Cette page offre deux options:
 \item choisir une catégorie des résultats à visualiser.
 \end{itemize}
 
-Les catégorie des résultats sont stocké dans un menu déroulant qui est obtenu après avoir parsé le fichier \emph{log.txt} et selectionner l'ensemble des mot-clés qui y apparaissent. Ainsi l'utilisateur n'a plus qu'à selectionner la catégorie qu'il souhaite visualiser.
+Cette page parcourt le fichier log et selectionne les mots-clés à l'aide de la fonction \emph{item()} qui récupère toute les phrases suivient de deux points (\emph{:}).
 
+\begin{lstlisting}
+function item(){
+					
+	$fichier = 'log.txt';
+	global $item;
+	define ('FICHIER', $fichier);
+	$numligne = 0;
+	
+	$fichier = fopen( FICHIER, 'r')or die('Ouverture en lecture de "' . FICHIER . '" impossible !');
+					
+	while (!feof($fichier)){
+		$numligne++;
+		$lignes = fgets($fichier, 1024);
+		$posi = strpos($lignes, '|'); 
+		$ligne = trim(substr($lignes,$posi+1,strlen($lignes))); 
+		$pos = strpos($ligne, ':' );
+		if ( $pos == true && $numligne >= 32){
+			$line = trim(substr($ligne,0, $pos)); 
+			$item[] = $line;
+		}
+	}
+					
+	$count = count($item);
+					
+	for ($numero = 0; $numero < $count; $numero++){
+		echo '<OPTION VALUE="' . $item[$numero] . '"> ' . $item[$numero] . ' </OPTION>'; 
+	}
+	
+	return $item;
+}
+\end{lstlisting}
 
-Lorsque l'utilsateur se trouve sur la page d'afficage des résultats, il a la possibilité de revenir en arrière.\\
+Les mots-clés sont stocké dans un menu déroulant qui est obtenu par affichage de chaque valeur du tableaudans la balises HTLML (\emph{echo '<OPTION VALUE="' . $item[$numero] . '"> ' . $item[$numero] . ' </OPTION>';}). Ainsi l'utilisateur n'a plus qu'à selectionner la catégorie qu'il souhaite visualiser à partir du mot-clé.
+
+Ainsi l'uilisateur peut faire le choix de visualiser l'ensemble du fichier \emph{log.txt} et ainsi la page le renvoi sur le fichier \emph{all\_results.php}, ou de ne visualiser qu'une catégorie, et il est rediriger sur le fichier \emph{display\_results.php}.
+
+Dans le premier cas, l'utilisateur va obtenir une page semblable à la figure\ref{affichageResultats}. Cette page offre la possibilité à l'utilisateur de revenir en arrière à l'aide de deux boutons, dont un présent au dessus de l'affichage des résultats et l'autre, en dessous.\\
 \begin{figure}[!ht]
 	\begin{center}
 		\fbox{
@@ -593,11 +627,112 @@ Lorsque l'utilsateur se trouve sur la page d'afficage des résultats, il a la po
   			\includegraphics[width=0.90\textwidth]{../Images/Rapport/affichageResultats.png}  
 		 \end{minipage}}
 		\caption{Page de recherche sur le log}
-  		\label{chargement1}
+  		\label{affichageResultats}
   	\end{center}	
 \end{figure}
 
-Les résultats extraits sont affichés de façon claire et lisible pour l'utilisateur. De plus il ya aussi la présence d'un bouton qui permet de retourner sur la page d'extraction des résultats.
+Les résultats extraits sont affichés de façon claire et lisible pour l'utilisateur(Figure\ref{affichageResultats})grâce au fichier \emph{display\_results.php}. Ce dernier récupère le mot-clé selectionné dans le menu déroulant, de la page précédente, et le recherche dans l'ensemble du fichier.
+\begin{lstlisting}
+function display_results(){
+	$fichier = 'log.txt';
+	$start = $_POST['start'];
+	$end;
+	$numligne = 0;
+	global $item;
+				
+	
+	define ('FICHIER', $fichier);
+	$fichier = fopen( FICHIER, 'r')or die('Ouverture en lecture de "' . FICHIER . '" impossible !');
+				
+	//parcourt le fichier et stocke chaque ligne dans le tableau resultats et chaque mot cle dans le tableau item
+	while (!feof($fichier)){
+		$numligne++;
+		$lignes = fgets($fichier, 1024);
+		$posi = strpos($lignes, '|'); 
+		$ligne = trim(substr($lignes,$posi+1,strlen($lignes))); 
+		$resultats[] = trim($ligne); 
+
+		$pos = strpos($ligne, ':' );
+		if ( $pos == true && $numligne >= 32){
+			$line = trim(substr($ligne,0, $pos)); 
+			$item[] = $line;
+		}
+	}
+				
+	$count = count($resultats);
+	$counte = count($item);
+	$motif='R';
+	$vraie=true; 
+	$vrai = true;
+	
+	//Determine la position du mots cle $start dans le tableau resultats[]	
+	if ($vrai){
+		for ($nume = 0; $nume < $count; $nume++){
+			if (preg_match('/^'.$start.'/',$resultats[$nume])){
+				$start_pos=$nume;
+				$vrai = false;
+			}
+		}
+	}
+		
+	//Cas ou $start contient un 'R' Majuscule
+	if (preg_match($motif,$start)){
+		for ($numero=0; $numero<$count; $numero++){
+			if (preg_match('/^'.$start.'/i', $resultats[$numero])){
+				echo '<div>';
+				echo '<pre>' .$resultats[$numero]. '</pre>';
+				echo '</div>';
+				fclose($fichier);
+				return;
+			}
+		}
+	}
+
+	//l'autre cas : Determine la position du mot-cle delemitant la categorie a visualiser
+	if ($vraie){
+		for ($num = 0; $num < $counte; $num++){
+			if (preg_match('/^'.$start.'/',$item[$num]) && !preg_match('/^'.$motif.'/',$item[$num+1])){
+				$end = $item[$num+1];
+				$vraie = false;
+			}
+			else if (preg_match('/^'.$start.'/',$item[$num]) && preg_match('/^'.$motif.'/',$item[$num+1])){
+				for ($numer = $num; $numer < $counte; $numer++){
+					if (preg_match('/^'.$motif.'/',$item[$numer])){
+						$end = $item[$numer];
+						$vraie = false;
+					}
+				}
+			}
+		}
+	}
+	
+	//Affichage des resultats sur la page HTML
+	for ($numero = $start_pos; $numero < $count; $numero++){
+		if (preg_match('/^'.$start.'/', $resultats[$numero])){
+			echo '<div>';
+			echo '<pre>' . $resultats[$numero] . '</pre>';
+		}
+		else if (preg_match('/^'.$end.'/', $resultats[$numero])){
+			echo'</div>';
+			fclose($fichier);
+			return;
+		}
+		else if (preg_match('/^'.$motif.'/', $resultats[$numero])){
+			echo '<pre>' . $resultats[$numero] . '</pre>'; 
+		}
+		else{
+			echo '<pre>' . $resultats[$numero] . '</pre>'; 
+		}
+	}
+}
+
+\end{lstlisting}
+Si ce dernier comporte un 'R' Majuscule, il n'est retourné que la ligne comportant le mot clé. Dans le cas contraire, un des mot-clé suivant délimitera la catégorie selectionnée. Cette recherche offre 2 possibilitées.
+Dans le premier cas si le mot-clé est suivie de mots-clés contenant eu même un 'R' Majuscule, le mot-clé délimitant sera le premier qui ne possèdera pas de 'R' Majuscule.
+Dans le second cas, le mot-clé suivant, dans la liste, servira de délimitant.
+Cette démache est réalisé par la fonction \emph{display\_results()} du fichier \emph{display\_results.php}.\\
+
+De plus il ya aussi la présence d'un bouton qui permet de retourner sur la page d'extraction des résultats.
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -606,7 +741,7 @@ Les résultats extraits sont affichés de façon claire et lisible pour l'utilis
   			\includegraphics[width=0.20\textwidth]{../Images/Rapport/affichageExtraction.png}  
 		 \end{minipage}}
 		\caption{Page de recherche sur le log}
-  		\label{chargement1}
+  		\label{affichageExtraction}
   	\end{center}	
 \end{figure}
 
