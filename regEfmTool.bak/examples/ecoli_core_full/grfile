@@ -1,0 +1,117 @@
+# Original rule set created by David Ruckerbauer, ACIB
+# 01
+R_EX_ac_e = (!1R_EX_glc_e)
+# 02
+R_ICL = (!1R_EX_glc_e)
+# 03
+R_FORt2 = (!0R_EX_glc_e)
+# 04
+R_FORti = (!0R_EX_glc_e)
+# 05
+R_GLNS = (!0R_EX_glc_e)
+# 06
+R_PFL = (!0R_EX_glc_e)
+# 07
+R_ACKr = (!0R_EX_glc_e)
+# 08
+R_GLCpts = (0R_EX_glc_e | 0R_EX_glc_e)
+# 09
+R_FORt2 = (!0R_EX_o2_e)
+# 10
+R_FORti = (!0R_EX_o2_e)
+# 11
+R_FRD7 = (!0R_EX_o2_e)
+# 12
+R_PFL = (!0R_EX_o2_e)
+# 13
+R_ACKr = (!0R_EX_o2_e)
+# 14
+R_MDH = (0R_EX_o2_e | 0R_EX_o2_e)
+# 15
+R_NADH16 = (0R_EX_o2_e | 0R_EX_o2_e)
+# 16
+R_ICL = (0R_EX_o2_e | 0R_EX_o2_e)
+# 17
+R_GLUDy = (!1R_EX_glu_L_e)
+# 18
+R_GLUSy = (!1R_EX_glu_L_e)
+# 19
+R_GLUDy = (0R_EX_nh4_e | 0R_EX_nh4_e)
+# 20
+R_GLUSy = (0R_EX_nh4_e | 0R_EX_nh4_e)
+# 21
+R_PIt2r = (0R_EX_pi_e | 0R_EX_pi_e)
+# 22
+R_MALS = (!(1R_EX_glc_e & (!0R_EX_ac_e)))
+# 23
+R_MALS = (!((!0R_EX_o2_e) & (!0R_EX_ac_e)))
+# 24
+R_D_LACt2 = (!((!0R_EX_o2_e) & (!0R_EX_ac_e)))
+# 25
+R_D_LACt2 = (1R_EX_o2_e & 1R_EX_ac_e)
+# 26
+R_ACALD = (!(1R_EX_o2_e & (!0R_BIOMASS)))
+# 27
+R_ALCD2x = (!(1R_EX_o2_e & (!0R_BIOMASS)))
+# 28
+R_ACALD = ((!0R_EX_o2_e) & 1R_BIOMASS)
+# 29
+R_ALCD2x = ((!0R_EX_o2_e) & 1R_BIOMASS)
+# 30
+R_MALS = (((!0R_EX_glc_e) & 1R_EX_o2_e) & 1R_EX_ac_e)
+# 31
+R_SUCDi = (!((1R_EX_glc_e & (!0R_BIOMASS)) & (!0R_EX_o2_e)))
+# 32
+R_SUCDi = ((!0R_EX_glc_e) & 1R_EX_o2_e)
+# 33
+R_SUCDi = (1R_BIOMASS & 1R_EX_o2_e)
+# 34
+R_FRD7 = (1R_EX_succ_e | 1R_EX_succ_e)
+# 35
+R_FRD7 = (1R_EX_fum_e | 1R_EX_fum_e)
+# 36
+R_FRD7 = (1R_EX_mal_L_e | 1R_EX_mal_L_e)
+# 37
+R_FUM = (1R_EX_o2_e & (!0R_EX_glc_e))
+# 38
+R_FUM = (1R_EX_o2_e & 1R_EX_succ_e)
+# 39
+R_FUM = (1R_EX_o2_e & 1R_EX_fum_e)
+# 40
+R_FUM = (1R_EX_o2_e & 1R_EX_mal_L_e)
+# 41
+R_FUMt2_2 = ((1R_EX_o2_e & (!0R_EX_glc_e)) & (!0R_EX_lac_D_e))
+# 42
+R_FUMt2_2 = (1R_EX_o2_e & 1R_EX_succ_e)
+# 43
+R_FUMt2_2 = (1R_EX_o2_e & 1R_EX_fum_e)
+# 44
+R_FUMt2_2 = (1R_EX_o2_e & 1R_EX_mal_L_e)
+# 45
+R_MALt2_2 = ((1R_EX_o2_e & (!0R_EX_glc_e)) & (!0R_EX_lac_D_e))
+# 46
+R_MALt2_2 = (1R_EX_o2_e & 1R_EX_succ_e)
+# 47
+R_MALt2_2 = (1R_EX_o2_e & 1R_EX_fum_e)
+# 48
+R_MALt2_2 = (1R_EX_o2_e & 1R_EX_mal_L_e)
+# 49
+R_SUCCt2_2 = ((1R_EX_o2_e & (!0R_EX_glc_e)) & (!0R_EX_lac_D_e))
+# 50
+R_SUCCt2_2 = (1R_EX_o2_e & 1R_EX_succ_e)
+# 51
+R_SUCCt2_2 = (1R_EX_o2_e & 1R_EX_fum_e)
+# 52
+R_SUCCt2_2 = (1R_EX_o2_e & 1R_EX_mal_L_e)
+# 53
+R_FUMt2_2 = (!(((((!0R_EX_o2_e) & 1R_EX_glc_e) & (!0R_EX_succ_e)) & (!0R_EX_fum_e)) & (!0R_EX_mal_L_e)))
+# 54
+R_FUMt2_2 = (!(((((!0R_EX_o2_e) & 1R_EX_lac_D_e) & (!0R_EX_succ_e)) & (!0R_EX_fum_e)) & (!0R_EX_mal_L_e)))
+# 55
+R_MALt2_2 = (!(((((!0R_EX_o2_e) & 1R_EX_glc_e) & (!0R_EX_succ_e)) & (!0R_EX_fum_e)) & (!0R_EX_mal_L_e)))
+# 56
+R_MALt2_2 = (!(((((!0R_EX_o2_e) & 1R_EX_lac_D_e) & (!0R_EX_succ_e)) & (!0R_EX_fum_e)) & (!0R_EX_mal_L_e)))
+# 57
+R_SUCCt2_2 = (!(((((!0R_EX_o2_e) & 1R_EX_glc_e) & (!0R_EX_succ_e)) & (!0R_EX_fum_e)) & (!0R_EX_mal_L_e)))
+# 58
+R_SUCCt2_2 = (!(((((!0R_EX_o2_e) & 1R_EX_lac_D_e) & (!0R_EX_succ_e)) & (!0R_EX_fum_e)) & (!0R_EX_mal_L_e)))
