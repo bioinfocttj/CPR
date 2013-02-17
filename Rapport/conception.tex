@@ -184,18 +184,18 @@ Cette page accessible depuis le menu général permet à un utilisateur de charg
 L'utilisateur n'aura plus qu'à cliquer sur le bouton \textit{Étape suivante} pour générer le début de la ligne de commande. Tous les paramètres sauf ceux concernant les fichiers d'entrée seront alors récupérés. L'utilisateur est renvoyé sur une nouvelle page qui permet de charger ses fichiers depuis son disque dur et de lancer le logiciel. 
 
 \subsection{Chargement des fichiers}
-Cette page permet à l'utilisateur de sélectionner les fichiers à charger depuis son disque dur. Il y a un ordre précis du type des fichiers à charger (indiqué à l'utilisateur). 
+Cette page permet à l'utilisateur de sélectionner les fichiers à charger depuis son disque dur (Figure \ref{chargement2}). Il y a un ordre précis du type des fichiers à charger (indiqué à l'utilisateur). 
 
-%\begin{figure}[!ht]
-%	\begin{center}
-%		\fbox{
-%   		 \begin{minipage}[c]{0.9\textwidth}
-%  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/chargement.png}  
-%		 \end{minipage}}
-%		\caption{Partie de la page de chargement d'un réseau préexistant}
-%  		\label{chargement2}
-%  	\end{center}	
-%\end{figure}
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/chargement1.png}  
+		 \end{minipage}}
+		\caption{Page du choix des fichiers à charger}
+  		\label{chargement2}
+  	\end{center}	
+\end{figure}
 
 Une fois les fichiers sélectionnés, il suffit de cliquer sur \textit{Submit} pour effectuer le chargement.
 
@@ -205,24 +205,24 @@ Une fois les fichiers sélectionnés, il suffit de cliquer sur \textit{Submit} p
 
 La page des résultats permet deux choses : l'exécution de regEfmtool et l'affichage des modes élémentaires, obtenus par le parse du fichier généré par l'exécution de regEfmtool.\\
 
-Tout d'abord, la commande d'exécution de regEfmtool générée en partie depuis la page de choix des options est récupérée sur la page des résultats pour permettre son exécution.\\
-L'exécution génère deux types de résultats : le fichier contenant les modes élémentaires ainsi que le log s'il est demandé.\\ 
+Comme nous l'avons dit précédemment, la commande d'exécution de regEfmtool générée en partie depuis la page de choix des options est récupérée sur la page des résultats pour permettre son exécution.\\
+L'exécution génère deux types de résultats : le fichier contenant les modes élémentaires ainsi que le log\footnote{Un fichier log est un fichier texte classique, reprenant de façon chronologique l'ensemble des événements qui ont affecté un système informatique et l'ensemble des actions qui ont résulté de ces événements.} s'il est demandé.\\ 
 
 Une fois l'exécution terminée, les résultats précédents seront affichés.\\
-Les modes élémentaires sont affichés sous la forme d'un tableau contenant:
+Les modes élémentaires quant à eux sont affichés sous la forme d'un tableau contenant:
 \begin{itemize}
-\item En abscisse, les modes élémentaires obtenus
-\item En ordonnée, toutes les réactions pouvant être impliquées\\
+\item En abscisses, les modes élémentaires obtenus
+\item En ordonnées, toutes les réactions pouvant être impliquées\\
 \end{itemize}
 
 Cette page contient aussi trois boutons : 
 \begin{itemize}
 \item l'un permet de finir les calculs et de revenir à la page d'accueil,
-\item le deuxième permet de revenir à la page d'accueil mais pour analyser un nouveau réseau et ainsi comparer les deux résultats générés, 
+\item le deuxième permet de revenir à la page d'accueil, mais pour analyser un nouveau réseau et ainsi comparer les deux résultats générés, 
 \item le troisième permet d'afficher l'outil de recherche sur le log et de sélectionner la catégorie que l'utilisateur veut afficher ou la totalité.\\
 \end{itemize}
 
-La page d'extraction des résultats offre à l'utilisateur la possibilité de visualiser l'ensemble des résultats généré par RegEfmetool ou de pouvoir extraire une partie de ces dernier à l'aide d'un mot clé selectionné dans le menu déroulant.
+La page d'extraction des résultats offre à l'utilisateur la possibilité de visualiser l'ensemble des résultats générés par regEfmtool ou de pouvoir en extraire une partie à l'aide d'un mot clé sélectionné dans un menu déroulant (Figure \ref{rechercheLog}).
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -231,7 +231,7 @@ La page d'extraction des résultats offre à l'utilisateur la possibilité de vi
   			\includegraphics[width=0.90\textwidth]{../Images/Rapport/extractionResultat.png}  
 		 \end{minipage}}
 		\caption{Page de recherche sur le log}
-  		\label{chargement1}
+  		\label{rechercheLog}
   	\end{center}	
 \end{figure}
 

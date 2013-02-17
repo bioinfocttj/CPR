@@ -452,7 +452,7 @@ Cette commande est sauvegardée dans un \textit{cookie} qui sera récupéré à 
 
 Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de \textit{regEfmtool}, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton \textit{Étape suivante}. Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
 
-Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php} (voir figure \ref{choix}) , qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans \textit{regEfmtool}. Ce processus est faisable grâce à un  script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
+Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php}, qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans \textit{regEfmtool}. Ce processus est faisable grâce à un  script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -462,17 +462,6 @@ Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php} (voir fig
 \end{DDbox}
 
 Ce script est contenu dans l'attribut \textit{value} du bouton de chargement du fichier en question. La ligne de commande est donc complétée et le lancement du logiciel peut commencer. 
-
-\begin{figure}[!ht]
-	\begin{center}
-		\fbox{
-   		 \begin{minipage}[c]{0.9\textwidth}
-  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/chargement1.png}  
-		 \end{minipage}}
-		\caption{Page du choix des fichiers à charger}
-  		\label{choix}
-  	\end{center}	
-\end{figure}
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Affichage des résultats}
@@ -489,7 +478,7 @@ Ce script est contenu dans l'attribut \textit{value} du bouton de chargement du 
   	\end{center}	
 \end{figure}
 
-Le fichier \emph{results.php} permet l'affichage des résultats de la commande générée précédemment. Celle-ci est exécutée grâce à la fonction \texttt{shell\_exec()}. Les fichiers de résultat et de log \footnote{Un fichier log est un fichier texte classique, reprenant de façon chronologique l'ensemble des événements qui ont affecté un système informatique et l'ensemble des actions qui ont résulté de ces événements.} sont analysés pour permettre leur affichage (Figure \ref{DiagResults}).\\
+Le fichier \emph{results.php} permet l'affichage des résultats de la commande générée précédemment. Celle-ci est exécutée grâce à la fonction \texttt{shell\_exec()}. Les fichiers de résultat et de log sont analysés pour permettre leur affichage (Figure \ref{DiagResults}).\\
 
 \begin{figure}[!ht]
 	\begin{center}
