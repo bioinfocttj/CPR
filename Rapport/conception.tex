@@ -115,7 +115,7 @@ La création des règles est régie selon certains principes:
 Tout d'abord, l'utilisateur choisi le nombre de réactions qui composent la règle qu'il veut créer.
 Une fois ce choix effectué, il clique sur le bouton \emph{Ok}. S'affichent alors de deux ou trois menus déroulant par réaction. Quand il y en a trois (Figure \ref{generules}), le premier permet de choisir l'opérateur, le second la réaction et le dernier sa valeur (0, 1 ou f). Quand il y en a deux, ils correspondent à la réaction et à sa valeur. L'utilisateur doit entrer un nombre de réactions au moins égal à deux.\\
 
-L'utilisateur ne peut sélectionner le nom d'une réaction que lorsqu'il a choisi la précédente. Ceci permet de ne proposer que les réactions non sélectionnées précédemment pour le choix de la  réaction de sortie (principe utilisé dans la documentation de \emph{regEfmtool}).\\
+L'utilisateur ne peut sélectionner le nom d'une réaction que lorsqu'il a choisi la précédente. Ceci permet de ne proposer que les réactions non sélectionnées précédemment pour le choix de la  réaction de sortie (principe utilisé dans la documentation de \textit{regEfmtool}).\\
 
 Enfin, quand l'utilisateur a sélectionné toutes les réactions ainsi que leur valeur, il clique sur le bouton \emph{Ajouter}. La règle est alors écrite dans le fichier \emph{generules.grfile} si l'utilisateur a bien rempli tous les champs. Celle-ci apparaît alors dans la zone de texte située en-dessous. Dans cette zone, l'utilisateur a la possibilité de modifier, ajouter ou supprimer une règle déjà écrite, mais également d'en écrire de nouvelles manuellement. Lorsqu'il a fini ses modifications, il clique sur le bouton \emph{Modifier}, le fichier \emph{generules.grfile} est alors modifié en conséquence.\\
 
@@ -132,13 +132,13 @@ Enfin, quand l'utilisateur a sélectionné toutes les réactions ainsi que leur 
 
 Si l'utilisateur ne sait pas comment faire, il lui suffit de cliquer sur \textit{Aide} comme précédemment et une nouvelle fen\^etre de navigation (Figure \ref{helpGenerules}) appara\^itra afin de la guider. Cette page est également automatiquement traduite dans la langue de la page courante. 
 
-Une fois les règles entrées, l'utilisateur peut passer à l'étape suivante en cliquant sur le bouton correspondant. Il arrive alors sur la page de sélection des options nécessaires au lancement de la commande regEfmtool.
+Une fois les règles entrées, l'utilisateur peut passer à l'étape suivante en cliquant sur le bouton correspondant. Il arrive alors sur la page de sélection des options nécessaires au lancement de la commande \textit{regEfmtool}.
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Choix des options de lancement}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Comme nous l'avons dit précédemment, regEfmtool se lance gr\^ace à une ligne de commande. Cette page d'options (Figure \ref{options}) permet donc à l'utilisateur de sélectionner les paramètres de calcul qu'il souhaite, par la biais de boutons à cocher. Certaines options sont pré-cochées, se sont les options de base nécessaires au bon déroulement des calculs du logiciel. Cela permet à un utilisateur non expérimenté de lancer ses calculs avec le réseau qu'il vient de créer. Un utilisateur plus averti pourra modifier ces options à sa guise afin d'avoir un niveau de complexité d'exécution des calculs supérieur.\\
+Comme nous l'avons dit précédemment, \textit{regEfmtool} se lance gr\^ace à une ligne de commande. Cette page d'options (Figure \ref{options}) permet donc à l'utilisateur de sélectionner les paramètres de calcul qu'il souhaite, par la biais de boutons à cocher. Certaines options sont pré-cochées, se sont les options de base nécessaires au bon déroulement des calculs du logiciel. Cela permet à un utilisateur non expérimenté de lancer ses calculs avec le réseau qu'il vient de créer. Un utilisateur plus averti pourra modifier ces options à sa guise afin d'avoir un niveau de complexité d'exécution des calculs supérieur.\\
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -151,24 +151,24 @@ Comme nous l'avons dit précédemment, regEfmtool se lance gr\^ace à une ligne 
   	\end{center}	
 \end{figure}
 
-Les options sont regroupées par catégories (en fonction de ce qui était précisé dans le fichier \textit{metabolic-efm.xml} de regEfmtool):
+Les options sont regroupées par catégories (en fonction de ce qui était précisé dans le fichier \textit{metabolic-efm.xml} de \textit{regEfmtool}):
 
 \paragraph*{Enregistrement} Cette catégorie contient trois sous catégories précisant le type d'affichage des résultats, le niveau d'information sur le déroulement des calculs et le format d'enregistrement. Par défaut, l'affichage se fera en ligne sur le site et le type de message d'information sur le déroulement des calculs sera le plus complet possible. 
 
-\paragraph*{Types de fichiers stœchiométriques} Cette catégorie possède deux sous catégories précisant le type de parsage en entrée et l'analyseur de flux. Cette dernière permet de définir les types de fichiers d'entrée que regEfmtool utilisera. Ces fichiers étant créés lors des étapes précédentes, leurs noms sont déjà pré-rentrés dans les cases correspondantes.
+\paragraph*{Types de fichiers stœchiométriques} Cette catégorie possède deux sous catégories précisant le type de parsage en entrée et l'analyseur de flux. Cette dernière permet de définir les types de fichiers d'entrée que \textit{regEfmtool} utilisera. Ces fichiers étant créés lors des étapes précédentes, leurs noms sont déjà pré-rentrés dans les cases correspondantes.
 
 \paragraph*{Compression et paramètres de sortie} Ces deux catégories contiennent chacune une seule sous catégorie, servant respectivement à définir le niveau de compression (et également l'utilisation de la récursivité dans les calculs) et le type de fichier désiré en paramètre de sortie. L'option "text-doubles" est cochée par défaut, avec le nom du fichier qui contiendra les modes élémentaires calculés. Nous avons appelé ce fichier \textit{results.txt}. 
 
-\paragraph*{Paramètres d'Efmtool} Cette dernière catégorie contient sept sous catégories: le "\textit{rowordering}" (ou la ligne de commande à utiliser), la méthode d'adjacence, le nombre maximal de "\textit{threads}" (prédéfini à 2 suivant les exemples de regEfmtool), l'arithmétique des nombres, le type de normalisation pour la sortie (prédéfinie à "aucune"), la précision fractionnaire et l'activation ou non d'un auto-test après chaque itération. \\
+\paragraph*{Paramètres d'Efmtool} Cette dernière catégorie contient sept sous catégories: le "\textit{rowordering}" (ou la ligne de commande à utiliser), la méthode d'adjacence, le nombre maximal de "\textit{threads}" (prédéfini à 2 suivant les exemples de \textit{regEfmtool}), l'arithmétique des nombres, le type de normalisation pour la sortie (prédéfinie à "aucune"), la précision fractionnaire et l'activation ou non d'un auto-test après chaque itération. \\
 
-Une fois que l'utilisateur a coché toutes les options qu'il souhaite, il lui suffit de cliquer sur le bouton \emph{Lancement} afin de générer la commande et lancer regEfmtool. Ensuite, une page d'affichage des résultats s'affiche. 
+Une fois que l'utilisateur a coché toutes les options qu'il souhaite, il lui suffit de cliquer sur le bouton \emph{Lancement} afin de générer la commande et lancer \textit{regEfmtool}. Ensuite, une page d'affichage des résultats s'affiche. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Chargement d'un réseau pré-existant}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsection{Choix des paramètres}
-Cette page accessible depuis le menu général permet à un utilisateur de charger un réseau préexistant depuis son disque dur (Figure \ref{chargement1}). Il pourra également générer la ligne de commandes nécessaire au lancement de regEfmtool. Cette page est basée sur le modèle de la page du choix des options après création, à un détail près : dans la catégorie du type des fichiers stœchiométriques, il n'y a plus la sous-catégorie des fichiers d'analyseur de flux. Le reste fonctionne de la m\^eme façon que précédemment. \\
+Cette page accessible depuis le menu général permet à un utilisateur de charger un réseau préexistant depuis son disque dur (Figure \ref{chargement1}). Il pourra également générer la ligne de commandes nécessaire au lancement de \textit{regEfmtool}. Cette page est basée sur le modèle de la page du choix des options après création, à un détail près : dans la catégorie du type des fichiers stœchiométriques, il n'y a plus la sous-catégorie des fichiers d'analyseur de flux. Le reste fonctionne de la m\^eme façon que précédemment. \\
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -203,9 +203,9 @@ Une fois les fichiers sélectionnés, il suffit de cliquer sur \textit{Submit} p
 \section{Affichage des résultats}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La page des résultats permet deux choses : l'exécution de regEfmtool et l'affichage des modes élémentaires, obtenus par le parse du fichier généré par l'exécution de regEfmtool.\\
+La page des résultats permet deux choses : l'exécution de \textit{regEfmtool} et l'affichage des modes élémentaires, obtenus par le parse du fichier généré lors de l'exécution du logiciel.\\
 
-Comme nous l'avons dit précédemment, la commande d'exécution de regEfmtool générée en partie depuis la page de choix des options est récupérée sur la page des résultats pour permettre son exécution.\\
+Comme nous l'avons dit précédemment, la commande d'exécution de \textit{regEfmtool} générée en partie depuis la page de choix des options est récupérée sur la page des résultats pour permettre son exécution.\\
 L'exécution génère deux types de résultats : le fichier contenant les modes élémentaires ainsi que le log\footnote{Un fichier log est un fichier texte classique, reprenant de façon chronologique l'ensemble des événements qui ont affecté un système informatique et l'ensemble des actions qui ont résulté de ces événements.} s'il est demandé.\\ 
 
 Une fois l'exécution terminée, les résultats précédents seront affichés.\\
@@ -222,7 +222,7 @@ Cette page contient aussi trois boutons :
 \item le troisième permet d'afficher l'outil de recherche sur le log et de sélectionner la catégorie que l'utilisateur veut afficher ou la totalité.\\
 \end{itemize}
 
-La page d'extraction des résultats offre à l'utilisateur la possibilité de visualiser l'ensemble des résultats générés par regEfmtool ou de pouvoir en extraire une partie à l'aide d'un mot clé sélectionné dans un menu déroulant (Figure \ref{rechercheLog}).
+La page d'extraction des résultats offre à l'utilisateur la possibilité de visualiser l'ensemble des résultats générés par \textit{regEfmtool} ou de pouvoir en extraire une partie à l'aide d'un mot clé sélectionné dans un menu déroulant (Figure \ref{rechercheLog}).
 
 \begin{figure}[!ht]
 	\begin{center}
