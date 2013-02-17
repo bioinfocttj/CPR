@@ -131,7 +131,11 @@ Cette interface nommée \emph{WRET : WebRegEfmTool} permet de générer les fich
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-Intro ...
+RegEfmtool (Regulatory elementary flux mode tool) est un outil de calcul qui combine le calcul des modes élémentaires de flux dans les réseaux métaboliques avec des réseaux de régulation transcriptionnelle. Plus précisément, regEfmtool ne calcule que les modes de flux élémentaires qui sont conformes à la réglementation transcriptionnelle. Comme celle-ci exclut la plupart des modes mathématiquement possibles de flux élémentaires pour des raisons biologiques, regEfmtool permet de réduire considérablement le coût de calcul de modes de flux élémentaires. Il s'agit donc la d'un outil performant et utile pour des biologistes. Cependant, il n'est pas très convivial pour un utilisateur n'ayant pas de notions en informatique. En effet, l'environnement \emph{UNIX} et le fait de devoir utiliser ce logiciel en ligne de commende pourrait être rédhibitoire pour certains, ce qui serait dommage. \\
+
+Pour pallier à ce problème, nous nous proposons de créer un interface graphique la plus ergonomique possible. Nous avons choisi de l'implémenter en utilisant les langages Web (au détriment des langages orientés objet). \\
+
+Nous allons détailler notre approche dans la construction de cette interface. Nous verrons tout d'abord le contexte de ce projet, puis comment nous concevons cette interface et enfin comment nous l'avons réalisée. 
 
 \chapter{Analyse}
 
@@ -150,7 +154,7 @@ Intro ...
 Le but de ce projet été de réaliser une interface graphique pour le logiciel de calculs de modes élémentaires \textit{regEfmtool}. L'interface réalisée se présente sous la forme d'un site \emph{Web}. Elle permet d'utiliser \emph{regEfmtool} sans avoir à passer par un terminal et permet la création de tous les fichiers d'entrée nécessaires au fonctionnement de ce logiciel.
 Elle permet également la création de réseaux au formats \emph{DAT} ce qui permet une édition de ces derniers pour le logiciel \emph{METATOOL} pour permettre une comparaison des résultats de calculs de modes élémentaires.\\
 
-Ce projet nous a permis de nous familiariser avec les langages propre au communications et protocoles \emph{Web}, et également de mesurer l'importance d'une bonne gestion d'un travail en équipe aussi bien au niveau de la répartition des tâches que de la mise en commun du travail effectué.
+Ce projet nous a permit de nous familiariser avec les langages propre au communications et protocoles \emph{Web}, et également de mesurer l'importance d'une bonne gestion d'un travail en équipe aussi bien au niveau de la répartition des tâches que de la mise en commun du travail effectué.
 Conclusion ...
 
 \bibliographystyle{unsrt}
