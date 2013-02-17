@@ -251,7 +251,7 @@ define('TXT_COPYRIGHT_CPY', "© Copyright 2013 <br />
 // results.php
 //---------------------------------------------------------
 define('TXT_FILE_CHOOSE_SITE_TITLE', "Results");
-define('TXT_FILE_CHOOSE_TITLE', "Visualization of results");
+define('TXT_FILE_CHOOSE_TITLE', "Log");
 define('TXT_FILE_CHOOSE_SUBTITLE', "Choose a file");
 define('TXT_FILE_CHOOSE', "File : ");
 

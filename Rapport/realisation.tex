@@ -495,7 +495,7 @@ le fichiers \emph{results.php} permet l'affichage des résultats (voir figure \r
 	\begin{center}
 		\fbox{
    		 \begin{minipage}[c]{1\textwidth}
-  			\includegraphics[width=0.90\textwidth]{results.png}  
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/results.png}  
 		 \end{minipage}}
 		\caption{affichage des résultats}
   		\label{Results}
@@ -562,7 +562,7 @@ if ($_SESSION["isCompared"]==1){
     \begin{center}
         \fbox{
             \begin{minipage}[c]{1\textwidth}
-              \includegraphics[width=0.90\textwidth]{results_compare.png} 
+              \includegraphics[width=0.90\textwidth]{../Images/Rapport/results_compare.png} 
          \end{minipage}}
         \caption{compare}
           \label{comparaison}
@@ -571,7 +571,44 @@ if ($_SESSION["isCompared"]==1){
 
 Une fois toutes ces étapes finie, le résultat est sauvegardé dans la variable \emph{compare} pour le cas ou l'utilisateur voudrait comparer son résultat un autre (avec des choix différents d'options, de nouvelles règles, \dots).\\
 
-L'utilisateur a le choix de terminer ses calculs ou de comparer le résultat obtenu. Pour cela, deux boutons \emph{comparer} et \emph{finir} lui permette de retourner à l'écran d'accueil, à la différence près que \emph{comparer} fait appel a la fonction \emph{compare()}  qui conserve en mémoire grace à une variable de session PHP \emph{isCompared} que l'utilisateur veut comparer son résultat et redirige l'utilisateur tandis que l'autre, \emph{finir} réinitialise cette m\^eme variable.
+L'utilisateur a le choix de terminer ses calculs ou de comparer le résultat obtenu. Pour cela, deux boutons \emph{comparer} et \emph{finir} lui permette de retourner à l'écran d'accueil, à la différence près que \emph{comparer} fait appel a la fonction \emph{compare()}  qui conserve en mémoire grace à une variable de session PHP \emph{isCompared} que l'utilisateur veut comparer son résultat et redirige l'utilisateur tandis que l'autre, \emph{finir} réinitialise cette m\^eme variable.\\
+
+Après avoir lancé les commandes RegEfmtool et récupéré les résultats qui en découle dans un fichier \emph{log.txt}, la page d'extracion des résultats permet à l'utilisateur de visualiser ce fichier.
+
+
+Cette page offre deux options:
+\begin{itemize}
+\item visualiser l'ensemble des résultats 
+\item choisir une catégorie des résultats à visualiser.
+\end{itemize}
+
+Les catégorie des résultats sont stocké dans un menu déroulant qui est obtenu après avoir parsé le fichier \emph{log.txt} et selectionner l'ensemble des mot-clés qui y apparaissent. Ainsi l'utilisateur n'a plus qu'à selectionner la catégorie qu'il souhaite visualiser.
+
+
+Lorsque l'utilsateur se trouve sur la page d'afficage des résultats, il a la possibilité de revenir en arrière.\\
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.8\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/affichageResultats.png}  
+		 \end{minipage}}
+		\caption{Page de recherche sur le log}
+  		\label{chargement1}
+  	\end{center}	
+\end{figure}
+
+Les résultats extraits sont affichés de façon claire et lisible pour l'utilisateur. De plus il ya aussi la présence d'un bouton qui permet de retourner sur la page d'extraction des résultats.
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.20\textwidth]{../Images/Rapport/affichageExtraction.png}  
+		 \end{minipage}}
+		\caption{Page de recherche sur le log}
+  		\label{chargement1}
+  	\end{center}	
+\end{figure}
 
 
 \chapter{Difficultés rencontrées et améliorations à apporter}
@@ -579,4 +616,4 @@ Suivant le navigateur utilisé, la récupération des fichiers par la fonction \
  De plus, il semblerait que les variables permettant de récupérer les fichiers \emph{\$FILES} ne fonctionne pas sur toutes les configurations. Jusqu'à présent, nous n'avons pas compris quel facteur influençait l'utilisation de ces variables et n'avons pas pu exécuter regEfmTool depuis l'interface sur toutes les machines.
 Les variables de sessions PHP étant propre au langage PHP, nous avons du parfois utiliser les cookies, en particulier lorsque certaines valeurs devaient \^etre sauvegardées depuis un script \emph{JavaScript}. Cela provoque l'utilisation de ces deux types de variables ce qui n'est pas très uniforme.
 L'affichage des résultats n'a été fait que superficiellement, d'où la présence de \emph{mode élémentaire 0} devant les noms de réactions ou encore un simple affichage en tableau des résultats brut, indiquant la présence des réactions avec une valeur à 0. l'amélioration de cette partie ne devant pas être trop gourmande en temps mériterait d'\^etre modifiée.
-L'utilisation de regEfmTool depuis l'interface que nous avons créée dépend de la configuration du serveur web installé sur la machine. Dans notre cas les tests étaient fait sous \emph{apache2} sur nos machines personnelles, la configuration du serveur sur les machines du \emph{CREMI} étant trop restrictives, il nous était impossible d'exécuter le logiciel..
+L'utilisation de regEfmTool depuis l'interface que nous avons créée dépend de la configuration du serveur web installé sur la machine. Dans notre cas les tests étaient fait sous \emph{apache2} sur nos machines personnelles, la configuration du serveur sur les machines du \emph{CREMI} étant trop restrictives, il nous était impossible d'exécuter le logiciel.

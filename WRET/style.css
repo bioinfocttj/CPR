@@ -414,6 +414,8 @@ div#new{
 	width:30%;
 }
 div#compare{
+	position:relative;
+	margin-top:10%;
 	float:left;
 	width:60%;
 }

@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title><?php echo TXT_DISPLAY_RESULTS_SITE_TITLE; ?></title>
 		<style media="all" type="text/css"></style>
-		<script>
+		<script type="text/javascript">
 			// Popup window code
 			function newPopup(url) {
 				popupWindow = window.open(url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
@@ -107,7 +107,7 @@
 				<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 				<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
 				<li><a href="load.php">			<?php echo TXT_MENU_LOAD; ?>	</a></li>
-				<li><a href="JavaScript:newPopup('help.php');">			<?php echo TXT_MENU_HELP; ?>	</a></li>
+				<li><a href="help.php">			<?php echo TXT_MENU_HELP; ?>	</a></li>
 				<li><a href=<?php echo $en?>><img src="Images/English-Language-Flag-3-icon.png" alt="english_flag.png"></a></li>
 				<li><a href=<?php echo $fr?>><img src="Images/French-Flag.png" alt="french_flag.png"></a></li>
 				<li><a href=<?php echo $de?>><img src="Images/german_flag.gif" alt="german_flag.gif"></a></li>
@@ -138,17 +138,12 @@
 					$_SESSION['compare']=$res2;
 				?>
 			</div>
+			<div id="log" name="log" title="log">
+				<h1><?php echo TXT_FILE_CHOOSE_TITLE; ?></h1>
+				<a href="JavaScript:newPopup('parse_results.php');">PopUp</a>
+			</div>
 		</div>
-		<div id="log" name="log" title="log">
-			<h1><?php echo TXT_FILE_CHOOSE_TITLE; ?></h1>
-			<h4><?php echo TXT_FILE_CHOOSE_SUBTITLE; ?></h4>
-			</br>
-			<form action = <?php update()?> method="POST">
-				<label class='tooltip'><?php echo TXT_FILE_CHOOSE; ?></label>
-				<input type = "text"	name = "fichier">
-				<input type= "submit" value='ok'>
-			</form>
-		</div>
+		
 		<div id='compare' name='compare'>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<input type="submit" name="compare" value="<?php echo TXT_COMPARE_BUTTON; ?>">
