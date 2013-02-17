@@ -89,6 +89,20 @@ La \texttt{div\#part} est utilisée pour le titre de la catégorie. Sa hauteur e
 
 \subsection{Langues}
 Dans un soucis de convivialité, notre interface est développée de manière à pouvoir être traduite aisément et propose trois langues possibles dans sa version actuelle (français par défaut, anglais et allemand). Pour changer la langue, l'utilisateur n'a qu'à cliquer sur le drapeau correspondant dans le menu en haut de page. Cela fera appel au script \emph{choosen\_languages.php} (Figure \ref{DiagLangues}), qui lui-même fait appel à \emph{de\_lang.php} pour l'allemand, \emph{en\_lang.php} pour l'anglais et \emph{fr\_lang.php} pour le français, en fonction du drapeau sélectionné. \\
+Le fichier \emph{choosen\_languages.php} verifie  soit dans la barre d'adresse soit dans les variables de session php la langue selectionnée par l'utilisateur.\\
+
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+session_start();
+	if (isset ($_SESSION['lang']) && !isset($_GET['lang'])){
+		$lang=$_SESSION['lang'];
+	}
+	else if (isset($_GET['lang'])){
+		$lang=$_GET['lang'];
+		$_SESSION['lang']=$lang;
+	}
+\end{lstlisting}
+\end{DDbox}\\
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -419,7 +433,7 @@ var commande = "java -Xmx1G -jar ../regEfmtool.jar";
 
 La variable \textit{commande} est une chaîne de caractères qui contient le début de la commande Java. Les paramètres sont ensuite ajoutés au fur et à mesure de la vérification de la sélection des boutons. \\
 
-Cette commande est envoyée via un \textit{cookie} à la page d'affichage des résultats pour le lancement de regEfmtool. 
+Cette commande est sauvegardée dans un \textit{cookie} qui sera récupéré à la page d'affichage des résultats pour le lancement de regEfmtool. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Chargement d'un réseau pré-existant}
@@ -438,15 +452,27 @@ Cette commande est envoyée via un \textit{cookie} à la page d'affichage des r�
 
 Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton \textit{Étape suivante}. Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
 
-Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php}, qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans regEfmtool. Ce processus est faisable grâce au script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
+Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php} (voir figure \ref{choix}) , qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans regEfmtool. Ce processus est faisable grâce au script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
-move_uploaded_file($_FILES["sfile"]["tmp_name"],"upload/" . $_FILES["sfile"]["name"]);shell_exec('mv upload/'.$_FILES["sfile"]["name"].' upload/sfile');
+ move_uploaded_file($_FILES["sfile"]["tmp_name"],$_FILES["sfile"]["name"]);
+ shell_exec('mv ' . $_FILES["sfile"]["name"] . ' sfile');
 \end{lstlisting}
 \end{DDbox}
 
 Ce script est contenu dans l'attribut \textit{value} du bouton de chargement du fichier en question. La ligne de commande est donc complétée et le lancement du logiciel peut commencer. 
+
+\begin{figure}[!ht]
+	\begin{center}
+		\fbox{
+   		 \begin{minipage}[c]{0.9\textwidth}
+  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/chargement1.png}  
+		 \end{minipage}}
+		\caption{Page du choix des fichiers à charger}
+  		\label{choix}
+  	\end{center}	
+\end{figure}
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Affichage des résultats}
@@ -463,17 +489,94 @@ Ce script est contenu dans l'attribut \textit{value} du bouton de chargement du 
   	\end{center}	
 \end{figure}
 
-Figure \ref{DiagResults}. 
+le fichiers \emph{results.php} permet l'affichage des résultats (voir figure \ref{Results}) de la commande générée précédemment. C'est depuis cette page qu'est exécutée la commande grâce a la fonction \emph{shell\_exec()}, que les fichiers de résultat et de log sont analysés pour permettre leurs affichage comme le montre la figure\ref{DiagResults}.\\
 
 \begin{figure}[!ht]
 	\begin{center}
 		\fbox{
-   		 \begin{minipage}[c]{0.9\textwidth}
-  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/chargement1.png}  
+   		 \begin{minipage}[c]{1\textwidth}
+  			\includegraphics[width=0.90\textwidth]{results.png}  
 		 \end{minipage}}
-		\caption{Page du choix des fichiers à charger}
-  		\label{choix}
+		\caption{affichage des résultats}
+  		\label{Results}
   	\end{center}	
 \end{figure}
 
-Figure \ref{choix}. 
+L'affichage se fait en plusieurs étapes : tout d'abord, on vérifie grace à la variable de session PHP \emph{isCompared} si l'utilisateur veut afficher un ou plusieurs résultats.\\
+Prenons le cas d'un utilisateur qui calcule une première fois les modes élémentaires d'un réseau : la variable \emph{isCompared} indique à l'interface qu'il n'y a qu'un résultat à afficher, la \emph{<div id='new'>} est créée: on affiche tout d'abord une image\emph{waiting.gif} gràce a la fonction \emph{waiting()} qui se charge aussi d'exécuter la commande précédemment conservée dans les cookies HTML .\\
+
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+function waiting(){
+	echo ('<img src="Images/waiting.gif" alt="please Wait...">');
+	$com = $_COOKIE['commande'];
+	if ($_SESSION['isCompared']==1) {
+		$com =  $com . ' > log.txt';
+		shell_exec($com);
+	}
+	else {
+		$com = $com . ' > log1.txt';
+		shell_exec($com);
+	}
+}
+\end{lstlisting}
+\end{DDbox}\\
+
+Comme vous pouvez le constater, cette fonction vérifie si l'utilisateur voulait comparer son résultat et sauvegarde le log dans le fichier \emph{log1.txt} ou \emph{log.txt} suivant le cas.\\
+
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+<div id="new" name="new" title="new results">
+	<?php
+		if (count($modes)<2)
+			echo '<script>document.getElementById("new").innerHTML = "";</script>';
+			waiting();
+		}
+		$res2=parse_res();
+		echo '<script>document.getElementById("new").innerHTML = "";</script>';
+		echo '<p>' . TXT_DISPLAY_RESULTS_NEW . '</p>';
+		show_results($res2);
+		$_SESSION['compare']=$res2;
+	?>		
+\end{lstlisting}
+\end{DDbox}\\
+
+Ensuite, on parse le résultat avec la fonction \emph{parse\_res()} qui ouvre le fichier de résultat généré et le sauvegarde dans un tableau pour faciliter son affichage.
+Finalement la fonction \emph{show\_res(resultat)} permet d'afficher le résultat en ajoutant au tableau les noms des réactions ainsi qu'une colonne indiquant le mode.
+ Si l'utilisateur voulait comparer deux résultats : une \emph{<div id'original'>} HTML est créée (figure \ref{comparaison}) contenant le premier résultat calculé et on continue avec le nouveau résultat à afficher.\\
+
+\begin{DDbox}{\linewidth}
+\begin{lstlisting}
+if ($_SESSION["isCompared"]==1){
+	$res=$_SESSION["compare"];
+	echo "<div id='original' name='original' title='original results' >";
+	echo '<p>' . TXT_DISPLAY_RESULTS_ORIGINAL . '</p>';
+	show_results($res);
+	echo "</div>";
+}
+\end{lstlisting}
+\end{DDbox}\\
+
+
+\begin{figure}[!ht]
+    \begin{center}
+        \fbox{
+            \begin{minipage}[c]{1\textwidth}
+              \includegraphics[width=0.90\textwidth]{results_compare.png} 
+         \end{minipage}}
+        \caption{compare}
+          \label{comparaison}
+      \end{center}   
+\end{figure}
+
+Une fois toutes ces étapes finie, le résultat est sauvegardé dans la variable \emph{compare} pour le cas ou l'utilisateur voudrait comparer son résultat un autre (avec des choix différents d'options, de nouvelles règles, \dots).\\
+
+L'utilisateur a le choix de terminer ses calculs ou de comparer le résultat obtenu. Pour cela, deux boutons \emph{comparer} et \emph{finir} lui permette de retourner à l'écran d'accueil, à la différence près que \emph{comparer} fait appel a la fonction \emph{compare()}  qui conserve en mémoire grace à une variable de session PHP \emph{isCompared} que l'utilisateur veut comparer son résultat et redirige l'utilisateur tandis que l'autre, \emph{finir} réinitialise cette m\^eme variable.
+
+
+\chapter{Difficultés rencontrées et améliorations à apporter}
+Suivant le navigateur utilisé, la récupération des fichiers par la fonction \emph{ move\_uploaded\_file()} ne fournit pas le m\^eme résultats, en particulier le dossier récupérant les fichiers.
+ De plus, il semblerait que les variables permettant de récupérer les fichiers \emph{\$FILES} ne fonctionne pas sur toutes les configurations. Jusqu'à présent, nous n'avons pas compris quel facteur influençait l'utilisation de ces variables et n'avons pas pu exécuter regEfmTool depuis l'interface sur toutes les machines.
+Les variables de sessions PHP étant propre au langage PHP, nous avons du parfois utiliser les cookies, en particulier lorsque certaines valeurs devaient \^etre sauvegardées depuis un script \emph{JavaScript}. Cela provoque l'utilisation de ces deux types de variables ce qui n'est pas très uniforme.
+L'affichage des résultats n'a été fait que superficiellement, d'où la présence de \emph{mode élémentaire 0} devant les noms de réactions ou encore un simple affichage en tableau des résultats brut, indiquant la présence des réactions avec une valeur à 0. l'amélioration de cette partie ne devant pas être trop gourmande en temps mériterait d'\^etre modifiée.
+L'utilisation de regEfmTool depuis l'interface que nous avons créée dépend de la configuration du serveur web installé sur la machine. Dans notre cas les tests étaient fait sous \emph{apache2} sur nos machines personnelles, la configuration du serveur sur les machines du \emph{CREMI} étant trop restrictives, il nous était impossible d'exécuter le logiciel..

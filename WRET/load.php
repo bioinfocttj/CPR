@@ -6,6 +6,12 @@
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<script  type="text/javascript" src="actionLoad.js">	</script>
+		<script>
+			// Popup window code
+			function newPopup(url) {
+				popupWindow = window.open(url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+			}
+		</script>
 	</head>
 	<?php 
 		$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
@@ -26,7 +32,7 @@
 			<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 			<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
 			<li><a href="load.php">			<?php echo TXT_MENU_LOAD; ?>	</a></li>
-			<li><a href="help.php">			<?php echo TXT_MENU_HELP; ?>	</a></li>
+			<li><a href="JavaScript:newPopup('help.php');">			<?php echo TXT_MENU_HELP; ?>	</a></li>
 			<li><a href=<?php echo $en?>><img src="Images/English-Language-Flag-3-icon.png" alt="english_flag.png"></a></li>
 			<li><a href=<?php echo $fr?>><img src="Images/French-Flag.png" alt="french_flag.png"></a></li>
 			<li><a href=<?php echo $de?>><img src="Images/german_flag.gif" alt="german_flag.gif"></a></li>

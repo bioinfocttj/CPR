@@ -7,16 +7,22 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title><?php echo TXT_DISPLAY_RESULTS_SITE_TITLE; ?></title>
 		<style media="all" type="text/css"></style>
+		<script>
+			// Popup window code
+			function newPopup(url) {
+				popupWindow = window.open(url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+			}
+		</script>
 	<?php
 		function compare(){
-			$_SESSION["isCompared"]=0;
+			$_SESSION["isCompared"]=1;
 			print ("<script language = \"JavaScript\">");
 			print ("location.href = 'index.php';"); 
 			print ("</script>");
 		}
 		
 		function finish(){
-			$_SESSION["isCompared"]=1;
+			$_SESSION["isCompared"]=0;
 			print ("<script language = \"JavaScript\">"); 
 			print ("location.href = 'index.php';"); 
 			print ("</script>");
@@ -26,9 +32,8 @@
 			//~ echo '<img src="Images/waiting.gif" alt="please Wait...">';
 			echo ('<img src="Images/waiting_fun.gif" alt="please Wait...">');
 			$com = $_COOKIE['commande'];
-			$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rfile -generule grfile -reac rfile > log.txt';
-			if ($_SESSION['isCompared']==0) {
-				$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rvfile -generule grfile -reac rfile & > log.txt';
+			if ($_SESSION['isCompared']==1) {
+				$com =  $com . ' > log.txt';
 				shell_exec($com);
 			}
 			else {
@@ -58,7 +63,8 @@
 			return $modes;
 			//~ echo '<p>' . $modes[2][3] . '</p>';
 		}
-		
+		function update(){
+		}
 		function show_results($modes){
 			echo '<table>';
 			$m = 0;
@@ -66,7 +72,7 @@
 				echo '<tr>';
 				$temp = '';
 				echo '<td>';
-				echo 'mode ' . $m;
+				echo 'm' . $m . '|';
 				echo '</td>';
 				$m=$m + 1;
 				foreach ($value as $v){
@@ -101,7 +107,7 @@
 				<li><a href="index.php">		<?php echo TXT_MENU_HOME; ?>	</a></li>
 				<li><a href="create.php">		<?php echo TXT_MENU_CREATE; ?> 	</a></li>
 				<li><a href="load.php">			<?php echo TXT_MENU_LOAD; ?>	</a></li>
-				<li><a href="help.php">			<?php echo TXT_MENU_HELP; ?>	</a></li>
+				<li><a href="JavaScript:newPopup('help.php');">			<?php echo TXT_MENU_HELP; ?>	</a></li>
 				<li><a href=<?php echo $en?>><img src="Images/English-Language-Flag-3-icon.png" alt="english_flag.png"></a></li>
 				<li><a href=<?php echo $fr?>><img src="Images/French-Flag.png" alt="french_flag.png"></a></li>
 				<li><a href=<?php echo $de?>><img src="Images/german_flag.gif" alt="german_flag.gif"></a></li>
@@ -111,7 +117,7 @@
 		<h1><?php echo TXT_DISPLAY_RESULTS_TITLE; ?></h1>
 		<div id="results" name="results" title="waiting_results" >
 			<?php
-				if ($_SESSION["isCompared"]==0){
+				if ($_SESSION["isCompared"]==1){
 					$res=$_SESSION["compare"];
 					echo "<div id='original' name='original' title='original results' >";
 					echo '<p>' . TXT_DISPLAY_RESULTS_ORIGINAL . '</p>';
@@ -134,9 +140,6 @@
 			</div>
 		</div>
 		<div id="log" name="log" title="log">
-			<?php 
-				function update(){echo 'ploup';}
-			?>
 			<h1><?php echo TXT_FILE_CHOOSE_TITLE; ?></h1>
 			<h4><?php echo TXT_FILE_CHOOSE_SUBTITLE; ?></h4>
 			</br>
