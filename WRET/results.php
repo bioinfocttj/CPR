@@ -43,7 +43,8 @@
 		}
 		
 		function parse_res(){
-			$file = file('modes2.text');
+			$f = $_COOKIE["resultat"];
+			$file = file($f);
 			$reac = file('rfile');
 			$modes=array();
 			foreach($reac as &$lines){

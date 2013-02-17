@@ -278,6 +278,7 @@ function choixParam(formulaire) {
     valeur14 = " -" + formulaire.choix14[1].value; 
     commande = commande + valeur14;
   }
+  document.cookie="resultat="+nom7;
   document.cookie="commande="+commande;
   window.location.assign('load_files.php');
 }
