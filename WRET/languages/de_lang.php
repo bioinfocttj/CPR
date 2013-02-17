@@ -7,7 +7,8 @@ define('TXT_HOMEPAGE_TITLE', 'Willkommen auf WebRegEfmTool');
 define('TXT_HOMEPAGE_BODY', "Dieses Program ist für den Gebrauch der regEfmtool.<br />
 		Sie können eine metabolische Netzwerk erstellen, laden, bearbeiten.<br />
 		Das Ziel ist es, eine Simulation von Ihrem Web-browser ausgeführt werden.");
-define('TXT_HOMEPAGE_COPYRIGHT', "<a href=\"copyright.php\">Copyright</a>");
+define('TXT_HOMEPAGE_COPYRIGHT', "<a href=\"copyright.php\">Copyright</a>.");
+define('TXT_HOMEPAGE_INSTAL', "Siehe die <a href=\"instal.php\">Systemvoraussetzungen</a>.");
 //---------------------------------------------------------
 // menu.php
 //---------------------------------------------------------
@@ -270,6 +271,17 @@ define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Log Datei");
 define('TXT_DISPLAY_RESULTS_FILE', "Bearbeiteten Datei : ");
 define('TXT_DISPLAY_RESULTS_ORIGINAL', "Original : ");
 define('TXT_DISPLAY_RESULTS_NEW', "Neu : ");
+
+//---------------------------------------------------------
+// instal.php
+//---------------------------------------------------------
+define('TXT_INSTAL_TITLE', "Systemvoraussetzungen");
+define('TXT_INSTAL_TXT', "Um dieses Interface zu verwenden, müssen Sie: <br />
+			- Haben die Java7 Version <br />
+			- Ändern Sie die Variablen JAR und JAVAC der Datei Makefile im Ordner regEfmtool : <br />
+			JAR=/usr/lib/jvm/java-7-sun/bin/jar and JAVAC=/usr/lib/jvm/java-7-sun/bin/javac (je nachdem, was Sie haben) <br />
+			- Haben die Software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a> herunterladen. ");
+
 //---------------------------------------------------------
 // Fin
 //---------------------------------------------------------

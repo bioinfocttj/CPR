@@ -4,7 +4,7 @@
 	<head>
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-		<title><?php echo TXT_SITE_TITLE; ?></title>
+		<title><?php echo TXT_INSTAL_TITLE; ?></title>
 		<style media="all" type="text/css"></style>
 	</head>
 	<?php 
@@ -34,12 +34,9 @@
 	</div>
 	
 	<body>
-		<center>
-			<h1><?php echo TXT_HOMEPAGE_TITLE; ?></h1>
-		</center>
-		</br>
-		<p><?php echo TXT_HOMEPAGE_BODY; ?></p>
-		<p><?php echo TXT_HOMEPAGE_COPYRIGHT; ?></p>
-		<p><?php echo TXT_HOMEPAGE_INSTAL; ?></p>
+		<p><?php echo TXT_INSTAL_TXT; ?></p>
 	</body>
 </html>
+
+
+

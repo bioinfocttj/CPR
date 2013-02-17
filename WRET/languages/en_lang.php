@@ -7,7 +7,8 @@ define('TXT_SITE_TITLE', "Homepage of WebRegEfmTool");
 define('TXT_HOMEPAGE_BODY', "This tool is used for regEfmtool.<br />
 		You can create, load, modify a metabolic network.<br />
 		The aim is to launch a simulation from you browser.");
-define('TXT_HOMEPAGE_COPYRIGHT', "See the <a href=\"copyright.php\">Copyright</a>");
+define('TXT_HOMEPAGE_COPYRIGHT', "See the <a href=\"copyright.php\">Copyright</a>.");
+define('TXT_HOMEPAGE_INSTAL', "See the system <a href=\"instal.php\">requirements</a>.");
 //---------------------------------------------------------
 // page1.php
 //---------------------------------------------------------
@@ -107,7 +108,6 @@ define('TXT_MODIFY_INSTRUCTION_1', "Not yet implemented");
 //---------------------------------------------------------
 define('TXT_OPTIONS_SITE_TITLE', "Choice of the options for the network analysis");
 define('TXT_OPTIONS_TITLE', "Choice of the options for WRET running ");
-define('TXT_OPTIONS_INSTRUCTION_1', "Please check the necessary options :");
 define('TXT_OPTIONS_INSTRUCTION_1', "Please check the necessary options : <br/>
 		(Mandatoru options are checked as default)");
 define('TXT_OPTIONS_SAVING_1', "Loading  ");
@@ -272,6 +272,16 @@ define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Log file");
 define('TXT_DISPLAY_RESULTS_FILE', "File processed : ");
 define('TXT_DISPLAY_RESULTS_ORIGINAL', "Original : ");
 define('TXT_DISPLAY_RESULTS_NEW', "New : ");
+
+//---------------------------------------------------------
+// instal.php
+//---------------------------------------------------------
+define('TXT_INSTAL_TITLE', "Requirements");
+define('TXT_INSTAL_TXT', "To use this interface, you have to : <br />
+			- have the Java7 version <br />
+			- change the variables JAR and JAVAC of the file Makefile in the folder regEfmtool : <br />
+			JAR=/usr/lib/jvm/java-7-sun/bin/jar and JAVAC=/usr/lib/jvm/java-7-sun/bin/javac (depending on what you have) <br />
+			- have download the software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. ");
 
 //---------------------------------------------------------
 // Fin
