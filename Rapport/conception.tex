@@ -35,7 +35,7 @@ Le menu contient quatre onglets:
 \end{itemize}
 On trouve aussi dans le menu, trois drapeaux qui permettent de changer la langue du site Web. Les trois langues proposées sont: l'anglais, le français et l'allemand. Par défaut le site est en français.\\
 
-Nous avons également ajouté un lien vers une page contenant le \textit{copyright} de notre site, et un autre menant à une page de précisions sur la configuration requise à l'utilisation de l'interface. 
+Nous avons également ajouté un lien vers une page contenant le \textit{copyright} de notre site, et un autre menant à une page de précisions sur la configuration requise pour l'utilisation de l'interface. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Création d'un nouveau réseau}
@@ -57,7 +57,7 @@ Une première partie permet d'initialiser les fichiers (Figure \ref{creation1}) 
 \end{figure}
 
 Une seconde partie permet de créer une nouvelle réaction. Celle-ci doit être de la forme $reaction : reag1 + reag2 => 2 prod1 + 4 prod2$. \\
-L'utilisateur doit également préciser si la réaction est réversible ou non. Ensuite il clique sur le bouton \emph{Ajouter}, la réaction est alors ajoutée au réseau et apparaît dans la zone de texte située en-dessous. Dans cette zone de texte, l'utilisateur a la possibilité de modifier les réactions déjà créées (mais ne peut pas en ajouter ou en supprimer car les règles de réversibilités ne seraient alors pas respectées pour l'écriture d'un fichier au format \emph{DAT}). Il valide ensuite les modifications apportées en cliquant sur le bouton \emph{Modifier}.\\
+L'utilisateur doit également préciser si la réaction est réversible ou non. Ensuite il clique sur le bouton \emph{Ajouter}, la réaction est alors ajoutée au réseau et apparaît dans la zone de texte située en-dessous. Dans cette zone de texte, l'utilisateur a la possibilité de modifier les réactions déjà créées (mais ne peut pas en ajouter ou en supprimer car les règles de réversibilités ne seraient alors plus respectées pour l'écriture d'un fichier au format \emph{DAT}). Il valide ensuite les modifications apportées en cliquant sur le bouton \emph{Modifier}.\\
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -83,7 +83,7 @@ Enfin, l'utilisateur peut aussi générer un fichier au format \emph{DAT} (Figur
   	\end{center}	
 \end{figure}
 
-Si l'utilisateur ne sait pas comment faire, il lui suffit de cliquer sur \textit{Aide} et une nouvelle fen\^etre de navigation (Figure \ref{helpCreation}) appara\^itra afin de la guider. Cette page est automatiquement traduite dans la langue de la page courante. 
+Si l'utilisateur ne sait pas comment faire, il lui suffit de cliquer sur \textit{Aide} et une nouvelle fen\^etre de navigation (Figure \ref{helpCreation}) appara\^itra afin de le guider. Cette page est automatiquement traduite dans la langue de la page courante. 
 
 Quand l'utilisateur a fini de créer toutes les réactions qui composent son réseau, il clique sur le bouton \emph{\'Etape suivante} et arrive alors sur la page de création des règles des gènes.
 
@@ -161,7 +161,7 @@ Les options sont regroupées par catégories (en fonction de ce qui était préc
 
 \paragraph*{Compression et paramètres de sortie} Ces deux catégories contiennent chacune une seule sous catégorie, servant respectivement à définir le niveau de compression (et également l'utilisation de la récursivité dans les calculs) et le type de fichier désiré en paramètre de sortie. L'option "text-doubles" est cochée par défaut, avec le nom du fichier qui contiendra les modes élémentaires calculés. Nous avons appelé ce fichier \textit{results.txt}. 
 
-\paragraph*{Paramètres d'Efmtool} Cette dernière catégorie contient sept sous catégories: le "\textit{rowordering}" (ou la ligne de commande à utiliser), la méthode d'adjacence, le nombre maximal de "\textit{threads}" (prédéfini à 2 suivant les exemples de \textit{regEfmtool}), l'arithmétique des nombres, le type de normalisation pour la sortie (prédéfinie à "aucune"), la précision fractionnaire et l'activation ou non d'un auto-test après chaque itération. \\
+\paragraph*{Paramètres d'Efmtool} Cette dernière catégorie contient sept sous catégories: le "\textit{rowordering}" (ou la ligne de commandes à utiliser), la méthode d'adjacence, le nombre maximal de "\textit{threads}" (prédéfini à 2 suivant les exemples de \textit{regEfmtool}), l'arithmétique des nombres, le type de normalisation pour la sortie (prédéfinie à "aucune"), la précision fractionnaire et l'activation ou non d'un auto-test après chaque itération. \\
 
 Une fois que l'utilisateur a coché toutes les options qu'il souhaite, il lui suffit de cliquer sur le bouton \emph{Lancement} afin de générer la commande et lancer \textit{regEfmtool}. Ensuite, une page d'affichage des résultats s'affiche. 
 
@@ -170,7 +170,7 @@ Une fois que l'utilisateur a coché toutes les options qu'il souhaite, il lui su
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsection{Choix des paramètres}
-Cette page accessible depuis le menu général permet à un utilisateur de charger un réseau préexistant depuis son disque dur (Figure \ref{chargement1}). Il pourra également générer la ligne de commandes nécessaire au lancement de \textit{regEfmtool}. Cette page est basée sur le modèle de la page du choix des options après création, à un détail près : dans la catégorie du type des fichiers stœchiométriques, il n'y a plus la sous-catégorie des fichiers d'analyseur de flux. Le reste fonctionne de la m\^eme façon que précédemment. \\
+Cette page, accessible depuis le menu général, permet à un utilisateur de charger un réseau préexistant depuis son disque dur (Figure \ref{chargement1}). Il pourra également générer la ligne de commandes nécessaire au lancement de \textit{regEfmtool}. Cette page est basée sur le modèle de la page du choix des options après création, à un détail près: dans la catégorie du type des fichiers stœchiométriques, il n'y a plus la sous-catégorie des fichiers d'analyseur de flux. Le reste fonctionne de la m\^eme façon que précédemment. \\
 
 \begin{figure}[!ht]
 	\begin{center}

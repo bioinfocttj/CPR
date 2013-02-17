@@ -2,7 +2,7 @@
 \chapter{Réalisation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Nous allons intégrer des digrammes d'organisation des pages Web le long de notre explication afin d'avoir un support visuel. La légende est représentée dans la Figure \ref{DiagLegende}.
+Nous allons intégrer des digrammes d'organisation des pages Web le long de notre explication afin d'avoir un support visuel. La légende est représentée par la Figure \ref{DiagLegende}.
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -89,7 +89,7 @@ La \texttt{div\#part} est utilisée pour le titre de la catégorie. Sa hauteur e
 
 \subsection{Langues}
 Dans un soucis de convivialité, notre interface est développée de manière à pouvoir être traduite aisément et propose trois langues possibles dans sa version actuelle (français par défaut, anglais et allemand). Pour changer la langue, l'utilisateur n'a qu'à cliquer sur le drapeau correspondant dans le menu en haut de page. Cela fera appel au script \emph{choosen\_languages.php} (Figure \ref{DiagLangues}), qui lui-même fait appel à \emph{de\_lang.php} pour l'allemand, \emph{en\_lang.php} pour l'anglais et \emph{fr\_lang.php} pour le français, en fonction du drapeau sélectionné. \\
-Le fichier \emph{choosen\_languages.php} verifie  soit dans la barre d'adresse soit dans les variables de session php la langue selectionnée par l'utilisateur.\\
+Le fichier \emph{choosen\_languages.php} verifie  soit dans la barre d'adresse soit dans les variables de session php la langue sélectionnée par l'utilisateur.\\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -115,7 +115,7 @@ session_start();
   	\end{center}	
 \end{figure}
 
-Pour ce faire, nous n'avons pas mis de texte dans les pages affichant à l'écran. Nous l'avons remplacé par des variables, qui afficheront le texte qu'elles contiennent dans la langue désirée. Par exemple, le titre de la page d'accueil "Bienvenue sur WebRegEfmTool" est appelé par \texttt{<?php echo TXT\_HOMEPAGE\_TITLE; ?>} et est contenu dans le fichier \emph{fr\_lang.php} de la manière suivante :
+Pour ce faire, nous n'avons pas mis de texte dans le code des pages affichant à l'écran. Nous l'avons remplacé par des variables, qui afficheront le texte qu'elles contiennent dans la langue désirée. Par exemple, le titre de la page d'accueil "Bienvenue sur WebRegEfmTool" est appelé par \texttt{<?php echo TXT\_HOMEPAGE\_TITLE; ?>} et est contenu dans le fichier \emph{fr\_lang.php} de la manière suivante :
 \texttt{define('TXT\_HOMEPAGE\_TITLE', 'Bienvenue sur WebRegEfmTool');}. De ce fait, un nouveau fichier du type \emph{XX\_lang.php} pourrait être créé afin d'intégrer une nouvelle langue. Bien sûr, il faudrait ajouter les appels à ce fichier dans toutes les pages affichant à l'écran par la suite. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -123,7 +123,7 @@ Pour ce faire, nous n'avons pas mis de texte dans les pages affichant à l'écra
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsection{Initialisation des fichiers}
-La création d'un nouveau réseaux dans WRET se fait via la page \emph{create.php}.
+La création d'un nouveau réseau dans WRET se fait via la page \emph{create.php}.
 A partir de cette page, l'utilisateur doit dans un premier temps appuyer sur le bouton \emph{Initialiser les fichiers} (Figure \ref{boutonInit}) s'il désire initialiser ses fichiers.
 
 \begin{figure}[!ht]
@@ -162,18 +162,18 @@ La première page \emph{reac.php} va permettre d'écrire dans un fichier tempora
 L'ordre est ainsi conservé entre les réactions et leur réversibilité.
 
 \subsection{Nom de réactions : enzymes}
-Une fois les données de réactions et de réversibilité enregistrées, la page \emph{parser\_enzymes.php} est appelée. Elle va parser le fichier temporaire des réactions (\emph{reactionTemp.txt}) et va extraire le premier élément de la réaction situé avant le ":", qui se trouve être le nom de la réaction (nom de l'enzyme généralement).\\
-Ces noms sont enregistrés dans un fichier (\emph{reaction.rfile}) en respectant les espaces et la syntaxe nécessaire à l'utilisation au sein de \emph{regEfmtool}.
+Une fois les données de réactions et de réversibilité enregistrées, la page \emph{parser\_enzymes.php} est appelée. Elle va parser le fichier temporaire des réactions (\emph{reactionTemp.txt}) et va extraire le premier élément de la réaction situé avant le ": ", qui se trouve être le nom de la réaction (nom de l'enzyme généralement).\\
+Ces noms sont enregistrés dans un fichier (\emph{reactions.rfile}) en respectant les espaces et la syntaxe nécessaires à son utilisation au sein de \emph{regEfmtool}.
 
 \subsection{Métabolites}
-Après enregistrement des enzymes, le fichier \emph{parser\_metabolites.php} est appelé. Ce script va parser le fichier temporaire contenant les réactions (\emph{reactionTemp.txt}) et va enregistrer chacun des métabolites dans un fichier (\emph{meatbolites.mfile}). Au cours de ce parsage, seuls les éléments situés après le nom de l'enzyme seront pris en compte. Les noms présents plusieurs fois dans le fichier de réactions sont enregistrés une seule fois dans le fichier \emph{metabolites.mfile}.
+Après enregistrement des enzymes, le fichier \emph{parser\_metabolites.php} est appelé. Ce script va parser le fichier temporaire contenant les réactions (\emph{reactionTemp.txt}) et va enregistrer chacun des métabolites dans un fichier (\emph{metabolites.mfile}). Au cours de ce parsage, seuls les éléments situés après le nom de l'enzyme seront pris en compte. Les noms présents plusieurs fois dans le fichier de réactions sont enregistrés une seule fois dans le fichier \emph{metabolites.mfile}.
 
 \subsection{Stœchiométrie}
-Enfin après génération des fichiers: \emph{rvfile}, \emph{mfile}, \emph{sfile}, \emph{rfile}, le script \emph{parser\_stoechiometry} est appelé. Il va lancer le script \emph{parser\_stoechiometry.py}. Ce dernier permet de générer la matrice de stœchiométrie nécessaire a \emph{regEfmtool}. Pour ce faire, il prend les fichiers \emph{reactionTemp.txt} et \emph{metabolites.mfile} en entrée. Il génère la matrice ligne par ligne (une ligne correspondant à une réaction). \\
-Pour chaque ligne du fichier \emph{reactionTemp.txt}, une liste est créée et, pour chaque métabolite de cette réaction, sa stœchiométrie est enregistrée en respectant son ordre dans le fichier contenant les réactifs. Ce script fournit alors en sortie le fichier \emph{stoechiometry.sfile}.
+Enfin après génération des fichiers: \emph{rvfile}, \emph{mfile}, \emph{sfile}, \emph{rfile}, le script \emph{parser\_stoechiometry} est appelé. Il va lancer le script \emph{parser\_stoechiometry.py}. Ce dernier permet de générer la matrice de stœchiométrie nécessaire à \emph{regEfmtool}. Pour ce faire, il prend les fichiers \emph{reactionTemp.txt} et \emph{metabolites.mfile} en entrée. Il génère la matrice ligne par ligne (une ligne correspondant à une réaction). \\
+Pour chaque ligne du fichier \emph{reactionTemp.txt}, une liste est créée et, pour chaque métabolite de cette réaction, sa stœchiométrie est enregistrée en respectant son ordre dans le fichier contenant les réactifs. Ce script fourni alors en sortie le fichier \emph{stoechiometry.sfile}.
 
-\subsection{Modification du réseaux}
-Une fois les fichiers générés, l'utilisateur est redirigé sur la page \emph{create.php}.
+\subsection{Modification du réseau}
+Une fois les fichiers générés, l'utilisateur est redirigé vers la page \emph{create.php}.
 Sous la touche \emph{Ajouter} se trouve une zone de texte (Figure \ref{boutonAjout}) où l'utilisateur peut modifier un réseau déjà rentré.
 
 \begin{figure}[!ht]
@@ -188,13 +188,13 @@ Sous la touche \emph{Ajouter} se trouve une zone de texte (Figure \ref{boutonAjo
 \end{figure}
 
 En effet, cette zone appelle le fichier \emph{reactionTemp.txt} et permet la modification de son contenu (pour corriger une erreur de frappe notamment). Cette zone de texte va appeler la page \emph{modifier.php} lors de l'utilisation du bouton \emph{Modifier}.\\
- Cette page efface le précédant fichier \emph{reactionTemp.txt} et insère le nouveau contenu que l'utilisateur a modifié. \\
- Les fichiers \emph{metabolites.mfile}, \emph{stoechiometry.sfile}, \emph{reactions.rfile}, \emph{reversibility}, sont également générés à nouveau, à chaque modification du fichier \emph{reactionTemp.txt}.
+ Cette page efface le précédent fichier \emph{reactionTemp.txt} et insère le nouveau contenu que l'utilisateur a modifié. \\
+ Les fichiers \emph{metabolites.mfile}, \emph{stoechiometry.sfile}, \emph{reactions.rfile}, \emph{reversibility.rvfile}, sont également générés à nouveau, à chaque modification du fichier \emph{reactionTemp.txt}.
  
 \subsection{Création du fichier \emph{DAT}}
 
-En dessous de la zone de texte modifiable, une touche nommée \emph{Choisir les métabolites internes et externes} (Figure \ref{boutonMET_int_EXT}) permet à l'utilisateur de définir dans son réseaux les métabolites internes et externes . Ce bouton va effectuer un parsage du fichier \emph{metabolites.mfile} et afficher dans une colonne à gauche contenant tous les métabolites. Une colonne a droite vide peut être remplie ou vidé via les bouton \emph{Ajouter}, \emph{Supprimer} situés sous les colonnes.
-Ces touches d'ajout et de suppression font appelle à des fonctions \emph{javascript}, directement intégrées à la page \emph{create.php}.\\
+En dessous de la zone de texte modifiable, une touche nommée \emph{Choisir les métabolites internes et externes} (Figure \ref{boutonMET_int_EXT}) permet à l'utilisateur de définir dans son réseau les métabolites internes et externes. Ce bouton va effectuer un parsage du fichier \emph{metabolites.mfile} et afficher dans une colonne à gauche tous les métabolites. Une colonne à droite vide peut être remplie ou vidée via les boutons \emph{Ajouter}, \emph{Supprimer} situés entre les colonnes.
+Ces touches d'ajout et de suppression font appelle à des fonctions \emph{JavaScript}, directement intégrées à la page \emph{create.php}.\\
 
 \begin{figure}[!ht]
     \begin{center}
@@ -207,7 +207,7 @@ Ces touches d'ajout et de suppression font appelle à des fonctions \emph{javasc
       \end{center}   
 \end{figure}
 
-Sous la zone de sélection des métabolites internes et externes, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseaux métabolique précédemment rentré. \\
+Sous la zone de sélection des métabolites internes et externes, un bouton \emph{DAT} permet de générer un fichier au format \emph{DAT} du réseau métabolique précédemment créé. \\
 
 \begin{figure}[!ht]
     \begin{center}
@@ -227,9 +227,9 @@ Ce bouton (Figure \ref{boutonDAT}) appelle la page \emph{finish\_files.php} qui 
 \item \emph{reactiontemp2.txt}
 \end{itemize}
 
-Le premier fichier contient l'ensemble des enzymes catalysant les réactions irréversibles. Le second contient l'ensemble des enzymes catalysant des réactions réversibles, et enfin le dernier fichier contient l'ensemble des réactions du réseaux. \\
+Le premier fichier contient l'ensemble des enzymes catalysant les réactions irréversibles. Le second contient l'ensemble des enzymes catalysant les réactions réversibles, et enfin le dernier fichier contient l'ensemble des réactions du réseau. \\
 Chacun de ces fichiers contient les balises \emph{-ENZIRREV}, \emph{-ENZREV}, \emph{-CAT}, selon son contenu et respecte la syntaxe propre au format \emph{DAT}.
-Les noms des métabolites sont insérés dans le fichier au format \emph{DAT} après une balise \emph{-METINT} ou \emph{-METEXT}, selon leur rôle dans le réseaux défini par l'utilisateur.
+Les noms des métabolites sont insérés dans le fichier au format \emph{DAT} après une balise \emph{-METINT} ou \emph{-METEXT}, selon leur rôle dans le réseau défini par l'utilisateur.
 
 Il en résulte en sortie du script \emph{finish\_files.php} un fichier au format \emph{DAT}, de la forme:
 \\
@@ -327,7 +327,7 @@ Les réactions sont récupérées à partir de \emph{reactions.rfile}.\\
 
 L'utilisateur peut sélectionner plusieurs fois la m\^eme réaction dans sa règle, sauf pour le choix de la dernière (ligne THEN). Cette particularité est gérée par la fonction \texttt{choice(form, val)}. Celle-ci permet de remplir les menus déroulants quand une réaction a été choisie et pour la dernière seules les réactions non sélectionnées précédemment appara\^issent.
 
-Lorsque l'utilisateur a choisi toutes ses réactions, leur opérateur et leur valeur, il clique sur le bouton \emph{Ajouter}. Celui-ci fait appel à la fonction \texttt{validateForm()} qui vérifie que tous les champs ont bien été sélectionnés. Si la fonction retourne VRAI, il fait appel au fichier \emph{createGrfile.php} qui écrit la règle dans le fichier \emph{grfile.txt}.\\
+Lorsque l'utilisateur a choisi toutes ses réactions, leur opérateur et leur valeur, il clique sur le bouton \emph{Ajouter}. Celui-ci fait appel à la fonction \texttt{validateForm()} qui vérifie que tous les champs ont bien été sélectionnés. Si la fonction retourne VRAI, il fait appel au fichier \emph{createGrfile.php} qui écrit la règle dans le fichier \emph{generules.grfile}.\\
 Le fichier \emph{createGrfile.php} écrit dans le fichier \emph{grfile} selon certaines règles. En effet, l'écriture de la règle dépend des valeurs associées aux réactions et des opérateurs choisis.\\
 
 Si la valeur de la réaction qui suit le "THEN" est 0, alors il y aura le symbole "!" au début de la règle (juste après le "="), sauf si la règle ne contient que deux réactions.\\
@@ -360,7 +360,7 @@ THEN reaction: R4 valeur: 0
 Règle écrite dans le fichier: \\
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
-R4 = (!((1R1 \& (!0R2)) $|$ (!0R3))
+R4 = (!((1R1 & (!0R2)) | (!0R3))
 \end{lstlisting}
 \end{DDbox}
 
@@ -407,11 +407,11 @@ Voici le code HTML/PHP qui correspond :
 
 \normalsize
 
-Le premier \textit{radiobouton} est pré-coché avec l'attribut \textit{checked="checked"} afin de guider l'utilisateur. Si cette option ne lui contient pas, il lui suffit de cocher le deuxième \textit{radiobouton} et de remplir la zone de texte associée. \\
+Le premier \textit{radiobouton} est pré-coché avec l'attribut \textit{checked="checked"} afin de guider l'utilisateur. Si cette option ne lui convient pas, il lui suffit de cocher le deuxième \textit{radiobouton} et de remplir la zone de texte associée. \\
 
-Ce sont les attributs \textit{value} de ces boutons qui sont récupérés avec un script JavaScript. Ce dernier, nommé \emph{choixOptions.js}, permet de vérifier quels \textit{radioboutons} sont cochés et récupère ce qu'il a dans l'attribut \textit{value} de ceux-ci quand c'est le cas. Il est appelé lors du clic sur le bouton \textit{Lancement} en bas de la page. De plus, c'est dans ce script qu'est générée la commande qui permettra le lancement de regEfmtool. Elle est contenue dans une variable nommée  \textit{commande}, qui se remplit des paramètres sélectionnés. \\
+Ce sont les attributs \textit{value} de ces boutons qui sont récupérés avec un script \emph{JavaScript}. Ce dernier, nommé \emph{choixOptions.js}, permet de vérifier quels \textit{radioboutons} sont cochés et récupère ce qu'il a dans l'attribut \textit{value} de ceux-ci quand c'est le cas. Il est appelé lors du clic sur le bouton \textit{Lancement} en bas de la page. De plus, c'est dans ce script qu'est générée la commande qui permettra le lancement de regEfmtool. Elle est contenue dans une variable nommée  \textit{commande}, qui se remplit grâce aux paramètres sélectionnés. \\
 
-Exemple du code JavaScript qui permet la récupération des \textit{values} précédentes : \\
+Exemple du code \emph{JavaScript} qui permet la récupération des \textit{values} précédentes : \\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -450,7 +450,9 @@ Cette commande est sauvegardée dans un \textit{cookie} qui sera récupéré à 
   	\end{center}	
 \end{figure}
 
-Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de \textit{regEfmtool}, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton \textit{Étape suivante}. Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
+Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur.\\
+
+Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de \textit{regEfmtool}, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton \textit{Étape suivante}. Ce bouton fait appel au script \emph{JavaScript} \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
 
 Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php}, qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans \textit{regEfmtool}. Ce processus est faisable grâce à un  script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
 
@@ -531,8 +533,8 @@ Cette fonction vérifie donc si l'utilisateur voulait comparer son résultat et 
 \end{lstlisting}
 \end{DDbox}
 
-Ensuite, nous effectuons un parsage du résultat avec la fonction \texttt{parse\_res()} qui ouvre le fichier de résultat généré et le sauvegarde dans un tableau pour faciliter son affichage. \\
-Finalement la fonction \texttt{show\_res(resultat)} permet d'afficher le résultat en ajoutant au tableau les noms des réactions, ainsi qu'une colonne indiquant le mode. \textbf{\textcolor{red}{mode élémentaire ??}} \\
+Ensuite, nous effectuons un parsage du résultat avec la fonction \texttt{parse\_res()} qui ouvre le fichier de résultats généré et le sauvegarde dans un tableau pour faciliter son affichage. \\
+Finalement, la fonction \texttt{show\_res(resultat)} permet d'afficher le résultat en ajoutant au tableau les noms des réactions, ainsi qu'une colonne indiquant le mode. \textbf{\textcolor{red}{mode élémentaire ??}} \\
 Dans le cas où l'utilisateur souhaite comparer deux résultats, une \texttt{<div id'original'>} HTML est créée (Figure \ref{comparaison}). Celle-ci contient le premier résultat calculé et nous continuons avec le nouveau résultat à afficher.\\
 
 \begin{DDbox}{\linewidth}
@@ -558,7 +560,7 @@ if ($_SESSION["isCompared"]==1){
       \end{center}   
 \end{figure}
 
-Une fois toutes ces étapes finies, le résultat est sauvegardé dans la variable \texttt{compare} pour le cas où l'utilisateur voudrait comparer son résultat un autre (avec par exemple des choix différents d'options, de nouvelles règles).\\
+Une fois toutes ces étapes finies, le résultat est sauvegardé dans la variable \texttt{compare} pour le cas où l'utilisateur voudrait comparer son résultat avec un autre (avec par exemple des choix différents d'options, de nouvelles règles).\\
 
 L'utilisateur a donc le choix de terminer ses calculs ou de comparer le résultat obtenu. Pour cela, deux boutons \textit{Comparer} et \textit{Finir} lui permettent de retourner à l'écran d'accueil. Cependant, \textit{Comparer} fait appel à la fonction \texttt{compare()}  qui conserve en mémoire le fait que l'utilisateur veut comparer son résultat. Ceci est possible grâce à une variable de session PHP \texttt{isCompared}. Le bouton \textit{Finir} quant à lui réinitialise cette m\^eme variable avant d'effectuer la redirection.\\
 
@@ -567,7 +569,7 @@ Sur cette même page, l'utilisateur a aussi la possibilité d'afficher les résu
 Cette page offre deux options:
 \begin{itemize}
 \item visualiser l'ensemble des résultats ,
-\item choisir une catégorie des résultats à visualiser.
+\item choisir une catégorie de résultats à visualiser.
 \end{itemize}
 
 Cette page parcourt le fichier log et sélectionne les mots-clés à l'aide de la fonction \texttt{item()}, qui récupère toute les phrases suivies de "\texttt{:}".
@@ -607,7 +609,7 @@ function item(){
 
 Les mots-clés sont stockés dans un menu déroulant, qui est obtenu par affichage de chaque valeur du tableau dans la balises HTML \texttt{'<OPTION VALUE="' . $item[$numero] . '"> ' . $item[$numero] . ' </OPTION>'}. Ainsi l'utilisateur n'a plus qu'à sélectionner la catégorie qu'il souhaite visualiser à partir du mot-clé. \\
 
-Ainsi la visualisation peut se faire sur l'ensemble du fichier \emph{log.txt} (Figure \ref{affichageResultats}) et une redirection sur la page  \emph{all\_results.php} sera effectuée. La visualisation peut également se faire sur une seule catégorie et la redirection sera alors sur \emph{display\_results.php}. De plus, la page d'affichage des résultats offre la possibilité à l'utilisateur de revenir en arrière à l'aide de deux boutons, dont un présent au dessus de l'affichage des résultats et l'autre, en dessous.\\
+Ainsi la visualisation peut se faire sur l'ensemble du fichier \emph{log.txt} (Figure \ref{affichageResultats}) et une redirection sur la page  \emph{all\_results.php} sera effectuée. La visualisation peut également se faire sur une seule catégorie et la redirection sera alors sur \emph{display\_results.php}. De plus, la page d'affichage des résultats offre la possibilité à l'utilisateur de revenir en arrière à l'aide de deux boutons, dont un présent au-dessus de l'affichage des résultats et l'autre, en-dessous.\\
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -620,9 +622,9 @@ Ainsi la visualisation peut se faire sur l'ensemble du fichier \emph{log.txt} (F
   	\end{center}	
 \end{figure}
 
-Nous avons tenté de faire en sorte que les résultats extraits soient affichés de façon claire et lisible pour l'utilisateur grâce au fichier \emph{display\_results.php}. Ce dernier récupère le mot-clé sélectionné dans le menu déroulant de la page précédente et le recherche dans l'ensemble du fichier. Si ce dernier comporte un 'R', seule la ligne comportant le mot clé est retournée. Dans le cas contraire, un des mot-clé suivant délimitera la catégorie sélectionnée. Cette recherche offre 2 possibilités grâce à la fonction \texttt{display\_results()} du fichier \emph{display\_results.php}:
+Nous avons tenté de faire en sorte que les résultats extraits soient affichés de façon claire et lisible pour l'utilisateur grâce au fichier \emph{display\_results.php}. Ce dernier récupère le mot-clé sélectionné dans le menu déroulant de la page précédente et le recherche dans l'ensemble du fichier. Si ce dernier comporte un 'R', seule la ligne comportant le mot clé est retournée. Dans le cas contraire, un des mot-clé suivant délimitera la catégorie sélectionnée. Cette recherche offre deux possibilités grâce à la fonction \texttt{display\_results()} du fichier \emph{display\_results.php}:
 \begin{itemize}
-\item dans le premier cas, si le mot-clé est suivi d'autres mots-clés contenant eu même un 'R', le mot-clé délimitant sera le premier qui ne possédera pas de 'R',
+\item dans le premier cas, si le mot-clé est suivi d'autres mots-clés contenant eux-même un 'R', le mot-clé délimitant sera le premier qui ne possédera pas de 'R',
 \item dans le second cas, le mot-clé suivant dans la liste, servira de délimitant.
 \end{itemize}
 
@@ -645,11 +647,11 @@ Nous avons également ajouté un bouton permettant de retourner sur la page d'ex
 
 Nous allons maintenant voir les difficultés que nous avons rencontré au cours de ce projet, ainsi que les améliorations possibles. \\
 
-Suivant le navigateur utilisé, la récupération des fichiers par la fonction \texttt{move\_uploaded\_file()} ne fournit pas le m\^eme résultat, en particulier pour le dossier récupérant les fichiers. \\
-De plus, il semblerait que les variables permettant de récupérer les fichiers \texttt{\$FILES} ne fonctionne pas sur toutes les configurations. Jusqu'à présent, nous n'avons pas compris quel facteur influençait l'utilisation de ces variables et n'avons pas pu exécuter \textit{regEfmTool} depuis l'interface sur toutes les machines. \\
-Les variables de sessions PHP étant propre à ce langage, nous avons d\^u parfois utiliser les cookies, en particulier lorsque certaines valeurs devaient \^etre sauvegardées depuis un script \emph{JavaScript}. Cela provoque l'utilisation de ces deux types de variables, ce qui n'est pas très uniforme. \\
+Suivant le navigateur utilisé, la récupération des fichiers par la fonction \texttt{move\_uploaded\_file()} ne fourni pas le m\^eme résultat, en particulier pour le dossier récupérant les fichiers. \\
+De plus, il semblerait que les variables permettant de récupérer les fichiers \texttt{\$FILES} ne fonctionnent pas sur toutes les configurations. Jusqu'à présent, nous n'avons pas compris quel facteur influençait l'utilisation de ces variables et n'avons pas pu exécuter \textit{regEfmtool} depuis l'interface sur toutes les machines. \\
+Les variables de sessions PHP étant propres à ce langage, nous avons parfois dû utiliser les cookies, en particulier lorsque certaines valeurs devaient \^etre sauvegardées depuis un script \emph{JavaScript}. Cela provoque l'utilisation de ces deux types de variables, ce qui n'est pas très uniforme. \\
 L'affichage des résultats n'a été fait que superficiellement, d'où la présence de \textit{mode élémentaire 0} devant les noms de réactions, ou encore un simple affichage en tableau des résultats brut, indiquant la présence de réactions avec une valeur à 0 (c'est à dire non représentées dans les modes élémentaires). L'amélioration de cette partie ne devant pas être trop gourmande en temps mériterait d'\^etre modifiée. \\
-Pour finir, l'utilisation de \textit{regEfmTool} depuis l'interface que nous avons créé dépend de la configuration du serveur Web installé sur la machine. Dans notre cas les tests étaient fait sous \emph{apache2} sur nos machines personnelles (la configuration du serveur sur les machines du \emph{CREMI} étant trop restrictives, il nous était impossible d'exécuter le logiciel).
+Pour finir, l'utilisation de \textit{regEfmtool} depuis l'interface que nous avons créé dépend de la configuration du serveur Web installé sur la machine. Dans notre cas les tests étaient fait sous \emph{apache2} sur nos machines personnelles (la configuration du serveur sur les machines du \emph{CREMI} étant trop restrictives, il nous était impossible d'exécuter le logiciel).
 
 
 
