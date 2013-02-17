@@ -1,4 +1,4 @@
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Réalisation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -119,7 +119,7 @@ Pour ce faire, nous n'avons pas mis de texte dans les pages affichant à l'écra
 \texttt{define('TXT\_HOMEPAGE\_TITLE', 'Bienvenue sur WebRegEfmTool');}. De ce fait, un nouveau fichier du type \emph{XX\_lang.php} pourrait être créé afin d'intégrer une nouvelle langue. Bien sûr, il faudrait ajouter les appels à ce fichier dans toutes les pages affichant à l'écran par la suite. 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\section{Création d'un nouveau réseaux}
+\section{Création d'un nouveau réseau}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsection{Initialisation des fichiers}
@@ -450,9 +450,9 @@ Cette commande est sauvegardée dans un \textit{cookie} qui sera récupéré à 
   	\end{center}	
 \end{figure}
 
-Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de regEfmtool, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton \textit{Étape suivante}. Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
+Ce sont les pages \emph{load.php} et \emph{load\_files.php} qui permettent le chargement des fichiers contenant un réseau pré-existant (Figure \ref{DiagLoad}) depuis le disque dur de l'utilisateur. Tout d'abord, la page \emph{load.php} permet à ce dernier de choisir les paramètres de la commande de lancement de \textit{regEfmtool}, de le même façon que pour la page \emph{options.php}. Cependant, la deuxième grande catégorie diffère car le choix des fichiers à charger se fera lors d'une étape ultérieure. Ici, l'utilisateur coche les options qu'il désire et clique sur le bouton \textit{Étape suivante}. Ce bouton fait appel au script JavaScript \emph{actionLoad.js}, qui fonctionne sur le même principe que \emph{choixOptions.js}. \\
 
-Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php} (voir figure \ref{choix}) , qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans regEfmtool. Ce processus est faisable grâce au script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
+Ensuite, l'utilisateur est dirigé vers la page \emph{load\_files.php} (voir figure \ref{choix}) , qui permet à l'utilisateur d'aller "chercher" les fichiers aux formats \textit{sfile}, \textit{mfile}, \textit{rvfile}, \textit{grfile} et \textit{rfile}. Nous copions et renommons ces fichiers dans le dossier courant afin de pouvoir les utiliser dans \textit{regEfmtool}. Ce processus est faisable grâce à un  script PHP, dont voici un exemple pour le fichier au format \textit{sfile} :\\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -489,21 +489,22 @@ Ce script est contenu dans l'attribut \textit{value} du bouton de chargement du 
   	\end{center}	
 \end{figure}
 
-le fichiers \emph{results.php} permet l'affichage des résultats (voir figure \ref{Results}) de la commande générée précédemment. C'est depuis cette page qu'est exécutée la commande grâce a la fonction \emph{shell\_exec()}, que les fichiers de résultat et de log sont analysés pour permettre leurs affichage comme le montre la figure\ref{DiagResults}.\\
+Le fichier \emph{results.php} permet l'affichage des résultats de la commande générée précédemment. Celle-ci est exécutée grâce à la fonction \texttt{shell\_exec()}. Les fichiers de résultat et de log \footnote{Un fichier log est un fichier texte classique, reprenant de façon chronologique l'ensemble des événements qui ont affecté un système informatique et l'ensemble des actions qui ont résulté de ces événements.} sont analysés pour permettre leur affichage (Figure \ref{DiagResults}).\\
 
 \begin{figure}[!ht]
 	\begin{center}
 		\fbox{
-   		 \begin{minipage}[c]{1\textwidth}
-  			\includegraphics[width=0.90\textwidth]{../Images/Rapport/results.png}  
+   		 \begin{minipage}[c]{0.8\textwidth}
+  			\includegraphics[width=0.9\textwidth]{../Images/Rapport/results.png}  
 		 \end{minipage}}
-		\caption{affichage des résultats}
+		\caption{Page d'affichage des résultats}
   		\label{Results}
   	\end{center}	
 \end{figure}
 
-L'affichage se fait en plusieurs étapes : tout d'abord, on vérifie grace à la variable de session PHP \emph{isCompared} si l'utilisateur veut afficher un ou plusieurs résultats.\\
-Prenons le cas d'un utilisateur qui calcule une première fois les modes élémentaires d'un réseau : la variable \emph{isCompared} indique à l'interface qu'il n'y a qu'un résultat à afficher, la \emph{<div id='new'>} est créée: on affiche tout d'abord une image\emph{waiting.gif} gràce a la fonction \emph{waiting()} qui se charge aussi d'exécuter la commande précédemment conservée dans les cookies HTML .\\
+L'affichage (Figure \ref{Results}) se fait en plusieurs étapes : tout d'abord, nous vérifions grâce à la variable de session PHP \texttt{isCompared} si l'utilisateur veut afficher un ou plusieurs résultats.\\
+
+Prenons le cas d'un utilisateur qui calcule une première fois les modes élémentaires d'un réseau : la variable \texttt{isCompared} indique à l'interface qu'il n'y a qu'un résultat à afficher, la \texttt{<div id='new'>} est créée. Nous affichons tout d'abord une image \emph{waiting.gif} grâce à la fonction \texttt{waiting()}, qui se charge aussi d'exécuter la commande précédemment conservée dans les cookies HTML .\\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -522,7 +523,7 @@ function waiting(){
 \end{lstlisting}
 \end{DDbox}\\
 
-Comme vous pouvez le constater, cette fonction vérifie si l'utilisateur voulait comparer son résultat et sauvegarde le log dans le fichier \emph{log1.txt} ou \emph{log.txt} suivant le cas.\\
+Cette fonction vérifie donc si l'utilisateur voulait comparer son résultat et sauvegarde le log dans le fichier \emph{log1.txt} ou \emph{log.txt} suivant le cas.\\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -539,11 +540,11 @@ Comme vous pouvez le constater, cette fonction vérifie si l'utilisateur voulait
 		$_SESSION['compare']=$res2;
 	?>		
 \end{lstlisting}
-\end{DDbox}\\
+\end{DDbox}
 
-Ensuite, on parse le résultat avec la fonction \emph{parse\_res()} qui ouvre le fichier de résultat généré et le sauvegarde dans un tableau pour faciliter son affichage.
-Finalement la fonction \emph{show\_res(resultat)} permet d'afficher le résultat en ajoutant au tableau les noms des réactions ainsi qu'une colonne indiquant le mode.
- Si l'utilisateur voulait comparer deux résultats : une \emph{<div id'original'>} HTML est créée (figure \ref{comparaison}) contenant le premier résultat calculé et on continue avec le nouveau résultat à afficher.\\
+Ensuite, nous effectuons un parsage du résultat avec la fonction \texttt{parse\_res()} qui ouvre le fichier de résultat généré et le sauvegarde dans un tableau pour faciliter son affichage. \\
+Finalement la fonction \texttt{show\_res(resultat)} permet d'afficher le résultat en ajoutant au tableau les noms des réactions, ainsi qu'une colonne indiquant le mode. \textbf{\textcolor{red}{mode élémentaire ??}} \\
+Dans le cas où l'utilisateur souhaite comparer deux résultats, une \texttt{<div id'original'>} HTML est créée (Figure \ref{comparaison}). Celle-ci contient le premier résultat calculé et nous continuons avec le nouveau résultat à afficher.\\
 
 \begin{DDbox}{\linewidth}
 \begin{lstlisting}
@@ -555,34 +556,34 @@ if ($_SESSION["isCompared"]==1){
 	echo "</div>";
 }
 \end{lstlisting}
-\end{DDbox}\\
-
+\end{DDbox}
 
 \begin{figure}[!ht]
     \begin{center}
         \fbox{
-            \begin{minipage}[c]{1\textwidth}
-              \includegraphics[width=0.90\textwidth]{../Images/Rapport/results_compare.png} 
+            \begin{minipage}[c]{0.9\textwidth}
+              \includegraphics[width=0.9\textwidth]{../Images/Rapport/results_compare.png} 
          \end{minipage}}
-        \caption{compare}
+        		\caption{Exemple de comparaison de deux résultats}
           \label{comparaison}
       \end{center}   
 \end{figure}
 
-Une fois toutes ces étapes finie, le résultat est sauvegardé dans la variable \emph{compare} pour le cas ou l'utilisateur voudrait comparer son résultat un autre (avec des choix différents d'options, de nouvelles règles, \dots).\\
+Une fois toutes ces étapes finies, le résultat est sauvegardé dans la variable \texttt{compare} pour le cas où l'utilisateur voudrait comparer son résultat un autre (avec par exemple des choix différents d'options, de nouvelles règles).\\
 
-L'utilisateur a le choix de terminer ses calculs ou de comparer le résultat obtenu. Pour cela, deux boutons \emph{comparer} et \emph{finir} lui permette de retourner à l'écran d'accueil, à la différence près que \emph{comparer} fait appel a la fonction \emph{compare()}  qui conserve en mémoire grace à une variable de session PHP \emph{isCompared} que l'utilisateur veut comparer son résultat et redirige l'utilisateur tandis que l'autre, \emph{finir} réinitialise cette m\^eme variable.\\
+L'utilisateur a donc le choix de terminer ses calculs ou de comparer le résultat obtenu. Pour cela, deux boutons \textit{Comparer} et \textit{Finir} lui permettent de retourner à l'écran d'accueil. Cependant, \textit{Comparer} fait appel à la fonction \texttt{compare()}  qui conserve en mémoire le fait que l'utilisateur veut comparer son résultat. Ceci est possible grâce à une variable de session PHP \texttt{isCompared}. Le bouton \textit{Finir} quant à lui réinitialise cette m\^eme variable avant d'effectuer la redirection.\\
 
-Sur cette même page, l'utilisateur à aussi la possibilité d'afficher les résultats de la commande qu'il vient de lancer. Pour cela, le fichier  \emph{parse\_results.php} récupère le fichier \emph{log.txt} dans lequel à été redirectionné les résultats générés par RegEfmtool.
+Sur cette même page, l'utilisateur a aussi la possibilité d'afficher les résultats de la commande qu'il vient de lancer. Pour cela, le fichier \emph{parse\_results.php} récupère le fichier \emph{log.txt} dans lequel les résultats générés par \textit{regEfmtool} ont été redirigés. \\
 
 Cette page offre deux options:
 \begin{itemize}
-\item visualiser l'ensemble des résultats 
+\item visualiser l'ensemble des résultats ,
 \item choisir une catégorie des résultats à visualiser.
 \end{itemize}
 
-Cette page parcourt le fichier log et selectionne les mots-clés à l'aide de la fonction \emph{item()} qui récupère toute les phrases suivient de deux points (\emph{:}).
+Cette page parcourt le fichier log et sélectionne les mots-clés à l'aide de la fonction \texttt{item()}, qui récupère toute les phrases suivies de "\texttt{:}".
 
+\begin{DDbox}{\linewidth}
 \begin{lstlisting}
 function item(){
 					
@@ -590,7 +591,7 @@ function item(){
 	global $item;
 	define ('FICHIER', $fichier);
 	$numligne = 0;
-	
+
 	$fichier = fopen( FICHIER, 'r')or die('Ouverture en lecture de "' . FICHIER . '" impossible !');
 					
 	while (!feof($fichier)){
@@ -610,16 +611,15 @@ function item(){
 	for ($numero = 0; $numero < $count; $numero++){
 		echo '<OPTION VALUE="' . $item[$numero] . '"> ' . $item[$numero] . ' </OPTION>'; 
 	}
-	
 	return $item;
 }
 \end{lstlisting}
+\end{DDbox}
 
-Les mots-clés sont stocké dans un menu déroulant qui est obtenu par affichage de chaque valeur du tableaudans la balises HTLML (\emph{echo '<OPTION VALUE="' . $item[$numero] . '"> ' . $item[$numero] . ' </OPTION>';}). Ainsi l'utilisateur n'a plus qu'à selectionner la catégorie qu'il souhaite visualiser à partir du mot-clé.
+Les mots-clés sont stockés dans un menu déroulant, qui est obtenu par affichage de chaque valeur du tableau dans la balises HTML \texttt{'<OPTION VALUE="' . $item[$numero] . '"> ' . $item[$numero] . ' </OPTION>'}. Ainsi l'utilisateur n'a plus qu'à sélectionner la catégorie qu'il souhaite visualiser à partir du mot-clé. \\
 
-Ainsi l'uilisateur peut faire le choix de visualiser l'ensemble du fichier \emph{log.txt} et ainsi la page le renvoi sur le fichier \emph{all\_results.php}, ou de ne visualiser qu'une catégorie, et il est rediriger sur le fichier \emph{display\_results.php}.
+Ainsi la visualisation peut se faire sur l'ensemble du fichier \emph{log.txt} (Figure \ref{affichageResultats}) et une redirection sur la page  \emph{all\_results.php} sera effectuée. La visualisation peut également se faire sur une seule catégorie et la redirection sera alors sur \emph{display\_results.php}. De plus, la page d'affichage des résultats offre la possibilité à l'utilisateur de revenir en arrière à l'aide de deux boutons, dont un présent au dessus de l'affichage des résultats et l'autre, en dessous.\\
 
-Dans le premier cas, l'utilisateur va obtenir une page semblable à la figure\ref{affichageResultats}. Cette page offre la possibilité à l'utilisateur de revenir en arrière à l'aide de deux boutons, dont un présent au dessus de l'affichage des résultats et l'autre, en dessous.\\
 \begin{figure}[!ht]
 	\begin{center}
 		\fbox{
@@ -631,124 +631,36 @@ Dans le premier cas, l'utilisateur va obtenir une page semblable à la figure\re
   	\end{center}	
 \end{figure}
 
-Les résultats extraits sont affichés de façon claire et lisible pour l'utilisateur(Figure\ref{affichageResultats})grâce au fichier \emph{display\_results.php}. Ce dernier récupère le mot-clé selectionné dans le menu déroulant, de la page précédente, et le recherche dans l'ensemble du fichier.
-\begin{lstlisting}
-function display_results(){
-	$fichier = 'log.txt';
-	$start = $_POST['start'];
-	$end;
-	$numligne = 0;
-	global $item;
-				
-	
-	define ('FICHIER', $fichier);
-	$fichier = fopen( FICHIER, 'r')or die('Ouverture en lecture de "' . FICHIER . '" impossible !');
-				
-	//parcourt le fichier et stocke chaque ligne dans le tableau resultats et chaque mot cle dans le tableau item
-	while (!feof($fichier)){
-		$numligne++;
-		$lignes = fgets($fichier, 1024);
-		$posi = strpos($lignes, '|'); 
-		$ligne = trim(substr($lignes,$posi+1,strlen($lignes))); 
-		$resultats[] = trim($ligne); 
+Nous avons tenté de faire en sorte que les résultats extraits soient affichés de façon claire et lisible pour l'utilisateur grâce au fichier \emph{display\_results.php}. Ce dernier récupère le mot-clé sélectionné dans le menu déroulant de la page précédente et le recherche dans l'ensemble du fichier. Si ce dernier comporte un 'R', seule la ligne comportant le mot clé est retournée. Dans le cas contraire, un des mot-clé suivant délimitera la catégorie sélectionnée. Cette recherche offre 2 possibilités grâce à la fonction \texttt{display\_results()} du fichier \emph{display\_results.php}:
+\begin{itemize}
+\item dans le premier cas, si le mot-clé est suivi d'autres mots-clés contenant eu même un 'R', le mot-clé délimitant sera le premier qui ne possédera pas de 'R',
+\item dans le second cas, le mot-clé suivant dans la liste, servira de délimitant.
+\end{itemize}
 
-		$pos = strpos($ligne, ':' );
-		if ( $pos == true && $numligne >= 32){
-			$line = trim(substr($ligne,0, $pos)); 
-			$item[] = $line;
-		}
-	}
-				
-	$count = count($resultats);
-	$counte = count($item);
-	$motif='R';
-	$vraie=true; 
-	$vrai = true;
-	
-	//Determine la position du mots cle $start dans le tableau resultats[]	
-	if ($vrai){
-		for ($nume = 0; $nume < $count; $nume++){
-			if (preg_match('/^'.$start.'/',$resultats[$nume])){
-				$start_pos=$nume;
-				$vrai = false;
-			}
-		}
-	}
-		
-	//Cas ou $start contient un 'R' Majuscule
-	if (preg_match($motif,$start)){
-		for ($numero=0; $numero<$count; $numero++){
-			if (preg_match('/^'.$start.'/i', $resultats[$numero])){
-				echo '<div>';
-				echo '<pre>' .$resultats[$numero]. '</pre>';
-				echo '</div>';
-				fclose($fichier);
-				return;
-			}
-		}
-	}
-
-	//l'autre cas : Determine la position du mot-cle delemitant la categorie a visualiser
-	if ($vraie){
-		for ($num = 0; $num < $counte; $num++){
-			if (preg_match('/^'.$start.'/',$item[$num]) && !preg_match('/^'.$motif.'/',$item[$num+1])){
-				$end = $item[$num+1];
-				$vraie = false;
-			}
-			else if (preg_match('/^'.$start.'/',$item[$num]) && preg_match('/^'.$motif.'/',$item[$num+1])){
-				for ($numer = $num; $numer < $counte; $numer++){
-					if (preg_match('/^'.$motif.'/',$item[$numer])){
-						$end = $item[$numer];
-						$vraie = false;
-					}
-				}
-			}
-		}
-	}
-	
-	//Affichage des resultats sur la page HTML
-	for ($numero = $start_pos; $numero < $count; $numero++){
-		if (preg_match('/^'.$start.'/', $resultats[$numero])){
-			echo '<div>';
-			echo '<pre>' . $resultats[$numero] . '</pre>';
-		}
-		else if (preg_match('/^'.$end.'/', $resultats[$numero])){
-			echo'</div>';
-			fclose($fichier);
-			return;
-		}
-		else if (preg_match('/^'.$motif.'/', $resultats[$numero])){
-			echo '<pre>' . $resultats[$numero] . '</pre>'; 
-		}
-		else{
-			echo '<pre>' . $resultats[$numero] . '</pre>'; 
-		}
-	}
-}
-
-\end{lstlisting}
-Si ce dernier comporte un 'R' Majuscule, il n'est retourné que la ligne comportant le mot clé. Dans le cas contraire, un des mot-clé suivant délimitera la catégorie selectionnée. Cette recherche offre 2 possibilitées.
-Dans le premier cas si le mot-clé est suivie de mots-clés contenant eu même un 'R' Majuscule, le mot-clé délimitant sera le premier qui ne possèdera pas de 'R' Majuscule.
-Dans le second cas, le mot-clé suivant, dans la liste, servira de délimitant.
-Cette démache est réalisé par la fonction \emph{display\_results()} du fichier \emph{display\_results.php}.\\
-
-De plus il ya aussi la présence d'un bouton qui permet de retourner sur la page d'extraction des résultats.
+Nous avons également ajouté un bouton permettant de retourner sur la page d'extraction des résultats (Figure \ref{affichageExtraction}).
 
 \begin{figure}[!ht]
 	\begin{center}
 		\fbox{
-   		 \begin{minipage}[c]{0.9\textwidth}
-  			\includegraphics[width=0.20\textwidth]{../Images/Rapport/affichageExtraction.png}  
+   		 \begin{minipage}[c]{0.3\textwidth}
+  			\includegraphics[width=0.8\textwidth]{../Images/Rapport/affichageExtraction.png}  
 		 \end{minipage}}
-		\caption{Page de recherche sur le log}
+		\caption{Exemple de recherche sur le log}
   		\label{affichageExtraction}
   	\end{center}	
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Difficultés et améliorations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Difficultés rencontrées et améliorations à apporter}
-Suivant le navigateur utilisé, la récupération des fichiers par la fonction \emph{ move\_uploaded\_file()} ne fournit pas le m\^eme résultats, en particulier le dossier récupérant les fichiers.
- De plus, il semblerait que les variables permettant de récupérer les fichiers \emph{\$FILES} ne fonctionne pas sur toutes les configurations. Jusqu'à présent, nous n'avons pas compris quel facteur influençait l'utilisation de ces variables et n'avons pas pu exécuter regEfmTool depuis l'interface sur toutes les machines.
-Les variables de sessions PHP étant propre au langage PHP, nous avons du parfois utiliser les cookies, en particulier lorsque certaines valeurs devaient \^etre sauvegardées depuis un script \emph{JavaScript}. Cela provoque l'utilisation de ces deux types de variables ce qui n'est pas très uniforme.
-L'affichage des résultats n'a été fait que superficiellement, d'où la présence de \emph{mode élémentaire 0} devant les noms de réactions ou encore un simple affichage en tableau des résultats brut, indiquant la présence des réactions avec une valeur à 0. l'amélioration de cette partie ne devant pas être trop gourmande en temps mériterait d'\^etre modifiée.
-L'utilisation de regEfmTool depuis l'interface que nous avons créée dépend de la configuration du serveur web installé sur la machine. Dans notre cas les tests étaient fait sous \emph{apache2} sur nos machines personnelles, la configuration du serveur sur les machines du \emph{CREMI} étant trop restrictives, il nous était impossible d'exécuter le logiciel.
+Nous allons maintenant voir les difficultés que nous avons rencontré au cours de ce projet, ainsi que les améliorations possibles. \\
+
+Suivant le navigateur utilisé, la récupération des fichiers par la fonction \texttt{move\_uploaded\_file()} ne fournit pas le m\^eme résultat, en particulier pour le dossier récupérant les fichiers. \\
+De plus, il semblerait que les variables permettant de récupérer les fichiers \texttt{\$FILES} ne fonctionne pas sur toutes les configurations. Jusqu'à présent, nous n'avons pas compris quel facteur influençait l'utilisation de ces variables et n'avons pas pu exécuter \textit{regEfmTool} depuis l'interface sur toutes les machines. \\
+Les variables de sessions PHP étant propre à ce langage, nous avons d\^u parfois utiliser les cookies, en particulier lorsque certaines valeurs devaient \^etre sauvegardées depuis un script \emph{JavaScript}. Cela provoque l'utilisation de ces deux types de variables, ce qui n'est pas très uniforme. \\
+L'affichage des résultats n'a été fait que superficiellement, d'où la présence de \textit{mode élémentaire 0} devant les noms de réactions, ou encore un simple affichage en tableau des résultats brut, indiquant la présence des réactions avec une valeur à 0 \textbf{\textcolor{red}{une valeur de quoi ?}}. L'amélioration de cette partie ne devant pas être trop gourmande en temps mériterait d'\^etre modifiée. \\
+Pour finir, l'utilisation de \textit{regEfmTool} depuis l'interface que nous avons créé dépend de la configuration du serveur Web installé sur la machine. Dans notre cas les tests étaient fait sous \emph{apache2} sur nos machines personnelles (la configuration du serveur sur les machines du \emph{CREMI} étant trop restrictives, il nous était impossible d'exécuter le logiciel).
+
+
+
