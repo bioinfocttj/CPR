@@ -1,0 +1,197 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{ucs}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Typhaine PL}
+\setcounter{tocdepth}{1} 
+\usepackage{lmodern}
+\usepackage{fancyvrb}
+\definecolor{Zgris}{rgb}{0.87,0.85,0.85}
+
+% Pour avoir du code coloré
+\usepackage{listings}
+\lstset{
+language=HTML,        % choix du langage
+basicstyle=\ttfamily\footnotesize,       % taille de la police du code
+keywordstyle=\ttfamily\bfseries\color{red},  %style des mots clefs
+commentstyle=\ttfamily\slshape\color{darkgreen},  %style des commentaires
+identifierstyle=  \ttfamily\color{blue},  %style des identificateurs
+stringstyle= \ttfamily\color{green},  %style des chaines de caractères
+showstringspaces=false,
+numbers=left,                   % placer les numéros de lignes à gauche (left)
+numberstyle=\footnotesize,        % taille de la police des numéros
+numbersep=6pt,            % distance entre le code et sa numérotation
+tabsize=4,
+xleftmargin=17pt,
+escapeinside={\%*}{*)},
+breaklines=true,
+breakatwhitespace=true,
+string=[b]{'}
+}
+
+\newsavebox{\BBbox}
+\newenvironment{DDbox}[1]{
+\begin{lrbox}{\BBbox}\begin{minipage}{\linewidth}}
+{\end{minipage}\end{lrbox}\noindent\colorbox{Zgris}{\usebox{\BBbox}} \\
+[.5cm]}
+
+\makeatletter
+\def\clap#1{\hbox to 0pt{\hss #1\hss}}%
+\def\ligne#1{%
+\hbox to \hsize{%
+\vbox{\centering #1}}}%
+\def\haut#1#2#3{%
+\hbox to \hsize{%
+\rlap{\vtop{\raggedright #1}}%
+\hss
+\clap{\vtop{\centering #2}}%
+\hss
+\llap{\vtop{\raggedleft #3}}}}%
+\def\bas#1#2#3{%
+\hbox to \hsize{%
+\rlap{\vbox{\raggedright #1}}%
+\hss
+\clap{\vbox{\centering #2}}%
+\hss
+\llap{\vbox{\raggedleft #3}}}}%
+\def\maketitle{%
+\thispagestyle{empty}\vbox to \vsize{%
+\haut{}{\@blurb}{}
+\vfill
+\vspace{1cm}
+\begin{flushleft}
+\usefont{OT1}{ptm}{m}{n}
+\huge \@title
+\end{flushleft}
+\par
+\hrule height 4pt
+\par
+\begin{flushright}
+\usefont{OT1}{phv}{m}{n}
+\Large \@author
+\par
+\end{flushright}
+\vspace{1cm}
+\vfill
+\begin{center}
+\includegraphics[width=0.3\textwidth]{../Images/logo/logo.png}\\
+\vspace{2cm}
+\includegraphics[width=0.1\textwidth]{../Images/logounibdx.png}
+\end{center}
+\vfill
+\bas{}{\@date}{}
+}%
+\cleardoublepage
+}
+\def\date#1{\def\@date{#1}}
+\def\author#1{\def\@author{#1}}
+\def\title#1{\def\@title{#1}}
+\def\location#1{\def\@location{#1}}
+\def\blurb#1{\def\@blurb{#1}}
+\date{\today}
+\author{}
+\title{}
+\location{}\blurb{}
+\makeatother
+
+\title{Manuel de Maintenance de WRET}
+\author{\textsc{FR\`ECHE} Arnaud, \textsc{H\'ERIC\'E} Charlotte, \textsc{MOLA} Saraï,\\ \textsc{PAYSAN-LAFOSSE} Typhaine, \textsc{SANSEN} Joris}
+\location{Bordeaux}
+\blurb{%
+Universités de Bordeaux\\
+Master 2 BioInformatique
+\textbf{}\\[1em]
+\textsc{Marie \textsc{Beurton-Aimar}}
+}%
+\begin{document}
+\tableofcontents
+
+\chapter{Architecture de WRET}
+\section{Dossier et fichier}
+
+Notre programme se trouve dans un dossier général « CPR/ ». Il est agencé dans deux dossier distinct: \\
+\begin{itemize}
+\item WRET
+\item regEfmTool
+\end{itemize} 
+
+Le dossier WRET est composé de l'ensemble des fichiers constituant le site web ainsi que de dossiers contenant les langues et les images de WRET.\\
+
+Voici le listing de l'ensemble des fichiers organisé selon leur extension :
+\begin{itemize}
+\item fichiers PHP :
+\begin{itemize}
+\item all\_results.php
+\item copyrights.php
+\item create.php
+\item createFiles.php
+\item createGrfile.php
+\item display\_reults.php
+\item file\_choose.php
+\item finish\_files.php
+\item generules.php
+\item help.php
+\item help\_create.php
+\item help\_rules.php
+\item index.php
+\item init\_files.php
+\item instal.php
+\item load.php
+\item load\_files.php
+\item modifier.php
+\item modifyRules.php
+\item options.php
+\item parse\_results.php
+\item parser\_enzymes.php
+\item parser\_metabolite.php
+\item parser\_stoechiometry.php
+\item reac.php
+\item recupEnzymes.php
+\item results.php
+\end{itemize}
+\item fichiers JavasScript :
+\begin{itemize}
+\item actionLoad.js
+\item choixOptions.js
+\item generules.js 
+\end{itemize}
+\item fichier Python :
+\begin{itemize}
+\item parser\_stoechiometry.py
+\end{itemize}
+\item fichier CSS :
+\begin{itemize}
+\item style.css
+\end{itemize}
+\end{itemize} 
+
+Le dossier regEfmTool possède l'ensemble du logiciel \emph{RegEfmTool}
+qu'il faut installer. Pour cela se référer au manuel d'installation.
+
+\section{Modifications du code}
+\subsection{Dépendances} 
+Se référer au manuel d’installation.
+
+\subsection{Définition des répertoires de stockage}
+
+Par défaut, tous les répertoires sont définis par rapport au répertoire de WRET.
+
+
+\subsection{Evolution du code}
+\subsubsection{Nouveau fichier HTML}
+
+Pour ajouter une page HTML il suffit de la crée et d'ajouter, sur un page existante, un lien vers cette nouvelle page.
+
+Il y a possibilité d'ajouter un onglet au menu. Dans ce cas sur chaque page existante, dans le header, les références de l'onglet doivent \^etre ajoutées dans la div "menu" sur le modèle de l'exemple suivant : <li><a href="load.php">	<?php echo TXT_MENU_MODIFY; ?>	</a></li>.
+
+
+\end{document}

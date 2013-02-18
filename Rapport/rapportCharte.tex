@@ -1,0 +1,184 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{ucs}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Typhaine PL}
+\setcounter{tocdepth}{1} 
+\usepackage{lmodern}
+\usepackage{fancyvrb}
+\definecolor{Zgris}{rgb}{0.87,0.85,0.85}
+
+% Pour avoir du code coloré
+\usepackage{listings}
+\lstset{
+language=HTML,        % choix du langage
+basicstyle=\ttfamily\footnotesize,       % taille de la police du code
+keywordstyle=\ttfamily\bfseries\color{red},  %style des mots clefs
+commentstyle=\ttfamily\slshape\color{darkgreen},  %style des commentaires
+identifierstyle=  \ttfamily\color{blue},  %style des identificateurs
+stringstyle= \ttfamily\color{green},  %style des chaines de caractères
+showstringspaces=false,
+numbers=left,                   % placer les numéros de lignes à gauche (left)
+numberstyle=\footnotesize,        % taille de la police des numéros
+numbersep=6pt,            % distance entre le code et sa numérotation
+tabsize=4,
+xleftmargin=17pt,
+escapeinside={\%*}{*)},
+breaklines=true,
+breakatwhitespace=true,
+string=[b]{'}
+}
+
+\newsavebox{\BBbox}
+\newenvironment{DDbox}[1]{
+\begin{lrbox}{\BBbox}\begin{minipage}{\linewidth}}
+{\end{minipage}\end{lrbox}\noindent\colorbox{Zgris}{\usebox{\BBbox}} \\
+[.5cm]}
+
+\title{Charte Graphique - Logo - Background}
+\author{\textsc{FR\`ECHE} Arnaud, \textsc{H\'ERIC\'E} Charlotte, \textsc{MOLA} Saraï,\\ \textsc{PAYSAN-LAFOSSE} Typhaine, \textsc{SANSEN} Joris \\
+Universités de Bordeaux\\
+Master 2 BioInformatique \\
+\textsc{Marie \textsc{Beurton-Aimar}}}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+\section{Charte du logo WRET}
+\addcontentsline{toc}{chapter}{Charte du logo WRET}
+
+\section{Couleur de la Police}
+\noindent Noire  : \#050608, \\
+RGB	rgb(5, 6, 8), \\
+CMY	: Cyan (0.98), Magenta (0.976), Yellow (0.969).\\
+  
+\subsection{Police}
+Police W : Latin \\
+L'ensemble du logo a été réalisé avec le logiciel GIMP.
+
+\subsection{Logo}
+
+\begin{center}
+
+\includegraphics[width=0.3\textwidth]{../Images/logo/logo.png}\\
+\end{center}
+
+\section{Charte du site}
+\addcontentsline{toc}{chapter}{Charte du site}
+\subsection{Image des drapeaux}
+
+   \begin{minipage}{0.5\textwidth}
+   \includegraphics[width=0.1\textwidth]{../WRET/Images/French-Flag.png}\\
+
+   \end{minipage} 
+        
+   \begin{minipage}{0.5\textwidth}
+     \url{ www.iconeasy.com/}
+   \end{minipage}
+
+
+   \begin{minipage}{0.5\textwidth}
+     \includegraphics[width=0.1\textwidth]{../WRET/Images/germanFlag.png}\\
+   \end{minipage} 
+        
+   \begin{minipage}{0.5\textwidth}
+       \url{www.iconeasy.com/}
+   \end{minipage}
+
+
+
+   \begin{minipage}{0.5\textwidth}
+   \includegraphics[width=0.1\textwidth]{../WRET/Images/English-Language-Flag-3-icon.png}\\
+   \end{minipage} 
+        
+   \begin{minipage}{0.5\textwidth}
+     \url{  www.iconeasy.com/}
+   \end{minipage}
+
+
+
+
+
+
+\subsection{Background}
+\subsection{Site}
+\subsection{Page de fond}
+\fbox{%
+   \begin{minipage}{0.3\textwidth}
+      \includegraphics[width=0.3\textwidth]{../WRET/Images/background.png}\\
+   \end{minipage} 
+   
+      
+   \begin{minipage}{0.7\textwidth}
+       Fond bande gauche : 
+    \begin{itemize}
+    	\item bleu : \#4388CC, RGB	rgb(67, 136, 204), CMY	cyan: 0.737, magenta: 0.467, yellow: 0.2
+    \end{itemize}  
+   \end{minipage}%
+}
+
+
+
+\fbox{%
+   \begin{minipage}{0.3\textwidth}
+      \includegraphics[width=0.3\textwidth]{../WRET/Images/menu.png}\\
+   \end{minipage} 
+  
+   
+   \begin{minipage}{0.7\textwidth}
+      Fond barre de menu: 
+      \begin{itemize}
+   \item gris : \#A0A4A4 , RGB	rgb(160, 164, 164), CMY	cyan: 0.373, magenta: 0.357, yellow: 0.357.
+   \item noire  : \#050608, RGB	rgb(5, 6, 8), CMY	cyan: 0.98, magenta: 0.976, yellow: 0.969.
+   \end{itemize}
+   \end{minipage}%
+}
+
+
+
+\subsection{Page Chargement d'un réseau}
+\fbox{%
+   \begin{minipage}{0.3\textwidth}
+      \includegraphics[width=0.3\textwidth]{../WRET/Images/option1.png}\\
+   \end{minipage} 
+   
+   \begin{minipage}{0.7\textwidth}
+      \#4388CC, RGB	rgb(67, 136, 204), CMY	cyan: 0.737, magenta: 0.467, yellow: 0.2
+   \end{minipage}%
+}
+
+
+\fbox{%
+   \begin{minipage}{0.3\textwidth}
+      \includegraphics[width=0.3\textwidth]{../WRET/Images/option2.png}\\
+   \end{minipage} 
+   
+   \begin{minipage}{0.7\textwidth}
+     \#9ECAE1, RGB	rgb(158, 202, 225), CMY	cyan: 0.38, magenta: 0.208, yellow: 0.118.
+   \end{minipage}%
+}
+
+
+\fbox{%
+   \begin{minipage}{0.3\textwidth}
+      \includegraphics[width=0.3\textwidth]{../WRET/Images/option3.png}\\
+   \end{minipage} 
+   
+   \begin{minipage}{0.7\textwidth}
+      \#DEEBF7, RGB	rgb(222, 235, 247), CMY	cyan: 0.129, magenta: 0.078, yellow: 0.031.
+   \end{minipage}%
+}
+
+\end{document}
