@@ -26,7 +26,7 @@ function choixParam(formulaire) {
   //   valeur = " -" + formulaire.choix[2].value); 
   // }
  
-  var commande = "java -Xmx1G -jar ../regEfmtool.jar";
+  var commande = "java -Xmx1G -jar ../regEfmTool/regEfmtool.jar";
 
   // SAVE
   // Display

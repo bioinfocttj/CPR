@@ -26,9 +26,9 @@
 			//~ echo '<img src="Images/waiting.gif" alt="please Wait...">';
 			echo ('<img src="Images/waiting_fun.gif" alt="please Wait...">');
 			$com = $_COOKIE['commande'];
-			$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rfile -generule grfile -reac rfile > log.txt';
+			$com = 'java -Xmx1G -jar ../regEfmTool/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rfile -generule grfile -reac rfile > log.txt';
 			if ($_SESSION['isCompared']==0) {
-				$com = 'java -Xmx1G -jar ../regEfmTool.bak/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rvfile -generule grfile -reac rfile & > log.txt';
+				$com = 'java -Xmx1G -jar ../regEfmTool/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rvfile -generule grfile -reac rfile & > log.txt';
 				shell_exec($com);
 			}
 			else {
@@ -140,11 +140,7 @@
 			<h1><?php echo TXT_FILE_CHOOSE_TITLE; ?></h1>
 			<h4><?php echo TXT_FILE_CHOOSE_SUBTITLE; ?></h4>
 			</br>
-			<form action = <?php update()?> method="POST">
-				<label class='tooltip'><?php echo TXT_FILE_CHOOSE; ?></label>
-				<input type = "text"	name = "fichier">
-				<input type= "submit" value='ok'>
-			</form>
+			<a href='parse_results.php'>log</a>
 		</div>
 		<div id='compare' name='compare'>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
