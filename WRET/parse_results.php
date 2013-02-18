@@ -1,11 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html >
 <?php require("languages/choosen_languages.php");?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
 	<head>	
 		<link rel='stylesheet' media='screen' type='text/css' href='style.css'/>
 		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>
-		<title><?php echo TXT_PARSE_RESULTS_SITE_TITLE; ?></title>
+		<title><?php echo TXT_PARSE_RESULTS__SITE_TITLE; ?></title>
 		<style media="all" type="text/css"></style>
 	</head>
 	<?php 
@@ -42,9 +42,15 @@
 		
 		<h4><?php echo TXT_PARSE_RESULTS_FILE; ?></h4>
 	
-		<form name="fichier" action="display_results.php" method="POST">
+		<form name="fichier" method="POST" action="all_results.php">
 			<pre name="fichier"> Log.txt</pre>
-			</br></br>
+			<input type="submit" value="<?php echo TXT_FILE_CHOOSE_TITLE; ?>" >
+		</form>
+		
+		</br></br>
+			
+		<form name="fichier" action="display_results.php" method="POST">
+			<pre><?php echo TXT_PARSE_RESULTS_DISPLAY; ?></pre>
 			<?php
 				function item(){
 					
@@ -80,7 +86,8 @@
 					
 			
 			?>
-			<input type= "submit" value="ok" onclick="display_results.php">	
+			</br>
+			<input type= "submit" value="<?php echo TXT_BUTTON_RESULT; ?>" >	
 			
 		</form>
 	</body>

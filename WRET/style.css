@@ -51,6 +51,14 @@ input#removeext{
 	margin-left:10px;
 }
 
+input#sfile{
+	margin-left:5px;
+}
+
+input#rfile{
+	margin-left:8px;
+}
+
 b#int{
 	margin-left:100px; 
 }
@@ -406,6 +414,8 @@ div#new{
 	width:30%;
 }
 div#compare{
+	position:relative;
+	margin-top:10%;
 	float:left;
 	width:60%;
 }

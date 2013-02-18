@@ -254,8 +254,7 @@ function choixParam(formulaire) {
     valeur14 = " -" + formulaire.choix14[1].value; 
     commande = commande + valeur14;
   }
-  commande = commande + " &";
-  alert(commande);
+  document.cookie="resultat="+nom7;
   document.cookie="commande="+commande;
   window.location.assign('results.php');
 }

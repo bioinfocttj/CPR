@@ -7,28 +7,36 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 		<title><?php echo TXT_DISPLAY_RESULTS_SITE_TITLE; ?></title>
 		<style media="all" type="text/css"></style>
+		<script type="text/javascript">
+			// Popup window code
+			function newPopup(url) {
+				popupWindow = window.open(url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+			}
+		</script>
 	<?php
 		function compare(){
-			$_SESSION["isCompared"]=0;
+			$_SESSION["isCompared"]=1;
 			print ("<script language = \"JavaScript\">");
 			print ("location.href = 'index.php';"); 
 			print ("</script>");
 		}
 		
 		function finish(){
-			$_SESSION["isCompared"]=1;
+			$_SESSION["isCompared"]=0;
 			print ("<script language = \"JavaScript\">"); 
 			print ("location.href = 'index.php';"); 
 			print ("</script>");
 		}
 		
 		function waiting(){
-			//~ echo '<img src="Images/waiting.gif" alt="please Wait...">';
-			echo ('<img src="Images/waiting_fun.gif" alt="please Wait...">');
+			echo '<img src="Images/waiting.gif" alt="please Wait...">';
+			//~ echo ('<img src="Images/waiting_fun.gif" alt="please Wait...">');
 			$com = $_COOKIE['commande'];
-			$com = 'java -Xmx1G -jar ../regEfmTool/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rfile -generule grfile -reac rfile > log.txt';
 			if ($_SESSION['isCompared']==0) {
-				$com = 'java -Xmx1G -jar ../regEfmTool/regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -out text-doubles modes2.text -maxthreads 2 -normalize none -stoich sfile -meta mfile -rev rvfile -generule grfile -reac rfile & > log.txt';
+				$com = $com . ' > log.txt';
+				shell_exec($com);
+			if ($_SESSION['isCompared']==1) {
+				$com = $com . ' > log.txt';
 				shell_exec($com);
 			}
 			else {
@@ -38,7 +46,8 @@
 		}
 		
 		function parse_res(){
-			$file = file('modes2.text');
+			$f = $_COOKIE["resultat"];
+			$file = file($f);
 			$reac = file('rfile');
 			$modes=array();
 			foreach($reac as &$lines){
@@ -58,7 +67,8 @@
 			return $modes;
 			//~ echo '<p>' . $modes[2][3] . '</p>';
 		}
-		
+		function update(){
+		}
 		function show_results($modes){
 			echo '<table>';
 			$m = 0;
@@ -66,7 +76,7 @@
 				echo '<tr>';
 				$temp = '';
 				echo '<td>';
-				echo 'mode ' . $m;
+				echo 'm' . $m . '|';
 				echo '</td>';
 				$m=$m + 1;
 				foreach ($value as $v){
@@ -111,7 +121,7 @@
 		<h1><?php echo TXT_DISPLAY_RESULTS_TITLE; ?></h1>
 		<div id="results" name="results" title="waiting_results" >
 			<?php
-				if ($_SESSION["isCompared"]==0){
+				if ($_SESSION["isCompared"]==1){
 					$res=$_SESSION["compare"];
 					echo "<div id='original' name='original' title='original results' >";
 					echo '<p>' . TXT_DISPLAY_RESULTS_ORIGINAL . '</p>';
@@ -132,7 +142,12 @@
 					$_SESSION['compare']=$res2;
 				?>
 			</div>
+			<div id="log" name="log" title="log">
+				<h1><?php echo TXT_FILE_CHOOSE_TITLE; ?></h1>
+				<a href="JavaScript:newPopup('parse_results.php');">PopUp</a>
+			</div>
 		</div>
+<<<<<<< HEAD
 		<div id="log" name="log" title="log">
 			<?php 
 				function update(){echo 'ploup';}
@@ -142,6 +157,9 @@
 			</br>
 			<a href='parse_results.php'>log</a>
 		</div>
+=======
+		
+>>>>>>> 84a23bf97517e56dcc314a2748f15f9e67cf98e4
 		<div id='compare' name='compare'>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<input type="submit" name="compare" value="<?php echo TXT_COMPARE_BUTTON; ?>">

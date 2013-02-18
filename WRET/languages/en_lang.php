@@ -7,7 +7,8 @@ define('TXT_SITE_TITLE', "Homepage of WebRegEfmTool");
 define('TXT_HOMEPAGE_BODY', "This tool is used for regEfmtool.<br />
 		You can create, load, modify a metabolic network.<br />
 		The aim is to launch a simulation from you browser.");
-define('TXT_HOMEPAGE_COPYRIGHT', "See the <a href=\"copyright.php\">Copyright</a>");
+define('TXT_HOMEPAGE_COPYRIGHT', "See the <a href=\"copyright.php\">Copyright</a>.");
+define('TXT_HOMEPAGE_INSTAL', "See the system <a href=\"instal.php\">requirements</a>.");
 //---------------------------------------------------------
 // page1.php
 //---------------------------------------------------------
@@ -56,6 +57,8 @@ define('TXT_NEXTSTEP_BUTTON', "Next step");
 define('TXT_GO_BUTTON', "Go");
 define('TXT_COMPARE_BUTTON', "Compare");
 define('TXT_FINISH_BUTTON', "Finish");
+define('TXT_BUTTON_RESULT', "View the result");
+define('TXT_BUTTON_EXTRACTION', "Back: Extraction results");
 
 //---------------------------------------------------------
 // generules.php
@@ -91,6 +94,8 @@ define('TXT_LOAD_MFILE', ".mfile file");
 define('TXT_LOAD_RVFILE', ".rvfile file");
 define('TXT_LOAD_GRFILE', ".grfile file");
 define('TXT_LOAD_RFILE', ".rfile file");
+define('TXT_LOAD_TITLE2', "Next step of loading");
+define('TXT_LOAD_INSTRUCTION_3', "Please, choose the files to load");
 //---------------------------------------------------------
 // modify.php
 //---------------------------------------------------------
@@ -103,7 +108,6 @@ define('TXT_MODIFY_INSTRUCTION_1', "Not yet implemented");
 //---------------------------------------------------------
 define('TXT_OPTIONS_SITE_TITLE', "Choice of the options for the network analysis");
 define('TXT_OPTIONS_TITLE', "Choice of the options for WRET running ");
-define('TXT_OPTIONS_INSTRUCTION_1', "Please check the necessary options :");
 define('TXT_OPTIONS_INSTRUCTION_1', "Please check the necessary options : <br/>
 		(Mandatoru options are checked as default)");
 define('TXT_OPTIONS_SAVING_1', "Loading  ");
@@ -244,10 +248,10 @@ define('TXT_COPYRIGHT_CPY', "© Copyright 2013 <br />
 			The aim of this interface is to give a user-friendly environment to the software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. ");
 
 //---------------------------------------------------------
-// file_choose.php
+// results.php
 //---------------------------------------------------------
 define('TXT_FILE_CHOOSE_SITE_TITLE', "Results");
-define('TXT_FILE_CHOOSE_TITLE', "Visualization of results");
+define('TXT_FILE_CHOOSE_TITLE', "Log");
 define('TXT_FILE_CHOOSE_SUBTITLE', "Choose a file");
 define('TXT_FILE_CHOOSE', "File : ");
 
@@ -257,16 +261,28 @@ define('TXT_FILE_CHOOSE', "File : ");
 define('TXT_PARSE_RESULTS_SITE_TITLE', "Results");
 define('TXT_PARSE_RESULTS_TITLE', "Extraction results");
 define('TXT_PARSE_RESULTS_FILE', "File processed : ");
+define('TXT_PARSE_RESULTS_DISPLAY',"Extraction results below : ");
 
 //---------------------------------------------------------
 // display_results.php
 //---------------------------------------------------------
 define('TXT_DISPLAY_RESULTS_SITE_TITLE', "Results");
 define('TXT_DISPLAY_RESULTS_TITLE', "Display results");
-define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Choosen file");
+define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Log file");
 define('TXT_DISPLAY_RESULTS_FILE', "File processed : ");
-define('TXT_DISPLAY_RESULTS_ORIGINAL', "original : ");
-define('TXT_DISPLAY_RESULTS_NEW', "new : ");
+define('TXT_DISPLAY_RESULTS_ORIGINAL', "Original : ");
+define('TXT_DISPLAY_RESULTS_NEW', "New : ");
+
+//---------------------------------------------------------
+// instal.php
+//---------------------------------------------------------
+define('TXT_INSTAL_TITLE', "Requirements");
+define('TXT_INSTAL_TXT', "To use this interface, you have to : <br />
+			- have the Java7 version <br />
+			- change the variables JAR and JAVAC of the file Makefile in the folder regEfmtool : <br />
+			JAR=/usr/lib/jvm/java-7-sun/bin/jar and JAVAC=/usr/lib/jvm/java-7-sun/bin/javac (depending on what you have) <br />
+			- have download the software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. <br />
+			If you want to use regEfmtool from an other folder, you have to change the pathways of the files in the code.");
 
 //---------------------------------------------------------
 // Fin

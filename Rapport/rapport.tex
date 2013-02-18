@@ -119,11 +119,11 @@ Master 2 BioInformatique
 \chapter*{Résumé}
 \addcontentsline{toc}{chapter}{Résumé}
 
-Le logiciel \emph{regEfmtool} permet la modélisation de réseaux métaboliques et le calcul de mode élémentaires. Ce logiciel fonctionne sous environnement \emph{UNIX} uniquement en ligne de commande et nécessite plusieurs fichiers d'entrée au format texte. Ces derniers doivent être générés à la main et contiennent les informations sur ce réseaux. Sa prise en main n'est donc pas aisée pour un utilisateur ne possédant aucune connaissance en programmation.\\
+Le logiciel \textit{regEfmtool} permet la modélisation de réseaux métaboliques et le calcul de modes élémentaires. Ce logiciel fonctionne sous environnement \emph{UNIX} uniquement en ligne de commandes et nécessite plusieurs fichiers d'entrée au format texte. Ces derniers doivent être générés à la main et contiennent les informations sur ce réseau. Sa prise en main n'est donc pas aisée pour un utilisateur ne possédant aucune connaissance en programmation.\\
 
-Dans le cadre de l'UE Conception d'un Projet de Recherche du Master 2 BioInformatique, notre but était de réaliser une interface graphique (en langages Web) afin de pallier au manque d'ergonomie de \emph{regEfmtool}. A l'heure actuelle aucune méthode ne permet de générer les fichiers d'entrée de \emph{regEfmtool}, ni de le lancer sans ligne de commande.\\
+Dans le cadre de l'UE Conception d'un Projet de Recherche du Master 2 BioInformatique, notre but était de réaliser une interface graphique (en langages Web) afin de pallier au manque d'ergonomie de \textit{regEfmtool}. Puisque jusqu'à aujourd'hui aucune méthode ne permet de générer les fichiers d'entrée de ce logiciel, ni de le lancer sans ligne de commande.\\
 
-Cette interface nommée \emph{WRET : WebRegEfmTool} permet de générer les fichiers nécessaires a l'utilisation de ce logiciel de modélisation sans avoir à l'installer  sur son système. Elle permet également la création de réseaux au format \emph{DAT} afin de lancer des simulations comparées sur le logiciel \emph{METATOOL}.
+Cette interface nommée \emph{WRET : WebRegEfmTool} permet de générer les fichiers nécessaires à l'utilisation de ce logiciel de modélisation sans avoir à l'installer sur son système. Elle permet également la création de réseaux au format \emph{DAT} afin de lancer des simulations comparées sur le logiciel \emph{METATOOL}.
 
 \tableofcontents
 \listoffigures
@@ -131,22 +131,11 @@ Cette interface nommée \emph{WRET : WebRegEfmTool} permet de générer les fich
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-Afin de nous entraîner au travail en milieu de recherche, et d'appliquer des méthodologies et des notions enseignées au cours de notre master, nous devons réaliser un projet de recherche.
+RegEfmtool (Regulatory elementary flux mode tool) est un outil de calcul qui combine le calcul des modes élémentaires de flux dans les réseaux métaboliques avec des réseaux de régulation transcriptionnelle. Plus précisément, regEfmtool ne calcule que les modes de flux élémentaires qui sont conformes à la réglementation transcriptionnelle. Comme celle-ci exclut la plupart des modes mathématiquement possibles de flux élémentaires pour des raisons biologiques, regEfmtool permet de réduire considérablement le coût de calcul de modes de flux élémentaires. Il s'agit donc la d'un outil performant et utile pour des biologistes. Cependant, il n'est pas très convivial pour un utilisateur n'ayant pas de notions en informatique. En effet, l'environnement \emph{UNIX} et le fait de devoir utiliser ce logiciel en ligne de commende pourrait être rédhibitoire pour certains, ce qui serait dommage. \\
 
-Le logiciel \emph{regEfmTool} développé par Christian Jungreuthmayer et Jürgen Zanghellini de l'Austrian Centre for Industrial Biotechnology. 
-\\Ce logiciel permet le calcul des modes élémentaires au sein d'un réseaux métabolique.
+Pour pallier à ce problème, nous nous proposons de créer un interface graphique la plus ergonomique possible. Nous avons choisi de l'implémenter en utilisant les langages Web (au détriment des langages orientés objet). \\
 
-Il fonctionne uniquement en ligne de commande et nécessite plusieurs fichiers avec une syntaxe spécifique.
-
-Notre but dans ce projet été de réaliser une interface graphique, avec une liberté totale dans le choix des langages pour implémenter cette interface.
-Nous avons choisi d'employer des langages \emph{Web} face à de l'orienté objet, afin de manipuler de nouveaux langages de programmation.
-\\
-Dans une première partie nous présentons le contexte de ce projet, avec une présentation du sujet, un état de l'art des logiciels disponible en calculs de modes élémentaires, et une analyse des besoins de ce projet.
-
-Dans une seconde partie nous présentons les fonctionnalité de l'interface que nous avons réalisée face au problème posé.
-
-Et enfin dans une dernière partie nous expliquons comment cette interface est réalisée.
-
+Nous allons détailler notre approche dans la construction de cette interface. Nous verrons tout d'abord le contexte de ce projet, puis comment nous concevons cette interface et enfin comment nous l'avons réalisée. 
 
 \chapter{Analyse}
 
@@ -162,11 +151,11 @@ Et enfin dans une dernière partie nous expliquons comment cette interface est r
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
-Le but de ce projet été de réaliser une interface graphique pour le logiciel de calculs de modes élémentaire \emph{regEfmTool}. L'interface réalisée se présente sous la forme de pages \emph{Web}. Elle permet d'utiliser \emph{regEfmTool} sans avoir à passer par un terminal et permet la création de tous les fichiers d'entrée nécessaire au fonctionnement de ce logiciel.
-Elle permet également la création de réseaux au formats \emph{DAT} ce qui permet une édition des réseaux pour le logiciel \emph{Metatool} pour permettre une comparaison des résultats de calculs de modes élémentaire.\\
+Le but de ce projet été de réaliser une interface graphique pour le logiciel de calculs de modes élémentaires \textit{regEfmtool}. L'interface réalisée se présente sous la forme d'un site \emph{Web}. Elle permet d'utiliser \emph{regEfmtool} sans avoir à passer par un terminal et permet la création de tous les fichiers d'entrée nécessaires au fonctionnement de ce logiciel.
+Elle permet également la création de réseaux au formats \emph{DAT} ce qui permet une édition de ces derniers pour le logiciel \emph{METATOOL} pour permettre une comparaison des résultats de calculs de modes élémentaires.\\
 
-Ce projet nous a permis de nous familiariser avec les langages propre au communications et protocoles \emph{WEB}, et également de mesurer l'importance d'une bonne gestion d'un travail en équipe aussi bien au niveau de la répartition des taches que de la mise en commun du travail effectué.
-
+Ce projet nous a permit de nous familiariser avec les langages propre au communications et protocoles \emph{Web}, et également de mesurer l'importance d'une bonne gestion d'un travail en équipe aussi bien au niveau de la répartition des tâches que de la mise en commun du travail effectué.
+Conclusion ...
 
 \bibliographystyle{unsrt}
 \bibliography{rapport}

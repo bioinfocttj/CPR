@@ -13,8 +13,8 @@
 			$name=(isset($_POST["reac"])) ? $_POST["reac"] : "";
 			$reac = fopen('reactionTemp.txt','a');
 			$reac2 = fopen('reactionTemp2.txt','a');
-			fputs($reac, "$name \n");
-			fputs($reac2, "$name \n");
+			fputs($reac, "$name\n");
+			fputs($reac2, "$name\n");
 			fclose($reac);
 			fclose($reac2);
 			

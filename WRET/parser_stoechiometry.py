@@ -55,11 +55,12 @@ for reaction in reactions:
 					elif reaction.split()[word-2]=="+":
 						matrix_reaction[i]=f
 					# Else his stoechiometry is -f
-					#matrix_reaction[i]=f						
-	matrix.append(matrix_reaction)
+					#matrix_reaction[i]=f
+	if matrix_reaction != [0]*len(liste_reac):
+		matrix.append(matrix_reaction)
 
 
-
+print matrix
 # Writing of the raw matrix 
 matrice = open("matrice.txt","w")
 for m in matrix:

@@ -7,7 +7,8 @@ define('TXT_HOMEPAGE_TITLE', 'Bienvenue sur WebRegEfmTool');
 define('TXT_HOMEPAGE_BODY', "Cet outil sert à l'utilisation du logiciel regEfmtool.<br />
 		Vous pourrez créer, charger, modifier un réseau métabolique.<br />
 		 Le but est de lancer une simualtion depuis votre navigateur.");
-define('TXT_HOMEPAGE_COPYRIGHT', "Voir le <a href=\"copyright.php\">Copyright</a>");
+define('TXT_HOMEPAGE_COPYRIGHT', "Voir le <a href=\"copyright.php\">Copyright</a>.");
+define('TXT_HOMEPAGE_INSTAL', "Voir la  <a href=\"instal.php\">configuration</a> requise.");
 //---------------------------------------------------------
 // menu.php
 //---------------------------------------------------------
@@ -57,6 +58,8 @@ define('TXT_NEXTSTEP_BUTTON', "Étape suivante");
 define('TXT_GO_BUTTON', "Lancement");
 define('TXT_COMPARE_BUTTON', "Comparer");
 define('TXT_FINISH_BUTTON', "Finir");
+define('TXT_BUTTON_RESULT', "Afficher le résultat");
+define('TXT_BUTTON_EXTRACTION', "Retour : Extraction des résultats");
 
 //---------------------------------------------------------
 // generules.php
@@ -92,6 +95,8 @@ define('TXT_LOAD_MFILE', "Fichier .mfile");
 define('TXT_LOAD_RVFILE', "Fichier .rvfile");
 define('TXT_LOAD_GRFILE', "Fichier .grfile");
 define('TXT_LOAD_RFILE', "Fichier .rfile");
+define('TXT_LOAD_TITLE2', "Suite du chargement");
+define('TXT_LOAD_INSTRUCTION_3', "Veuillez charger les fichiers nécessaires");
 
 //---------------------------------------------------------
 // modify.php
@@ -245,10 +250,10 @@ define('TXT_COPYRIGHT_CPY', "© Copyright 2013 <br />
 			Le but de cette interface est de fournir un environnement ergonomique au logiciel <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. ");
 
 //---------------------------------------------------------
-// all_results.php
+// results.php
 //---------------------------------------------------------
 define('TXT_FILE_CHOOSE_SITE_TITLE', "Résultats");
-define('TXT_FILE_CHOOSE_TITLE', "Visualisation de résultatS");
+define('TXT_FILE_CHOOSE_TITLE', "Log");
 define('TXT_FILE_CHOOSE_SUBTITLE', "Choisir un fichier");
 define('TXT_FILE_CHOOSE', "Fichier : ");
 
@@ -258,16 +263,28 @@ define('TXT_FILE_CHOOSE', "Fichier : ");
 define('TXT_PARSE_RESULTS__SITE_TITLE', "Résultats");
 define('TXT_PARSE_RESULTS_TITLE', "Extraction des résultats");
 define('TXT_PARSE_RESULTS_FILE', "Fichier traité : ");
+define('TXT_PARSE_RESULTS_DISPLAY',"Extraction des résultats ci-dessous : ");
 
 //---------------------------------------------------------
 // results.php
 //---------------------------------------------------------
 define('TXT_DISPLAY_RESULTS_SITE_TITLE', "Résultats");
 define('TXT_DISPLAY_RESULTS_TITLE', "Affichage des résultats");
-define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Fichier choisi");
+define('TXT_DISPLAY_RESULTS_INSTRUCTION_1',"Fichier log");
 define('TXT_DISPLAY_RESULTS_FILE', "Fichier traité : ");
-define('TXT_DISPLAY_RESULTS_ORIGINAL', "original : ");
-define('TXT_DISPLAY_RESULTS_NEW', "nouveau : ");
+define('TXT_DISPLAY_RESULTS_ORIGINAL', "Original : ");
+define('TXT_DISPLAY_RESULTS_NEW', "Nouveau : ");
+
+//---------------------------------------------------------
+// instal.php
+//---------------------------------------------------------
+define('TXT_INSTAL_TITLE', "Configuration");
+define('TXT_INSTAL_TXT', "Pour pouvoir utiliser cette interface, vous devez : <br />
+			- avoir la version 7 de Java <br />
+			- changer les variables JAR et JAVAC du fichier Makefile dans le dossier regEfmtool en : <br />
+			JAR=/usr/lib/jvm/java-7-sun/bin/jar et JAVAC=/usr/lib/jvm/java-7-sun/bin/javac (en fonction de ce que vous avez) <br />
+			- avoir téléchargé le logiciel <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. <br />
+			Si vous voulez utiliser regEfmtool depuis un autre dossier, il faut changer les chemins de fichiers dans le code du programme.");
 
 //---------------------------------------------------------
 // Fin

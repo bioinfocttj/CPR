@@ -1,0 +1,5 @@
+# including gene regulatory file
+java -Xmx188G -jar ../regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -stoich ecoli_core_full/sfile -rev ecoli_core_full/rvfile -meta ecoli_core_full/mfile -reac ecoli_core_full/rfile -out text-doubles ecoli_core_full/modes.text -normalize none -maxthreads 10 -generule ecoli_core_full/grfile
+
+# without gene regulatory file
+# java -Xmx188G -jar ../regEfmtool.jar -log console -level FINEST -format plain -kind stoichiometry -stoich ecoli_core_full/sfile -rev ecoli_core_full/rvfile -meta ecoli_core_full/mfile -reac ecoli_core_full/rfile -out text-doubles ecoli_core_full/modes.text -normalize none -maxthreads 10

@@ -1,11 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html >
 <?php require("languages/choosen_languages.php");?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
 	<head>
 		<title><?php echo TXT_DISPLAY_RESULTS_SITE_TITLE; ?></title>
 		<link rel="stylesheet" media="screen" type="text/css" href="style.css"/>
-		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">s 
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<style media="all" type="text/css"></style>
 	</head>
 	
@@ -47,7 +47,10 @@
 		<h4><?php echo TXT_DISPLAY_RESULTS_INSTRUCTION_1; ?> </h4>
 		
 		
-		<form action="" method="POST">
+		<form action="parse_results.php" method="POST">
+			
+			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>">
+			
 			<?php
 			
 			function results(){
@@ -78,7 +81,7 @@
 			echo results();
 			echo '</form></br>';
 			?>
-			
+			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>">
 			
 		</form>
 	</body>

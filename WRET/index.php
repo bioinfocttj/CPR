@@ -40,5 +40,6 @@
 		</br>
 		<p><?php echo TXT_HOMEPAGE_BODY; ?></p>
 		<p><?php echo TXT_HOMEPAGE_COPYRIGHT; ?></p>
+		<p><?php echo TXT_HOMEPAGE_INSTAL; ?></p>
 	</body>
 </html>
