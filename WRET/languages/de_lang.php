@@ -280,7 +280,8 @@ define('TXT_INSTAL_TXT', "Um dieses Interface zu verwenden, müssen Sie: <br />
 			- Haben die Java7 Version <br />
 			- Ändern Sie die Variablen JAR und JAVAC der Datei Makefile im Ordner regEfmtool : <br />
 			JAR=/usr/lib/jvm/java-7-sun/bin/jar and JAVAC=/usr/lib/jvm/java-7-sun/bin/javac (je nachdem, was Sie haben) <br />
-			- Haben die Software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a> herunterladen. ");
+			- Haben die Software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a> herunterladen.  <br />
+			Wenn Sie regEfmtool aus einem anderen Ordner verwenden möchten, müssen Sie die Datei-Pfade im Programmcode zu ändern.");
 
 //---------------------------------------------------------
 // Fin
