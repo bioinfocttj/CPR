@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html >
 <?php require("languages/choosen_languages.php");?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
@@ -49,101 +49,101 @@
 		<form action="parse_results.php" method="POST">
 			<?php
 			
-			function results(){
-				$fichier = 'log.txt';
-				$start = $_POST['start'];
-				$end;
-				$numligne = 0;
-				global $item;
-				
-	
-				define ('FICHIER', $fichier);
-				$fichier = fopen( FICHIER, 'r')or die('Ouverture en lecture de "' . FICHIER . '" impossible !');
-				while (!feof($fichier)){
-						$numligne++;
-						$lignes = fgets($fichier, 1024);
-						$posi = strpos($lignes, '|'); 
-						$ligne = trim(substr($lignes,$posi+1,strlen($lignes))); 
-						$resultats[] = trim($ligne); 
+				function results(){
+					$fichier = 'log.txt';
+					$start = $_POST['start'];
+					$end;
+					$numligne = 0;
+					global $item;
+					
+		
+					define ('FICHIER', $fichier);
+					$fichier = fopen( FICHIER, 'r')or die('Ouverture en lecture de "' . FICHIER . '" impossible !');
+					while (!feof($fichier)){
+							$numligne++;
+							$lignes = fgets($fichier, 1024);
+							$posi = strpos($lignes, '|'); 
+							$ligne = trim(substr($lignes,$posi+1,strlen($lignes))); 
+							$resultats[] = trim($ligne); 
 
-						$pos = strpos($ligne, ':' );
-						if ( $pos == true && $numligne >= 32){
-							$line = trim(substr($ligne,0, $pos)); 
-							$item[] = $line;
-						}
-				}
-				
-				$count = count($resultats);
-				$counte = count($item);
-				$motif='R';
-				$vraie=true; 
-				$vrai = true;
-				//Cas ou $start est sous la forme R1:
-				if (preg_match($motif,$start)){
-					for ($numero=0; $numero<$count; $numero++){
-						if (preg_match('/^'.$start.'/i', $resultats[$numero])){
-							echo '<div>';
-							echo '<pre>' .$resultats[$numero]. '</pre>';
-							echo '</div>';
-							fclose($fichier);
-							return;
-						}
-			
+							$pos = strpos($ligne, ':' );
+							if ( $pos == true && $numligne >= 32){
+								$line = trim(substr($ligne,0, $pos)); 
+								$item[] = $line;
+							}
 					}
-				}
-				//l'autre cas
-				if ($vraie){
-					for ($num = 0; $num < $counte; $num++){
-						if (preg_match('/^'.$start.'/',$item[$num]) && !preg_match('/^'.$motif.'/',$item[$num+1])){
-							$end = $item[$num+1];
-							$vraie = false;
+					
+					$count = count($resultats);
+					$counte = count($item);
+					$motif='R';
+					$vraie=true; 
+					$vrai = true;
+					//Cas ou $start est sous la forme R1:
+					if (preg_match($motif,$start)){
+						for ($numero=0; $numero<$count; $numero++){
+							if (preg_match('/^'.$start.'/i', $resultats[$numero])){
+								echo '<div>';
+								echo '<pre>' .$resultats[$numero]. '</pre>';
+								echo '</div>';
+								fclose($fichier);
+								return;
+							}
+				
 						}
-						else if (preg_match('/^'.$start.'/',$item[$num]) && preg_match('/^'.$motif.'/',$item[$num+1])){
-							for ($numer = $num; $numer < $counte; $numer++){
-								if (preg_match('/^'.$motif.'/',$item[$numer])){
-									$end = $item[$numer];
-									$vraie = false;
+					}
+					//l'autre cas
+					if ($vraie){
+						for ($num = 0; $num < $counte; $num++){
+							if (preg_match('/^'.$start.'/',$item[$num]) && !preg_match('/^'.$motif.'/',$item[$num+1])){
+								$end = $item[$num+1];
+								$vraie = false;
+							}
+							else if (preg_match('/^'.$start.'/',$item[$num]) && preg_match('/^'.$motif.'/',$item[$num+1])){
+								for ($numer = $num; $numer < $counte; $numer++){
+									if (preg_match('/^'.$motif.'/',$item[$numer])){
+										$end = $item[$numer];
+										$vraie = false;
+									}
 								}
 							}
 						}
 					}
-				}
-			
-				if ($vrai){
-					for ($nume = 0; $nume < $count; $nume++){
-						if (preg_match('/^'.$start.'/',$resultats[$nume])){
-							$start_pos=$nume;
-							$vrai = false;
+				
+					if ($vrai){
+						for ($nume = 0; $nume < $count; $nume++){
+							if (preg_match('/^'.$start.'/',$resultats[$nume])){
+								$start_pos=$nume;
+								$vrai = false;
+							}
+						}
+					}
+				
+					for ($numero = $start_pos; $numero < $count; $numero++){
+						if (preg_match('/^'.$start.'/', $resultats[$numero])){
+							echo '<div>';
+							echo '<pre>' . $resultats[$numero] . '</pre>';
+
+						}
+						else if (preg_match('/^'.$end.'/', $resultats[$numero])){
+							echo'</div>';
+							fclose($fichier);
+							return;
+						}
+						else if (preg_match('/^'.$motif.'/', $resultats[$numero])){
+							echo '<pre>' . $resultats[$numero] . '</pre>'; 
+
+						}
+						else{
+							echo '<pre>' . $resultats[$numero] . '</pre>'; 
+
 						}
 					}
 				}
-			
-				for ($numero = $start_pos; $numero < $count; $numero++){
-					if (preg_match('/^'.$start.'/', $resultats[$numero])){
-						echo '<div>';
-						echo '<pre>' . $resultats[$numero] . '</pre>';
-
-					}
-					else if (preg_match('/^'.$end.'/', $resultats[$numero])){
-						echo'</div>';
-						fclose($fichier);
-						return;
-					}
-					else if (preg_match('/^'.$motif.'/', $resultats[$numero])){
-						echo '<pre>' . $resultats[$numero] . '</pre>'; 
-
-					}
-					else{
-						echo '<pre>' . $resultats[$numero] . '</pre>'; 
-
-					}
+				
+				if (isset($_POST['start'])) { 
+					echo results();
+						
 				}
-			}
-			
-			if (isset($_POST['start'])) { 
-				echo results();
-					
-			}
 			?>
 			<input type= "submit" value="<?php echo TXT_BUTTON_EXTRACTION; ?>" >
 			

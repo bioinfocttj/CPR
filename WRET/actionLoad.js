@@ -18,17 +18,6 @@ function choixParam(formulaire) {
   var valeur12 = "";
   var valeur13 = "";
   var valeur14 = "";
-
-  // Test
-  // if (formulaire.choix[0].checked) { 
-  //   valeur = " -" + formulaire.choix[0].value); 
-  // }
-  // if (formulaire.choix[1].checked) { 
-  //   valeur = " -" + formulaire.choix[1].value); 
-  // }
-  // if (formulaire.choix[2].checked) { 
-  //   valeur = " -" + formulaire.choix[2].value); 
-  // }
  
   var commande = "java -Xmx1G -jar ../regEfmTool/regEfmtool.jar";
 
@@ -96,60 +85,6 @@ function choixParam(formulaire) {
     valeur4 = " -" + formulaire.choix4[3].value; 
     commande = commande + valeur4;
   }
-  // else if (formulaire.choix4[4].checked) { 
-  //   valeur4 = " -" + formulaire.choix4[4].value; 
-  //   commande = commande + valeur4;
-  // }
-  // else if (formulaire.choix4[5].checked) { 
-  //   valeur4 = " -" + formulaire.choix4[5].value; 
-  //   commande = commande + valeur4;
-  // }
-  // Analysor
-  // var nom5 = document.getElementById('stoich').value;
-  // valeur5 = " -" + formulaire.stoich.id + " " + nom5; 
-  // commande = commande + valeur5;
-
-  // var nom51 = document.getElementById('meta').value;
-  // valeur51 = " -" + formulaire.meta.id + " " + nom51; 
-  // commande = commande + valeur51;
-  
-  // var nom52 = document.getElementById('rev').value;
-  // valeur52 = " -" + formulaire.rev.id + " " + nom52; 
-  // commande = commande + valeur52;
-  
-  // var nom53 = document.getElementById('generule').value;
-  // valeur53 = " -" + formulaire.generule.id + " " + nom53; 
-  // commande = commande + valeur53;
-  
-  // var nom54 = document.getElementById('reac').value;
-  // valeur54 = " -" + formulaire.reac.id + " " + nom54; 
-  // commande = commande + valeur54;
-  
-  // if (formulaire.choix51.checked) { 
-  //   var nom5 = document.getElementById('texte50').value;
-  //   valeur5 = " -" + formulaire.choix51.value + " " + nom5; 
-  //   commande = commande + valeur5;
-  // }
-  // if (formulaire.choix52.checked) { 
-  //   var nom5 = document.getElementById('texte5').value;
-  //   valeur5 = " -" + formulaire.choix52.value + " " + nom5; 
-  //   commande = commande + valeur5;
-  // }
-  // if (formulaire.choix53.checked) { 
-  //   var nom5 = document.getElementById('texte51').value;
-  //   valeur5 = " -" + formulaire.choix53.value + " " + nom5; 
-  //   commande = commande + valeur5;
-  // }
-  // if (formulaire.choix54.checked) { 
-  //   var nom5 = document.getElementById('texte52').value;
-  //   valeur5 = " -" + formulaire.choix54.value + " " + nom5; 
-  //   commande = commande + valeur5;
-  // }
-  // if (formulaire.choix55.checked) { 
-  //   var nom5 = document.getElementById('texte53').value;
-  //   valeur5 = " -" + formulaire.choix55.value + " " + nom5; 
-  //   commande = commande + valeur5;
-  // }
   
   // COMPRESSION
   if (formulaire.choix6[0].checked) { 

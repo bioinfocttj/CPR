@@ -111,20 +111,6 @@ border-radius:4px;
 -webkit-box-shadow: 5px 5px 8px #CCC; 
 box-shadow: 5px 5px 8px #CCC; }
 
-/*li#bu1 a, li#bu2 a, li#bu3 a, li#bu4 a, li#bu5 a, li#bu6 a {
-	background: transparent; position: absolute;
-	left: 30px;	width: 120px;
-	height: 32px;	bottom: 0;
-	text-decoration: none;
-}
-
-li#bu1 a { top: 318px ;  background: url(Images/home.png) 0 0 no-repeat; }
-li#bu2 a { top: 350px ;  background: url(Images/new.png) 0 0 no-repeat; }
-li#bu3 a { top: 382px ;  background: url(Images/new_network-bis.png) 0 0 no-repeat; }
-li#bu4 a { top: 414px ;  background: url(Images/load.png) 0 0 no-repeat; }
-li#bu5 a { top: 446px ;  background: url(Images/modify.png) 0 0 no-repeat; }
-li#bu6 a { top: 478px ;  background: url(Images/help.png) 0 0 no-repeat; }*/
-
 /* Options page disposition */
 #loadBody{
 	text-align: center;

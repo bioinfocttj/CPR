@@ -71,10 +71,6 @@
 				}
 			}
 			fclose($data);
-			print_r($metab3);
-			# Redirection to the file-creation page 
-			//header('Refresh:1 ; url=create.php');
-			echo 'You\'ll be redirected in about 3 secs. If not, click <a href="create.php">here</a>.';
 
 		?>
 	</body>

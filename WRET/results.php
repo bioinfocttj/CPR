@@ -30,7 +30,6 @@
 		
 		function waiting(){
 			echo '<img src="Images/waiting.gif" alt="please Wait...">';
-			//~ echo ('<img src="Images/waiting_fun.gif" alt="please Wait...">');
 			$com = $_COOKIE['commande'];
 			if ($_SESSION['isCompared']==0) {
 				$com = $com . ' > log.txt';
@@ -55,17 +54,13 @@
 				$reactions = explode(" ",$lines);
 				$modes[0]=$reactions;
 			}
-			//~ $lines=explode("\n",$file);
 			$i=1;
 			foreach($file as &$lines){
-				//~ $temp = $temp . $line;
 				$values=explode("\t",$lines);
 				$modes[$i]=$values;
 				$i++;
-				//~ echo '<p>'.$lines.'</p>';
 			}
 			return $modes;
-			//~ echo '<p>' . $modes[2][3] . '</p>';
 		}
 		function update(){
 		}
@@ -92,7 +87,6 @@
 	?>
 	</head>
 		<?php 
-			//~ echo $_COOKIE['commande'];
 			$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
 			$host = $_SERVER['HTTP_HOST'];
 			$script = $_SERVER['SCRIPT_NAME'];
@@ -147,19 +141,7 @@
 				<a href="JavaScript:newPopup('parse_results.php');">PopUp</a>
 			</div>
 		</div>
-<<<<<<< HEAD
-		<div id="log" name="log" title="log">
-			<?php 
-				function update(){echo 'ploup';}
-			?>
-			<h1><?php echo TXT_FILE_CHOOSE_TITLE; ?></h1>
-			<h4><?php echo TXT_FILE_CHOOSE_SUBTITLE; ?></h4>
-			</br>
-			<a href='parse_results.php'>log</a>
-		</div>
-=======
-		
->>>>>>> 84a23bf97517e56dcc314a2748f15f9e67cf98e4
+
 		<div id='compare' name='compare'>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<input type="submit" name="compare" value="<?php echo TXT_COMPARE_BUTTON; ?>">

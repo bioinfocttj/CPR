@@ -56,7 +56,6 @@
 			print ("<script language = \"JavaScript\">"); 
 			print ("location.href = 'results.php';"); 
 			print ("</script>");
-			}
-		//else echo 'prout';
+		}
 	?>
 </html>

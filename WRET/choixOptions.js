@@ -14,17 +14,6 @@ function choixParam(formulaire) {
   var valeur12 = "";
   var valeur13 = "";
   var valeur14 = "";
-
-  // Test
-  // if (formulaire.choix[0].checked) { 
-  //   valeur = " -" + formulaire.choix[0].value); 
-  // }
-  // if (formulaire.choix[1].checked) { 
-  //   valeur = " -" + formulaire.choix[1].value); 
-  // }
-  // if (formulaire.choix[2].checked) { 
-  //   valeur = " -" + formulaire.choix[2].value); 
-  // }
  
   var commande = "java -Xmx1G -jar ../regEfmTool/regEfmtool.jar";
 
@@ -92,14 +81,6 @@ function choixParam(formulaire) {
     valeur4 = " -" + formulaire.choix4[3].value; 
     commande = commande + valeur4;
   }
-  // else if (formulaire.choix4[4].checked) { 
-  //   valeur4 = " -" + formulaire.choix4[4].value; 
-  //   commande = commande + valeur4;
-  // }
-  // else if (formulaire.choix4[5].checked) { 
-  //   valeur4 = " -" + formulaire.choix4[5].value; 
-  //   commande = commande + valeur4;
-  // }
   // Analysor
   if (formulaire.choix51.checked) { 
     var nom5 = document.getElementById('texte50').value;

@@ -284,7 +284,8 @@ define('TXT_INSTAL_TXT', "Pour pouvoir utiliser cette interface, vous devez : <b
 			- changer les variables JAR et JAVAC du fichier Makefile dans le dossier regEfmtool en : <br />
 			JAR=/usr/lib/jvm/java-7-sun/bin/jar et JAVAC=/usr/lib/jvm/java-7-sun/bin/javac (en fonction de ce que vous avez) <br />
 			- avoir téléchargé le logiciel <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. <br />
-			Si vous voulez utiliser regEfmtool depuis un autre dossier, il faut changer les chemins de fichiers dans le code du programme.");
+			Si vous voulez utiliser regEfmtool depuis un autre dossier, il faut changer les chemins de fichiers dans le code du programme.<br />
+			- L'utilisation de cette interface, tout le dossier de celle-ci doit être installé avec les accès d'un serveur internet (apache ou autres).");
 
 //---------------------------------------------------------
 // Fin

@@ -60,7 +60,6 @@ for reaction in reactions:
 		matrix.append(matrix_reaction)
 
 
-print matrix
 # Writing of the raw matrix 
 matrice = open("matrice.txt","w")
 for m in matrix:

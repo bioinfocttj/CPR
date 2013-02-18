@@ -282,7 +282,8 @@ define('TXT_INSTAL_TXT', "To use this interface, you have to : <br />
 			- change the variables JAR and JAVAC of the file Makefile in the folder regEfmtool : <br />
 			JAR=/usr/lib/jvm/java-7-sun/bin/jar and JAVAC=/usr/lib/jvm/java-7-sun/bin/javac (depending on what you have) <br />
 			- have download the software <a href=\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\"> regEfmtool</a>. <br />
-			If you want to use regEfmtool from an other folder, you have to change the pathways of the files in the code.");
+			If you want to use regEfmtool from an other folder, you have to change the pathways of the files in the code.<br />
+			- In order to use this interface, all the folder of WRET must have a server access (like apache). ");
 
 //---------------------------------------------------------
 // Fin
