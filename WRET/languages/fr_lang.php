@@ -205,24 +205,24 @@ define('TXT_HELP_GENERULES', "Aide à la création des règles des gènes");
 //help_rule.php
 //--------------------------------------------------------
 define('TXT_HELP_RULE_TITLE', "Aide");
-define('TXT_HELP_RULE_TITLE1', "Aide à la création des règles des gène");
+define('TXT_HELP_RULE_TITLE1', "Aide à la création des règles des gènes");
 define('TXT_HELP_RULE_INTRO', "La réaction gène-enzyme est générée grâce à des règles booléennes, comme par exemple R2= !R1.\n
 Ce qui veut dire:\n");
-define('TXT_FLUX_1', "Que la réaction R2 ne doit pas apporter de flux si R1 apporte un flux");
-define('TXT_FLUX_2', "Que R2 doit apporter un flux si R1 n'en apporte pas");
+define('TXT_HELP_RULE_FLUX_1', "Que la réaction R2 ne doit pas apporter de flux si R1 apporte un flux");
+define('TXT_HELP_RULE_FLUX_2', "Que R2 doit apporter un flux si R1 n'en apporte pas");
 define('TXT_HELP_RULE_1', "Une réaction R peut apporter un flux (R = 1) ou non (R = 0).");
 define('TXT_HELP_RULE_2', "Evidemment, des règles booléennes plus complexes existent dans les réseaux métaboliques. Elles peuvent être décrites à l'aide des opérateurs NOT, OR et AND.");
 define('TXT_HELP_RULE_3', "Pour indiquer le type d'activité d'une réaction , le préfix '0', '1' ou 'f' doit être utilisé dans le grfile.");
 define('TXT_HELP_RULE_4', "Par exemple, si la réaction R7 est 0-active, dans grfile elle se présentera sous la forme 0R7, tandis qu'une réaction pleinement active sera notée fR3.");
 define('TXT_HELP_RULE_INFO_TITLE', "Conversion des règles dans le format utilisé par regEfmtool");
 define('TXT_HELP_RULE_INFO_1', "Cette page vous permet de créer des règles sur les gènes du type:");
-define('TXT_R1', "IF R1 = 1 AND R2 = 0 THEN R3=1");
-define('TXT_R2', "IF R4 = 0 OR R2 = 1 THEN R1 = 0");
+define('TXT_HELP_RULE_R1', "IF R1 = 1 AND R2 = 0 THEN R3=1");
+define('TXT_HELP_RULE_R2', "IF R4 = 0 OR R2 = 1 THEN R1 = 0");
 define('TXT_HELP_RULE_INFO_2', "Lorsque vous cliquez sur le bouton \"ajouter\", les règles sont traduites et écrites dans le fichier grfile.txt qui pourra ensuite être utilisé par regEfmtool
 lors du calcul des modes élémentaires.");
 define('TXT_HELP_RULE_INFO_3', "La traduction des règles précédentes est:");
-define('TXT_R1_2', "R3 = (1R1 & (!0R2))");
-define('TXT_R2_2', "R1 = (!((!0R4) | 1R2))");
+define('TXT_HELP_RULE_R1_2', "R3 = (1R1 & (!0R2))");
+define('TXT_HELP_RULE_R2_2', "R1 = (!((!0R4) | 1R2))");
 
 //---------------------------------------------------------
 //help_create.php
