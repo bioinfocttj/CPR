@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.1.8)  20 FEB 2013 14:44
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.1.9)  20 FEB 2013 17:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1123,9 +1123,6 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./fond.png (PNG copy)>]
-(./beamerCPR_WRET.toc) [2
-
-]
 LaTeX Font Info:    Try loading font information for U+msa on input line 73.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1145,47 +1142,48 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <5> not available
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 73.
 
-<../Images/pyruvate.png, id=67, 476.78125pt x 440.64626pt>
-File: ../Images/pyruvate.png Graphic file (type png)
+<../Images/Rapport/glycolyse-1.png, id=48, 517.935pt x 325.215pt>
+File: ../Images/Rapport/glycolyse-1.png Graphic file (type png)
 
-<use ../Images/pyruvate.png>
-Package pdftex.def Info: ../Images/pyruvate.png used on input line 73.
-(pdftex.def)             Requested size: 119.195pt x 110.16129pt.
+<use ../Images/Rapport/glycolyse-1.png>
+Package pdftex.def Info: ../Images/Rapport/glycolyse-1.png used on input line 7
+3.
+(pdftex.def)             Requested size: 129.48343pt x 81.30354pt.
 
-Overfull \hbox (19.61037pt too wide) in paragraph at lines 73--73
+Overfull \hbox (29.89879pt too wide) in paragraph at lines 73--73
  [] 
  []
 
-[3
+[2
 
- <../Images/pyruvate.png>] [4
+ <../Images/Rapport/glycolyse-1.png>] [3
 
-] [5
+] [4
 
 ]
-<../Images/Rapport/create1.png, id=88, 869.43pt x 487.45378pt>
+<../Images/Rapport/create1.png, id=69, 1240.635pt x 608.2725pt>
 File: ../Images/Rapport/create1.png Graphic file (type png)
 
 <use ../Images/Rapport/create1.png>
 Package pdftex.def Info: ../Images/Rapport/create1.png used on input line 132.
-(pdftex.def)             Requested size: 248.90141pt x 139.5431pt.
- [6
+(pdftex.def)             Requested size: 262.73021pt x 128.80836pt.
+ [5
 
  <../Images/Rapport/create1.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <12> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 158.
 
-<../WRET/Diagramme/create2.png, id=93, 795.97375pt x 297.11pt>
+<../WRET/Diagramme/create2.png, id=75, 795.97375pt x 297.11pt>
 File: ../WRET/Diagramme/create2.png Graphic file (type png)
 
 <use ../WRET/Diagramme/create2.png>
 Package pdftex.def Info: ../WRET/Diagramme/create2.png used on input line 158.
 (pdftex.def)             Requested size: 221.24803pt x 82.58273pt.
 
-Overfull \vbox (0.84222pt too high) detected at line 158
+Overfull \vbox (3.05415pt too high) detected at line 158
  []
 
-[7
+[6
 
  <../WRET/Diagramme/create2.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
@@ -1198,38 +1196,38 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 Overfull \vbox (3.22873pt too high) detected at line 188
  []
 
-[8
+[7
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 232.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 232.
- <../Images/Rapport/dat2.png, id=106, 455.7025pt x 341.275pt>
-File: ../Images/Rapport/dat2.png Graphic file (type png)
-
-<use ../Images/Rapport/dat2.png>
-Package pdftex.def Info: ../Images/Rapport/dat2.png used on input line 232.
-(pdftex.def)             Requested size: 115.23285pt x 86.29753pt.
-
-<../Images/Rapport/modif.png, id=108, 696.6025pt x 320.19624pt>
+ <../Images/Rapport/modif.png, id=88, 696.6025pt x 320.19624pt>
 File: ../Images/Rapport/modif.png Graphic file (type png)
 
 <use ../Images/Rapport/modif.png>
 Package pdftex.def Info: ../Images/Rapport/modif.png used on input line 232.
 (pdftex.def)             Requested size: 122.91551pt x 56.49443pt.
+
+<../Images/Rapport/dat2.png, id=89, 455.7025pt x 341.275pt>
+File: ../Images/Rapport/dat2.png Graphic file (type png)
+
+<use ../Images/Rapport/dat2.png>
+Package pdftex.def Info: ../Images/Rapport/dat2.png used on input line 232.
+(pdftex.def)             Requested size: 115.23285pt x 86.29753pt.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <14.4> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 232.
 
 Overfull \vbox (3.97758pt too high) detected at line 232
  []
 
-[9
+[8
 
- <../Images/Rapport/dat2.png> <../Images/Rapport/modif.png>] [10
+ <../Images/Rapport/modif.png> <../Images/Rapport/dat2.png>] [9
 
 ]
-<../Images/Rapport/generules.png, id=119, 1241.63875pt x 586.19pt>
+<../Images/Rapport/generules.png, id=102, 1241.63875pt x 586.19pt>
 File: ../Images/Rapport/generules.png Graphic file (type png)
 
 <use ../Images/Rapport/generules.png>
@@ -1241,17 +1239,17 @@ Overfull \hbox (6.74084pt too wide) in paragraph at lines 268--268
  [] 
  []
 
-[11
+[10
 
  <../Images/Rapport/generules.png>]
-<../WRET/Diagramme/generules.png, id=125, 563.10374pt x 233.87375pt>
+<../WRET/Diagramme/generules.png, id=108, 563.10374pt x 233.87375pt>
 File: ../WRET/Diagramme/generules.png Graphic file (type png)
 
 <use ../WRET/Diagramme/generules.png>
 Package pdftex.def Info: ../WRET/Diagramme/generules.png used on input line 278
 .
 (pdftex.def)             Requested size: 281.55118pt x 116.93657pt.
- [12
+ [11
 
  <../WRET/Diagramme/generules.png>]
 \openout4 = `beamerCPR_WRET.vrb'.
@@ -1261,27 +1259,27 @@ Package pdftex.def Info: ../WRET/Diagramme/generules.png used on input line 278
 Overfull \vbox (2.4608pt too high) detected at line 309
  []
 
-[13
+[12
 
-] <../Images/Rapport/options.png, id=137, 1558.82375pt x 699.61375pt>
+] <../Images/Rapport/options.png, id=119, 1593.955pt x 771.88374pt>
 File: ../Images/Rapport/options.png Graphic file (type png)
 
 <use ../Images/Rapport/options.png>
 Package pdftex.def Info: ../Images/Rapport/options.png used on input line 326.
-(pdftex.def)             Requested size: 284.52756pt x 127.69713pt.
- [14
+(pdftex.def)             Requested size: 284.52756pt x 137.77882pt.
+ [13
 
  <../Images/Rapport/options.png>]
 \openout4 = `beamerCPR_WRET.vrb'.
 
 
-(./beamerCPR_WRET.vrb) [15
+(./beamerCPR_WRET.vrb) [14
 
 ]
 \openout4 = `beamerCPR_WRET.vrb'.
 
  (./beamerCPR_WRET.vrb
-<../Images/Rapport/options-1.png, id=148, 239.89626pt x 71.26625pt>
+<../Images/Rapport/options-1.png, id=132, 239.89626pt x 71.26625pt>
 File: ../Images/Rapport/options-1.png Graphic file (type png)
 
 <use ../Images/Rapport/options-1.png>
@@ -1293,36 +1291,36 @@ Overfull \hbox (30.64119pt too wide) in paragraph at lines 20--20
 >[] 
  []
 
-) [16
+) [15
 
  <../Images/Rapport/options-1.png>]
-<../WRET/Diagramme/options.png, id=154, 477.785pt x 157.58875pt>
+<../WRET/Diagramme/options.png, id=138, 477.785pt x 157.58875pt>
 File: ../WRET/Diagramme/options.png Graphic file (type png)
 
 <use ../WRET/Diagramme/options.png>
 Package pdftex.def Info: ../WRET/Diagramme/options.png used on input line 383.
 (pdftex.def)             Requested size: 170.71652pt x 56.30627pt.
- [17
+ [16
 
  <../WRET/Diagramme/options.png>]
 \openout4 = `beamerCPR_WRET.vrb'.
 
 
 (./beamerCPR_WRET.vrb
-<../Images/Rapport/chargement1.png, id=160, 1169.36874pt x 363.3575pt>
+<../Images/Rapport/chargement1.png, id=144, 1169.36874pt x 363.3575pt>
 File: ../Images/Rapport/chargement1.png Graphic file (type png)
 
 <use ../Images/Rapport/chargement1.png>
 Package pdftex.def Info: ../Images/Rapport/chargement1.png used on input line 1
 4.
 (pdftex.def)             Requested size: 292.34146pt x 90.83914pt.
-) [18
+) [17
 
  <../Images/Rapport/chargement1.png>]
 \openout4 = `beamerCPR_WRET.vrb'.
 
  (./beamerCPR_WRET.vrb
-<../WRET/Diagramme/load.png, id=166, 572.1375pt x 146.5475pt>
+<../WRET/Diagramme/load.png, id=150, 572.1375pt x 146.5475pt>
 File: ../WRET/Diagramme/load.png Graphic file (type png)
 
 <use ../WRET/Diagramme/load.png>
@@ -1330,10 +1328,10 @@ Package pdftex.def Info: ../WRET/Diagramme/load.png used on input line 7.
 (pdftex.def)             Requested size: 286.06804pt x 73.27356pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 12.
-) [19
+) [18
 
  <../WRET/Diagramme/load.png>]
-<../Images/Rapport/results_all.png, id=173, 1006.51031pt x 316.93407pt>
+<../Images/Rapport/results_all.png, id=156, 1006.51031pt x 316.93407pt>
 File: ../Images/Rapport/results_all.png Graphic file (type png)
 
 <use ../Images/Rapport/results_all.png>
@@ -1350,10 +1348,10 @@ Overfull \hbox (6.74084pt too wide) in paragraph at lines 449--449
  [] 
  []
 
-[20
+[19
 
  <../Images/Rapport/results_all.png (PNG copy)>]
-<../Images/Rapport/extractionResultat.png, id=178, 1154.3125pt x 401.5pt>
+<../Images/Rapport/extractionResultat.png, id=163, 1154.3125pt x 401.5pt>
 File: ../Images/Rapport/extractionResultat.png Graphic file (type png)
 
 <use ../Images/Rapport/extractionResultat.png>
@@ -1365,10 +1363,10 @@ Overfull \hbox (6.74084pt too wide) in paragraph at lines 468--468
  [] 
  []
 
-[21
+[20
 
  <../Images/Rapport/extractionResultat.png>]
-<../Images/Rapport/pageAccueil.png, id=185, 1255.69125pt x 400.49625pt>
+<../Images/Rapport/pageAccueil.png, id=171, 1255.69125pt x 400.49625pt>
 File: ../Images/Rapport/pageAccueil.png Graphic file (type png)
 
 <use ../Images/Rapport/pageAccueil.png>
@@ -1380,10 +1378,10 @@ Overfull \hbox (19.03508pt too wide) in paragraph at lines 485--485
  [] 
  []
 
-[22
+[21
 
  <../Images/Rapport/pageAccueil.png (PNG copy)>]
-<../Images/Rapport/options-2.png, id=190, 1150.57124pt x 237.34125pt>
+<../Images/Rapport/options-2.png, id=177, 1150.57124pt x 237.34125pt>
 File: ../Images/Rapport/options-2.png Graphic file (type png)
 
 <use ../Images/Rapport/options-2.png>
@@ -1395,13 +1393,13 @@ Overfull \hbox (19.03508pt too wide) in paragraph at lines 504--504
  [] 
  []
 
-[23
+[22
 
  <../Images/Rapport/options-2.png (PNG copy)>]
 \openout4 = `beamerCPR_WRET.vrb'.
 
  (./beamerCPR_WRET.vrb
-<../WRET/Diagramme/langues.png, id=196, 752.8125pt x 309.155pt>
+<../WRET/Diagramme/langues.png, id=183, 752.8125pt x 309.155pt>
 File: ../WRET/Diagramme/langues.png Graphic file (type png)
 
 <use ../WRET/Diagramme/langues.png>
@@ -1412,13 +1410,13 @@ Overfull \hbox (11.44118pt too wide) in paragraph at lines 19--19
 []\T1/pcr/m/n/8 define('TXT_SITE_TITLE', "Page d'accueil de WebRegEfmTool"); 
  []
 
-) [24
+) [23
 
- <../WRET/Diagramme/langues.png>] [25
+ <../WRET/Diagramme/langues.png>] [24
+
+] [25
 
 ] [26
-
-] [27
 
 ]
 \tf@nav=\write6
@@ -1440,13 +1438,13 @@ Package rerunfilecheck Info: File `beamerCPR_WRET.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 575.
  ) 
 Here is how much of TeX's memory you used:
- 17246 strings out of 495059
- 311873 string characters out of 3182031
- 392011 words of memory out of 3000000
- 19882 multiletter control sequences out of 15000+200000
+ 17229 strings out of 495059
+ 311559 string characters out of 3182031
+ 392041 words of memory out of 3000000
+ 19870 multiletter control sequences out of 15000+200000
  77145 words of font info for 96 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 49i,11n,53p,403b,859s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,11n,53p,403b,858s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf
@@ -1455,10 +1453,10 @@ ist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
 tic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.
 pfb>
-Output written on beamerCPR_WRET.pdf (27 pages, 545345 bytes).
+Output written on beamerCPR_WRET.pdf (26 pages, 560476 bytes).
 PDF statistics:
- 259 PDF objects out of 1000 (max. 8388607)
- 196 compressed objects within 2 object streams
- 64 named destinations out of 1000 (max. 500000)
+ 247 PDF objects out of 1000 (max. 8388607)
+ 185 compressed objects within 2 object streams
+ 62 named destinations out of 1000 (max. 500000)
  179 words of extra memory for PDF output out of 10000 (max. 10000000)
 

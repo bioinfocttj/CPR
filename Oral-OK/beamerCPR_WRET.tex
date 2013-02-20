@@ -20,7 +20,7 @@
 \subtitle{\textcolor{bleu1}{Conception d'un projet de recherche}}
 \author[]{Arnaud \textsc{Frèche} -- Charlotte \textsc{Héricé} -- Saraï \textsc{Mola} -- \\ Typhaine \textsc{Paysan-Lafosse} -- Joris \textsc{Sansen}}
 \institute{Master 2 BioInformatique}
-\date{\today}
+\date{21 février 2013}
 
 \setbeamerfont{author in sidebar}{size=\footnotesize;fg=blue}
 \setbeamerfont{title in sidebar}{size=\footnotesize;fg=blue}
@@ -40,7 +40,7 @@
 \begin{document}
 
 \frame{\titlepage}
-\frame{\tableofcontents}
+%\frame{\tableofcontents}
 \addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
 
 
@@ -58,15 +58,15 @@
 						\item Transformations moléculaires et énergétiques
 						\item Réactions métaboliques
 					\end{itemize}
-					\item Représentation visuelle des grandes fonctions métaboliques.\\
-					\item Quelques logiciels disponibles.
+					\item Calculs de modes élémentaires
+					\item Quelques logiciels disponibles
 				\end{itemize}
 			\end{block}
 		\end{column}	
 		\begin{column}{3.5cm}
 			\begin{figure}
-				\includegraphics[scale=0.25]{../Images/pyruvate.png}
-				\caption{Réseaux Métaboliques de la glycolyse}
+				\includegraphics[scale=0.25]{../Images/Rapport/glycolyse-1.png}
+				\caption{Exemple d'une partie de la glycolyse}
 			\end{figure}
 		\end{column}
 	\end{columns}
@@ -75,17 +75,17 @@
 \begin{frame}{\textcolor{bleu2}{\hspace{1cm}Contexte - RegEfmtool}}
 	\begin{center}
 		\begin{minipage}[c]{0.9\textwidth}
-			\begin{block}{\hspace{0.2cm}Objectif}
-				\begin{itemize}
-					\item Interface graphique
-					\item Langages Web
-				\end{itemize}
-			\end{block}
 			\begin{block}{\hspace{0.2cm}Regular Elementary flux mode tool}
 				\begin{itemize}
 					\item Calcul de modes élémentaires
 					\item Environnement UNIX, ligne de commandes
 					\item Plusieurs fichiers d'entrée au format \textit{txt}
+				\end{itemize}
+			\end{block}
+			\begin{block}{\hspace{0.2cm}Objectif}
+				\begin{itemize}
+					\item Interface graphique
+					\item Langages Web
 				\end{itemize}
 			\end{block}
 		\end{minipage}
@@ -113,7 +113,7 @@
 		\begin{center}
 			\fbox{
    				\begin{minipage}[c]{0.9\textwidth}
-  					\includegraphics[width=0.90\textwidth]{../Images/Rapport/create1.png}
+  					\includegraphics[width=0.95\textwidth]{../Images/Rapport/create1.png}
 				\end{minipage}
 			}
 			\caption{Page de création d'un nouveau réseau}
@@ -140,7 +140,7 @@
 					\item Métabolites
 					\item Enzymes
 					\item Stœchiométrie
-					\item Generules
+					\item Règles des gènes
 				\end{itemize}
 			\end{block}
 		\end{minipage}
@@ -169,7 +169,7 @@
 					\item Ordre conservé
 				\end{itemize}
 			\end{block}
-			\begin{block}{\hspace{0.2cm}Nom de réactions, métabolites}
+			\begin{block}{\hspace{0.2cm}Noms de réactions, métabolites}
 				\begin{itemize}
 					\item Parsage liste de réactions
 					\item Extraction métabolites
@@ -191,6 +191,13 @@
 \small
 	\begin{columns}
 		\begin{column}[l]{4cm}
+		\begin{block}{\hspace{0.2cm}Modifications}
+				\begin{itemize}
+					\item Zone de texte
+					\item Affichages du réseaux enregistré
+					\item Dépendances gérées
+				\end{itemize}
+			\end{block}
 			\begin{block}{\hspace{0.2cm}Exportation au format \emph{DAT}}
 				\begin{itemize}
 					\item Après création réseau complet
@@ -198,25 +205,8 @@
 					\item Choix métabolites externes et internes
 				\end{itemize}
 			\end{block}
-			\begin{block}{\hspace{0.2cm}Modifications}
-				\begin{itemize}
-					\item Zone de texte
-					\item Affichages du réseaux enregistré
-					\item Dépendances gérées
-				\end{itemize}
-			\end{block}
 		\end{column}
 		\begin{column}[r]{6cm}
-			\begin{figure}[!ht]
-				\begin{center}
-					\fbox{
-   						\begin{minipage}[c]{0.75\textwidth}
-  							\includegraphics[width=0.9\textwidth]{../Images/Rapport/dat2.png}
-						\end{minipage}
-					}
-					\caption{Choix des métabolites internes et externes}
-  				\end{center}
-			\end{figure}
 			\begin{figure}[!ht]
 				\begin{center}
 					\fbox{
@@ -225,6 +215,16 @@
 		 				\end{minipage}
 		 			}
 					\caption{Zone de modification}
+  				\end{center}
+			\end{figure}
+			\begin{figure}[!ht]
+				\begin{center}
+					\fbox{
+   						\begin{minipage}[c]{0.75\textwidth}
+  							\includegraphics[width=0.9\textwidth]{../Images/Rapport/dat2.png}
+						\end{minipage}
+					}
+					\caption{Choix des métabolites internes et externes}
   				\end{center}
 			\end{figure}
 		\end{column}
@@ -351,8 +351,8 @@
 	\begin{center}
 		\begin{minipage}[c]{0.9\textwidth}
 			\begin{verbatim}
-				<input type="radio" name="choix1" 						
-				value="log console" checked="checked">
+				<input type="radio" name="choix1" value="log console"
+				 checked="checked">
 			\end{verbatim}
 			\begin{verbatim}
 				<input type="radio" name="choix1" 	value="log file">
@@ -421,7 +421,7 @@
 		\item \textbf{Récupération} des données :
 		\begin{itemize}
 			\item Une fonction PHP copie les fichiers dans le répertoire courant
-			 \item Utilisation de la fonction PHP {\footnotesize\texttt{move\_uploaded\_file}}
+			 \item Utilisation de la fonction PHP {\footnotesize\texttt{move\_uploaded\_file()}}
 		\end{itemize}
 		\item \textbf{Compléter} la commande générée
 	\end{itemize}
@@ -541,7 +541,7 @@
 			\item Navigateur :
 			\begin{itemize}
 				\item Fonction \texttt{move\_uploaded\_file()}
-				\item Récupération des fichiers \texttt{\$FILES}
+				\item Récupération des fichiers \texttt{\$\_FILES}
 			\end{itemize}
 			\item Affichage des résultats
 			\item Configuration du serveur Web
@@ -549,7 +549,7 @@
 	\end{block}
 	\begin{block}{\hspace{0.2cm}Améliorations}
 		\begin{itemize}
-			\item Ajout et amélioration de fonctionnalités (Édition,...)
+			\item Ajout et amélioration de fonctionnalités (ex: édition)
 			\item Intégrer d'autres logiciels tels que METATOOL
 		\end{itemize}
 	\end{block}
