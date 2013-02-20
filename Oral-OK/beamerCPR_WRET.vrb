@@ -1,0 +1,25 @@
+\frametitle {\textcolor {bleu2}{\hspace {1cm} Ergonomie - Langues}}\begin {figure}
+\begin{center}
+\fbox{
+  \begin{minipage}[c]{0.8\textwidth}
+\includegraphics[width=8cm]{../WRET/Diagramme/langues.png}
+\end{minipage}
+}
+\caption{Diagramme d'organisation pour le changement de langue}
+\end{center}
+\end{figure}
+\begin{block}{\hspace{0.2cm}Exemple du titre de la page d'accueil}
+\begin{center}
+\begin{minipage}[c]{0.9\textwidth}
+\begin{verbatim}
+<?php echo TXT\_SITE\_TITLE; ?>
+\end{verbatim}
+\scriptsize
+\begin{verbatim}
+define('TXT_SITE_TITLE', "Page d'accueil de WebRegEfmTool");
+define('TXT_SITE_TITLE', "Homepage of WebRegEfmTool");
+define('TXT_SITE_TITLE', "Starseite von WebRegEfmTool");
+\end{verbatim}
+\end{minipage}
+\end{center}
+\end{block}
