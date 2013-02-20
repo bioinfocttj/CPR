@@ -183,7 +183,7 @@
 		<br/> <br/>
 		
 		<h4><?php echo TXT_CREATION_FINISH; ?></h4>
-		<input type='button' name='buttonMext' 	value="<?php echo TXT_CREATE_CHOOSE_EXT;?>" onclick=add_metabo()/>
+		<input type='button' name='buttonMext' 	value="<?php echo TXT_CREATE_CHOOSE_EXT;?>" onclick=add_metabo()>
 		<br/>
 		<br/>
 
