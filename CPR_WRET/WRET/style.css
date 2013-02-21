@@ -1,0 +1,431 @@
+/*
+This file is part of Foobar.
+
+    Foobar is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Foobar is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.*/
+
+
+body {
+	margin-left: 225px;
+	padding: 10px;
+	background: #fff url(Images/fond.png) no-repeat;
+	font:small "Trebuchet MS",Arial,Sans-serif;
+ 	voice-family: "\"}\""; voice-family:inherit;
+ 	font-size:medium;
+}
+
+body h1{
+text-align:center;
+}
+
+label#if{
+	margin-top:-30px; 
+	margin-right:30px; 
+}
+
+label#and {
+	margin-top:-30px; 
+	margin-left:45px; 
+}
+label#op{
+	margin-top:-30px; 
+	margin-left:45px; 
+}
+
+label#reac{
+	margin-top:-30px; 
+	margin-left:25px; 
+}
+
+select#box1 {
+	margin-top:-30px; 
+	/*margin-left:25px; */
+}
+
+select#metabext{
+	margin-top:-30px; 
+	margin-left:50px; 
+}
+
+input#addext{
+	margin-top:-50px; 
+	margin-left:20px;
+}
+
+input#removeext{
+	margin-top:-50px; 
+	margin-left:10px;
+}
+
+input#mfile{
+	margin-left:21px;
+}
+
+input#rfile{
+	margin-left:33px;
+}
+
+input#rvfile{
+	margin-left:13px;
+}
+
+input#grfile{
+	margin-left:30px;
+}
+
+b#int{
+	margin-left:100px; 
+}
+
+form#reag{position: absolute;
+	right: 330px;	
+	left : 30px ;}
+	
+form#prod{position: absolute;
+	right: 660px;	
+	left : 360px ;}
+
+label.tooltip{
+outline:none;}
+
+label.tooltip strong{
+line-height:30px;} 
+
+label.tooltip:hover{
+text-decoration:none;}
+ 
+label.tooltip span { 
+z-index:10;
+display:none; 
+padding:14px 20px; 
+margin-top:-30px; 
+margin-left:28px; 
+width:200px; 
+line-height:20px; } 
+
+label.tooltip:hover span{ 
+display:inline; 
+position:absolute; 
+color:#111; 
+border:1px solid #CCC; 
+background:#FFF;} 
+
+table.centered {
+	margin-left:auto; 
+	margin-right:auto;
+ }
+
+
+/*CSS3 extras*/ 
+label.tooltip span { 
+border-radius:4px; 
+-moz-border-radius: 4px; 
+-webkit-border-radius: 4px; 
+-moz-box-shadow: 5px 5px 8px #CCC; 
+-webkit-box-shadow: 5px 5px 8px #CCC; 
+box-shadow: 5px 5px 8px #CCC; }
+
+/* Options page disposition */
+#loadBody{
+	text-align: center;
+	margin-left: auto;
+ 	margin-right: auto;
+ 	width: 600;}
+
+ div#part {
+ 	text-align: center;
+	width:100%;
+	height: 40px;
+	background-color:#4388CC;
+	margin-top: 30px;
+	margin-bottom: 0px;
+	padding: 0px;
+}
+
+div#subPart {
+	margin-bottom: 0px;
+	margin-top: 0px;
+	width:100%;
+	height: 80px;
+	background-color:#9ECAE1;
+	padding: 0px;
+}
+div#subPart1 {
+	float:left;
+	width:100%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart2-1 {
+	float:left;
+	width:50%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart2-2 {
+	float:left;
+	width:50%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart3-1 {
+	float:left;
+	width:33.4%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart3-2 {
+	float:left;
+	width:33.3%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart3-3 {
+	float:left;
+	width:33.3%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart4-1 {
+	float:left;
+	width:25%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart4-2 {
+	float:left;
+	width:25%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart4-3 {
+	float:left;
+	width:25%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+div#subPart4-4 {
+	float:left;
+	width:25%;
+	height:60px;
+	background-color:#9ECAE1;
+	text-align: center;
+}
+
+div#buttons {
+	width:100%;
+	height:175px;
+	background-color:#DEEBF7;
+	clear:both;
+}
+div#buttons1 {
+	float:left;
+	width:60%;
+	height:auto;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -40%;
+	margin-left: 40%;
+
+}
+div#buttons2-1 {
+	float:left;
+	width:30%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -15%;
+	margin-left: 15%;
+}
+div#buttons2-2 {
+	float:left;
+	width:40%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -15%;
+	margin-left: 20%;
+}
+div#buttons3-1 {
+	float:left;
+	width:33.3%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -10%;
+	margin-left: 10%;
+}
+div#buttons3-2 {
+	float:left;
+	width:33.3%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -10%;
+	margin-left: 10%;
+}
+div#buttons3-3 {
+	float:left;
+	width:20%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -20%;
+	margin-left: 10%;
+}
+div#buttons4-1 {
+	float:left;
+	width:25%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -5%;
+	margin-left: 5%;
+}
+div#buttons4-2 {
+	float:left;
+	width:25%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -5%;
+	margin-left: 5%;
+}
+div#buttons4-3 {
+	float:left;
+	width:25%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -5%;
+	margin-left: 3%;
+}
+div#buttons4-4 {
+	float:left;
+	width:15%;
+	height:140px;
+	background-color:#DEEBF7;
+	text-align: justify;
+	margin-right: -10%;
+	margin-left: 10%;
+}
+
+/* 
+# Bleu très clair : DEEBF7
+# Bleu clair : 9ECAE1
+# Bleu foncé : 3183BD
+# Bleu logo : 4388CC */ 
+
+
+
+/*Tabs*/
+
+#header {
+  float:left;
+  width:82%;
+  background:#eee url("bg.jpg") repeat-x top;
+  line-height:normal;
+  position : relative ;		left : 230px ; 
+  }
+#header ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+#header li {
+  float:left;
+  background:url("left.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 28px;
+  }
+#header a {
+  float:left;
+  display:block;
+  background:url("right.gif") no-repeat right top;
+  padding:9px 28px 4px 0px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#92A2AC;
+  }
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+#header a {float:none;}
+/* End IE5-Mac hack */
+#header a:hover {
+  color:#A56060;
+  }
+#header #current {
+  background-image:url("left_on.gif");
+  }
+#header #current a {
+  background-image:url("right_on.gif");
+  color:#A56060;
+  }
+  
+#menu{
+	padding:0;
+	margin-left:0px;
+	text-align:center;
+	border:2px solid #000;
+	overflow:hidden;/* ceci pour etirer */
+	background-color:#A0A4A4;
+}
+#menu ul{
+	float:left;
+	list-style-type:none;
+	display:block;
+	padding:0;
+	margin:0;
+}
+#menu ul li{
+	float:left;
+}
+
+#menu a{
+	float:left;
+	width:100px;
+}
+
+div#log{
+	float:right;
+	width:30%;
+
+}
+div#original{
+	float:left;
+	width:30%;
+}
+}
+div#results{
+	float:left;
+	width:60%;
+}
+div#new{
+	float:left;
+	width:30%;
+}
+div#compare{
+	position:relative;
+	margin-top:10%;
+	float:left;
+	width:60%;
+}

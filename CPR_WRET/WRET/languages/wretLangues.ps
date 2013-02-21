@@ -1,0 +1,4639 @@
+%!PS-Adobe-3.0
+%%Title: choosen_languages.php, de_lang.php, en_lang.php, fr_lang.php
+%%For: Charlotte Herice
+%%Creator: a2ps version 4.14
+%%CreationDate: Mon Feb 18 09:10:27 2013
+%%BoundingBox: 24 24 571 818
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 8
+%%PageOrder: Ascend
+%%DocumentMedia: A4 595 842 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black Blue Green Red 
+%%DocumentSuppliedResources: procset a2ps-color-prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontType get 0 eq {
+    currentfont /FontMatrix get 3 get
+  }{
+    currentfont /FontMatrix get 3 get 1000 mul
+  } ifelse
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% composite fonts for ASCII-EUC mixed strings
+% Version 1.2 1/31/1990
+% Original Ken'ichi HANDA (handa@etl.go.jp)
+% Modified Norio Katayama (katayama@rd.nacsis.ac.jp),1998
+% Extend & Fix Koji Nakamaru (maru@on.cs.keio.ac.jp), 1999
+% Anyone can freely copy, modify, distribute this program.
+
+/copyfont {	% font-dic extra-entry-count  copyfont  font-dic
+	1 index maxlength add dict begin
+	{	1 index /FID ne 2 index /UniqueID ne and
+		{def} {pop pop} ifelse
+	} forall
+	currentdict
+	end
+} bind def
+
+/compositefont { % ASCIIFontName EUCFontName RomanScale RomanOffset Rot(T/F) compositefont font
+    /RomanRotation exch def
+    /RomanOffset exch def
+    /RomanScale exch def
+    userdict /fixeucfont_dict known not {
+	userdict begin
+	    /fixeucfont_dict 2 dict begin
+		/UpperByteEncoding [
+		    16#00 1 16#20 { pop 0 } for
+		    16#21 1 16#28 { 16#20 sub } for
+		    16#29 1 16#2F { pop 0 } for
+		    16#30 1 16#74 { 16#27 sub } for
+		    16#75 1 16#FF { pop 0 } for
+		] def
+	        /LowerByteEncoding [
+		    16#00 1 16#A0 { pop /.notdef } for
+		    16#A1 1 16#FE { 16#80 sub 16 2 string cvrs
+				    (cXX) dup 1 4 -1 roll
+				    putinterval cvn } for
+		    /.notdef
+		] def
+		currentdict
+	    end def
+	end
+    } if
+    findfont dup /FontType get 0 eq {
+	14 dict begin
+	    %
+	    % 7+8 bit EUC font
+	    %
+	    12 dict begin
+		/EUCFont exch def
+		/FontInfo (7+8 bit EUC font) readonly def
+		/PaintType 0 def
+		/FontType 0 def
+		/FontMatrix matrix def
+		% /FontName
+		/Encoding fixeucfont_dict /UpperByteEncoding get def
+		/FMapType 2 def
+		EUCFont /WMode known
+		{ EUCFont /WMode get /WMode exch def }
+		{ /WMode 0 def } ifelse
+		/FDepVector [
+		    EUCFont /FDepVector get 0 get
+		    [ 16#21 1 16#28 {} for 16#30 1 16#74 {} for ]
+		    {
+			13 dict begin
+			    /EUCFont EUCFont def
+			    /UpperByte exch 16#80 add def	
+			    % /FontName
+			    /FontInfo (EUC lower byte font) readonly def
+			    /PaintType 0 def
+			    /FontType 3 def
+			    /FontMatrix matrix def
+			    /FontBBox {0 0 0 0} def
+			    /Encoding
+				fixeucfont_dict /LowerByteEncoding get def
+			    % /UniqueID
+			    % /WMode
+			    /BuildChar {
+				gsave
+				exch dup /EUCFont get setfont
+				/UpperByte get
+				2 string
+				dup 0 4 -1 roll put
+				dup 1 4 -1 roll put
+				dup stringwidth setcharwidth
+				0 0 moveto show
+				grestore
+			    } bind def
+			    currentdict
+			end
+			/lowerbytefont exch definefont
+		    } forall
+		] def
+		currentdict
+	    end
+	    /eucfont exch definefont
+	    exch
+	    findfont 1 copyfont dup begin
+		RomanRotation {
+			/FontMatrix FontMatrix
+			[ 0 RomanScale neg RomanScale 0 RomanOffset neg 0 ]
+			matrix concatmatrix def
+		}{
+			/FontMatrix FontMatrix
+			[ RomanScale 0 0 RomanScale 0 RomanOffset ] matrix concatmatrix
+			def
+			/CDevProc
+			    {pop pop pop pop 0 exch -1000 exch 2 div 880} def
+		} ifelse
+	    end
+	    /asciifont exch definefont
+	    exch
+	    /FDepVector [ 4 2 roll ] def
+	    /FontType 0 def
+	    /WMode 0 def
+	    /FMapType 4 def
+	    /FontMatrix matrix def
+	    /Encoding [0 1] def
+	    /FontBBox {0 0 0 0} def
+%	    /FontHeight 1.0 def % XXXX
+	    /FontHeight RomanScale 1.0 ge { RomanScale }{ 1.0 } ifelse def
+	    /Descent -0.3 def   % XXXX
+	    currentdict
+	end
+	/tmpfont exch definefont
+	pop
+	/tmpfont findfont
+    }{
+	pop findfont 0 copyfont
+    } ifelse
+} def	
+
+/slantfont {	% FontName slant-degree  slantfont  font'
+    exch findfont 1 copyfont begin
+    [ 1 0 4 -1 roll 1 0 0 ] FontMatrix exch matrix concatmatrix
+    /FontMatrix exch def
+    currentdict
+    end
+} def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  0 setgray
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.5 0.5 1 setrgbcolor
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    1 setgray
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+%%BeginResource: procset a2ps-color-prolog 2.0 1
+
+%% Definition of the color faces.
+/p {
+  0 0 0 FG
+  false BG
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  0 0 0 FG
+  false BG
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false BG
+  false UL
+  false BX
+  0 0 0.9 FG
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false BG
+  false UL
+  false BX
+  0 0 0.8 FG
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false BG
+  false UL
+  false BX
+  0.8 0 0 FG
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false BG
+  false UL
+  false BX
+  0.8 0 0 FG
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/l {
+  0 0 0 FG
+  0.8 0.8 0 true BG
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  0 0 0 FG
+  1 1 0 true BG
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/str {
+  false BG
+  false UL
+  false BX
+  0 0.5 0 FG
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  1 0 0 true BG
+  false UL
+  true BX
+  1 1 1 FG
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul 2 div neg 0 rmoveto
+    f# setfont
+    0.8 0.1 0.1 FG
+    c-show
+  grestore
+} bind def
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 595 def
+/sw 842 def
+/llx 24 def
+/urx 818 def
+/ury 571 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 7.542439 def
+/cw 4.525463 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 6 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 86.400000 mul
+def
+/ph
+   503.080648 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 5 def
+/tab 4 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1,1) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # (<?php) K
+( ) p n
+(2) # () S 4 T (session_start\(\);) N
+(3) # () S 4 T () S
+(if) K
+( \(isset \() p
+($_SESSION) L
+([') p
+(lang) str
+(']\) && !isset\() p
+($_GET) L
+([') p
+(lang) str
+(']\)\){) p n
+(4) # () S 4 T () S 8 T () S
+($lang) L
+(=) p
+($_SESSION) L
+([') p
+(lang) str
+('];) p n
+(5) # () S 4 T (}) N
+(6) # () S 4 T () S
+(else) K
+( ) p
+(if) K
+( \(isset\() p
+($_GET) L
+([') p
+(lang) str
+(']\)\){) p n
+(7) # () S 4 T () S 8 T () S
+($lang) L
+(=) p
+($_GET) L
+([') p
+(lang) str
+('];) p n
+(8) # () S 4 T () S 8 T () S
+($_SESSION) L
+([') p
+(lang) str
+(']=) p
+($lang) L
+(;) p n
+(9) # () S 4 T (}) N
+(10) # () S 4 T () S
+(else) K
+({) p n
+(11) # () S 4 T () S 8 T () S
+($lang) L
+(=') p
+(fr) str
+(';) p n
+(12) # () S 4 T () S 8 T () S
+($_SESSION) L
+([') p
+(lang) str
+(']=) p
+($lang) L
+(;) p n
+(13) # () S 4 T (}) N
+(14) # () S 4 T (function set_cookie\() S
+($langue) L
+(\){) p n
+(15) # () S 4 T () S 8 T () S
+($expire) L
+(=24*3600;) p n
+(16) # () S 4 T () S 8 T () S
+(if) K
+( \(setcookie\(") p
+(lang) str
+(",) p
+($langue) L
+(,time\(\)+) p
+($expire) L
+(\)!=TRUE\){) p n
+(17) # () S 4 T () S 8 T (}) N
+(18) # () S 4 T () S 8 T () S
+(else) K
+({) p n
+(19) # () S 4 T () S 8 T (}) N
+(20) # () S 4 T (}) N
+(21) # () S 4 T () S
+(if) K
+( \() p
+($lang) L
+(==') p
+(fr) str
+('\) {           ) p
+(// If the language is 'fr' \(french\) the file fr) c n
+0 T (-lang.php is included) N
+(22) # () S
+() p 4 T () S 8 T () S
+(include) k
+(\(') p
+(fr_lang.php) str
+('\);) p n
+(23) # () S 4 T (} ) N
+(24) # () S 4 T ( ) N
+(25) # () S 4 T () S
+(else) K
+( ) p
+(if) K
+( \() p
+($lang) L
+(==') p
+(en) str
+('\) {      ) p
+(// If the language is 'en' \(english\) the file e) c n
+0 T (n-lang.php is included ) N
+(26) # () S
+() p 4 T () S 8 T () S
+(include) k
+(\(') p
+(en_lang.php) str
+('\);) p n
+(27) # () S 4 T (}) N
+(28) # () S 4 T () S
+(else) K
+( ) p
+(if) K
+( \() p
+($lang) L
+(==') p
+(de) str
+('\) {) p n
+(29) # () S 4 T () S 8 T () S
+(include) k
+(\(') p
+(de_lang.php) str
+('\);  ) p
+(// If the language is 'de' \(german\) the file de-l) c n
+0 T (ang.php is included ) N
+(30) # () S
+() p 4 T (}) N
+(31) # () S 4 T () S
+(else) K
+( {                       ) p
+(// If any language is declared, the file fr-lan) c n
+0 T (g.php is included as default) N
+(32) # () S
+() p 4 T () S 8 T () S
+(include) k
+(\(') p
+(fr_lang.php) str
+('\);) p n
+(33) # () S 4 T (}) N
+(34) # () S
+(?>) K n
+(WRET_Langages) (Page 1/1) (f\303\251vr. 12, 13 14:42) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # ( ) p
+(<?php) K n
+(2) # () S
+(//---------------------------------------------------------) c n
+(3) # (// home.php) N
+(4) # (//---------------------------------------------------------) N
+(5) # () S
+(define\(') p
+(TXT_SITE_TITLE) str
+(', ") p
+(Starseite von WebRegEfmTool) str
+("\);) p n
+(6) # (define\(') S
+(TXT_HOMEPAGE_TITLE) str
+(', ') p
+(Willkommen auf WebRegEfmTool) str
+('\);) p n
+(7) # (define\(') S
+(TXT_HOMEPAGE_BODY) str
+(', ") p
+(Dieses Program ist f\303\274r den Gebrauch der regEfmtool.<br />) str n
+(8) # () S 4 T () S 8 T (Sie k\303\266nnen eine metabolische Netzwerk erstellen, laden, bearbeiten.<br />) N
+(9) # () S 4 T () S 8 T (Das Ziel ist es, eine Simulation von Ihrem Web-browser ausgef\303\274hrt werden.) S
+("\);) p n
+(10) # (define\(') S
+(TXT_HOMEPAGE_COPYRIGHT) str
+(', ") p
+(<a href=\\"copyright.php\\">Copyright</a>.) str
+("\);) p n
+(11) # (define\(') S
+(TXT_HOMEPAGE_INSTAL) str
+(', ") p
+(Siehe die <a href=\\"instal.php\\">Systemvoraussetzungen</a>.) str
+("\);) p n
+(12) # () S
+(//---------------------------------------------------------) c n
+(13) # (// menu.php) N
+(14) # (//---------------------------------------------------------) N
+(15) # () S
+(define\(') p
+(TXT_MENU_HOME) str
+(', ') p
+(LeitSeite) str
+('\);) p n
+(16) # (define\(') S
+(TXT_MENU_CREATE) str
+(', ') p
+(Urauff\303\274hrung) str
+('\);) p n
+(17) # (define\(') S
+(TXT_MENU_REVERSIBILITY) str
+(', ') p
+(\303M-^\\bertragbarkeit) str
+('\);) p n
+(18) # (define\(') S
+(TXT_MENU_RULES) str
+(', ') p
+(Regeln) str
+('\);) p n
+(19) # (define\(') S
+(TXT_MENU_LOAD) str
+(', ') p
+(Beladung) str
+('\);) p n
+(20) # (define\(') S
+(TXT_MENU_MODIFY) str
+(', ') p
+(\303M-^Dnderung) str
+('\);) p n
+(21) # (define\(') S
+(TXT_MENU_LAUNCH) str
+(', ') p
+(Start) str
+('\);) p n
+(22) # (define\(') S
+(TXT_MENU_HELP) str
+(', ') p
+(Onlinehilfe) str
+('\);) p n
+(23) # () S
+(//---------------------------------------------------------) c n
+(24) # (// create.php) N
+(25) # (//---------------------------------------------------------) N
+(26) # () S
+(define\(') p
+(TXT_CREATION_SITE_TITLE) str
+(', ") p
+(Schaffung von neuen chemische Reaktionsrouten) str
+("\);) p n
+(27) # (define\(') S
+(TXT_INIT_FILES) str
+(', ") p
+(Initialisieren Sie die Dateien vor dem Erstellen eines neuen Netzwerks) str
+("\);) p n
+(28) # (define\(') S
+(TXT_CREATION_INIT) str
+(', ") p
+(\\"Init-Dateien\\") str
+("\);) p n
+(29) # (define\(') S
+(TXT_CREATION_TITLE) str
+(', ") p
+(Schaffung von neuen metabolische Netzwerk) str
+("\);) p n
+(30) # (define\(') S
+(TXT_CREATION_INSTRUCTION_1) str
+(', ") p
+(Schreiben Sie eine neue Reaktion) str
+("\);) p n
+(31) # (define\(') S
+(TXT_CREATION_INSTRUCTION_2) str
+(', ") p
+(\303M-^\\berpr\303\274fen Sie, ob die chemische Reaktion bereits reg) str n
+0 T (istriert) S
+("\);) p n
+(32) # (define\(') S
+(TXT_CREATION_WARNING_TITLE) str
+(', ") p
+(Achtung !) str
+("\);) p n
+(33) # (define\(') S
+(TXT_CREATION_WARNING) str
+(', ") p
+(Keine Leerzeichen in den Namen, verwenden Sie einen Unterstrich ') str n
+0 T (_' statt.<br />) N
+(34) # () S 4 T () S 8 T () S 12 T (Die Syntax der Reaktionen ist:) N
+(35) # () S 4 T () S 8 T () S 12 T (Reaktion_Name : 2 Reaktive1 + 5 Reaktive2 => 3 Produkt1 + 7 Produkt2 <br />) N
+(36) # () S 4 T () S 8 T () S 12 T (Bitte lassen Sie ein Leerzeichen zwischen den st\303\266chiometrischen Koeffizienten und die damit verbu) N
+0 T (ndenen Metaboliten) S
+("\);) p n
+(37) # (define\(') S
+(TXT_CREATION_WARNING_2) str
+(', ") p
+(Nicht l\303\266schen oder hinzuf\303\274gen Reaktion in diesem Bereich<br ) str n
+0 T (/>) N
+(38) # () S 4 T () S 8 T () S 12 T () S 16 T (Kein Platz nach der letzten Metabolit) S
+("\);) p n
+(39) # (define\(') S
+(TXT_CREATION_IS_REVERSIBLE) str
+(', ") p
+(Reversible :) str
+("\);) p n
+(40) # (define\(') S
+(TXT_CREATION_YES) str
+(', ") p
+(Ja) str
+("\);) p n
+(41) # (define\(') S
+(TXT_CREATION_NO) str
+(', ") p
+(Nein) str
+("\);) p n
+(42) # (define\(') S
+(TXT_CREATION_ALREADY_OK) str
+(', ") p
+(Reaktionen zuvor gespeicherte :) str
+("\);) p n
+(43) # (define\(') S
+(TXT_CREATION_FINISH) str
+(', ") p
+(Creation der DAT Datei Format) str
+("\);) p n
+(44) # (define\(') S
+(TXT_CREATION_CLIC) str
+(', ") p
+(Sie m\303\274ssen auf die Schaltfl\303\244che klicken) str
+("\);) p n
+(45) # (define\(') S
+(TXT_CREATE_EXT) str
+(', ") p
+(Externen Metaboliten :) str
+("\);) p n
+(46) # (define\(') S
+(TXT_CREATE_INT) str
+(', ") p
+(Interner Metaboliten : ) str
+("\);) p n
+(47) # (define\(') S
+(TXT_CREATE_BUTTON_ADD1) str
+(', ") p
+(Hinzuf\303\274gen) str
+("\);) p n
+(48) # (define\(') S
+(TXT_CREATE_BUTTON_REMOVE1) str
+(', ") p
+(Zur\303\274cktreten) str
+("\);) p n
+(49) # (define\(') S
+(TXT_CREATE_CHOOSE_EXT) str
+(', ") p
+(W\303\244hlen Sie die externen und internen Metaboliten) str
+("\);) p n
+(50) # () S
+(//---------------------------------------------------------) c n
+(51) # (// Buttons ) N
+(52) # (//---------------------------------------------------------) N
+(53) # () S
+(define\(') p
+(TXT_ADD_BUTTON) str
+(', ") p
+(Hinzuf\303\274gen) str
+("\);) p n
+(54) # (define\(') S
+(TXT_MODIFY_BUTTON) str
+(', ") p
+(\303M-^Dndern) str
+("\);) p n
+(55) # (define\(') S
+(TXT_NEXTSTEP_BUTTON) str
+(', ") p
+(N\303\244chsten Schritt) str
+("\);) p n
+(56) # (define\(') S
+(TXT_GO_BUTTON) str
+(', ") p
+(Anfang) str
+("\);) p n
+(57) # (define\(') S
+(TXT_COMPARE_BUTTON) str
+(', ") p
+(vergleichen) str
+("\);) p n
+(58) # (define\(') S
+(TXT_FINISH_BUTTON) str
+(', ") p
+(beenden) str
+("\);) p n
+(59) # (define\(') S
+(TXT_BUTTON_RESULT) str
+(', ") p
+(Eintrag anzeigen) str
+("\);) p n
+(60) # (define\(') S
+(TXT_BUTTON_EXTRACTION) str
+(', ") p
+(Zur\303\274ck: Extraction Ergebnisse) str
+("\);) p n
+(61) # () N
+(62) # () S
+(//---------------------------------------------------------) c n
+(WRET_Langages) (Page 1/5) (f\303\251vr. 18, 13 8:49) title
+border
+grestore
+(Groupe Web) rhead
+(choosen_languages.php, de_lang.php) (1/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (2-3) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(63) # (// generules.php) c n
+(64) # (//---------------------------------------------------------) N
+(65) # () S
+(define\(') p
+(TXT_GENERULES_SITE_TITLE) str
+(', ") p
+(Erstellung von Genen Regeln) str
+("\);) p n
+(66) # (define\(') S
+(TXT_GENERULES_TITLE) str
+(', ") p
+(Genen Regeln) str
+("\);) p n
+(67) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_1) str
+(', ") p
+(Schreiben Sie eine neue Regel :) str
+("\);) p n
+(68) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_2) str
+(', ") p
+(W\303\244hlen Sie die Anzahl von chemischen Reaktionen :) str
+("\);) p n
+(69) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_3) str
+(', ") p
+( Die Anzahl von Reaktionen in Form von IF AND THEN) str
+("\)) p n
+0 T (;) N
+(70) # (define\(') S
+(TXT_GENERULES_OPERATOR) str
+(', ") p
+(W\303\244hlen Sie einen Operator) str
+("\);) p n
+(71) # (define\(') S
+(TXT_GENERULES_OP) str
+(', ") p
+(Betreiber) str
+("\);) p n
+(72) # (define\(') S
+(TXT_GENERULES_NUMBER) str
+(', ") p
+(Geben Sie eine Zahl gr\303\266\303M-^_er als 1. ) str
+("\);) p n
+(73) # (define\(') S
+(TXT_GENERULES_REAC) str
+(', ") p
+(Reaktion:) str
+("\);) p n
+(74) # (define\(') S
+(TXT_GENERULES_REAC_1) str
+(', ") p
+(W\303\244hlen Sie eine Reaktion) str
+("\);) p n
+(75) # (define\(') S
+(TXT_GENERULES_VALUE) str
+(', ") p
+(Wert : ) str
+("\);) p n
+(76) # (define\(') S
+(TXT_GENERULES_VALUE_2) str
+(', ") p
+(W\303\244hlen Sie einen Wert) str
+("\);) p n
+(77) # (define\(') S
+(TXT_GENERULES_BUTTON_ADD) str
+(', ") p
+(Hinzuf\303\274gen) str
+("\);) p n
+(78) # (define\(') S
+(TXT_GENERULES_ALERT_1) str
+(', ") p
+(Sie m\303\274ssen eine Reaktion und einen Wert f\303\274r die Reaktion) str
+("\);) p n
+(79) # (define\(') S
+(TXT_GENERULES_ALERT_2) str
+(', ") p
+(Sie m\303\274ssen einen Operator, eine Reaktion und einen Wert f\303\274r r) str n
+0 T (\303\251acion Reaktion) S
+("\);) p n
+(80) # (define\(') S
+(TXT_GENERULES_RULES) str
+(', ") p
+(Regeln bereits erstellt :) str
+("\);) p n
+(81) # (define\(') S
+(TXT_GENERULES_HELP_RULES) str
+(', ") p
+(OnlineHilfe) str
+("\);) p n
+(82) # () N
+(83) # () S
+(//---------------------------------------------------------) c n
+(84) # (// load.php) N
+(85) # (//---------------------------------------------------------) N
+(86) # () S
+(define\(') p
+(TXT_LOAD_SITE_TITLE) str
+(', ") p
+(Beladen eines Netzwerks) str
+("\);) p n
+(87) # (define\(') S
+(TXT_LOAD_TITLE) str
+(', ") p
+(Beladen eines Netzwerks) str
+("\);) p n
+(88) # (define\(') S
+(TXT_LOAD_INSTRUCTION_1) str
+(', ") p
+(Bitte laden Sie die ben\303\266tigten Dateien, um das metabolische Netz) str n
+0 T (werk aufzubauen) S
+("\);) p n
+(89) # (define\(') S
+(TXT_LOAD_INSTRUCTION_2) str
+(', ") p
+(Datei Metaboliten :) str
+("\);) p n
+(90) # (define\(') S
+(TXT_LOAD_FILE_NAME) str
+(', ") p
+(W\303\244hlen Sie die Dateien zum Upload online :) str
+("\);) p n
+(91) # (define\(') S
+(TXT_LOAD_SFILE) str
+(', ") p
+(.sfile Datei) str
+("\);) p n
+(92) # (define\(') S
+(TXT_LOAD_MFILE) str
+(', ") p
+(.mfile Datei) str
+("\);) p n
+(93) # (define\(') S
+(TXT_LOAD_RVFILE) str
+(', ") p
+(.rvfile Datei) str
+("\);) p n
+(94) # (define\(') S
+(TXT_LOAD_GRFILE) str
+(', ") p
+(.grfile Datei) str
+("\);) p n
+(95) # (define\(') S
+(TXT_LOAD_RFILE) str
+(', ") p
+(.rfile Datei) str
+("\);) p n
+(96) # (define\(') S
+(TXT_LOAD_TITLE2) str
+(', ") p
+(Nach dem Beladung) str
+("\);) p n
+(97) # (define\(') S
+(TXT_LOAD_INSTRUCTION_3) str
+(', ") p
+(Bitte w\303\244hlen Sie Dateien zum Upload ) str
+("\);) p n
+(98) # () S
+(//---------------------------------------------------------) c n
+(99) # (// modify.php) N
+(100) # (//---------------------------------------------------------) N
+(101) # () S
+(define\(') p
+(TXT_MODIFY_SITE_TITLE) str
+(', ") p
+(\303M-^Dnderung eines Netzwerks) str
+("\);) p n
+(102) # (define\(') S
+(TXT_MODIFY_TITLE) str
+(', ") p
+(\303M-^Dnderung eines Netzwerks) str
+("\);) p n
+(103) # (define\(') S
+(TXT_MODIFY_INSTRUCTION_1) str
+(', ") p
+(Nicht verf\303\274gbar im Moment ...) str
+("\);) p n
+(104) # () N
+(105) # () S
+(//---------------------------------------------------------) c n
+(106) # (// options.php) N
+(107) # (//---------------------------------------------------------) N
+(108) # () S
+(define\(') p
+(TXT_OPTIONS_SITE_TITLE) str
+(', ") p
+(Walh der Analyse-Optionen) str
+("\);) p n
+(109) # (define\(') S
+(TXT_OPTIONS_TITLE) str
+(', ") p
+(Wahl der Analyse Optionen, um die Software zu starten ) str
+("\);) p n
+(110) # (define\(') S
+(TXT_OPTIONS_INSTRUCTION_1) str
+(', ") p
+(W\303\244hlen Sie die gew\303\274nschten Optionen :  <br/> ) str n
+(111) # () S 4 T () S 8 T () S 12 T (\(Obligatorischen Optionen sind bereits gepr\303\274ft\)  ) S
+("\);) p n
+(112) # (define\(') S
+(TXT_OPTIONS_SAVING_1) str
+(', ") p
+(Laden  ) str
+("\);) p n
+(113) # (define\(') S
+(TXT_OPTIONS_SAVING_2) str
+(', ") p
+(Ergebnisse anzeigen  ) str
+("\);) p n
+(114) # (define\(') S
+(TXT_OPTIONS_SAVING_3) str
+(', ") p
+(Online unter WRET ) str
+("\);) p n
+(115) # (define\(') S
+(TXT_OPTIONS_SAVING_4) str
+(', ") p
+(In einer Datei : ) str
+("\);) p n
+(116) # (define\(') S
+(TXT_OPTIONS_SAVING_5) str
+(', ") p
+(Dateinamen ) str
+("\);) p n
+(117) # (define\(') S
+(TXT_OPTIONS_ERROR_1) str
+(', ") p
+(Art der Warnung / Informationen auf die Berechnung ) str
+("\);) p n
+(118) # (define\(') S
+(TXT_OPTIONS_ERROR_2) str
+(', ") p
+(Warning ) str
+("\);) p n
+(119) # (define\(') S
+(TXT_OPTIONS_ERROR_3) str
+(', ") p
+(Config ) str
+("\);) p n
+(120) # (define\(') S
+(TXT_OPTIONS_ERROR_4) str
+(', ") p
+(Info ) str
+("\);) p n
+(121) # (define\(') S
+(TXT_OPTIONS_ERROR_5) str
+(', ") p
+(Fine ) str
+("\);) p n
+(122) # (define\(') S
+(TXT_OPTIONS_ERROR_6) str
+(', ") p
+(Finer ) str
+("\);) p n
+(123) # (define\(') S
+(TXT_OPTIONS_ERROR_7) str
+(', ") p
+(Finest ) str
+("\);) p n
+(124) # (define\(') S
+(TXT_OPTIONS_SAVING_6) str
+(', ") p
+(Format / Record Type  ) str
+("\);) p n
+(125) # (define\(') S
+(TXT_OPTIONS_SAVING_7) str
+(', ") p
+(Default ) str
+("\);) p n
+(WRET_Langages) (Page 2/5) (f\303\251vr. 18, 13 8:49) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(126) # (define\(') p
+(TXT_OPTIONS_SAVING_8) str
+(', ") p
+(Ganze ) str
+("\);) p n
+(127) # (define\(') S
+(TXT_OPTIONS_INPUT_1) str
+(', ") p
+(Eingabeparameter ) str
+("\);) p n
+(128) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH) str
+(', ") p
+(Kind of stoechiomotric files ) str
+("\);) p n
+(129) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_1) str
+(', ") p
+(Flux-analyzer-dir ) str
+("\);) p n
+(130) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_2) str
+(', ") p
+(Flux-analyzer-files ) str
+("\);) p n
+(131) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_3) str
+(', ") p
+(Reaction-list ) str
+("\);) p n
+(132) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_4) str
+(', ") p
+(Excel ) str
+("\);) p n
+(133) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_5) str
+(', ") p
+(Stoichiometry ) str
+("\);) p n
+(134) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_6) str
+(', ") p
+(Sbml ) str
+("\);) p n
+(135) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY) str
+(', ") p
+(Flux analysor ) str
+("\);) p n
+(136) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_1) str
+(', ") p
+(.mfile Datei:) str
+("\);) p n
+(137) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_1b) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(138) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_2) str
+(', ") p
+(.rfile Datei : ) str
+("\);) p n
+(139) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_3) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(140) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_4) str
+(', ") p
+(.grfile Datei :) str
+("\);) p n
+(141) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_5) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(142) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_6) str
+(', ") p
+(.sfile Datei :) str
+("\);) p n
+(143) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_7) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(144) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_8) str
+(', ") p
+(.rvfile Datei :) str
+("\);) p n
+(145) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_9) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(146) # (define\(') S
+(TXT_OPTIONS_COMPRESS) str
+(', ") p
+(Compression ) str
+("\);) p n
+(147) # (define\(') S
+(TXT_OPTIONS_COMPRESS_1) str
+(', ") p
+(Default ) str
+("\);) p n
+(148) # (define\(') S
+(TXT_OPTIONS_COMPRESS_2) str
+(', ") p
+(Off ) str
+("\);) p n
+(149) # (define\(') S
+(TXT_OPTIONS_COMPRESS_3) str
+(', ") p
+(Single) str
+("\);) p n
+(150) # (define\(') S
+(TXT_OPTIONS_COMPRESS_4) str
+(', ") p
+(Nullspace ) str
+("\);) p n
+(151) # (define\(') S
+(TXT_OPTIONS_COMPRESS_5) str
+(', ") p
+(Unique-no-recursion ) str
+("\);) p n
+(152) # (define\(') S
+(TXT_OPTIONS_COMPRESS_6) str
+(', ") p
+(Nullspace-no-recursion ) str
+("\);) p n
+(153) # (define\(') S
+(TXT_OPTIONS_OUTPUT) str
+(', ") p
+(Ausgabeparameter ) str
+("\);) p n
+(154) # (define\(') S
+(TXT_OPTIONS_OUTPUT_1) str
+(', ") p
+(Null) str
+("\);) p n
+(155) # (define\(') S
+(TXT_OPTIONS_OUTPUT_2) str
+(', ") p
+(Count ) str
+("\);) p n
+(156) # (define\(') S
+(TXT_OPTIONS_OUTPUT_3) str
+(', ") p
+(Text-boolean : ) str
+("\);) p n
+(157) # (define\(') S
+(TXT_OPTIONS_OUTPUT_4) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(158) # (define\(') S
+(TXT_OPTIONS_OUTPUT_5) str
+(', ") p
+(Text-doubles : ) str
+("\);) p n
+(159) # (define\(') S
+(TXT_OPTIONS_OUTPUT_6) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(160) # (define\(') S
+(TXT_OPTIONS_OUTPUT_7) str
+(', ") p
+(Binary-boolean : ) str
+("\);) p n
+(161) # (define\(') S
+(TXT_OPTIONS_OUTPUT_8) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(162) # (define\(') S
+(TXT_OPTIONS_OUTPUT_9) str
+(', ") p
+(Binary-doubles : ) str
+("\);) p n
+(163) # (define\(') S
+(TXT_OPTIONS_OUTPUT_10) str
+(', ") p
+(Dateinamen : ) str
+("\);) p n
+(164) # (define\(') S
+(TXT_OPTIONS_OUTPUT_11) str
+(', ") p
+(Matlab : ) str
+("\);) p n
+(165) # (define\(') S
+(TXT_OPTIONS_OUTPUT_12) str
+(', ") p
+(Dateinamen \(keine Verl\303\244ngerung\) ) str
+("\);) p n
+(166) # (define\(') S
+(TXT_OPTIONS_EFMTOOL) str
+(', ") p
+(EfmTool Parameter) str
+("\);) p n
+(167) # (define\(') S
+(TXT_OPTIONS_EFM_CMD) str
+(', ") p
+(Command line to use) str
+("\);) p n
+(168) # (define\(') S
+(TXT_OPTIONS_EFM_LINE) str
+(', ") p
+(Rowordering) str
+("\);) p n
+(169) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA) str
+(', ") p
+(Verfahren adjacency  ) str
+("\);) p n
+(170) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA_1) str
+(', ") p
+(Pattern-tree-minzero ) str
+("\);) p n
+(171) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA_2) str
+(', ") p
+(Pattern-tree-rank ) str
+("\);) p n
+(172) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS) str
+(', ") p
+(Maxime Nummer auf 'threads' ) str
+("\);) p n
+(173) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS_1) str
+(', ") p
+(MaxThreads : ) str
+("\);) p n
+(174) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS_2) str
+(', ") p
+(Threads Nummer : ) str
+("\);) p n
+(175) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM) str
+(', ") p
+(Arithmetik Nummer  ) str
+("\);) p n
+(176) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM_1) str
+(', ") p
+(Doubles ) str
+("\);) p n
+(177) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM_2) str
+(', ") p
+(Spitzenbetr\303\244ge ) str
+("\);) p n
+(178) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL) str
+(', ") p
+(Output normalization ) str
+("\);) p n
+(179) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_1) str
+(', ") p
+(Maximum ) str
+("\);) p n
+(180) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_2) str
+(', ") p
+(Minimum ) str
+("\);) p n
+(181) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_3) str
+(', ") p
+(norm2 ) str
+("\);) p n
+(182) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_4) str
+(', ") p
+(Quadrat ) str
+("\);) p n
+(183) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_5) str
+(', ") p
+(None ) str
+("\);) p n
+(184) # (define\(') S
+(TXT_OPTIONS_EFM_P_FRAC) str
+(', ") p
+(Spitzenbetr\303\244ge Pr\303\244zision ) str
+("\);) p n
+(185) # (define\(') S
+(TXT_OPTIONS_EFM_P_FRAC_1) str
+(', ") p
+(Pr\303\244zision : ) str
+("\);) p n
+(186) # (define\(') S
+(TXT_OPTIONS_EFM_VALUE) str
+(', ") p
+(Value \(bit count, e.g. 128, 256, -1 \(infinite\)\) : ) str
+("\);) p n
+(187) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T) str
+(', ") p
+(Selbsttest nach der jeder Iteration ) str
+("\);) p n
+(188) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T_1) str
+(', ") p
+(Ja ) str
+("\);) p n
+(189) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T_2) str
+(', ") p
+(Nein ) str
+("\);) p n
+(190) # () N
+(191) # () N
+(WRET_Langages) (Page 3/5) (f\303\251vr. 18, 13 8:49) title
+border
+grestore
+(Groupe Web) rhead
+(de_lang.php) (2/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (4-5) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(192) # (//---------------------------------------------------------) c n
+(193) # (//help.php) N
+(194) # (//--------------------------------------------------------) N
+(195) # () N
+(196) # () S
+(define\(') p
+(TXT_HELP_TITLE) str
+(', ") p
+(Online-Hilfe) str
+("\);) p n
+(197) # (define\(') S
+(TXT_HELP_INTRO) str
+(', ") p
+(Dies ist eine Beihilfe f\303\274r die Verwendung von Online-RegEfmtool.) str
+("\);) p n
+(198) # (define\(') S
+(TXT_HELP_FILES_CREATE) str
+(', ") p
+(Schaffung von neuen metabolische Netzwerk) str
+("\);) p n
+(199) # (define\(') S
+(TXT_HELP_CREATION) str
+(', ") p
+(Aide \303\240 la cr\303\251ation d'un r\303\251seau) str
+("\);) p n
+(200) # (define\(') S
+(TXT_HELP_GENERULES) str
+(', ") p
+(Aide \303\240 la cr\303\251ation des r\303\250gles des g\303\250nes) str
+("\);) p n
+(201) # () N
+(202) # () S
+(//---------------------------------------------------------) c n
+(203) # (//help_rule.php) N
+(204) # (//--------------------------------------------------------) N
+(205) # () S
+(define\(') p
+(TXT_HELP_RULE_TITLE) str
+(', ") p
+(Online-Hilfe) str
+("\);) p n
+(206) # (define\(') S
+(TXT_HELP_RULE_TITLE1) str
+(', ") p
+(Diese Seite ist ein Hilfsmittel, um die Schaffung von Regeln f\303\274r die ) str n
+0 T (Gene) S
+("\);) p n
+(207) # (define\(') S
+(TXT_HELP_RULE_INTRO) str
+(', ") p
+(Die Reaktion Enzym-Gens wird durch Boolesche Regeln, wie R2 =! R1) str n
+0 T ( erzeugt.\\n) N
+(208) # (Dies bedeutet, :\\n) S
+("\);) p n
+(209) # (define\(') S
+(TXT_HELP_RULE_FLUX_1) str
+(', ") p
+(dass die Reaktion R2 muss nicht bringen Fluss wenn R1 enth\303\244lt che) str n
+0 T (mische Fluss.) S
+("\);) p n
+(210) # (define\(') S
+(TXT_HELP_RULE_FLUX_2) str
+(', ") p
+(dass R2 muss eine chemische Fluss machen, wenn R1 nicht zur Verf\303) str n
+0 T (\274gung stellt.) S
+("\);) p n
+(211) # (define\(') S
+(TXT_HELP_RULE_1) str
+(', ") p
+(Eine Reaktion R kann einen Fluss \(R = 1\) oder nicht \(R = 0\) bringen.) str
+("\);) p n
+(212) # (define\(') S
+(TXT_HELP_RULE_2) str
+(', ") p
+(Nat\303\274rlich gibt es die komplexeren Boolean Regeln metabolischer Netzwerke) str n
+0 T (. Sie l\303\244sst sich mit den Operatoren NOT, AND und OR werden.) S
+("\);) p n
+(213) # (define\(') S
+(TXT_HELP_RULE_3) str
+(', ") p
+(Um den Typ der Aktivit\303\244t in einer Reaktion anzuzeigen, muss das Pr\303\244fix ') str n
+0 T (0 ', '1' oder 'f' in der Datei grfile verwendet werden.) S
+("\);) p n
+(214) # (define\(') S
+(TXT_HELP_RULE_4) str
+(', ") p
+(Zum Beispiel wenn die Reaktion R7 0 \(aktiv\) in der Datei grfile, wird diese in ) str n
+0 T (der Form 0R7, w\303\244hrend Reaktion FR3 voll aktiv angemerkt.) S
+("\);) p n
+(215) # (define\(') S
+(TXT_HELP_RULE_INFO_TITLE) str
+(', ") p
+(Konvertierungsregeln in dem Format von regEfmtool verwendet:) str
+() p n
+0 T ("\);) N
+(216) # (define\(') S
+(TXT_HELP_RULE_INFO_1) str
+(', ") p
+(Auf dieser Seite Sie k\303\266nnen Regeln f\303\274r die folgenden Typs Genen e) str n
+0 T (rstellen:) S
+("\);) p n
+(217) # (define\(') S
+(TXT_HELP_RULE_R1) str
+(', ") p
+(IF R1 = 1 AND R2 = 0 THEN R3=1) str
+("\);) p n
+(218) # (define\(') S
+(TXT_HELP_RULE_R2) str
+(', ") p
+(IF R4 = 0 OR R2 = 1 THEN R1 = 0) str
+("\);) p n
+(219) # (define\(') S
+(TXT_HELP_RULE_INFO_2) str
+(', ") p
+(Wenn Sie darauf \\"Hinzuf\303\274gen\\" klicken, Regeln \303\274bersetzt und in ) str n
+0 T (die Datei grfile.txt geschrieben werden. Diese Datei kann durch von regEfmtool verwendet werden bei der Berechnung ) N
+0 T (der elementaren Modi.) S
+("\);) p n
+(220) # (define\(') S
+(TXT_HELP_RULE_INFO_3) str
+(', ") p
+(Die \303M-^\\bersetzung der oben genannten Regeln ist:) str
+("\);) p n
+(221) # (define\(') S
+(TXT_HELP_RULE_R1_2) str
+(', ") p
+(R3 = \(1R1 & \(!0R2\)\)) str
+("\);) p n
+(222) # (define\(') S
+(TXT_HELP_RULE_R2_2) str
+(', ") p
+(R1 = \(!\(\(!0R4\) | 1R2\)\)) str
+("\);) p n
+(223) # () N
+(224) # () S
+(//---------------------------------------------------------) c n
+(225) # (//help_create.php) N
+(226) # (//--------------------------------------------------------) N
+(227) # () S
+(define\(') p
+(TXT_HELP_CREATE_TITLE) str
+(', ") p
+(Online-Hilfe) str
+("\);) p n
+(228) # (define\(') S
+(TXT_HELP_CREATE_TITLE1) str
+(', ") p
+(Diese Seite ist ein Hilfsmittel, um die Schaffung eines neuen Netzwe) str n
+0 T (rks) S
+("\);) p n
+(229) # (define\(') S
+(TXT_HELP_CREATE_INTRO) str
+(', ") p
+(Generieren Sie certais Dateien, um Ihre chemische Netzwerk zu erste) str n
+0 T (llen.) S
+("\);) p n
+(230) # (define\(') S
+(TXT_HELP_CREATE_1) str
+(', ") p
+(Klicken Sie auf den \\"Init-Dateien\\" Button.) str
+("\);) p n
+(231) # (define\(') S
+(TXT_HELP_CREATE_2) str
+(', ") p
+(Schreiben Sie die chemischen Reaktionen des Netzwerks nacheinander \(Sie) str n
+0 T ( m\303\274ssen die St\303\266chiometrie jedes Mal schreiben\).) S
+("\);) p n
+(232) # (define\(') S
+(TXT_HELP_CREATE_3) str
+(', ") p
+(Klicken Sie auf die Button \\"Hinzuf\303\274gen\\", um die Reaktion zu validiere) str n
+0 T (n. ) S
+("\);) p n
+(233) # (define\(') S
+(TXT_HELP_CREATE_4) str
+(', ") p
+(Wenn Sie einen Fehler machen, k\303\266nnen Sie ihn in das \\"Reaktionen zuvor) str n
+0 T ( gespeicherte\\" Textfeld bearbeiten. ) S
+("\);) p n
+(234) # (define\(') S
+(TXT_HELP_CREATE_5) str
+(', ") p
+(Dann klicken Sie auf die \\"\303M-^Dndern\\" Button f\303\274r die \303M-^Dnderun) str n
+0 T (gen wirksam werden.) S
+("\);) p n
+(235) # (define\(') S
+(TXT_HELP_CREATE_6) str
+(', ") p
+(Sie k\303\266nnen nicht direkt schreiben, um eine Reaktion in das Textfeld ein, o) str n
+0 T (der entfernen Sie ein.) S
+("\);) p n
+(236) # (define\(') S
+(TXT_HELP_CREATE_7) str
+(', ") p
+(Sie k\303\266nnen einen datafile.dat mit Ihrem Netzwerk, indem Sie auf den \\"D) str n
+0 T (AT\\" Button erstellen. ) S
+("\);) p n
+(237) # (define\(') S
+(TXT_HELP_CREATE_8) str
+(', ") p
+(Wenn Sie fertig sind, klicken Sie auf die \\"N\303\244chsten Schritt\\" Button, um ) str n
+0 T (den Schritt der Schaffung der Regeln gehen. ) S
+("\);) p n
+(WRET_Langages) (Page 4/5) (f\303\251vr. 18, 13 8:49) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(238) # () p n
+(239) # () S
+(//---------------------------------------------------------) c n
+(240) # (// copyright.php) N
+(241) # (//---------------------------------------------------------) N
+(242) # () S
+(define\(') p
+(TXT_COPYRIGHT_TITLE) str
+(', ") p
+(Copyright) str
+("\);) p n
+(243) # (define\(') S
+(TXT_COPYRIGHT_CPY) str
+(', ") p
+(\302\251 Copyright 2013 <br />) str n
+(244) # () S 4 T () S 8 T () S 12 T (WebRegEfmTool \(WRET\) ist ein Web-Interface von den Studierenden des Master of Bioinformatics) N
+0 T ( 2 von Bordeaux erstellt: <br />) N
+(245) # () S 4 T () S 8 T () S 12 T (Arnaud FR\303M-^HCHE, Charlotte H\303M-^IRIC\303M-^I, Sara\303\257 MOLA, Typhaine PAYSAN-LAF) N
+0 T (OSSE et Joris SANSEN <br />) N
+(246) # () S 4 T () S 8 T () S 12 T (Unter der Regie von Frau <a href=\\"http://dept-info.labri.fr/~beurton\\">Marie BEURTON-AIMAR) N
+0 T (</a>.  <br />) N
+(247) # () S 4 T () S 8 T () S 12 T (Das Ziel dieser Interface ist, um eine ergonomische Arbeitsumgebung Software <a href=\\"http://ww) N
+0 T (w.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\\"> regEfmtool</a> bereitzustellen.) S
+("\);) p n
+(248) # () N
+(249) # () S
+(//---------------------------------------------------------) c n
+(250) # (// results.php) N
+(251) # (//---------------------------------------------------------) N
+(252) # () S
+(define\(') p
+(TXT_FILE_CHOOSE_SITE_TITLE) str
+(', ") p
+(Ergebnisse) str
+("\);) p n
+(253) # (define\(') S
+(TXT_FILE_CHOOSE_TITLE) str
+(', ") p
+(Log) str
+("\);) p n
+(254) # (define\(') S
+(TXT_FILE_CHOOSE_SUBTITLE) str
+(', ") p
+(W\303\244hlen Sie eine Datei) str
+("\);) p n
+(255) # (define\(') S
+(TXT_FILE_CHOOSE) str
+(', ") p
+(Datei : ) str
+("\);) p n
+(256) # () N
+(257) # () S
+(//---------------------------------------------------------) c n
+(258) # (// parse_results.php) N
+(259) # (//---------------------------------------------------------) N
+(260) # () S
+(define\(') p
+(TXT_PARSE_RESULTS_SITE_TITLE) str
+(', ") p
+(Ergebnisse) str
+("\);) p n
+(261) # (define\(') S
+(TXT_PARSE_RESULTS_TITLE) str
+(', ") p
+(Extraction Ergebnisse) str
+("\);) p n
+(262) # (define\(') S
+(TXT_PARSE_RESULTS_FILE) str
+(', ") p
+(Bearbeiteten Datei : ) str
+("\);) p n
+(263) # (define\(') S
+(TXT_PARSE_RESULTS_DISPLAY) str
+(',") p
+(Extraction Ergebnisse unter : ) str
+("\);) p n
+(264) # () N
+(265) # () S
+(//---------------------------------------------------------) c n
+(266) # (// display_results.php) N
+(267) # (//---------------------------------------------------------) N
+(268) # () S
+(define\(') p
+(TXT_DISPLAY_RESULTS_SITE_TITLE) str
+(', ") p
+(Ergebnisse) str
+("\);) p n
+(269) # (define\(') S
+(TXT_DISPLAY_RESULTS_TITLE) str
+(', ") p
+(Ergebnisse anzeigen) str
+("\);) p n
+(270) # (define\(') S
+(TXT_DISPLAY_RESULTS_INSTRUCTION_1) str
+(',") p
+(Log Datei) str
+("\);) p n
+(271) # (define\(') S
+(TXT_DISPLAY_RESULTS_FILE) str
+(', ") p
+(Bearbeiteten Datei : ) str
+("\);) p n
+(272) # (define\(') S
+(TXT_DISPLAY_RESULTS_ORIGINAL) str
+(', ") p
+(Original : ) str
+("\);) p n
+(273) # (define\(') S
+(TXT_DISPLAY_RESULTS_NEW) str
+(', ") p
+(Neu : ) str
+("\);) p n
+(274) # () N
+(275) # () S
+(//---------------------------------------------------------) c n
+(276) # (// instal.php) N
+(277) # (//---------------------------------------------------------) N
+(278) # () S
+(define\(') p
+(TXT_INSTAL_TITLE) str
+(', ") p
+(Systemvoraussetzungen) str
+("\);) p n
+(279) # (define\(') S
+(TXT_INSTAL_TXT) str
+(', ") p
+(Um dieses Interface zu verwenden, m\303\274ssen Sie: <br />) str n
+(280) # () S 4 T () S 8 T () S 12 T (- Haben die Java7 Version <br />) N
+(281) # () S 4 T () S 8 T () S 12 T (- \303M-^Dndern Sie die Variablen JAR und JAVAC der Datei Makefile im Ordner regEfmtool : <br /) N
+0 T (>) N
+(282) # () S 4 T () S 8 T () S 12 T (JAR=/usr/lib/jvm/java-7-sun/bin/jar and JAVAC=/usr/lib/jvm/java-7-sun/bin/javac \(je nachdem, w) N
+0 T (as Sie haben\) <br />) N
+(283) # () S 4 T () S 8 T () S 12 T (- Haben die Software <a href=\\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\\">) N
+0 T ( regEfmtool</a> herunterladen.  <br />) N
+(284) # () S 4 T () S 8 T () S 12 T (Wenn Sie regEfmtool aus einem anderen Ordner verwenden m\303\266chten, m\303\274ssen Sie die Datei-Pfad) N
+0 T (e im Programmcode zu \303\244ndern.<br />) N
+(285) # () S 4 T () S 8 T () S 12 T (- \303M-^\\ber diese Schnittstelle werden alle Dateien, die mit Zugang zu einem Web-Server \(Apache ) N
+0 T (oder andere\) muss installiert sein.) S
+("\);) p n
+(286) # () N
+(287) # () S
+(//---------------------------------------------------------) c n
+(288) # (// Fin) N
+(289) # (//---------------------------------------------------------) N
+(290) # () S
+(?>) K n
+(WRET_Langages) (Page 5/5) (f\303\251vr. 18, 13 8:49) title
+border
+grestore
+(Groupe Web) rhead
+(de_lang.php) (3/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 4
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # ( ) p
+(<?php) K n
+(2) # () S
+(//---------------------------------------------------------) c n
+(3) # (// index.php) N
+(4) # (//---------------------------------------------------------) N
+(5) # () S
+(define\(') p
+(TXT_HOMEPAGE_TITLE) str
+(', ') p
+(Welcome on WebRegEfmTool) str
+('\);) p n
+(6) # (define\(') S
+(TXT_SITE_TITLE) str
+(', ") p
+(Homepage of WebRegEfmTool) str
+("\);) p n
+(7) # (define\(') S
+(TXT_HOMEPAGE_BODY) str
+(', ") p
+(This tool is used for regEfmtool.<br />) str n
+(8) # () S 4 T () S 8 T (You can create, load, modify a metabolic network.<br />) N
+(9) # () S 4 T () S 8 T (The aim is to launch a simulation from you browser.) S
+("\);) p n
+(10) # (define\(') S
+(TXT_HOMEPAGE_COPYRIGHT) str
+(', ") p
+(See the <a href=\\"copyright.php\\">Copyright</a>.) str
+("\);) p n
+(11) # (define\(') S
+(TXT_HOMEPAGE_INSTAL) str
+(', ") p
+(See the system <a href=\\"instal.php\\">requirements</a>.) str
+("\);) p n
+(12) # () S
+(//---------------------------------------------------------) c n
+(13) # (// page1.php) N
+(14) # (//---------------------------------------------------------) N
+(15) # () S
+(define\(') p
+(TXT_MENU_HOME) str
+(', ') p
+(Home) str
+('\);) p n
+(16) # (define\(') S
+(TXT_MENU_CREATE) str
+(', ') p
+(Creation) str
+('\);) p n
+(17) # (define\(') S
+(TXT_MENU_REVERSIBILITY) str
+(', ') p
+(Reversibility) str
+('\);) p n
+(18) # (define\(') S
+(TXT_MENU_RULES) str
+(', ') p
+(Rules) str
+('\);) p n
+(19) # (define\(') S
+(TXT_MENU_LOAD) str
+(', ') p
+(Load) str
+('\);) p n
+(20) # (define\(') S
+(TXT_MENU_MODIFY) str
+(', ') p
+(Modify) str
+('\);) p n
+(21) # (define\(') S
+(TXT_MENU_LAUNCH) str
+(', ') p
+(Launch) str
+('\);) p n
+(22) # (define\(') S
+(TXT_MENU_HELP) str
+(', ') p
+(Help) str
+('\);) p n
+(23) # () S
+(//---------------------------------------------------------) c n
+(24) # (// create.php) N
+(25) # (//---------------------------------------------------------) N
+(26) # () S
+(define\(') p
+(TXT_CREATION_SITE_TITLE) str
+(', ") p
+(Creation of a new reaction) str
+("\);) p n
+(27) # (define\(') S
+(TXT_INIT_FILES) str
+(', ") p
+(Initiate your files before creating a new network) str
+("\);) p n
+(28) # (define\(') S
+(TXT_CREATION_INIT) str
+(', ") p
+(\\"Init files\\") str
+("\);) p n
+(29) # (define\(') S
+(TXT_CREATION_TITLE) str
+(', ") p
+(Creation of a new network) str
+("\);) p n
+(30) # (define\(') S
+(TXT_CREATION_INSTRUCTION_1) str
+(', ") p
+(enter a new reaction) str
+("\);) p n
+(31) # (define\(') S
+(TXT_CREATION_INSTRUCTION_2) str
+(', ") p
+(Check if the raction has already been registered :) str
+("\);) p n
+(32) # (define\(') S
+(TXT_CREATION_WARNING_TITLE) str
+(', ") p
+(WARNING !) str
+("\);) p n
+(33) # (define\(') S
+(TXT_CREATION_WARNING) str
+(', ") p
+(No space in the names, please use underscore '_' instead <br />) str n
+(34) # () S 4 T () S 8 T () S 12 T (This is how to write a reaction : <br />) N
+(35) # () S 4 T () S 8 T () S 12 T (Name_of_reaction : 2 reactant1 + 5 reactant2 => 3 product1 + 7 product2 <br />) N
+(36) # () S 4 T () S 8 T () S 12 T (Please be sure to let a space between the stoechiometry coefficient and the associate metabolite) S
+("\);) p n
+(37) # (define\(') S
+(TXT_CREATION_WARNING_2) str
+(', ") p
+(You mustn't add or remove a reaction in this area<br />) str n
+(38) # () S 4 T () S 8 T () S 12 T () S 16 T (No space after the last metabolite) S
+("\);) p n
+(39) # (define\(') S
+(TXT_CREATION_IS_REVERSIBLE) str
+(', ") p
+(Reversible :) str
+("\);) p n
+(40) # (define\(') S
+(TXT_CREATION_YES) str
+(', ") p
+(Yes) str
+("\);) p n
+(41) # (define\(') S
+(TXT_CREATION_NO) str
+(', ") p
+(No) str
+("\);) p n
+(42) # (define\(') S
+(TXT_CREATION_ALREADY_OK) str
+(', ") p
+(Reactions already saved) str
+("\);) p n
+(43) # (define\(') S
+(TXT_CREATION_FINISH) str
+(', ") p
+(Creation of the DAT file format network) str
+("\);) p n
+(44) # (define\(') S
+(TXT_CREATION_CLIC) str
+(', ") p
+(You have to click one the button) str
+("\);) p n
+(45) # (define\(') S
+(TXT_CREATE_EXT) str
+(', ") p
+(External metabolites :) str
+("\);) p n
+(46) # (define\(') S
+(TXT_CREATE_INT) str
+(', ") p
+(Internal metabolites : ) str
+("\);) p n
+(47) # (define\(') S
+(TXT_CREATE_BUTTON_ADD1) str
+(', ") p
+(Add) str
+("\);) p n
+(48) # (define\(') S
+(TXT_CREATE_BUTTON_REMOVE1) str
+(', ") p
+(Remove) str
+("\);) p n
+(49) # (define\(') S
+(TXT_CREATE_CHOOSE_EXT) str
+(', ") p
+(Choose external and internal metabolites) str
+("\);) p n
+(50) # () N
+(51) # () S
+(//---------------------------------------------------------) c n
+(52) # (// Buttons create.php) N
+(53) # (//---------------------------------------------------------) N
+(54) # () S
+(define\(') p
+(TXT_ADD_BUTTON) str
+(', ") p
+(Add) str
+("\);) p n
+(55) # (define\(') S
+(TXT_MODIFY_BUTTON) str
+(', ") p
+(Modify) str
+("\);) p n
+(56) # (define\(') S
+(TXT_NEXTSTEP_BUTTON) str
+(', ") p
+(Next step) str
+("\);) p n
+(57) # (define\(') S
+(TXT_GO_BUTTON) str
+(', ") p
+(Go) str
+("\);) p n
+(58) # (define\(') S
+(TXT_COMPARE_BUTTON) str
+(', ") p
+(Compare) str
+("\);) p n
+(59) # (define\(') S
+(TXT_FINISH_BUTTON) str
+(', ") p
+(Finish) str
+("\);) p n
+(60) # (define\(') S
+(TXT_BUTTON_RESULT) str
+(', ") p
+(View the result) str
+("\);) p n
+(61) # (define\(') S
+(TXT_BUTTON_EXTRACTION) str
+(', ") p
+(Back: Extraction results) str
+("\);) p n
+(62) # () N
+(63) # () S
+(//---------------------------------------------------------) c n
+(64) # (// generules.php) N
+(65) # (//---------------------------------------------------------) N
+(66) # () S
+(define\(') p
+(TXT_GENERULES_SITE_TITLE) str
+(', ") p
+(Create the Gene rules) str
+("\);) p n
+(WRET_Langages) (Page 1/5) (f\303\251vr. 18, 13 8:50) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(67) # (define\(') p
+(TXT_GENERULES_TITLE) str
+(', ") p
+(Gene Rules) str
+("\);) p n
+(68) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_1) str
+(', ") p
+(Enter a new rule :) str
+("\);) p n
+(69) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_2) str
+(', ") p
+(Choose the number of reaction :) str
+("\);) p n
+(70) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_3) str
+(', ") p
+( Number of reaction in the form IF AND THEN) str
+("\);) p n
+(71) # (define\(') S
+(TXT_GENERULES_NUMBER) str
+(', ") p
+(Enter a number higher than 1 ) str
+("\);) p n
+(72) # (define\(') S
+(TXT_GENERULES_OPERATOR) str
+(', ") p
+(Choose an operator) str
+("\);) p n
+(73) # (define\(') S
+(TXT_GENERULES_OP) str
+(', ") p
+(Operator:) str
+("\);) p n
+(74) # (define\(') S
+(TXT_GENERULES_REAC) str
+(', ") p
+(Reaction:) str
+("\);) p n
+(75) # (define\(') S
+(TXT_GENERULES_REAC_1) str
+(', ") p
+(Choose a reaction) str
+("\);) p n
+(76) # (define\(') S
+(TXT_GENERULES_VALUE) str
+(', ") p
+(Value: ) str
+("\);) p n
+(77) # (define\(') S
+(TXT_GENERULES_VALUE_2) str
+(', ") p
+(Choose a value) str
+("\);) p n
+(78) # (define\(') S
+(TXT_GENERULES_BUTTON_ADD) str
+(', ") p
+(Add) str
+("\);) p n
+(79) # (define\(') S
+(TXT_GENERULES_ALERT_1) str
+(', ") p
+(You have to choose a reaction and a value for the reaction) str
+("\);) p n
+(80) # (define\(') S
+(TXT_GENERULES_ALERT_2) str
+(', ") p
+(You have to choose an operator, a reaction and a value for the reactio) str n
+0 T (n) S
+("\);) p n
+(81) # (define\(') S
+(TXT_GENERULES_RULES) str
+(', ") p
+(Rules already created :) str
+("\);) p n
+(82) # (define\(') S
+(TXT_GENERULES_HELP_RULES) str
+(', ") p
+(Help) str
+("\);) p n
+(83) # () N
+(84) # () S
+(//---------------------------------------------------------) c n
+(85) # (// load.php) N
+(86) # (//---------------------------------------------------------) N
+(87) # () S
+(define\(') p
+(TXT_LOAD_SITE_TITLE) str
+(', ") p
+(Load a network) str
+("\);) p n
+(88) # (define\(') S
+(TXT_LOAD_TITLE) str
+(', ") p
+(Load a network) str
+("\);) p n
+(89) # (define\(') S
+(TXT_LOAD_INSTRUCTION_1) str
+(', ") p
+(Please choose the files needed to build the metabolic network) str
+("\);) p n
+(90) # (define\(') S
+(TXT_LOAD_INSTRUCTION_2) str
+(', ") p
+(metabolites files \( your_file.mfile\):) str
+("\);) p n
+(91) # (define\(') S
+(TXT_LOAD_FILE_NAME) str
+(', ") p
+(Choose the files to load :) str
+("\);) p n
+(92) # (define\(') S
+(TXT_LOAD_SFILE) str
+(', ") p
+(.sfile file) str
+("\);) p n
+(93) # (define\(') S
+(TXT_LOAD_MFILE) str
+(', ") p
+(.mfile file) str
+("\);) p n
+(94) # (define\(') S
+(TXT_LOAD_RVFILE) str
+(', ") p
+(.rvfile file) str
+("\);) p n
+(95) # (define\(') S
+(TXT_LOAD_GRFILE) str
+(', ") p
+(.grfile file) str
+("\);) p n
+(96) # (define\(') S
+(TXT_LOAD_RFILE) str
+(', ") p
+(.rfile file) str
+("\);) p n
+(97) # (define\(') S
+(TXT_LOAD_TITLE2) str
+(', ") p
+(Next step of loading) str
+("\);) p n
+(98) # (define\(') S
+(TXT_LOAD_INSTRUCTION_3) str
+(', ") p
+(Please, choose the files to load) str
+("\);) p n
+(99) # () S
+(//---------------------------------------------------------) c n
+(100) # (// modify.php) N
+(101) # (//---------------------------------------------------------) N
+(102) # () S
+(define\(') p
+(TXT_MODIFY_SITE_TITLE) str
+(', ") p
+(Modification of a network) str
+("\);) p n
+(103) # (define\(') S
+(TXT_MODIFY_TITLE) str
+(', ") p
+(Modification of a network) str
+("\);) p n
+(104) # (define\(') S
+(TXT_MODIFY_INSTRUCTION_1) str
+(', ") p
+(Not yet implemented) str
+("\);) p n
+(105) # () N
+(106) # () S
+(//---------------------------------------------------------) c n
+(107) # (// options.php) N
+(108) # (//---------------------------------------------------------) N
+(109) # () S
+(define\(') p
+(TXT_OPTIONS_SITE_TITLE) str
+(', ") p
+(Choice of the options for the network analysis) str
+("\);) p n
+(110) # (define\(') S
+(TXT_OPTIONS_TITLE) str
+(', ") p
+(Choice of the options for WRET running ) str
+("\);) p n
+(111) # (define\(') S
+(TXT_OPTIONS_INSTRUCTION_1) str
+(', ") p
+(Please check the necessary options : <br/>) str n
+(112) # () S 4 T () S 8 T (\(Mandatoru options are checked as default\)) S
+("\);) p n
+(113) # (define\(') S
+(TXT_OPTIONS_SAVING_1) str
+(', ") p
+(Loading  ) str
+("\);) p n
+(114) # (define\(') S
+(TXT_OPTIONS_SAVING_2) str
+(', ") p
+(Results diplay  ) str
+("\);) p n
+(115) # (define\(') S
+(TXT_OPTIONS_SAVING_3) str
+(', ") p
+(Online on WRET ) str
+("\);) p n
+(116) # (define\(') S
+(TXT_OPTIONS_SAVING_4) str
+(', ") p
+(In a file : ) str
+("\);) p n
+(117) # (define\(') S
+(TXT_OPTIONS_SAVING_5) str
+(', ") p
+(File name ) str
+("\);) p n
+(118) # (define\(') S
+(TXT_OPTIONS_ERROR_1) str
+(', ") p
+(Type of warning / Level of information of processing  ) str
+("\);) p n
+(119) # (define\(') S
+(TXT_OPTIONS_ERROR_2) str
+(', ") p
+(Warning ) str
+("\);) p n
+(120) # (define\(') S
+(TXT_OPTIONS_ERROR_3) str
+(', ") p
+(Config ) str
+("\);) p n
+(121) # (define\(') S
+(TXT_OPTIONS_ERROR_4) str
+(', ") p
+(Info ) str
+("\);) p n
+(122) # (define\(') S
+(TXT_OPTIONS_ERROR_5) str
+(', ") p
+(Fine ) str
+("\);) p n
+(123) # (define\(') S
+(TXT_OPTIONS_ERROR_6) str
+(', ") p
+(Finer ) str
+("\);) p n
+(124) # (define\(') S
+(TXT_OPTIONS_ERROR_7) str
+(', ") p
+(Finest ) str
+("\);) p n
+(125) # (define\(') S
+(TXT_OPTIONS_SAVING_6) str
+(', ") p
+(Format / kind of recording  ) str
+("\);) p n
+(126) # (define\(') S
+(TXT_OPTIONS_SAVING_7) str
+(', ") p
+(As default ) str
+("\);) p n
+(127) # (define\(') S
+(TXT_OPTIONS_SAVING_8) str
+(', ") p
+(Complete ) str
+("\);) p n
+(128) # (define\(') S
+(TXT_OPTIONS_INPUT_1) str
+(', ") p
+(Input parameters ) str
+("\);) p n
+(129) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH) str
+(', ") p
+(Kind of stoechiomotric files ) str
+("\);) p n
+(130) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_1) str
+(', ") p
+(Flux-analyzer-dir ) str
+("\);) p n
+(131) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_2) str
+(', ") p
+(Flux-analyzer-files ) str
+("\);) p n
+(WRET_Langages) (Page 2/5) (f\303\251vr. 18, 13 8:50) title
+border
+grestore
+(Groupe Web) rhead
+(en_lang.php) (4/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3-4) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(132) # (define\(') p
+(TXT_OPTIONS_INPUT_STOECH_3) str
+(', ") p
+(Reaction-list ) str
+("\);) p n
+(133) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_4) str
+(', ") p
+(Excel ) str
+("\);) p n
+(134) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_5) str
+(', ") p
+(Stoichiometry ) str
+("\);) p n
+(135) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_6) str
+(', ") p
+(Sbml ) str
+("\);) p n
+(136) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY) str
+(', ") p
+(Flux analysor ) str
+("\);) p n
+(137) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_1) str
+(', ") p
+(.mfile file:) str
+("\);) p n
+(138) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_1b) str
+(', ") p
+(File name : ) str
+("\);) p n
+(139) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_2) str
+(', ") p
+(.rfile file : ) str
+("\);) p n
+(140) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_3) str
+(', ") p
+(File name : ) str
+("\);) p n
+(141) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_4) str
+(', ") p
+(.grfile file :) str
+("\);) p n
+(142) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_5) str
+(', ") p
+(File name : ) str
+("\);) p n
+(143) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_6) str
+(', ") p
+(.sfile file :) str
+("\);) p n
+(144) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_7) str
+(', ") p
+(File name : ) str
+("\);) p n
+(145) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_8) str
+(', ") p
+(.rvfile file :) str
+("\);) p n
+(146) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_9) str
+(', ") p
+(File name : ) str
+("\);) p n
+(147) # (define\(') S
+(TXT_OPTIONS_COMPRESS) str
+(', ") p
+(Compression ) str
+("\);) p n
+(148) # (define\(') S
+(TXT_OPTIONS_COMPRESS_1) str
+(', ") p
+(Default ) str
+("\);) p n
+(149) # (define\(') S
+(TXT_OPTIONS_COMPRESS_2) str
+(', ") p
+(Off ) str
+("\);) p n
+(150) # (define\(') S
+(TXT_OPTIONS_COMPRESS_3) str
+(', ") p
+(Unique) str
+("\);) p n
+(151) # (define\(') S
+(TXT_OPTIONS_COMPRESS_4) str
+(', ") p
+(Nullspace ) str
+("\);) p n
+(152) # (define\(') S
+(TXT_OPTIONS_COMPRESS_5) str
+(', ") p
+(Unique-no-recursion ) str
+("\);) p n
+(153) # (define\(') S
+(TXT_OPTIONS_COMPRESS_6) str
+(', ") p
+(Nullspace-no-recursion ) str
+("\);) p n
+(154) # (define\(') S
+(TXT_OPTIONS_OUTPUT) str
+(', ") p
+(Output parameters ) str
+("\);) p n
+(155) # (define\(') S
+(TXT_OPTIONS_OUTPUT_1) str
+(', ") p
+(Null) str
+("\);) p n
+(156) # (define\(') S
+(TXT_OPTIONS_OUTPUT_2) str
+(', ") p
+(Count ) str
+("\);) p n
+(157) # (define\(') S
+(TXT_OPTIONS_OUTPUT_3) str
+(', ") p
+(Text-boolean : ) str
+("\);) p n
+(158) # (define\(') S
+(TXT_OPTIONS_OUTPUT_4) str
+(', ") p
+(File name : ) str
+("\);) p n
+(159) # (define\(') S
+(TXT_OPTIONS_OUTPUT_5) str
+(', ") p
+(Text-doubles : ) str
+("\);) p n
+(160) # (define\(') S
+(TXT_OPTIONS_OUTPUT_6) str
+(', ") p
+(File name : ) str
+("\);) p n
+(161) # (define\(') S
+(TXT_OPTIONS_OUTPUT_7) str
+(', ") p
+(Binary-boolean : ) str
+("\);) p n
+(162) # (define\(') S
+(TXT_OPTIONS_OUTPUT_8) str
+(', ") p
+(File name : ) str
+("\);) p n
+(163) # (define\(') S
+(TXT_OPTIONS_OUTPUT_9) str
+(', ") p
+(Binary-doubles : ) str
+("\);) p n
+(164) # (define\(') S
+(TXT_OPTIONS_OUTPUT_10) str
+(', ") p
+(File name : ) str
+("\);) p n
+(165) # (define\(') S
+(TXT_OPTIONS_OUTPUT_11) str
+(', ") p
+(Matlab : ) str
+("\);) p n
+(166) # (define\(') S
+(TXT_OPTIONS_OUTPUT_12) str
+(', ") p
+(File name \(no extension\) ) str
+("\);) p n
+(167) # (define\(') S
+(TXT_OPTIONS_EFMTOOL) str
+(', ") p
+(EfmTool parameters) str
+("\);) p n
+(168) # (define\(') S
+(TXT_OPTIONS_EFM_CMD) str
+(', ") p
+(Command Line zu verwenden) str
+("\);) p n
+(169) # (define\(') S
+(TXT_OPTIONS_EFM_LINE) str
+(', ") p
+(Rowordering) str
+("\);) p n
+(170) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA) str
+(', ") p
+(Adjency method ) str
+("\);) p n
+(171) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA_1) str
+(', ") p
+(Pattern-tree-minzero ) str
+("\);) p n
+(172) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA_2) str
+(', ") p
+(Pattern-tree-rank ) str
+("\);) p n
+(173) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS) str
+(', ") p
+(Maximal numbers of 'threads' ) str
+("\);) p n
+(174) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS_1) str
+(', ") p
+(MaxThreads : ) str
+("\);) p n
+(175) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS_2) str
+(', ") p
+(Number of threads : ) str
+("\);) p n
+(176) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM) str
+(', ") p
+(Numbers arithmetic ) str
+("\);) p n
+(177) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM_1) str
+(', ") p
+(Doubles ) str
+("\);) p n
+(178) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM_2) str
+(', ") p
+(Fractionnary ) str
+("\);) p n
+(179) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL) str
+(', ") p
+(Output normalization ) str
+("\);) p n
+(180) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_1) str
+(', ") p
+(Maximum ) str
+("\);) p n
+(181) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_2) str
+(', ") p
+(Minimum ) str
+("\);) p n
+(182) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_3) str
+(', ") p
+(norm2 ) str
+("\);) p n
+(183) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_4) str
+(', ") p
+(Square ) str
+("\);) p n
+(184) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_5) str
+(', ") p
+(None ) str
+("\);) p n
+(185) # (define\(') S
+(TXT_OPTIONS_EFM_P_FRAC) str
+(', ") p
+(Fractionnary precision  ) str
+("\);) p n
+(186) # (define\(') S
+(TXT_OPTIONS_EFM_P_FRAC_1) str
+(', ") p
+(Precision ) str
+("\);) p n
+(187) # (define\(') S
+(TXT_OPTIONS_EFM_VALUE) str
+(', ") p
+(Value \(bit count, e.g. 128, 256, -1 \(infinite\)\) : ) str
+("\);) p n
+(188) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T) str
+(', ") p
+(Self-test after each iteration  ) str
+("\);) p n
+(189) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T_1) str
+(', ") p
+(Yes ) str
+("\);) p n
+(190) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T_2) str
+(', ") p
+(No ) str
+("\);) p n
+(191) # () N
+(192) # () S
+(//---------------------------------------------------------) c n
+(193) # (//help.php) N
+(194) # (//--------------------------------------------------------) N
+(195) # () N
+(196) # () S
+(define\(') p
+(TXT_HELP_TITLE) str
+(', ") p
+(Online help) str
+("\);) p n
+(197) # (define\(') S
+(TXT_HELP_INTRO) str
+(', ") p
+( This is an aid for the use of online RegEfmtool.) str
+("\);) p n
+(WRET_Langages) (Page 3/5) (f\303\251vr. 18, 13 8:50) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(198) # (define\(') p
+(TXT_HELP_FILES_CREATE) str
+(', ") p
+(Create a new network) str
+("\);) p n
+(199) # (define\(') S
+(TXT_HELP_CREATION) str
+(', ") p
+(Help to create a new network) str
+("\);) p n
+(200) # (define\(') S
+(TXT_HELP_GENERULES) str
+(', ") p
+(Help to create the gene rules) str
+("\);) p n
+(201) # () N
+(202) # () S
+(//---------------------------------------------------------) c n
+(203) # (//help_rule.php) N
+(204) # (//--------------------------------------------------------) N
+(205) # () S
+(define\(') p
+(TXT_HELP_RULE_TITLE) str
+(', ") p
+(Help) str
+("\);) p n
+(206) # (define\(') S
+(TXT_HELP_RULE_TITLE1) str
+(', ") p
+(Help to gene rule creation) str
+("\);) p n
+(207) # (define\(') S
+(TXT_HELP_RULE_INTRO) str
+(', ") p
+(The gene-enzyme-reaction mapping is typically provided by boolean ru) str n
+0 T (les, e.g R2 = !R1.</br>) N
+(208) # (Which means that:) S
+("\);) p n
+(209) # (define\(') S
+(TXT_HELP_RULE_FLUX_1) str
+(', ") p
+(The reaction R2 must not carry a flux, if R1 carries a flux ) str
+("\);) p n
+(210) # (define\(') S
+(TXT_HELP_RULE_FLUX_2) str
+(', ") p
+(The reaction R2 must carry a flux, if R1 does not carry a flux) str
+("\);) p n
+(211) # (define\(') S
+(TXT_HELP_RULE_1) str
+(', ") p
+(A reaction R either carries a flux \(R = 1\) or it does not carry a flux \(R = 0\).) str
+("\)) p n
+0 T (;) N
+(212) # (define\(') S
+(TXT_HELP_RULE_2) str
+(', ") p
+(Naturally, much more complex boolean rules occur in real-world metabolic ne) str n
+0 T (tworks.) N
+(213) # (These more complex rules can be described by combinations of NOT, OR, and AND operations.) S
+("\);) p n
+(214) # (define\(') S
+(TXT_HELP_RULE_3) str
+(', ") p
+(In order to indicate the activity type of a reaction, the prefix '0', '1' or 'f' must) str n
+0 T ( be used in the grfile,) S
+("\);) p n
+(215) # (define\(') S
+(TXT_HELP_RULE_4) str
+(', ") p
+(e.g. if the reaction R7 is a 0-active reaction then it must be named 0R7 in the g) str n
+0 T (rfile, whereas a full-active reaction R3 would be denoted fR3.) S
+("\);) p n
+(216) # (define\(') S
+(TXT_HELP_RULE_INFO_TITLE) str
+(', ") p
+(Conversion of inital gene regulatory file into format used by regEf) str n
+0 T (mtool) S
+("\);) p n
+(217) # (define\(') S
+(TXT_HELP_RULE_INFO_1) str
+(', ") p
+(This web page allows to create the gene rules, like:) str
+("\);) p n
+(218) # (define\(') S
+(TXT_HELP_RULE_R1) str
+(', ") p
+(IF R1 = 1 AND R2 = 0 THEN R3=1) str
+("\);) p n
+(219) # (define\(') S
+(TXT_HELP_RULE_R2) str
+(', ") p
+(IF R4 = 0 OR R2 = 1 THEN R1 = 0) str
+("\);) p n
+(220) # (define\(') S
+(TXT_HELP_RULE_INFO_2) str
+(', ") p
+(When you click on the \\"Add\\" button, the rules are translate and writtin) str n
+0 T (g in the grfile.txt file, which will be used by regEfmtool when it computes elementary modes.) S
+("\);) p n
+(221) # (define\(') S
+(TXT_HELP_RULE_INFO_3) str
+(', ") p
+(The traduction of the rules is:) str
+("\);) p n
+(222) # (define\(') S
+(TXT_HELP_RULE_R1_2) str
+(', ") p
+(R3 = \(1R1 & \(!0R2\)\)) str
+("\);) p n
+(223) # (define\(') S
+(TXT_HELP_RULE_R2_2) str
+(', ") p
+(R1 = \(!\(\(!0R4\) | 1R2\)\)) str
+("\);) p n
+(224) # () N
+(225) # () S
+(//---------------------------------------------------------) c n
+(226) # (//help_create.php) N
+(227) # (//--------------------------------------------------------) N
+(228) # () S
+(define\(') p
+(TXT_HELP_CREATE_TITLE) str
+(', ") p
+(Help) str
+("\);) p n
+(229) # (define\(') S
+(TXT_HELP_CREATE_TITLE1) str
+(', ") p
+(Help to create a new chemical network) str
+("\);) p n
+(230) # (define\(') S
+(TXT_HELP_CREATE_INTRO) str
+(', ") p
+(To create your network, you have to generate some files.) str
+("\);) p n
+(231) # (define\(') S
+(TXT_HELP_CREATE_1) str
+(', ") p
+(Click on the button \\"Init files\\".) str
+("\);) p n
+(232) # (define\(') S
+(TXT_HELP_CREATE_2) str
+(', ") p
+(Write the reactions of the network one by one \(you have to precise the stoec) str n
+0 T (himetry each time\). ) S
+("\);) p n
+(233) # (define\(') S
+(TXT_HELP_CREATE_3) str
+(', ") p
+(Click on the button \\"Add\\" for validate your reactions. ) str
+("\);) p n
+(234) # (define\(') S
+(TXT_HELP_CREATE_4) str
+(', ") p
+(If you have made a mistake, you can modify in the text-zone \\"Reactions al) str n
+0 T (ready saved\\".) S
+("\);) p n
+(235) # (define\(') S
+(TXT_HELP_CREATE_5) str
+(', ") p
+(Then, click on \\"Modify\\" for the changes to take effect.) str
+("\);) p n
+(236) # (define\(') S
+(TXT_HELP_CREATE_6) str
+(', ") p
+(You can not write directly a reaction in this text-zone, or not delete one. ) str
+(") p n
+0 T (\);) N
+(237) # (define\(') S
+(TXT_HELP_CREATE_7) str
+(', ") p
+(You can create a file.dat which will contain your chemical network by click) str n
+0 T (ing on the button \\"DAT\\". ) S
+("\);) p n
+(238) # (define\(') S
+(TXT_HELP_CREATE_8) str
+(', ") p
+(When you have finished, click on \\"Next step\\" to move to the creation of r) str n
+0 T (ules step. ) S
+("\);) p n
+(239) # () N
+(240) # () S
+(//---------------------------------------------------------) c n
+(241) # (// copyright.php) N
+(242) # (//---------------------------------------------------------) N
+(243) # () S
+(define\(') p
+(TXT_COPYRIGHT_TITLE) str
+(', ") p
+(Copyright) str
+("\);) p n
+(244) # (define\(') S
+(TXT_COPYRIGHT_CPY) str
+(', ") p
+(\302\251 Copyright 2013 <br />) str n
+(245) # () S 4 T () S 8 T () S 12 T (WebRegEfmTool \(WRET\) is a web interface created by the students of the Master's Degree of BioIn) N
+0 T (formatics from Bordeaux :<br />) N
+(246) # () S 4 T () S 8 T () S 12 T (Arnaud FR\303M-^HCHE, Charlotte H\303M-^IRIC\303M-^I, Sara\303\257 MOLA, Typhaine PAYSAN-LAF) N
+0 T (OSSE and Joris SANSEN <br />) N
+(247) # () S 4 T () S 8 T () S 12 T (Under the direction of Mrs. <a href=\\"http://dept-info.labri.fr/~beurton\\">Marie BEURTON-AIMA) N
+0 T (R</a>. <br />) N
+(248) # () S 4 T () S 8 T () S 12 T (The aim of this interface is to give a user-friendly environment to the software <a href=\\"http://www.) N
+(WRET_Langages) (Page 4/5) (f\303\251vr. 18, 13 8:50) title
+border
+grestore
+(Groupe Web) rhead
+(en_lang.php) (5/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (5,1) 6
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T (biotec.boku.ac.at/regulatoryelementaryfluxmode.html\\"> regEfmtool</a>. ) str
+("\);) p n
+(249) # () N
+(250) # () S
+(//---------------------------------------------------------) c n
+(251) # (// results.php) N
+(252) # (//---------------------------------------------------------) N
+(253) # () S
+(define\(') p
+(TXT_FILE_CHOOSE_SITE_TITLE) str
+(', ") p
+(Results) str
+("\);) p n
+(254) # (define\(') S
+(TXT_FILE_CHOOSE_TITLE) str
+(', ") p
+(Log) str
+("\);) p n
+(255) # (define\(') S
+(TXT_FILE_CHOOSE_SUBTITLE) str
+(', ") p
+(Choose a file) str
+("\);) p n
+(256) # (define\(') S
+(TXT_FILE_CHOOSE) str
+(', ") p
+(File : ) str
+("\);) p n
+(257) # () N
+(258) # () S
+(//---------------------------------------------------------) c n
+(259) # (// parse_results.php) N
+(260) # (//---------------------------------------------------------) N
+(261) # () S
+(define\(') p
+(TXT_PARSE_RESULTS_SITE_TITLE) str
+(', ") p
+(Results) str
+("\);) p n
+(262) # (define\(') S
+(TXT_PARSE_RESULTS_TITLE) str
+(', ") p
+(Extraction results) str
+("\);) p n
+(263) # (define\(') S
+(TXT_PARSE_RESULTS_FILE) str
+(', ") p
+(File processed : ) str
+("\);) p n
+(264) # (define\(') S
+(TXT_PARSE_RESULTS_DISPLAY) str
+(',") p
+(Extraction results below : ) str
+("\);) p n
+(265) # () N
+(266) # () S
+(//---------------------------------------------------------) c n
+(267) # (// display_results.php) N
+(268) # (//---------------------------------------------------------) N
+(269) # () S
+(define\(') p
+(TXT_DISPLAY_RESULTS_SITE_TITLE) str
+(', ") p
+(Results) str
+("\);) p n
+(270) # (define\(') S
+(TXT_DISPLAY_RESULTS_TITLE) str
+(', ") p
+(Display results) str
+("\);) p n
+(271) # (define\(') S
+(TXT_DISPLAY_RESULTS_INSTRUCTION_1) str
+(',") p
+(Log file) str
+("\);) p n
+(272) # (define\(') S
+(TXT_DISPLAY_RESULTS_FILE) str
+(', ") p
+(File processed : ) str
+("\);) p n
+(273) # (define\(') S
+(TXT_DISPLAY_RESULTS_ORIGINAL) str
+(', ") p
+(Original : ) str
+("\);) p n
+(274) # (define\(') S
+(TXT_DISPLAY_RESULTS_NEW) str
+(', ") p
+(New : ) str
+("\);) p n
+(275) # () N
+(276) # () S
+(//---------------------------------------------------------) c n
+(277) # (// instal.php) N
+(278) # (//---------------------------------------------------------) N
+(279) # () S
+(define\(') p
+(TXT_INSTAL_TITLE) str
+(', ") p
+(Requirements) str
+("\);) p n
+(280) # (define\(') S
+(TXT_INSTAL_TXT) str
+(', ") p
+(To use this interface, you have to : <br />) str n
+(281) # () S 4 T () S 8 T () S 12 T (- have the Java7 version <br />) N
+(282) # () S 4 T () S 8 T () S 12 T (- change the variables JAR and JAVAC of the file Makefile in the folder regEfmtool : <br />) N
+(283) # () S 4 T () S 8 T () S 12 T (JAR=/usr/lib/jvm/java-7-sun/bin/jar and JAVAC=/usr/lib/jvm/java-7-sun/bin/javac \(depending on ) N
+0 T (what you have\) <br />) N
+(284) # () S 4 T () S 8 T () S 12 T (- have download the software <a href=\\"http://www.biotec.boku.ac.at/regulatoryelementaryfluxmode) N
+0 T (.html\\"> regEfmtool</a>. <br />) N
+(285) # () S 4 T () S 8 T () S 12 T (If you want to use regEfmtool from an other folder, you have to change the pathways of the files in th) N
+0 T (e code.<br />) N
+(286) # () S 4 T () S 8 T () S 12 T (- In order to use this interface, all the folder of WRET must have a server access \(like apache\). ) S
+("\);) p n
+(287) # () N
+(288) # () S
+(//---------------------------------------------------------) c n
+(289) # (// Fin) N
+(290) # (//---------------------------------------------------------) N
+(291) # () S
+(?>) K n
+(WRET_Langages) (Page 5/5) (f\303\251vr. 18, 13 8:50) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(1) # ( ) p
+(<?php) K n
+(2) # () S
+(//---------------------------------------------------------) c n
+(3) # (// index.php) N
+(4) # (//---------------------------------------------------------) N
+(5) # () S
+(define\(') p
+(TXT_SITE_TITLE) str
+(', ") p
+(Page d'accueil de WebRegEfmTool) str
+("\);) p n
+(6) # (define\(') S
+(TXT_HOMEPAGE_TITLE) str
+(', ') p
+(Bienvenue sur WebRegEfmTool) str
+('\);) p n
+(7) # (define\(') S
+(TXT_HOMEPAGE_BODY) str
+(', ") p
+(Cet outil sert \303\240 l'utilisation du logiciel regEfmtool.<br />) str n
+(8) # () S 4 T () S 8 T (Vous pourrez cr\303\251er, charger, modifier un r\303\251seau m\303\251tabolique.<br />) N
+(9) # () S 4 T () S 8 T ( Le but est de lancer une simualtion depuis votre navigateur.) S
+("\);) p n
+(10) # (define\(') S
+(TXT_HOMEPAGE_COPYRIGHT) str
+(', ") p
+(Voir le <a href=\\"copyright.php\\">Copyright</a>.) str
+("\);) p n
+(11) # (define\(') S
+(TXT_HOMEPAGE_INSTAL) str
+(', ") p
+(Voir la  <a href=\\"instal.php\\">configuration</a> requise.) str
+("\);) p n
+(12) # () S
+(//---------------------------------------------------------) c n
+(13) # (// menu.php) N
+(14) # (//---------------------------------------------------------) N
+(15) # () S
+(define\(') p
+(TXT_MENU_HOME) str
+(', ') p
+(Accueil) str
+('\);) p n
+(16) # (define\(') S
+(TXT_MENU_CREATE) str
+(', ') p
+(Cr\303\251ation) str
+('\);) p n
+(17) # (define\(') S
+(TXT_MENU_REVERSIBILITY) str
+(', ') p
+(R\303\251versibilit\303\251) str
+('\);) p n
+(18) # (define\(') S
+(TXT_MENU_RULES) str
+(', ') p
+(R\303\250gles) str
+('\);) p n
+(19) # (define\(') S
+(TXT_MENU_LOAD) str
+(', ') p
+(Chargement) str
+('\);) p n
+(20) # (define\(') S
+(TXT_MENU_MODIFY) str
+(', ') p
+(Modification) str
+('\);) p n
+(21) # (define\(') S
+(TXT_MENU_LAUNCH) str
+(', ') p
+(Lancement) str
+('\);) p n
+(22) # (define\(') S
+(TXT_MENU_HELP) str
+(', ') p
+(Aide) str
+('\);) p n
+(23) # () S
+(//---------------------------------------------------------) c n
+(24) # (// create.php) N
+(25) # (//---------------------------------------------------------) N
+(26) # () S
+(define\(') p
+(TXT_CREATION_SITE_TITLE) str
+(', ") p
+(Cr\303\251ation d'une nouvelle r\303\251action) str
+("\);) p n
+(27) # (define\(') S
+(TXT_INIT_FILES) str
+(', ") p
+(Initialisez vos fichiers avant de cr\303\251er un nouveau r\303\251seau) str
+("\);) p n
+(28) # (define\(') S
+(TXT_CREATION_INIT) str
+(', ") p
+(\\"Initialiser fichiers\\") str
+("\);) p n
+(29) # (define\(') S
+(TXT_CREATION_TITLE) str
+(', ") p
+(Cr\303\251ation d'un nouveau r\303\251seau) str
+("\);) p n
+(30) # (define\(') S
+(TXT_CREATION_INSTRUCTION_1) str
+(', ") p
+(Ecrivez une nouvelle r\303\251action) str
+("\);) p n
+(31) # (define\(') S
+(TXT_CREATION_INSTRUCTION_2) str
+(', ") p
+(Verifier si la r\303\251action \303\240 d\303\251j\303\240 \303\251t\303\251 enregistr\303\251e :) str
+(") p n
+0 T (\);) N
+(32) # (define\(') S
+(TXT_CREATION_WARNING_TITLE) str
+(', ") p
+(Attention !) str
+("\);) p n
+(33) # (define\(') S
+(TXT_CREATION_WARNING) str
+(', ") p
+(Pas d'espaces dans les noms, utiliser un underscore '_' \303\240 la place <b) str n
+0 T (r />) N
+(34) # () S 4 T () S 8 T () S 12 T (La synthaxe des r\303\251actions est la suivante :<br />) N
+(35) # () S 4 T () S 8 T () S 12 T (Nom_reaction : 2 reactif1 + 5 reactif2 => 3 produit1 + 7 produit2 <br />) N
+(36) # () S 4 T () S 8 T () S 12 T (Attention a laisser un espace entre le coefficient stoechiom\303\251trique et le m\303\251tabolite associ\303\251) S
+("\);) p n
+(37) # (define\(') S
+(TXT_CREATION_WARNING_2) str
+(', ") p
+(Vous ne pouvez ni supprimer ni ajouter de r\303\251action dans cette zo) str n
+0 T (ne de modification<br />) N
+(38) # () S 4 T () S 8 T () S 12 T () S 16 T (Il ne doit pas y avoir d'espace apr\303\250s le dernier m\303\251tabolite) S
+("\);) p n
+(39) # (define\(') S
+(TXT_CREATION_IS_REVERSIBLE) str
+(', ") p
+(R\303\251versible :) str
+("\);) p n
+(40) # (define\(') S
+(TXT_CREATION_YES) str
+(', ") p
+(Oui) str
+("\);) p n
+(41) # (define\(') S
+(TXT_CREATION_NO) str
+(', ") p
+(Non) str
+("\);) p n
+(42) # (define\(') S
+(TXT_CREATION_ALREADY_OK) str
+(', ") p
+(R\303\251actions d\303\251j\303\240 entr\303\251es :) str
+("\);) p n
+(43) # (define\(') S
+(TXT_CREATION_FINISH) str
+(', ") p
+(Cr\303\251ation du fichier au format \\"DAT\\") str
+("\);) p n
+(44) # (define\(') S
+(TXT_CREATION_CLIC) str
+(', ") p
+(Vous devez cliquer sur le bouton) str
+("\);) p n
+(45) # (define\(') S
+(TXT_CREATE_EXT) str
+(', ") p
+(M\303\251tabolites externes :) str
+("\);) p n
+(46) # (define\(') S
+(TXT_CREATE_INT) str
+(', ") p
+(M\303\251tabolites internes : ) str
+("\);) p n
+(47) # (define\(') S
+(TXT_CREATE_BUTTON_ADD1) str
+(', ") p
+(Ajouter) str
+("\);) p n
+(48) # (define\(') S
+(TXT_CREATE_BUTTON_REMOVE1) str
+(', ") p
+(Retirer) str
+("\);) p n
+(49) # (define\(') S
+(TXT_CREATE_CHOOSE_EXT) str
+(', ") p
+(Choisir les m\303\251tabolites externes et internes) str
+("\);) p n
+(50) # () N
+(51) # () N
+(52) # () S
+(//---------------------------------------------------------) c n
+(53) # (// Buttons ) N
+(54) # (//---------------------------------------------------------) N
+(55) # () S
+(define\(') p
+(TXT_ADD_BUTTON) str
+(', ") p
+(Ajouter) str
+("\);) p n
+(56) # (define\(') S
+(TXT_MODIFY_BUTTON) str
+(', ") p
+(Modifier) str
+("\);) p n
+(57) # (define\(') S
+(TXT_NEXTSTEP_BUTTON) str
+(', ") p
+(\303M-^Itape suivante) str
+("\);) p n
+(58) # (define\(') S
+(TXT_GO_BUTTON) str
+(', ") p
+(Lancement) str
+("\);) p n
+(59) # (define\(') S
+(TXT_COMPARE_BUTTON) str
+(', ") p
+(Comparer) str
+("\);) p n
+(60) # (define\(') S
+(TXT_FINISH_BUTTON) str
+(', ") p
+(Finir) str
+("\);) p n
+(61) # (define\(') S
+(TXT_BUTTON_RESULT) str
+(', ") p
+(Afficher le r\303\251sultat) str
+("\);) p n
+(62) # (define\(') S
+(TXT_BUTTON_EXTRACTION) str
+(', ") p
+(Retour : Extraction des r\303\251sultats) str
+("\);) p n
+(63) # () N
+(WRET_Langages) (Page 1/5) (f\303\251vr. 18, 13 8:48) title
+border
+grestore
+(Groupe Web) rhead
+(en_lang.php, fr_lang.php) (6/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (2-3) 7
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(64) # (//---------------------------------------------------------) c n
+(65) # (// generules.php) N
+(66) # (//---------------------------------------------------------) N
+(67) # () S
+(define\(') p
+(TXT_GENERULES_SITE_TITLE) str
+(', ") p
+(Cr\303\251ation des r\303\250gles des g\303\250nes) str
+("\);) p n
+(68) # (define\(') S
+(TXT_GENERULES_TITLE) str
+(', ") p
+(R\303\250gles des g\303\250nes) str
+("\);) p n
+(69) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_1) str
+(', ") p
+(Ecrivez une nouvelle r\303\250gle :) str
+("\);) p n
+(70) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_2) str
+(', ") p
+(Choisissez le nombre de r\303\251action :) str
+("\);) p n
+(71) # (define\(') S
+(TXT_GENERULES_INSTRUCTION_3) str
+(', ") p
+( Nombre de r\303\251action dans la forme IF AND THEN) str
+("\);) p n
+(72) # (define\(') S
+(TXT_GENERULES_NUMBER) str
+(', ") p
+(Entrez un nombre sup\303\251rieur \303\240 1 ) str
+("\);) p n
+(73) # (define\(') S
+(TXT_GENERULES_OPERATOR) str
+(', ") p
+(Choisir un op\303\251rateur) str
+("\);) p n
+(74) # (define\(') S
+(TXT_GENERULES_OP) str
+(', ") p
+(Op\303\251rateur:) str
+("\);) p n
+(75) # (define\(') S
+(TXT_GENERULES_REAC) str
+(', ") p
+(R\303\251action:) str
+("\);) p n
+(76) # (define\(') S
+(TXT_GENERULES_REAC_1) str
+(', ") p
+(Choisir une r\303\251action) str
+("\);) p n
+(77) # (define\(') S
+(TXT_GENERULES_VALUE) str
+(', ") p
+(Valeur: ) str
+("\);) p n
+(78) # (define\(') S
+(TXT_GENERULES_VALUE_2) str
+(', ") p
+(Choisir une valeur) str
+("\);) p n
+(79) # (define\(') S
+(TXT_GENERULES_BUTTON_ADD) str
+(', ") p
+(Ajouter) str
+("\);) p n
+(80) # (define\(') S
+(TXT_GENERULES_ALERT_1) str
+(', ") p
+(Vous devez choisir une r\303\251action et une valeur pour la r\303\251action) str
+(") p n
+0 T (\);) N
+(81) # (define\(') S
+(TXT_GENERULES_ALERT_2) str
+(', ") p
+(Vous devez choisir une op\303\251rateur, une r\303\251acion et une valeur pou) str n
+0 T (r la r\303\251action) S
+("\);) p n
+(82) # (define\(') S
+(TXT_GENERULES_RULES) str
+(', ") p
+(R\303\250gles d\303\251j\303\240 cr\303\251\303\251es :) str
+("\);) p n
+(83) # (define\(') S
+(TXT_GENERULES_HELP_RULES) str
+(', ") p
+(Aide) str
+("\);) p n
+(84) # () N
+(85) # () S
+(//---------------------------------------------------------) c n
+(86) # (// load.php) N
+(87) # (//---------------------------------------------------------) N
+(88) # () S
+(define\(') p
+(TXT_LOAD_SITE_TITLE) str
+(', ") p
+(Chargement d'un r\303\251seau) str
+("\);) p n
+(89) # (define\(') S
+(TXT_LOAD_TITLE) str
+(', ") p
+(Chargement d'un r\303\251seau) str
+("\);) p n
+(90) # (define\(') S
+(TXT_LOAD_INSTRUCTION_1) str
+(', ") p
+(Veuillez charger les fichiers n\303\251cessaires \303\240 la construction du r\303) str n
+0 T (\251seau m\303\251tabolique) S
+("\);) p n
+(91) # (define\(') S
+(TXT_LOAD_INSTRUCTION_2) str
+(', ") p
+(Fichier des m\303\251tabolites :) str
+("\);) p n
+(92) # (define\(') S
+(TXT_LOAD_FILE_NAME) str
+(', ") p
+(Choisissez les fichiers \303\240 charger :) str
+("\);) p n
+(93) # (define\(') S
+(TXT_LOAD_SFILE) str
+(', ") p
+(Fichier .sfile) str
+("\);) p n
+(94) # (define\(') S
+(TXT_LOAD_MFILE) str
+(', ") p
+(Fichier .mfile) str
+("\);) p n
+(95) # (define\(') S
+(TXT_LOAD_RVFILE) str
+(', ") p
+(Fichier .rvfile) str
+("\);) p n
+(96) # (define\(') S
+(TXT_LOAD_GRFILE) str
+(', ") p
+(Fichier .grfile) str
+("\);) p n
+(97) # (define\(') S
+(TXT_LOAD_RFILE) str
+(', ") p
+(Fichier .rfile) str
+("\);) p n
+(98) # (define\(') S
+(TXT_LOAD_TITLE2) str
+(', ") p
+(Suite du chargement) str
+("\);) p n
+(99) # (define\(') S
+(TXT_LOAD_INSTRUCTION_3) str
+(', ") p
+(Veuillez charger les fichiers n\303\251cessaires) str
+("\);) p n
+(100) # () N
+(101) # () S
+(//---------------------------------------------------------) c n
+(102) # (// modify.php) N
+(103) # (//---------------------------------------------------------) N
+(104) # () S
+(define\(') p
+(TXT_MODIFY_SITE_TITLE) str
+(', ") p
+(Modification d'un r\303\251seau) str
+("\);) p n
+(105) # (define\(') S
+(TXT_MODIFY_TITLE) str
+(', ") p
+(Modification d'un r\303\251seau) str
+("\);) p n
+(106) # (define\(') S
+(TXT_MODIFY_INSTRUCTION_1) str
+(', ") p
+(Non disponible pour le moment...) str
+("\);) p n
+(107) # () N
+(108) # () S
+(//---------------------------------------------------------) c n
+(109) # (// options.php) N
+(110) # (//---------------------------------------------------------) N
+(111) # () S
+(define\(') p
+(TXT_OPTIONS_SITE_TITLE) str
+(', ") p
+(Choix des options pour l'analyse du r\303\251seau) str
+("\);) p n
+(112) # (define\(') S
+(TXT_OPTIONS_TITLE) str
+(', ") p
+(Choix des options de lancement de WRET ) str
+("\);) p n
+(113) # (define\(') S
+(TXT_OPTIONS_INSTRUCTION_1) str
+(', ") p
+(Veuillez cocher les options n\303\251c\303\251ssaires : <br/>) str n
+(114) # () S 4 T () S 8 T (\(Les options obligatoires sont coch\303\251es par d\303\251faut\) ) S
+("\);) p n
+(115) # (define\(') S
+(TXT_OPTIONS_SAVING_1) str
+(', ") p
+(Enregistrement  ) str
+("\);) p n
+(116) # (define\(') S
+(TXT_OPTIONS_SAVING_2) str
+(', ") p
+(Affichage des r\303\251sultats  ) str
+("\);) p n
+(117) # (define\(') S
+(TXT_OPTIONS_SAVING_3) str
+(', ") p
+(En ligne sur WRET ) str
+("\);) p n
+(118) # (define\(') S
+(TXT_OPTIONS_SAVING_4) str
+(', ") p
+(Dans un fichier : ) str
+("\);) p n
+(119) # (define\(') S
+(TXT_OPTIONS_SAVING_5) str
+(', ") p
+(Nom du fichier :) str
+("\);) p n
+(120) # (define\(') S
+(TXT_OPTIONS_ERROR_1) str
+(', ") p
+(Type de messages d'erreurs / Niveau d'informations sur le d\303\251rouleme) str n
+0 T (nt des calculs ) S
+("\);) p n
+(121) # (define\(') S
+(TXT_OPTIONS_ERROR_2) str
+(', ") p
+(Warning ) str
+("\);) p n
+(122) # (define\(') S
+(TXT_OPTIONS_ERROR_3) str
+(', ") p
+(Config ) str
+("\);) p n
+(123) # (define\(') S
+(TXT_OPTIONS_ERROR_4) str
+(', ") p
+(Info ) str
+("\);) p n
+(124) # (define\(') S
+(TXT_OPTIONS_ERROR_5) str
+(', ") p
+(Fine ) str
+("\);) p n
+(125) # (define\(') S
+(TXT_OPTIONS_ERROR_6) str
+(', ") p
+(Finer ) str
+("\);) p n
+(WRET_Langages) (Page 2/5) (f\303\251vr. 18, 13 8:48) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(126) # (define\(') p
+(TXT_OPTIONS_ERROR_7) str
+(', ") p
+(Finest ) str
+("\);) p n
+(127) # (define\(') S
+(TXT_OPTIONS_SAVING_6) str
+(', ") p
+(Format/m\303\251thode de l'enregistrement  ) str
+("\);) p n
+(128) # (define\(') S
+(TXT_OPTIONS_SAVING_7) str
+(', ") p
+(Par d\303\251faut ) str
+("\);) p n
+(129) # (define\(') S
+(TXT_OPTIONS_SAVING_8) str
+(', ") p
+(Complet ) str
+("\);) p n
+(130) # (define\(') S
+(TXT_OPTIONS_INPUT_1) str
+(', ") p
+(Param\303\250tres d'entr\303\251e ) str
+("\);) p n
+(131) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH) str
+(', ") p
+(Type des fichiers stoechiom\303\251triques ) str
+("\);) p n
+(132) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_1) str
+(', ") p
+(Flux-analyzer-dir ) str
+("\);) p n
+(133) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_2) str
+(', ") p
+(Flux-analyzer-files ) str
+("\);) p n
+(134) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_3) str
+(', ") p
+(Reaction-list ) str
+("\);) p n
+(135) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_4) str
+(', ") p
+(Excel ) str
+("\);) p n
+(136) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_5) str
+(', ") p
+(Stoichiometry ) str
+("\);) p n
+(137) # (define\(') S
+(TXT_OPTIONS_INPUT_STOECH_6) str
+(', ") p
+(Sbml ) str
+("\);) p n
+(138) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY) str
+(', ") p
+(Analyseur de flux ) str
+("\);) p n
+(139) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_1) str
+(', ") p
+(Fichier .mfile :) str
+("\);) p n
+(140) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_1b) str
+(', ") p
+(Nom du Fichier : ) str
+("\);) p n
+(141) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_2) str
+(', ") p
+(Fichier .rfile : ) str
+("\);) p n
+(142) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_3) str
+(', ") p
+(Nom du Fichier : ) str
+("\);) p n
+(143) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_4) str
+(', ") p
+(Fichier .grfile :) str
+("\);) p n
+(144) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_5) str
+(', ") p
+(Nom du fichier : ) str
+("\);) p n
+(145) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_6) str
+(', ") p
+(Fichier .sfile :) str
+("\);) p n
+(146) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_7) str
+(', ") p
+(Nom du fichier : ) str
+("\);) p n
+(147) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_8) str
+(', ") p
+(Fichier .rvfile :) str
+("\);) p n
+(148) # (define\(') S
+(TXT_OPTIONS_INPUT_F_ANALY_9) str
+(', ") p
+(Nom du fichier : ) str
+("\);) p n
+(149) # (define\(') S
+(TXT_OPTIONS_COMPRESS) str
+(', ") p
+(Compression ) str
+("\);) p n
+(150) # (define\(') S
+(TXT_OPTIONS_COMPRESS_1) str
+(', ") p
+(Default ) str
+("\);) p n
+(151) # (define\(') S
+(TXT_OPTIONS_COMPRESS_2) str
+(', ") p
+(Off ) str
+("\);) p n
+(152) # (define\(') S
+(TXT_OPTIONS_COMPRESS_3) str
+(', ") p
+(Unique) str
+("\);) p n
+(153) # (define\(') S
+(TXT_OPTIONS_COMPRESS_4) str
+(', ") p
+(Nullspace ) str
+("\);) p n
+(154) # (define\(') S
+(TXT_OPTIONS_COMPRESS_5) str
+(', ") p
+(Unique-no-recursion ) str
+("\);) p n
+(155) # (define\(') S
+(TXT_OPTIONS_COMPRESS_6) str
+(', ") p
+(Nullspace-no-recursion ) str
+("\);) p n
+(156) # (define\(') S
+(TXT_OPTIONS_OUTPUT) str
+(', ") p
+(Param\303\250tres de sortie ) str
+("\);) p n
+(157) # (define\(') S
+(TXT_OPTIONS_OUTPUT_1) str
+(', ") p
+(Null) str
+("\);) p n
+(158) # (define\(') S
+(TXT_OPTIONS_OUTPUT_2) str
+(', ") p
+(Count ) str
+("\);) p n
+(159) # (define\(') S
+(TXT_OPTIONS_OUTPUT_3) str
+(', ") p
+(Text-boolean : ) str
+("\);) p n
+(160) # (define\(') S
+(TXT_OPTIONS_OUTPUT_4) str
+(', ") p
+(Nom du fichier : ) str
+("\);) p n
+(161) # (define\(') S
+(TXT_OPTIONS_OUTPUT_5) str
+(', ") p
+(Text-doubles : ) str
+("\);) p n
+(162) # (define\(') S
+(TXT_OPTIONS_OUTPUT_6) str
+(', ") p
+(Nom du fichier : ) str
+("\);) p n
+(163) # (define\(') S
+(TXT_OPTIONS_OUTPUT_7) str
+(', ") p
+(Binary-boolean : ) str
+("\);) p n
+(164) # (define\(') S
+(TXT_OPTIONS_OUTPUT_8) str
+(', ") p
+(Nom du fichier : ) str
+("\);) p n
+(165) # (define\(') S
+(TXT_OPTIONS_OUTPUT_9) str
+(', ") p
+(Binary-doubles : ) str
+("\);) p n
+(166) # (define\(') S
+(TXT_OPTIONS_OUTPUT_10) str
+(', ") p
+(Nom du fichier : ) str
+("\);) p n
+(167) # (define\(') S
+(TXT_OPTIONS_OUTPUT_11) str
+(', ") p
+(Matlab : ) str
+("\);) p n
+(168) # (define\(') S
+(TXT_OPTIONS_OUTPUT_12) str
+(', ") p
+(Nom du fichier \(sans extension\) ) str
+("\);) p n
+(169) # (define\(') S
+(TXT_OPTIONS_EFMTOOL) str
+(', ") p
+(Param\303\250tres d'EfmTool ) str
+("\);) p n
+(170) # (define\(') S
+(TXT_OPTIONS_EFM_CMD) str
+(', ") p
+(Ligne de commande \303\240 utiliser) str
+("\);) p n
+(171) # (define\(') S
+(TXT_OPTIONS_EFM_LINE) str
+(', ") p
+(Rowordering) str
+("\);) p n
+(172) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA) str
+(', ") p
+(M\303\251thode d'adjacence  ) str
+("\);) p n
+(173) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA_1) str
+(', ") p
+(Pattern-tree-minzero ) str
+("\);) p n
+(174) # (define\(') S
+(TXT_OPTIONS_EFM_ADJA_2) str
+(', ") p
+(Pattern-tree-rank ) str
+("\);) p n
+(175) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS) str
+(', ") p
+(Nombre maximal de 'threads'  ) str
+("\);) p n
+(176) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS_1) str
+(', ") p
+(MaxThreads  ) str
+("\);) p n
+(177) # (define\(') S
+(TXT_OPTIONS_EFM_THREADS_2) str
+(', ") p
+(Nombre de threads : ) str
+("\);) p n
+(178) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM) str
+(', ") p
+(Arithm\303\251tique des nombres  ) str
+("\);) p n
+(179) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM_1) str
+(', ") p
+(Doubles ) str
+("\);) p n
+(180) # (define\(') S
+(TXT_OPTIONS_EFM_ARITHM_2) str
+(', ") p
+(Fractionnaire ) str
+("\);) p n
+(181) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL) str
+(', ") p
+(Type de normalisation pour la sortie  ) str
+("\);) p n
+(182) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_1) str
+(', ") p
+(Maximum ) str
+("\);) p n
+(183) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_2) str
+(', ") p
+(Minimum ) str
+("\);) p n
+(184) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_3) str
+(', ") p
+(norm2 ) str
+("\);) p n
+(185) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_4) str
+(', ") p
+(Carr\303\251 ) str
+("\);) p n
+(186) # (define\(') S
+(TXT_OPTIONS_EFM_NORMAL_5) str
+(', ") p
+(Aucune ) str
+("\);) p n
+(187) # (define\(') S
+(TXT_OPTIONS_EFM_P_FRAC) str
+(', ") p
+(Pr\303\251cision fractionnaire  ) str
+("\);) p n
+(188) # (define\(') S
+(TXT_OPTIONS_EFM_P_FRAC_1) str
+(', ") p
+(Pr\303\251cision  ) str
+("\);) p n
+(189) # (define\(') S
+(TXT_OPTIONS_EFM_VALUE) str
+(', ") p
+(Valeur \(bit count, e.g. 128, 256, -1 \(infinite\)\) : ) str
+("\);) p n
+(190) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T) str
+(', ") p
+(Auto-test apr\303\250s chaque it\303\251ration  ) str
+("\);) p n
+(191) # (define\(') S
+(TXT_OPTIONS_EFM_AUTO_T_1) str
+(', ") p
+(Oui ) str
+("\);) p n
+(WRET_Langages) (Page 3/5) (f\303\251vr. 18, 13 8:48) title
+border
+grestore
+(Groupe Web) rhead
+(fr_lang.php) (7/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (4-5) 8
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(192) # (define\(') p
+(TXT_OPTIONS_EFM_AUTO_T_2) str
+(', ") p
+(Non ) str
+("\);) p n
+(193) # () N
+(194) # () S
+(//---------------------------------------------------------) c n
+(195) # (//help.php) N
+(196) # (//--------------------------------------------------------) N
+(197) # () N
+(198) # () S
+(define\(') p
+(TXT_HELP_TITLE) str
+(', ") p
+(Aide en ligne) str
+("\);) p n
+(199) # (define\(') S
+(TXT_HELP_INTRO) str
+(', ") p
+( Ceci est une aide pour l'usage de RegEfmtool en ligne.) str
+("\);) p n
+(200) # (define\(') S
+(TXT_HELP_FILES_CREATE) str
+(', ") p
+(Cr\303\251ation d'un nouveau r\303\251seau) str
+("\);) p n
+(201) # (define\(') S
+(TXT_HELP_CREATION) str
+(', ") p
+(Aide \303\240 la cr\303\251ation d'un r\303\251seau) str
+("\);) p n
+(202) # (define\(') S
+(TXT_HELP_GENERULES) str
+(', ") p
+(Aide \303\240 la cr\303\251ation des r\303\250gles des g\303\250nes) str
+("\);) p n
+(203) # () N
+(204) # () S
+(//---------------------------------------------------------) c n
+(205) # (//help_rule.php) N
+(206) # (//--------------------------------------------------------) N
+(207) # () S
+(define\(') p
+(TXT_HELP_RULE_TITLE) str
+(', ") p
+(Aide) str
+("\);) p n
+(208) # (define\(') S
+(TXT_HELP_RULE_TITLE1) str
+(', ") p
+(Aide \303\240 la cr\303\251ation des r\303\250gles des g\303\250ne) str
+("\);) p n
+(209) # (define\(') S
+(TXT_HELP_RULE_INTRO) str
+(', ") p
+(La r\303\251action g\303\250ne-enzyme est g\303\251n\303\251r\303\251e gr\303\242ce \303\240 des r\303\250gles) str n
+0 T ( bool\303\251ennes, comme par exemple R2= !R1.\\n) N
+(210) # (Ce qui veut dire:\\n) S
+("\);) p n
+(211) # (define\(') S
+(TXT_FLUX_1) str
+(', ") p
+(Que la r\303\251action R2 ne doit pas apporter de flux si R1 apporte un flux) str
+("\);) p n
+(212) # (define\(') S
+(TXT_FLUX_2) str
+(', ") p
+(Que R2 doit apporter un flux si R1 n'en apporte pas) str
+("\);) p n
+(213) # (define\(') S
+(TXT_HELP_RULE_1) str
+(', ") p
+(Une r\303\251action R peut apporter un flux \(R = 1\) ou non \(R = 0\).) str
+("\);) p n
+(214) # (define\(') S
+(TXT_HELP_RULE_2) str
+(', ") p
+(Evidemment, des r\303\250gles bool\303\251ennes plus complexes existent dans les r\303\251s) str n
+0 T (eaux m\303\251taboliques. Elles peuvent \303\252tre d\303\251crites \303\240 l'aide des op\303\251rateurs NOT, OR et AND.) S
+("\);) p n
+(215) # (define\(') S
+(TXT_HELP_RULE_3) str
+(', ") p
+(Pour indiquer le type d'activit\303\251 d'une r\303\251action , le pr\303\251fix '0', '1' ou 'f' ) str n
+0 T (doit \303\252tre utilis\303\251 dans le grfile.) S
+("\);) p n
+(216) # (define\(') S
+(TXT_HELP_RULE_4) str
+(', ") p
+(Par exemple, si la r\303\251action R7 est 0-active, dans grfile elle se pr\303\251sentera s) str n
+0 T (ous la forme 0R7, tandis qu'une r\303\251action pleinement active sera not\303\251e fR3.) S
+("\);) p n
+(217) # (define\(') S
+(TXT_HELP_RULE_INFO_TITLE) str
+(', ") p
+(Conversion des r\303\250gles dans le format utilis\303\251 par regEfmtool) str
+(") p n
+0 T (\);) N
+(218) # (define\(') S
+(TXT_HELP_RULE_INFO_1) str
+(', ") p
+(Cette page vous permet de cr\303\251er des r\303\250gles sur les g\303\250nes du type:) str
+(") p n
+0 T (\);) N
+(219) # (define\(') S
+(TXT_R1) str
+(', ") p
+(IF R1 = 1 AND R2 = 0 THEN R3=1) str
+("\);) p n
+(220) # (define\(') S
+(TXT_R2) str
+(', ") p
+(IF R4 = 0 OR R2 = 1 THEN R1 = 0) str
+("\);) p n
+(221) # (define\(') S
+(TXT_HELP_RULE_INFO_2) str
+(', ") p
+(Lorsque vous cliquez sur le bouton \\"ajouter\\", les r\303\250gles sont traduites) str n
+0 T ( et \303\251crites dans le fichier grfile.txt qui pourra ensuite \303\252tre utilis\303\251 par regEfmtool) N
+(222) # (lors du calcul des modes \303\251l\303\251mentaires.) S
+("\);) p n
+(223) # (define\(') S
+(TXT_HELP_RULE_INFO_3) str
+(', ") p
+(La traduction des r\303\250gles pr\303\251c\303\251dentes est:) str
+("\);) p n
+(224) # (define\(') S
+(TXT_R1_2) str
+(', ") p
+(R3 = \(1R1 & \(!0R2\)\)) str
+("\);) p n
+(225) # (define\(') S
+(TXT_R2_2) str
+(', ") p
+(R1 = \(!\(\(!0R4\) | 1R2\)\)) str
+("\);) p n
+(226) # () N
+(227) # () S
+(//---------------------------------------------------------) c n
+(228) # (//help_create.php) N
+(229) # (//--------------------------------------------------------) N
+(230) # () S
+(define\(') p
+(TXT_HELP_CREATE_TITLE) str
+(', ") p
+(Aide) str
+("\);) p n
+(231) # (define\(') S
+(TXT_HELP_CREATE_TITLE1) str
+(', ") p
+(Aide \303\240 la cr\303\251ation d'un nouveau r\303\251seau) str
+("\);) p n
+(232) # (define\(') S
+(TXT_HELP_CREATE_INTRO) str
+(', ") p
+(Pour la cr\303\251ation de votre r\303\251seau, vous devez g\303\251n\303\251rer certai) str n
+0 T (ns fichiers au fur et \303\240 mesure.) S
+("\);) p n
+(233) # (define\(') S
+(TXT_HELP_CREATE_1) str
+(', ") p
+(Cliquer sur le bouton \\"Initialiser fichiers\\".) str
+("\);) p n
+(234) # (define\(') S
+(TXT_HELP_CREATE_2) str
+(', ") p
+(\303M-^Icrire les r\303\251actions du r\303\251seau une par une \(en veillant \303\240 pr\303\251ci) str n
+0 T (ser la stoechiom\303\251trie \303\240 chaque fois\). ) S
+("\);) p n
+(235) # (define\(') S
+(TXT_HELP_CREATE_3) str
+(', ") p
+(Cliquer sur le bouton \\"Ajouter\\" pour valider la r\303\251action. ) str
+("\);) p n
+(236) # (define\(') S
+(TXT_HELP_CREATE_4) str
+(', ") p
+(Si vous avez fait une erreur de saisie, vous pouvez la modifier dans la zone ) str n
+0 T (de texte \\"R\303\251actions d\303\251j\303\240 rentr\303\251es\\".) S
+("\);) p n
+(237) # (define\(') S
+(TXT_HELP_CREATE_5) str
+(', ") p
+(Ensuite, cliquer sur \\"Modifier\\" pour que les modifications soient prises en) str n
+0 T ( compte.) S
+("\);) p n
+(238) # (define\(') S
+(TXT_HELP_CREATE_6) str
+(', ") p
+(Vous ne pouvez pas rentrer directement une r\303\251action dans cette zone de t) str n
+0 T (exte, ni en supprimer une. ) S
+("\);) p n
+(239) # (define\(') S
+(TXT_HELP_CREATE_7) str
+(', ") p
+(Vous pouvez cr\303\251er un fichier.dat qui contiendra votre r\303\251seau en cliqua) str n
+0 T (nt sur le bouton \\"DAT\\". ) S
+("\);) p n
+(240) # (define\(') S
+(TXT_HELP_CREATE_8) str
+(', ") p
+(Lorsque vous avez termin\303\251, cliquer sur \\"\303M-^Itape suivante\\" pour pas) str n
+0 T (ser \303\240 la cr\303\251ation des r\303\250gles. ) S
+("\);) p n
+(241) # () N
+(242) # () S
+(//---------------------------------------------------------) c n
+(243) # (// copyright.php) N
+(WRET_Langages) (Page 4/5) (f\303\251vr. 18, 13 8:48) title
+border
+/v 1 store
+/x0 x v get 3.167824 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(244) # (//---------------------------------------------------------) c n
+(245) # () S
+(define\(') p
+(TXT_COPYRIGHT_TITLE) str
+(', ") p
+(Copyright) str
+("\);) p n
+(246) # (define\(') S
+(TXT_COPYRIGHT_CPY) str
+(', ") p
+(\302\251 Copyright 2013 <br />) str n
+(247) # () S 4 T () S 8 T () S 12 T (WebRegEfmTool \(WRET\) est une interface Web cr\303\251\303\251e par les \303\251tudiants du Master 2 de BioIn) N
+0 T (formatique de Bordeaux : <br />) N
+(248) # () S 4 T () S 8 T () S 12 T (Arnaud FR\303M-^HCHE, Charlotte H\303M-^IRIC\303M-^I, Sara\303\257 MOLA, Typhaine PAYSAN-LAF) N
+0 T (OSSE et Joris SANSEN <br />) N
+(249) # () S 4 T () S 8 T () S 12 T (Sous la direction de Mme <a href=\\"http://dept-info.labri.fr/~beurton\\">Marie BEURTON-AIMAR) N
+0 T (</a>. <br />) N
+(250) # () S 4 T () S 8 T () S 12 T (Le but de cette interface est de fournir un environnement ergonomique au logiciel <a href=\\"http://w) N
+0 T (ww.biotec.boku.ac.at/regulatoryelementaryfluxmode.html\\"> regEfmtool</a>. ) S
+("\);) p n
+(251) # () N
+(252) # () S
+(//---------------------------------------------------------) c n
+(253) # (// results.php) N
+(254) # (//---------------------------------------------------------) N
+(255) # () S
+(define\(') p
+(TXT_FILE_CHOOSE_SITE_TITLE) str
+(', ") p
+(R\303\251sultats) str
+("\);) p n
+(256) # (define\(') S
+(TXT_FILE_CHOOSE_TITLE) str
+(', ") p
+(Log) str
+("\);) p n
+(257) # (define\(') S
+(TXT_FILE_CHOOSE_SUBTITLE) str
+(', ") p
+(Choisir un fichier) str
+("\);) p n
+(258) # (define\(') S
+(TXT_FILE_CHOOSE) str
+(', ") p
+(Fichier : ) str
+("\);) p n
+(259) # () N
+(260) # () S
+(//---------------------------------------------------------) c n
+(261) # (// parse_results.php) N
+(262) # (//---------------------------------------------------------) N
+(263) # () S
+(define\(') p
+(TXT_PARSE_RESULTS__SITE_TITLE) str
+(', ") p
+(R\303\251sultats) str
+("\);) p n
+(264) # (define\(') S
+(TXT_PARSE_RESULTS_TITLE) str
+(', ") p
+(Extraction des r\303\251sultats) str
+("\);) p n
+(265) # (define\(') S
+(TXT_PARSE_RESULTS_FILE) str
+(', ") p
+(Fichier trait\303\251 : ) str
+("\);) p n
+(266) # (define\(') S
+(TXT_PARSE_RESULTS_DISPLAY) str
+(',") p
+(Extraction des r\303\251sultats ci-dessous : ) str
+("\);) p n
+(267) # () N
+(268) # () S
+(//---------------------------------------------------------) c n
+(269) # (// results.php) N
+(270) # (//---------------------------------------------------------) N
+(271) # () S
+(define\(') p
+(TXT_DISPLAY_RESULTS_SITE_TITLE) str
+(', ") p
+(R\303\251sultats) str
+("\);) p n
+(272) # (define\(') S
+(TXT_DISPLAY_RESULTS_TITLE) str
+(', ") p
+(Affichage des r\303\251sultats) str
+("\);) p n
+(273) # (define\(') S
+(TXT_DISPLAY_RESULTS_INSTRUCTION_1) str
+(',") p
+(Fichier log) str
+("\);) p n
+(274) # (define\(') S
+(TXT_DISPLAY_RESULTS_FILE) str
+(', ") p
+(Fichier trait\303\251 : ) str
+("\);) p n
+(275) # (define\(') S
+(TXT_DISPLAY_RESULTS_ORIGINAL) str
+(', ") p
+(Original : ) str
+("\);) p n
+(276) # (define\(') S
+(TXT_DISPLAY_RESULTS_NEW) str
+(', ") p
+(Nouveau : ) str
+("\);) p n
+(277) # () N
+(278) # () S
+(//---------------------------------------------------------) c n
+(279) # (// instal.php) N
+(280) # (//---------------------------------------------------------) N
+(281) # () S
+(define\(') p
+(TXT_INSTAL_TITLE) str
+(', ") p
+(Configuration) str
+("\);) p n
+(282) # (define\(') S
+(TXT_INSTAL_TXT) str
+(', ") p
+(Pour pouvoir utiliser cette interface, vous devez : <br />) str n
+(283) # () S 4 T () S 8 T () S 12 T (- avoir la version 7 de Java <br />) N
+(284) # () S 4 T () S 8 T () S 12 T (- changer les variables JAR et JAVAC du fichier Makefile dans le dossier regEfmtool en : <br />) N
+(285) # () S 4 T () S 8 T () S 12 T (JAR=/usr/lib/jvm/java-7-sun/bin/jar et JAVAC=/usr/lib/jvm/java-7-sun/bin/javac \(en fonction de c) N
+0 T (e que vous avez\) <br />) N
+(286) # () S 4 T () S 8 T () S 12 T (- avoir t\303\251l\303\251charg\303\251 le logiciel <a href=\\"http://www.biotec.boku.ac.at/regulatoryelementaryflu) N
+0 T (xmode.html\\"> regEfmtool</a>. <br />) N
+(287) # () S 4 T () S 8 T () S 12 T (Si vous voulez utiliser regEfmtool depuis un autre dossier, il faut changer les chemins de fichiers dan) N
+0 T (s le code du programme.<br />) N
+(288) # () S 4 T () S 8 T () S 12 T (- L'utilisation de cette interface, tout le dossier de celle-ci doit \303\252tre install\303\251 avec les acc\303\250s d'un ) N
+0 T (serveur internet \(apache ou autres\).) S
+("\);) p n
+(289) # () N
+(290) # () S
+(//---------------------------------------------------------) c n
+(291) # (// Fin) N
+(292) # (//---------------------------------------------------------) N
+(293) # () S
+(?>) K n
+(WRET_Langages) (Page 5/5) (f\303\251vr. 18, 13 8:48) title
+border
+grestore
+(Groupe Web) rhead
+(fr_lang.php) (8/8) (lundi f\303\251vrier 18, 2013) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF
